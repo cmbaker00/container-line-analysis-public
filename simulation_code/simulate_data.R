@@ -14,7 +14,7 @@ true_inspect_probability <- integer(num_types) + 1
 
 
 prob_line <- 0.25 # probability that an entry is in line mode
-target_num_rows_data <- 100 # number of rows of data to generate
+target_num_rows_data <- 10000 # number of rows of data to generate
 
 pr_doc <- .2 # probability that each row of data has documentation
 doc_effect <- 1 # The effect on the probability of interception if there is documetation
@@ -143,7 +143,5 @@ if (length(true_inspect_probability) != num_types){
 
   simulated_data <- simulated_data %>% select(-TrueInspect, -RecordInspect)
   
-  write.csv(simulated_data, paste0('../data/', simulation_name, min_entry_size, '_', max_entry_size,
-                                   '_rows_', target_num_rows_data, '.csv'), row.names = FALSE)
-  write.csv(simulated_data, paste0('data/', simulation_name, min_entry_size, '_', max_entry_size,
+  write.csv(simulated_data, paste0('simulation_data/', simulation_name, min_entry_size, '_', max_entry_size,
                                    '_rows_', target_num_rows_data, '.csv'), row.names = FALSE)
