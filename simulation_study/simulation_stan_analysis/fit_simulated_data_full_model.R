@@ -1,64 +1,65 @@
 # Load packages
-library(shinystan)
 library(rstan)
 library(dplyr)
 
-#set working directory to file 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
-load_sim_data <- read.csv(paste0('../data/container_line_simulated_data_correlations2_5_rows_1000.csv'))
-# load_sim_data <- read.csv(paste0('../data/container_line_simulated_data_p05_container_size4_4_rows_1e+05.csv'))
-load_sim_data <- load_sim_data %>% rename(Entry = Container)
-
-# load_sim_data <- read.csv(paste0('../data/container_line_simulated_data_correlations2_5_rows_1e+05.csv'))
-# load_sim_data <- load_sim_data[1:10000,]
-load_sim_data <- read.csv(paste0('../data/container_line_simulated_data_correlations2_2_rows_1e+05.csv'))
-load_sim_data <- load_sim_data %>% filter(Mode == "Line" | Entry <= 10)
-load_sim_data <- load_sim_data[1:10000,]
-
+load_sim_data <- read.csv(paste0('simulation_study/simulation_data/container_line_simulated_data_correlations_country2_5_rows_10000.csv'))
+load_sim_data <- load_sim_data %>% mutate(Country=1)
 data <- load_sim_data
 
-data <- data %>% mutate(Documentation = as.numeric(Documentation))
+data <- data %>% mutate(Documentation = as.numeric(Documentation)) # Ensure Documentation is numeric
+
+# Change container mode data that is not intercepted to be line mode for analsysis
 data <- data %>% mutate(Mode = ifelse(Mode == 'Line' | RecordIntercept == 0, 'Line', 'Container'))
+
 # Store row number of each row to recover original order later
 data$row_ID <- seq.int(nrow(data))
+
+### Process data for analysis ###
 
 # Split data into container and line
 container_data <- data %>% filter(Mode == 'Container')
 line_data <- data %>% filter(Mode == 'Line')
 
+# Record_group is groupings of lines, where inteceptions are recorded against the group.
+# For line mode, every row of data is it's own unique record group
+# For container mode data, each entry is its own record group
+# This code gives each container-mode entry a Record_group equal to its entry number, and then the line
+# mode data is given numbers, starting after the container mode data.
 container_data <- container_data %>% mutate(Record_group = Entry)
 if (nrow(container_data) == 0){starting_record_index <- 0} else {starting_record_index <- max(container_data$Record_group)}
 line_data$Record_group <-seq.int(nrow(line_data)) + starting_record_index
 
 data <- rbind(container_data, line_data)
 
-# Arrange data in original order and
+# Arrange data in original order, rather than container data then line data.
+# The reason for this is to allow removing the last x rows of data without only removing line data.
 data <- data %>% arrange(row_ID)
 
+# Creates a vector of interception data, corresponding to the record groups
 intercept_data <- data %>% group_by(Record_group) %>% summarise(Record_intercept=max(RecordIntercept))
 
-# This code calcultes out the start/finish for each container.
-n_records <- length(unique(intercept_data$Record_group))
-start_indices <- integer(n_records)
-end_indices <- integer(n_records)
+# This code gets the start/finish for each record group.
+n_records <- length(unique(intercept_data$Record_group)) #number of groups
+start_indices <- integer(n_records) # To store the start indices
+end_indices <- integer(n_records) # To store the end indices
 
-for (i in 1:length(intercept_data$Record_group)){
+for (i in seq_along(intercept_data$Record_group)){
   current_record_group <- intercept_data$Record_group[i]
-  ind_opts <- which(data$Record_group %in% current_record_group)
-  opts_len <- length(ind_opts)
+  ind_opts <- which(data$Record_group %in% current_record_group) # Stores the rows in the record group
+  opts_len <- length(ind_opts) # The number
   if (opts_len == 1){
     start_indices[i] <- ind_opts
     end_indices[i] <- ind_opts
   } else {
-    start_indices[i] <- ind_opts[1]
-    end_indices[i] <- ind_opts[opts_len]
+    start_indices[i] <- ind_opts[1] # Start index is the first in ind_opts
+    end_indices[i] <- ind_opts[opts_len] # End index is the last in ind_opts
   }
 }
 
-
+# This code stores a unique entry ID for each entry, from 1 to #entries.
+# It makes sure they're number 1, 2, 3 .. etc
 entry_data <- data$Entry
-prev_entry = entry_data[1]
+prev_entry <- entry_data[1]
 for (i in 2:length(entry_data)){
   c_entry <- entry_data[i]
   if (c_entry > prev_entry + 1){
@@ -66,8 +67,6 @@ for (i in 2:length(entry_data)){
   }
   prev_entry <- entry_data[i]
 }
-# entry_data[1:100] <- 1
-# entry_data[101:length(entry_data)] <- 2
 
 container_true_false <- (end_indices - start_indices) > 0
 entry_size <- end_indices - start_indices + 1
@@ -88,7 +87,6 @@ stan_data <- list(num_rows = nrow(data),
                   Document = data$Documentation,
                   num_unique_Entry = num_entries,
                   Entry = entry_data,
-                  #Record_groups = intercept_data$Record_group,
                   Record_intercept = intercept_data$Record_intercept,
                   Record_index_start = start_indices,
                   Record_index_end = end_indices,
@@ -101,7 +99,7 @@ stan_data <- list(num_rows = nrow(data),
 # init_fun <- function(...) list(p=runif(n=8,0.01,.4),beta_doc=0, sigma_entry=0.1, entry_effect=integer(num_entries))
 
 fit <- stan(
-  file = "basic_model_stan_doc_correlation_v3b.stan",
+  file = "stan_code/full_container_line_model.stan",
   data = stan_data,
   chains = 4,
   warmup = 200,
@@ -113,37 +111,3 @@ fit <- stan(
   # init = init_fun,
 )
 print(fit)
-# saveRDS(fit, "fit_100000_correlation.rds")
-# fit1000 <- readRDS("fit_1000_correlation.rds")
-
-stan_data_simple <- list(num_rows = nrow(data),
-                         num_records = n_records,
-                         Item_class = data$Type,
-                         Num_item_classes = length(unique(data$Type)),
-                         Document = data$Documentation,
-                         num_unique_Entry = 2,
-                         Entry = c(integer(length(data$Entry)/2)+1, integer(5+length(data$Entry)/2)+2)[1:length(data$Entry)],
-                         # num_unique_Entry = 1,
-                         # Entry = integer(length(data$Entry))+1,
-                         #Record_groups = intercept_data$Record_group,
-                         Record_intercept = intercept_data$Record_intercept,
-                         Record_index_start = start_indices,
-                         Record_index_end = end_indices)
-
-init_fun <- function(...) list(p=integer(8)+.01,beta_doc=0, sigma_entry=.01, entry_effect=c(0,0))
-
-# init_fun <- function(...) list(p=integer(8)+.01,beta_doc=0, sigma_entry=.01, entry_effect=c(0))
-
-fit_simple <- stan(
-  file = "basic_model_stan_doc_correlation.stan",
-  data = stan_data_simple,
-  chains = 1,
-  warmup = 1000,
-  iter = 5000,
-  cores = 4,
-  refresh = 100, 
-  #init_r = .1,
-  init = init_fun,
-  control = list(adapt_delta = 0.99)
-)
-print(fit_simple)
