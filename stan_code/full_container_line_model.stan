@@ -1,0 +1,69 @@
+data {
+  int num_rows;
+  int num_records;
+  
+  int Num_item_classes;
+  int Item_class[num_rows];
+  
+  int Document[num_rows];
+  
+  int num_unique_Entry;
+  int Entry[num_rows];
+  
+  int num_countries;
+  int country[num_rows];
+  
+  int Record_intercept[num_records];
+  int Record_index_start[num_records];
+  int Record_index_end[num_records];
+  
+  int num_containers;
+  int num_lines;
+  
+  int container_record_index[num_containers];
+  int line_record_index[num_lines];
+  
+  int entry_size[num_records];
+}
+
+
+parameters {
+  vector[Num_item_classes] p_intercept; // item probability
+  vector[num_countries] country_effect;
+  real beta_doc; // documentation probability
+  real sigma_entry; // random effect standard deviation
+  
+  vector[num_unique_Entry] entry_effect; // random effect of entry
+}
+
+
+model {
+  vector[num_records] pi;
+  vector[num_rows] pvec;
+  
+  p_intercept ~ normal(0, 2);
+  // beta_doc ~ uniform(-2, 2);
+  beta_doc ~ normal(0, .5);
+  country_effect ~ normal(0, .5);
+  
+  sigma_entry ~ uniform(0,0.5);
+  entry_effect ~ normal(0, sigma_entry);
+  
+  for (i in 1:num_rows){
+    pvec[i] = p_intercept[Item_class[i]] + country_effect[country[i]] + beta_doc*Document[i] + entry_effect[Entry[i]];
+  }
+  
+  for (i in line_record_index){
+    pi[i] = pvec[Record_index_start[i]];
+  }
+  
+  for (i in container_record_index){
+      pi[i] = logit(1 - prod(1-inv_logit(pvec[Record_index_start[i]:Record_index_end[i]])));
+  }
+
+  Record_intercept ~ bernoulli_logit(pi);
+}
+
+
+
+
