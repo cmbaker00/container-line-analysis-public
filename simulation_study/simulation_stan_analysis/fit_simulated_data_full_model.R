@@ -99,6 +99,24 @@ stan_data <- list(num_rows = nrow(data),
                   line_record_index = line_mode_indices_nums,
                   entry_size = entry_size)
 
+stan_data <- list(num_rows = nrow(data),
+                  num_records = n_records,
+                  Item_class = data$Type,
+                  Num_item_classes = length(unique(data$Type)),
+                  Document = data$Documentation,
+                  num_unique_Entry = -1,
+                  Entry = entry_data,
+                  num_countries = -1,
+                  country = data$Country,
+                  Record_intercept = intercept_data$Record_intercept,
+                  Record_index_start = start_indices,
+                  Record_index_end = end_indices,
+                  num_containers = num_containers,
+                  num_lines = num_lines,
+                  container_record_index = container_mode_indices_nums,
+                  line_record_index = line_mode_indices_nums,
+                  entry_size = entry_size)
+
 # init_fun <- function(...) list(p=runif(n=8,0.01,.4),beta_doc=0, sigma_entry=0.1, entry_effect=integer(num_entries))
 
 fit <- stan(
