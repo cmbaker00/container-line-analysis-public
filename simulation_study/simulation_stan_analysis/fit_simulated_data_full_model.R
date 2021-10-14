@@ -2,6 +2,7 @@
 library(rstan)
 library(dplyr)
 
+data_filename <- 'test_run'
 load_sim_data <- read.csv(paste0('simulation_study/simulation_data/container_line_simulated_data_correlations_country2_5_rows_10000.csv'))
 load_sim_data <- load_sim_data %>% mutate(Country=1)
 data <- load_sim_data
@@ -110,7 +111,9 @@ fit <- stan(
   refresh = 500, 
   control = list(adapt_delta = .8),
   init_r = .1,
-  auto_write = rstan_options("auto_write"),
   # init = init_fun,
 )
 print(fit)
+fit_summary <- summary(fit)
+fit_summary_df <- data.frame(fit_summary)
+saveRDS(fit_summary_df, paste0('simulation_study/simulation_stan_results/',data_filename,"_fit_summary.Rda"))
