@@ -18,7 +18,7 @@ target_num_rows_data <- 10000 # number of rows of data to generate
 
 pr_doc <- .2 # probability that each row of data has documentation
 doc_effect <- 1 # The effect on the probability of interception if there is documetation
-entry_correlation_sd <- .25
+entry_correlation_sd <- .0
 
 #country
 country_effects <- c(.5, -1, .25)

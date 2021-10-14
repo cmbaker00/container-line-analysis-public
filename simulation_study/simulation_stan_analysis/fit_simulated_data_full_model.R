@@ -5,6 +5,7 @@ library(dplyr)
 data_filename <- 'test_run'
 load_sim_data <- read.csv(paste0('simulation_study/simulation_data/container_line_simulated_data_correlations_country2_5_rows_10000.csv'))
 load_sim_data <- load_sim_data %>% mutate(Country=1)
+#load_sim_data <- load_sim_data %>% mutate(Entry=1)
 data <- load_sim_data
 
 data <- data %>% mutate(Documentation = as.numeric(Documentation)) # Ensure Documentation is numeric
@@ -79,7 +80,7 @@ line_mode_indices_nums <- all_nums[!container_true_false]
 num_containers <- length(container_mode_indices_nums)
 num_lines <- length(line_mode_indices_nums)
 
-
+entry_data[] <- 1
 num_entries <- length(unique(entry_data))
 stan_data <- list(num_rows = nrow(data),
                   num_records = n_records,
@@ -99,23 +100,6 @@ stan_data <- list(num_rows = nrow(data),
                   line_record_index = line_mode_indices_nums,
                   entry_size = entry_size)
 
-stan_data <- list(num_rows = nrow(data),
-                  num_records = n_records,
-                  Item_class = data$Type,
-                  Num_item_classes = length(unique(data$Type)),
-                  Document = data$Documentation,
-                  num_unique_Entry = -1,
-                  Entry = entry_data,
-                  num_countries = -1,
-                  country = data$Country,
-                  Record_intercept = intercept_data$Record_intercept,
-                  Record_index_start = start_indices,
-                  Record_index_end = end_indices,
-                  num_containers = num_containers,
-                  num_lines = num_lines,
-                  container_record_index = container_mode_indices_nums,
-                  line_record_index = line_mode_indices_nums,
-                  entry_size = entry_size)
 
 # init_fun <- function(...) list(p=runif(n=8,0.01,.4),beta_doc=0, sigma_entry=0.1, entry_effect=integer(num_entries))
 
