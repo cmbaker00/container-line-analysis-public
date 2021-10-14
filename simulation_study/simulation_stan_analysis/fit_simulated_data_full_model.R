@@ -3,10 +3,11 @@ library(rstan)
 library(dplyr)
 
 data_filename <- 'test_run'
-load_sim_data <- read.csv(paste0('simulation_study/simulation_data/container_line_simulated_data_correlations_country2_5_rows_10000.csv'))
+load_sim_data <- read.csv(paste0('simulation_study/simulation_data/container_line_simulated_data_entrysize_2_5_entry_corr0_rows_1e+05.csv'))
 load_sim_data <- load_sim_data %>% mutate(Country=1)
 #load_sim_data <- load_sim_data %>% mutate(Entry=1)
-data <- load_sim_data
+
+run_stan_simulated_data <- function (data, data_filename, entry_correlation_flag = TRUE){
 
 data <- data %>% mutate(Documentation = as.numeric(Documentation)) # Ensure Documentation is numeric
 
@@ -80,8 +81,10 @@ line_mode_indices_nums <- all_nums[!container_true_false]
 num_containers <- length(container_mode_indices_nums)
 num_lines <- length(line_mode_indices_nums)
 
+  if (entry_correlation_flag == FALSE){
 entry_data[] <- 1
-num_entries <- length(unique(entry_data))
+num_entries <- length(unique(entry_data))}
+
 stan_data <- list(num_rows = nrow(data),
                   num_records = n_records,
                   Item_class = data$Type,
@@ -119,3 +122,9 @@ print(fit)
 fit_summary <- summary(fit)
 fit_summary_df <- data.frame(fit_summary)
 saveRDS(fit_summary_df, paste0('simulation_study/simulation_stan_results/',data_filename,"_fit_summary.Rda"))
+}
+
+run_stan_simulated_data(load_sim_data,
+                        data_filename,
+                        entry_correlation_flag = FALSE
+)

@@ -1,7 +1,13 @@
 library(tidyverse)
 library(optimx)
 
-simulation_name <- 'container_line_simulated_data_correlations_country' # A name that is used as part of the save filename
+simulation_name <- 'container_line_simulated_data' # A name that is used as part of the save filename
+
+prob_line <- 0.25 # probability that an entry is in line mode
+target_num_rows_data <- 100000 # number of rows of data to generate
+entry_correlation_sd <- .25
+#country
+country_effects <- c(.5, -1, .25)
 
 # The true probability of interception of each item type
 true_intercept_probability <- qlogis(c(.01, .05, .1, .2, .5, .7, .9, .95))
@@ -13,15 +19,9 @@ num_types <- length(true_intercept_probability) # number of item types
 true_inspect_probability <- integer(num_types) + 1
 
 
-prob_line <- 0.25 # probability that an entry is in line mode
-target_num_rows_data <- 10000 # number of rows of data to generate
-
 pr_doc <- .2 # probability that each row of data has documentation
 doc_effect <- 1 # The effect on the probability of interception if there is documetation
-entry_correlation_sd <- .0
 
-#country
-country_effects <- c(.5, -1, .25)
 num_countries <- length(country_effects)
 
 # A check that the length of the inspect and intercept probability lists are the same
@@ -143,5 +143,5 @@ if (length(true_inspect_probability) != num_types){
 
   simulated_data <- simulated_data %>% select(-TrueInspect, -RecordInspect)
   
-  write.csv(simulated_data, paste0('simulation_data/', simulation_name, min_entry_size, '_', max_entry_size,
-                                   '_rows_', target_num_rows_data, '.csv'), row.names = FALSE)
+  write.csv(simulated_data, paste0('simulation_study/simulation_data/', simulation_name, '_entrysize_', min_entry_size, '_', max_entry_size,
+                                   '_entry_corr', entry_correlation_sd,'_rows_', target_num_rows_data, '.csv'), row.names = FALSE)
