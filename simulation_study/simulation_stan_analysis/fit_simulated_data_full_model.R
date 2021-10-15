@@ -130,7 +130,6 @@ fit <- stan(
 print(fit)
 fit_summary <- summary(fit)
 fit_summary_df <- data.frame(fit_summary)
-saveRDS(fit_summary_df, paste0('simulation_study/simulation_stan_results/',data_filename,"_fit_summary.Rda"))
 return(fit_summary_df)
 }
 

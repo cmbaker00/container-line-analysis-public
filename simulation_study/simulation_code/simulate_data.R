@@ -1,10 +1,11 @@
 library(tidyverse)
 library(optimx)
 
-simulation_name <- 'container_line_simulated_data' # A name that is used as part of the save filename
+source('simulation_study/simulation_naming_functions.R')
+
 
 prob_line <- 0.25 # probability that an entry is in line mode
-target_num_rows_data <- 100000 # number of rows of data to generate
+target_num_rows_data <- 1000 # number of rows of data to generate
 entry_correlation_sd <- .25
 #country
 country_effects <- c(.5, -1, .25)
@@ -142,6 +143,6 @@ if (length(true_inspect_probability) != num_types){
 # TODO properly remove 'inspected' from the simulation, by making  --------
 
   simulated_data <- simulated_data %>% select(-TrueInspect, -RecordInspect)
-  
-  write.csv(simulated_data, paste0('simulation_study/simulation_data/', simulation_name, '_entrysize_', min_entry_size, '_', max_entry_size,
-                                   '_entry_corr', entry_correlation_sd,'_rows_', target_num_rows_data, '.csv'), row.names = FALSE)
+  sim_filename <- gen_filename_simulate_data(min_entry_size, max_entry_size, entry_correlation_sd,
+                             target_num_rows_data,TRUE, TRUE)
+  write.csv(simulated_data, sim_filename, row.names = FALSE)
