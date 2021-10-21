@@ -26,7 +26,7 @@ gen_filename_stanfit_simulated_data <- function (min_entry_size, max_entry_size,
                                                  include_path = TRUE, include_extension = TRUE){
   
   # set file path
-  rel_path = ifelse(include_path, file.path("simulation_study", "simulation_stan_results"), "")
+  rel_path = file.path("simulation_study", "simulation_stan_results")
   # set extension
   end_str = ifelse(include_extension, ".Rda", "")
   # if number of line or container rows are empty, set to zero
@@ -34,8 +34,10 @@ gen_filename_stanfit_simulated_data <- function (min_entry_size, max_entry_size,
   num_container_rows = ifelse(is_empty(num_container_rows), 0, num_container_rows)
   
   # return file name
-  paste0(rel_path, "entrysize_", min_entry_size,"_",max_entry_size,
+  fn = paste0("entrysize_", min_entry_size,"_",max_entry_size,
          "_corr_sd_",entry_correlation_sd,"_num_line_",num_line_rows,"_num_container_",num_container_rows,
          "_fit_summary",end_str)
+  
+  ifelse(include_path, file.path(rel_path, fn), fn)
 }
 
