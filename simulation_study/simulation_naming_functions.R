@@ -48,9 +48,13 @@ gen_filename_stanfit_simulated_data <- function (min_entry_size, max_entry_size,
 #' @param filename, string with the filename (with or without file path and extension)
 #' @return list of parameter values
 extract_params_stanfit_simulated_data = function(filename){
-  params = str_replace(filename, file.path("simulation_study", "simulation_stan_results"), "")
-  params = substring(params, 2)
+  params = basename(filename)
   params = str_split(params, pattern = "_")[[1]]
+  
+  if(length(params)!= 14){
+    message(paste(filename, "not in correct format"))
+    return()
+  }
 
   matching = c(check_string(params[1], "entrysize"),
                check_string(params[4], "corr"),
@@ -63,6 +67,7 @@ extract_params_stanfit_simulated_data = function(filename){
                check_string(params[14], "summary.Rda"))
 
   if(!all(matching)){
+    message(paste(filename, "not in correct format"))
     return()
   }
   
