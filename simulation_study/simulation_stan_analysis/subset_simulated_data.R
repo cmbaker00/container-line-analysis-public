@@ -18,6 +18,7 @@ load_and_subset_sim_data = function(min_entry_size,
                                     target_num_rows_data,
                                     num_line_data,
                                     num_container_data,
+                                    entry_random_effect,
                                     update = FALSE) {
   
   output_filename = gen_filename_stanfit_simulated_data(min_entry_size, max_entry_size,sd,num_line_data, num_container_data)
@@ -51,7 +52,7 @@ load_and_subset_sim_data = function(min_entry_size,
     
     fit_summary_df <- run_stan_simulated_data(load_sim_data,
                                               data_filename,
-                                              entry_correlation_flag = FALSE
+                                              entry_correlation_flag = entry_random_effect
     )
     
     saveRDS(fit_summary_df, output_filename)
