@@ -60,3 +60,18 @@ input_params_all_no_sd = data.frame(
 )
 
 loop_over_input_params_fit_stan(input_params_all_no_sd)
+
+
+
+num_scenarios <- 9
+input_params_all_no_sd_change_combination = data.frame(
+  min_entry_size = rep(2, num_scenarios),
+  max_entry_size = rep(5, num_scenarios),
+  sd = rep(0, num_scenarios),
+  target_num_rows_data = rep('1e+05', num_scenarios),
+  num_line_data =      c(900, 800, 700, 600, 500, 400, 300, 200, 100),
+  num_container_data = c(100, 200, 300, 400, 500, 600, 700, 800, 900),
+  entry_random_effect = rep(FALSE, num_scenarios)
+)
+
+loop_over_input_params_fit_stan(input_params_all_no_sd_change_combination)
