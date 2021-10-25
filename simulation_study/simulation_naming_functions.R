@@ -71,11 +71,11 @@ extract_params_stanfit_simulated_data = function(filename){
     return()
   }
   
-  list(min_entry_size = params[2],
-       max_entry_size = params[3],
-       entry_correlation_sd = params[6],
-       num_line_rows = params[9],
-       num_container_rows = params[12])
+  list(min_entry_size = as.numeric(params[2]),
+       max_entry_size = as.numeric(params[3]),
+       entry_correlation_sd = as.numeric(params[6]),
+       num_line_rows = as.numeric(params[9]),
+       num_container_rows = as.numeric(params[12]))
 }
 
 
