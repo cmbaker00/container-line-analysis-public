@@ -1,0 +1,45 @@
+---
+title: "Plot simulation summary data"
+author: "Elena Tartaglia"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+  html_document:
+    df_print: paged
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+source(here::here("simulation_study",
+                  "simulation_stan_analysis",
+                  "combine_simulated_data.R"))
+```
+
+```{r}
+summary_data = summary_data %>%
+  mutate(
+    percentage_container_data = num_container_rows/(num_line_rows + num_container_rows)
+    )
+```
+
+```{r}
+ggplot(summary_data, aes(x = percentage_container_data, y = summary_sd)) +
+  geom_line() +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  facet_wrap(~param_name, scales = "free")
+```
+
+Peak around 33%
+
+
+```{r}
+summary_data %>%
+  filter(percentage_container_data > 0.25, percentage_container_data <0.5)
+```
+
+
+
+
+
+

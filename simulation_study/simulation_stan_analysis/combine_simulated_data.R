@@ -31,8 +31,9 @@ for(file in list.files(DATA_DIR)){
     summary_data = rbind(summary_data, curr)
   }
 }
+rm(curr, file, params)
 
-saveRDS(summary_data, file.path(DATA_DIR, OUT_NAME))
+# saveRDS(summary_data, file.path(DATA_DIR, OUT_NAME))
 
 # Read in output to check
 # rm(summary_data)
