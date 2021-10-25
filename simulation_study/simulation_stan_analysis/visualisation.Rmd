@@ -19,8 +19,10 @@ source(here::here("simulation_study",
 ```{r}
 summary_data = summary_data %>%
   mutate(
-    percentage_container_data = num_container_rows/(num_line_rows + num_container_rows)
-    )
+    num_total_rows = num_line_rows + num_container_rows,
+    percentage_container_data = num_container_rows/num_total_rows
+    ) %>%
+  filter(num_total_rows == 1000, !(param_name %in% c("lp__", "entry_effect[1]"))) 
 ```
 
 ```{r}
@@ -30,13 +32,7 @@ ggplot(summary_data, aes(x = percentage_container_data, y = summary_sd)) +
   facet_wrap(~param_name, scales = "free")
 ```
 
-Peak around 33%
 
-
-```{r}
-summary_data %>%
-  filter(percentage_container_data > 0.25, percentage_container_data <0.5)
-```
 
 
 

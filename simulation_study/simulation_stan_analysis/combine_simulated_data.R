@@ -5,9 +5,9 @@
 
 library(tidyverse)
 library(janitor)
-source(file.path("simulation_study", "simulation_naming_functions.R"))
+source(here::here("simulation_study", "simulation_naming_functions.R"))
 
-DATA_DIR = file.path("simulation_study", "simulation_stan_results")
+DATA_DIR = here::here("simulation_study", "simulation_stan_results")
 OUT_NAME = "combined_simulated_data.Rda"
 
 summary_data = data.frame(matrix(nrow = 0, ncol = 0)) 
