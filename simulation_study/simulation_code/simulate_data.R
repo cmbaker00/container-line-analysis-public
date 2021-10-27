@@ -3,10 +3,10 @@ library(optimx)
 
 source('simulation_study/simulation_naming_functions.R')
 
-
+simulate_data_function <- function(min_entry_size = 2, max_entry_size = 5, entry_correlation_sd = 0, target_num_rows_data=1e5){
 prob_line <- 0.25 # probability that an entry is in line mode
-target_num_rows_data <- 1000 # number of rows of data to generate
-entry_correlation_sd <- .25
+#target_num_rows_data <- 1000 # number of rows of data to generate
+#entry_correlation_sd <- .25
 #country
 country_effects <- c(.5, -1, .25)
 
@@ -30,8 +30,8 @@ if (length(true_inspect_probability) != num_types){
   stop("Inspect and defect probability lists must be the same length")
 }
 
-  min_entry_size <- 2
-  max_entry_size <- 5
+#  min_entry_size <- 2
+#  max_entry_size <- 5
 
 
   create_row_of_data <- function (doc, entry_effect){
@@ -146,3 +146,4 @@ if (length(true_inspect_probability) != num_types){
   sim_filename <- gen_filename_simulate_data(min_entry_size, max_entry_size, entry_correlation_sd,
                              target_num_rows_data,TRUE, TRUE)
   write.csv(simulated_data, sim_filename, row.names = FALSE)
+}
