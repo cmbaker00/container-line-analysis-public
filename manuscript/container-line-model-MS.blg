@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (MiKTeX 2.9.7400 64-bit)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: container-line-model-MS.aux
+The style file: abbrvnat.bst
+Database file #1: container-line.bib
+Warning--there's a number but no volume in liu_generalized_2020
+You've used 9 entries,
+            2773 wiz_defined-function locations,
+            676 strings with 7175 characters,
+and the built_in function-call counts, 4487 in all, are:
+= -- 461
+> -- 212
+< -- 7
++ -- 72
+- -- 63
+* -- 387
+:= -- 717
+add.period$ -- 57
+call.type$ -- 9
+change.case$ -- 48
+chr.to.int$ -- 9
+cite$ -- 19
+duplicate$ -- 180
+empty$ -- 344
+format.name$ -- 82
+if$ -- 929
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 9
+newline$ -- 83
+num.names$ -- 36
+pop$ -- 53
+preamble$ -- 1
+purify$ -- 39
+quote$ -- 0
+skip$ -- 134
+stack$ -- 0
+substring$ -- 196
+swap$ -- 14
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 99
+warning$ -- 1
+while$ -- 41
+width$ -- 0
+write$ -- 183
+(There was 1 warning)

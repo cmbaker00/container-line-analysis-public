@@ -1,0 +1,100 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Chatterjee and Bandyopadhyay(2020)]{chatterjee_regression_2020}
+A.~Chatterjee and T.~Bandyopadhyay.
+\newblock Regression models for group testing: {Identifiability} and
+  asymptotics.
+\newblock \emph{Journal of Statistical Planning and Inference}, 204:\penalty0
+  141--152, Jan. 2020.
+\newblock ISSN 0378-3758.
+\newblock \doi{10.1016/j.jspi.2019.05.003}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0378375818301423}.
+
+\bibitem[Delaigle and Hall(2015)]{delaigle_nonparametric_2015}
+A.~Delaigle and P.~Hall.
+\newblock Nonparametric methods for group testing data, taking dilution into
+  account.
+\newblock \emph{Biometrika}, 102\penalty0 (4):\penalty0 871--887, Dec. 2015.
+\newblock ISSN 0006-3444.
+\newblock \doi{10.1093/biomet/asv049}.
+\newblock URL \url{https://doi.org/10.1093/biomet/asv049}.
+
+\bibitem[Hepworth and Biggerstaff(2017)]{hepworth_bias_2017}
+G.~Hepworth and B.~J. Biggerstaff.
+\newblock Bias {Correction} in {Estimating} {Proportions} by {Pooled}
+  {Testing}.
+\newblock \emph{Journal of Agricultural, Biological and Environmental
+  Statistics}, 22\penalty0 (4):\penalty0 602--614, Dec. 2017.
+\newblock ISSN 1537-2693.
+\newblock \doi{10.1007/s13253-017-0297-2}.
+\newblock URL \url{https://doi.org/10.1007/s13253-017-0297-2}.
+
+\bibitem[Hepworth and Biggerstaff(2021)]{hepworth_bias_2021}
+G.~Hepworth and B.~J. Biggerstaff.
+\newblock Bias {Correction} in {Estimating} {Proportions} by {Imperfect}
+  {Pooled} {Testing}.
+\newblock \emph{Journal of Agricultural, Biological and Environmental
+  Statistics}, 26\penalty0 (1):\penalty0 90--104, Mar. 2021.
+\newblock ISSN 1537-2693.
+\newblock \doi{10.1007/s13253-020-00411-5}.
+\newblock URL \url{https://doi.org/10.1007/s13253-020-00411-5}.
+
+\bibitem[Hepworth and Watson(2009)]{hepworth_debiased_2009}
+G.~Hepworth and R.~Watson.
+\newblock Debiased estimation of proportions in group testing.
+\newblock \emph{Journal of the Royal Statistical Society: Series C (Applied
+  Statistics)}, 58\penalty0 (1):\penalty0 105--121, 2009.
+\newblock ISSN 1467-9876.
+\newblock \doi{10.1111/j.1467-9876.2008.00639.x}.
+\newblock URL
+  \url{https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9876.2008.00639.x}.
+\newblock \_eprint:
+  https://rss.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-9876.2008.00639.x.
+
+\bibitem[Liu et~al.(2020)Liu, McMahan, Tebbs, Gallagher, and
+  Bilder]{liu_generalized_2020}
+Y.~Liu, C.~S. McMahan, J.~M. Tebbs, C.~M. Gallagher, and C.~R. Bilder.
+\newblock Generalized additive regression for group testing data.
+\newblock \emph{Biostatistics}, \penalty0 (kxaa003), Feb. 2020.
+\newblock ISSN 1465-4644.
+\newblock \doi{10.1093/biostatistics/kxaa003}.
+\newblock URL \url{https://doi.org/10.1093/biostatistics/kxaa003}.
+
+\bibitem[McMahan et~al.(2017)McMahan, Tebbs, Hanson, and
+  Bilder]{mcmahan_bayesian_2017}
+C.~S. McMahan, J.~M. Tebbs, T.~E. Hanson, and C.~R. Bilder.
+\newblock Bayesian regression for group testing data.
+\newblock \emph{Biometrics}, 73\penalty0 (4):\penalty0 1443--1452, 2017.
+\newblock ISSN 1541-0420.
+\newblock \doi{10.1111/biom.12704}.
+\newblock URL \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.12704}.
+\newblock \_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/biom.12704.
+
+\bibitem[Schaarschmidt(2007)]{schaarschmidt_experimental_2007}
+F.~Schaarschmidt.
+\newblock Experimental design for one-sided confidence intervals or hypothesis
+  tests in binomial group testing.
+\newblock \emph{Communications in Biometry and Crop Science}, 2007.
+\newblock ISSN 1896-0782.
+\newblock URL
+  \url{http://agrobiol.sggw.waw.pl/~cbcs/pobierz.php?plik=CBCS_2_1_5.pdf}.
+\newblock Publisher: Faculty of Agriculture and Biology, Warsaw Agricultural
+  University, Poland.
+
+\bibitem[Thompson(1962)]{thompson_estimation_1962}
+K.~H. Thompson.
+\newblock Estimation of the {Proportion} of {Vectors} in a {Natural}
+  {Population} of {Insects}.
+\newblock \emph{Biometrics}, 18\penalty0 (4):\penalty0 568--578, 1962.
+\newblock ISSN 0006-341X.
+\newblock \doi{10.2307/2527902}.
+\newblock URL \url{https://www.jstor.org/stable/2527902}.
+\newblock Publisher: [Wiley, International Biometric Society].
+
+\end{thebibliography}
