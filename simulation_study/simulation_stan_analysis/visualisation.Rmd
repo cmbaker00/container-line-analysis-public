@@ -11,26 +11,173 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(boot)
 source(here::here("simulation_study",
                   "simulation_stan_analysis",
                   "combine_simulated_data.R"))
 ```
+
+
+# Standard deviation of parameters
+
 
 ```{r}
 summary_data = summary_data %>%
   mutate(
     num_total_rows = num_line_rows + num_container_rows,
     percentage_container_data = num_container_rows/num_total_rows
-    ) %>%
-  filter(num_total_rows == 1000, !(param_name %in% c("lp__", "entry_effect[1]"))) 
+    )
+
+summary_data %>%
+  select(min_entry_size, max_entry_size, entry_correlation_sd, percentage_container_data) %>%
+  unique() %>%
+  arrange(min_entry_size, max_entry_size, entry_correlation_sd)
 ```
 
 ```{r}
-ggplot(summary_data, aes(x = percentage_container_data, y = summary_sd)) +
+df = summary_data %>%
+  filter(num_total_rows == 1000,
+         min_entry_size == 2,
+         max_entry_size == 5,
+         entry_correlation_sd == 0,
+         !(param_name %in% c("lp__", "entry_effect[1]"))) 
+
+ggplot(df, aes(x = percentage_container_data, y = summary_sd)) +
   geom_line() +
   scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
-  facet_wrap(~param_name, scales = "free")
+  facet_wrap(~param_name, scales = "free") +
+  labs(title = "Standard deviation of parameter estimates by percentage container data",
+       subtitle = paste("Min entry size:", first(df$min_entry_size),
+                        "Max entry size:", first(df$max_entry_size),
+                        "Entry correlation:", first(df$entry_correlation_sd)))
 ```
+
+
+
+
+
+```{r}
+summary_data %>%
+  filter(min_entry_size == max_entry_size) %>%
+  select(min_entry_size, max_entry_size, entry_correlation_sd, percentage_container_data) %>%
+  unique() %>%
+  arrange(min_entry_size, max_entry_size, entry_correlation_sd)
+```
+
+
+```{r, fig.width=16, fig.height=14}
+df = summary_data %>%
+  filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")), num_total_rows >= 1000)
+
+df %>%
+  select(min_entry_size, max_entry_size, percentage_container_data, num_total_rows) %>% 
+  arrange(min_entry_size, max_entry_size, percentage_container_data, num_total_rows) %>%
+  unique()
+
+
+ggplot(df, aes(x = num_total_rows, y = summary_sd, color = as.factor(percentage_container_data))) +
+  geom_point() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  facet_grid(min_entry_size~param_name) + 
+  scale_color_discrete(name = "Ratio container data")
+```
+
+
+
+- Having a higher percentage of container data increases the standard deviation, but this matters less when entries are smaller.
+
+
+
+
+# Prior
+
+Draw from the prior and plot to see what it looks like.
+
+
+```{r}
+N = 1000000
+set.seed(147)
+pint = rnorm(N, -1, 2)
+beta_doc = rnorm(N, 0, 0.5)
+country_effect = rnorm(N, 0, 0.5)
+sigma_entry = runif(N, 0, 0.5)
+entry_effect = sapply(sigma_entry, function(sigma) rnorm(1, 0, sigma))
+zeros = rep(0, N)
+
+# 4 possible combinations: beta doc or not, entry effect or not.
+prior_df = data.frame(
+  pint = rep(pint, 4),
+  country_effect = rep(country_effect, 4),
+  beta_doc = rep(c(beta_doc, zeros), 2),
+  entry_effect = c(rep(entry_effect, 2), rep(zeros, 2))
+  ) %>%
+  mutate(
+    p = inv.logit(pint + country_effect + beta_doc + entry_effect)
+  )
+```
+
+
+These plots assume probability of documentation is 1/2
+
+
+
+
+```{r}
+prior_df %>%
+  filter(entry_effect > 0) %>%
+ggplot(aes(x = p)) +
+  geom_histogram(binwidth = 0.025) +
+  labs(title = "Prior with entry effect")
+```
+
+
+```{r}
+prior_df %>%
+  filter(entry_effect == 0) %>%
+ggplot(aes(x = p)) +
+  geom_histogram(binwidth = 0.025) +
+  labs(title = "Prior without entry effect")
+```
+
+
+# Check parameter estimates
+
+```{r}
+df = summary_data %>%
+  filter(num_total_rows == 1000,
+         min_entry_size == 2,
+         max_entry_size == 5,
+         entry_correlation_sd == 0,
+         !(param_name %in% c("lp__", "entry_effect[1]"))) 
+
+df %>%
+  group_by(percentage_container_data, param_name) %>%
+  summarise(mean_param_mean = mean(summary_mean), .groups = "drop") %>%
+  pivot_wider(id_cols = percentage_container_data,
+              names_from = param_name,
+              values_from = mean_param_mean)
+```
+
+TODO: Make a plot comparing these to the exact values in simulate_data.R
+
+Maybe a horizontal bar of the exact value and dots of the estimates with percentage container data from 0 to 1.
+
+```{r}
+ggplot(df, aes(x = percentage_container_data, y = summary_mean, color = param_name)) +
+  geom_point() +
+  geom_line()
+  
+```
+
+
+
+
+TODO: Make a similar plot for the fixed entry size data. Show what happens as increase available data.
+
+
+
+
+
 
 
 
