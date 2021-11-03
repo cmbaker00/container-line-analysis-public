@@ -17,6 +17,7 @@ library(RColorBrewer) # for colour schemes in plots
 source(here::here("simulation_study",
                   "simulation_stan_analysis",
                   "combine_simulated_data.R"))
+source(here::here("case_study", "combine_raw_data.R"))
 ```
 
 
@@ -140,7 +141,7 @@ Check parameter estimates against exact values from `simulate_data.R`.
 exact_df = data.frame(
   param_type = c(rep("p_intercept", 8), rep("country_effect", 3), "beta_doc"),
   param_name = c(paste0("p_intercept[", seq(8), "]"), paste0("country_effect[", seq(3), "]"), "beta_doc"),
-  yintercept = c(qlogis(c(.01, .05, .1, .2, .5, .7, .9, .95)), .5, -1, .25, 0.2)
+  yintercept = c(qlogis(c(.01, .05, .1, .2, .5, .7, .9, .95)), .5, -1, .25, -1)
 )
 ```
 
@@ -214,6 +215,46 @@ ggplot(df, aes(x = num_total_rows, y = summary_mean, color = as.factor(percentag
 - Estimates get worse as ratio of container data increases (blue estimates are worse than pink)
 
 - Estimates tend to improve with increased data (estimates improve left to right), but sometimes they seem to stabilise away from the exact value.
+
+
+
+# Real data plots
+
+All data will have more parameters than line data. The overlapping parameters match (within weeks, not across), so these are the parameters we will compare. 
+
+```{r}
+raw_data = raw_data %>%
+  pivot_wider(id_cols = c(param_name, week),
+              names_from = type,
+              values_from = c(mean, sd, rhat)) %>%
+  drop_na()
+```
+
+
+```{r, fig.width=12}
+raw_data %>%
+  filter(str_detect(param_name, "p_intercept")) %>%
+  ggplot(aes(x = mean_all, y = mean_line, color = param_name)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 1) +
+  facet_wrap(.~week, labeller = label_both)
+```
+
+
+- All data seems generally greater than line only data
+
+
+```{r, fig.width=12}
+raw_data %>%
+  filter(param_name %in% c("p_intercept[6]", "p_intercept[17]", "p_intercept[46]", "p_intercept[57]")) %>%
+  ggplot(aes(x = mean_all, y = mean_line, color = param_name)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = mean_line+sd_line, ymax = mean_line-sd_line)) +
+  geom_errorbarh(aes(xmin=mean_all-sd_all, xmax=mean_all+sd_all)) +
+  geom_abline(slope = 1, intercept = 1) +
+  facet_wrap(.~week, labeller = label_both)
+```
+
 
 
 
