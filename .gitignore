@@ -42,4 +42,8 @@ vignettes/*.pdf
 \.idea
 
 # Data files
-case_study/raw_data/
+case_study/data_for_stan/**/*.RDS
+case_study/data_for_stan/**/*.csv
+
+case_study/raw_data/**/*.RDS
+case_study/raw_data/**/*.csv
