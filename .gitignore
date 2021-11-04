@@ -40,3 +40,6 @@ vignettes/*.pdf
 
 # Pycharm
 \.idea
+
+# Data files
+case_study/raw_data/

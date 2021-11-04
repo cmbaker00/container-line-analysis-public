@@ -17,7 +17,7 @@ library(RColorBrewer) # for colour schemes in plots
 source(here::here("simulation_study",
                   "simulation_stan_analysis",
                   "combine_simulated_data.R"))
-source(here::here("case_study", "combine_raw_data.R"))
+source(here::here("case_study", "combine_stan_fit_to_real_data.R"))
 ```
 
 
