@@ -53,25 +53,46 @@ ggplot(df, aes(x = percentage_container_data, y = summary_sd)) +
                         "Entry correlation:", first(df$entry_correlation_sd)))
 ```
 
+- Standard deviation of parameter estiamtes increases as the percentage of container data increases.
+
+
+```{r}
+df = summary_data %>%
+  filter(min_entry_size == 2,
+         max_entry_size == 5,
+         entry_correlation_sd == 0,
+         percentage_container_data == 0.5,
+         !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")))
+
+ggplot(df, aes(x = num_total_rows, y = summary_sd)) +
+  geom_line() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  facet_wrap(~param_name, scales = "free") +
+  labs(title = "Standard deviation of parameter estimates by amount of data",
+       subtitle = paste0("Min entry size: ", first(df$min_entry_size),
+                        ", Max entry size: ", first(df$max_entry_size),
+                        ", Entry correlation: ", first(df$entry_correlation_sd),
+                        ", Percentage of container data: ", first(df$percentage_container_data)*100, "%"))
+```
+
+
+- Standard deviation of parameter estimates decreases as amount of data increases.
 
 
 ```{r, fig.width=16, fig.height=14}
 df = summary_data %>%
-  filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")), num_total_rows >= 1000)
-
-df %>%
-  select(min_entry_size, max_entry_size, percentage_container_data, num_total_rows) %>% 
-  arrange(min_entry_size, max_entry_size, percentage_container_data, num_total_rows) %>%
-  unique()
-
+  filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")), num_total_rows >= 1000) %>%
+  mutate(
+    `Entry Size` = min_entry_size # have selected out data where min and max entry size are equal
+  )
 
 ggplot(df, aes(x = num_total_rows, y = summary_sd, color = as.factor(percentage_container_data))) +
   geom_point() +
   geom_line() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  facet_grid(min_entry_size~param_name) + 
+  facet_grid(`Entry Size`~param_name, labeller = labeller(.rows = label_both, .cols = label_value)) + 
   scale_color_discrete(name = "Ratio container data") +
-  labs("Standard deviation of parameter estimates by amount of data")
+  labs(title = "Standard deviation of parameter estimates by amount of data")
 ```
 
 
@@ -135,8 +156,6 @@ ggplot(aes(x = p)) +
 
 Check parameter estimates against exact values from `simulate_data.R`.
 
-*TODO: Check these with Chris*
-
 ```{r}
 exact_df = data.frame(
   param_type = c(rep("p_intercept", 8), rep("country_effect", 3), "beta_doc"),
@@ -181,15 +200,43 @@ ggplot(df, aes(x = percentage_container_data, y = summary_mean, color = param_na
 ```
 
 
-- Beta doc doesn't seem to match it's exact value: do I have the correct exact value?
-
 - Estimates for large (positive or negative) `p_intercept` are worse.
 
 - Estimate for `p_intercept[5]` gets worse as the percentage of container data increases
 
 
+```{r}
+df = summary_data %>%
+  filter(min_entry_size == 2,
+         max_entry_size == 5,
+         entry_correlation_sd == 0,
+         percentage_container_data == 0.5,
+         !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) %>%
+  mutate(
+    param_type = case_when(
+      gsub("[^a-zA-Z]", "", param_name) == "pintercept" ~ "p_intercept",
+      gsub("[^a-zA-Z]", "", param_name) == "countryeffect" ~ "country_effect",
+      TRUE ~ "beta_doc"
+    )
+  ) %>%
+  relocate(param_name, param_type)
 
-```{r, fig.width=16, fig.height=14}
+ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name)) +
+  geom_point() +
+  geom_line(linetype = "dashed") +
+  geom_hline(data = exact_df, aes(yintercept = yintercept, color = param_name)) + 
+  scale_color_manual(values=mycolors) +
+  facet_wrap(.~param_type) +
+  labs(title = "Mean parameter estimates by amount of data",
+       subtitle = paste0("Min entry size: ", first(df$min_entry_size),
+                        ", Max entry size: ", first(df$max_entry_size),
+                        ", Entry correlation: ", first(df$entry_correlation_sd),
+                        ", Percentage of container data: ", first(df$percentage_container_data)*100, "%"))
+```
+
+
+
+```{r, fig.width=14, fig.height=12}
 df = summary_data %>%
   filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")), num_total_rows >= 1000) %>%
   mutate(
@@ -205,7 +252,7 @@ ggplot(df, aes(x = num_total_rows, y = summary_mean, color = as.factor(percentag
   facet_grid(`Entry Size`~param_name, labeller = labeller(.rows = label_both, .cols = label_value)) + 
   scale_color_discrete(name = "Ratio container data") +
   scale_linetype_manual(name = "Data type", values = 1) +
-  labs("Mean parameter estiamtes by amount of data")
+  labs(title = "Mean parameter estiamtes by amount of data")
 
 ```
 
@@ -231,33 +278,35 @@ raw_data = raw_data %>%
 ```
 
 
-```{r, fig.width=12}
+```{r}
 raw_data %>%
   filter(str_detect(param_name, "p_intercept")) %>%
   ggplot(aes(x = mean_all, y = mean_line, color = param_name)) +
   geom_point() +
-  geom_abline(slope = 1, intercept = 1) +
-  facet_wrap(.~week, labeller = label_both)
+  geom_abline(slope = 1, intercept = 0) +
+  facet_wrap(.~week, labeller = label_both) +
+  theme(legend.position = "none") +
+  labs(title = "Comparing estimates of p_intercept[i] for all data and line only data")
 ```
 
 
-- All data seems generally greater than line only data
 
+```{r}
+FACTOR = 3
 
-```{r, fig.width=12}
 raw_data %>%
-  filter(param_name %in% c("p_intercept[6]", "p_intercept[17]", "p_intercept[46]", "p_intercept[57]")) %>%
+  mutate(
+    ratio = abs(mean_all/mean_line)
+  ) %>%
+  filter(str_detect(param_name, "p_intercept"), (ratio > FACTOR) | (ratio < 1/FACTOR)) %>%
   ggplot(aes(x = mean_all, y = mean_line, color = param_name)) +
   geom_point() +
   geom_errorbar(aes(ymin = mean_line+sd_line, ymax = mean_line-sd_line)) +
   geom_errorbarh(aes(xmin=mean_all-sd_all, xmax=mean_all+sd_all)) +
-  geom_abline(slope = 1, intercept = 1) +
-  facet_wrap(.~week, labeller = label_both)
+  geom_abline(slope = 1, intercept = 0) +
+  facet_wrap(.~week, labeller = label_both) +
+  labs(title = paste("Estimates that differ by more than a factor of", FACTOR))
 ```
-
-
-
-
 
 
 
