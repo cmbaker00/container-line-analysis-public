@@ -2,8 +2,8 @@
 title: "Plot simulation summary data"
 author: "Elena Tartaglia"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-output: 
-  html_document:
+output:
+  bookdown::html_document2:
     df_print: paged
     code_folding: hide
 ---
@@ -35,7 +35,7 @@ summary_data = summary_data %>%
 
 
 
-```{r}
+```{r sim-sd-pc, fig.cap = "Standard deviation of parameter estimates by percentage container data"}
 df = summary_data %>%
   filter(num_total_rows == 1000,
          min_entry_size == 2,
@@ -53,10 +53,10 @@ ggplot(df, aes(x = percentage_container_data, y = summary_sd)) +
                         "Entry correlation:", first(df$entry_correlation_sd)))
 ```
 
-- Standard deviation of parameter estiamtes increases as the percentage of container data increases.
+- Standard deviation of parameter estimates increases as the percentage of container data increases.
 
 
-```{r}
+```{r sim-sd-ad, fig.cap="Standard deviation of parameter estimates by amount of data"}
 df = summary_data %>%
   filter(min_entry_size == 2,
          max_entry_size == 5,
@@ -79,7 +79,7 @@ ggplot(df, aes(x = num_total_rows, y = summary_sd)) +
 - Standard deviation of parameter estimates decreases as amount of data increases.
 
 
-```{r, fig.width=16, fig.height=14}
+```{r sim-sd-es, fig.cap="Standard deviation of parameter estimates by amount of data", fig.width=16, fig.height=14}
 df = summary_data %>%
   filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")), num_total_rows >= 1000) %>%
   mutate(
@@ -134,7 +134,7 @@ These plots assume probability of documentation is 1/2
 
 
 
-```{r}
+```{r prior-ee, fig.cap="Prior with entry effect"}
 prior_df %>%
   filter(entry_effect > 0) %>%
 ggplot(aes(x = p)) +
@@ -143,7 +143,7 @@ ggplot(aes(x = p)) +
 ```
 
 
-```{r}
+```{r prior-nee, fig.cap="Prior without entry effect"}
 prior_df %>%
   filter(entry_effect == 0) %>%
 ggplot(aes(x = p)) +
@@ -167,7 +167,7 @@ exact_df = data.frame(
 
 
 
-```{r, fig.width=10}
+```{r sim-mean-pc, fig.cap="Mean parameter estimates by percentage container data", fig.width=10}
 df = summary_data %>%
   filter(num_total_rows == 1000,
          min_entry_size == 2,
@@ -205,7 +205,7 @@ ggplot(df, aes(x = percentage_container_data, y = summary_mean, color = param_na
 - Estimate for `p_intercept[5]` gets worse as the percentage of container data increases
 
 
-```{r}
+```{r sim-mean-ad, fig.cap="Mean parameter estimates by amount of data. Shaded error bars represent one standard deviation"}
 df = summary_data %>%
   filter(min_entry_size == 2,
          max_entry_size == 5,
@@ -221,11 +221,13 @@ df = summary_data %>%
   ) %>%
   relocate(param_name, param_type)
 
-ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name)) +
+ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name, fill = param_name)) +
   geom_point() +
   geom_line(linetype = "dashed") +
   geom_hline(data = exact_df, aes(yintercept = yintercept, color = param_name)) + 
   scale_color_manual(values=mycolors) +
+  scale_fill_manual(values=mycolors) +
+  geom_ribbon(aes(ymax=summary_mean + summary_sd, ymin=summary_mean - summary_sd), alpha=0.2, linetype = 0) +
   facet_wrap(.~param_type) +
   labs(title = "Mean parameter estimates by amount of data",
        subtitle = paste0("Min entry size: ", first(df$min_entry_size),
@@ -236,7 +238,7 @@ ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name)) +
 
 
 
-```{r, fig.width=14, fig.height=12}
+```{r sim-mean-es, fig.cap="Mean parameter estimates by amount of data", fig.width=14, fig.height=12}
 df = summary_data %>%
   filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")), num_total_rows >= 1000) %>%
   mutate(
@@ -278,7 +280,7 @@ raw_data = raw_data %>%
 ```
 
 
-```{r}
+```{r raw-line-cont, fig.cap="Comparing estimates of p_intercept[i] for all data and line only data"}
 raw_data %>%
   filter(str_detect(param_name, "p_intercept")) %>%
   ggplot(aes(x = mean_all, y = mean_line, color = param_name)) +
@@ -291,7 +293,7 @@ raw_data %>%
 
 
 
-```{r}
+```{r raw-estreme, fig.cap="Estimates that differ by more than a fixed factor"}
 FACTOR = 3
 
 raw_data %>%
