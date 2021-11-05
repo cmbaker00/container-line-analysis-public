@@ -27,8 +27,7 @@ extract_params_stanfit_raw_data = function(filename){
   params = str_remove(params, end_string)
   
   params = str_split(params, pattern = "_")[[1]]
-  print(format_check)
-  
+
   if((length(params)!= 2) | !format_check){
     message(paste(filename, "not in correct format"))
     return()
