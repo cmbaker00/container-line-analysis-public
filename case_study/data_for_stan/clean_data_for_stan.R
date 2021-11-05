@@ -33,15 +33,13 @@ full_data <- full_data %>% arrange(desc(Direction.mode)) %>%
   mutate(Type = match(Tariff.ID.2, unique(Tariff.ID.2))) %>%
   mutate(Country = match(Country.code, unique(Country.code)))
 
-data <- full_data %>% mutate(Entry = match(Entry.ID, unique(Entry.ID))) %>%
+data <- full_data %>% mutate(Entry = match(Entry.ID, unique(full_data$Entry.ID))) %>%
   mutate(Type = match(Tariff.ID.2, unique(Tariff.ID.2))) %>%
   mutate(Country = match(Country.code, unique(Country.code))) %>%
   mutate(Documentation = 1 - Non.compliant.documentation) %>%
   mutate(RecordIntercept = Non.compliant.inspection) %>%
   mutate(Mode = Direction.mode) %>%
   group_by(Entry.ID) %>% mutate(Line = match(Line.number, unique(Line.number))) %>% ungroup %>% select(-Entry.ID)
-
-## TODO what is happenign with Entry.ID / Entry here??? In the output data every entry is renamed to 1.
 
 #country_identity <- data %>% group_by(Country.code, Country) %>% summarise(n=n()) %>% select(-n)
 #item_identity <- data %>% group_by(Tariff.ID.2, Type) %>% summarise(n=n()) %>% select(-n)
