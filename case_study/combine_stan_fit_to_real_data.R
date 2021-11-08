@@ -16,14 +16,19 @@ DATA_DIR = here::here("case_study", "stan_fit_to_data")
 #' @param filename, string with the filename (with or without file path and extension)
 #' @return list of parameter values
 extract_params_stanfit_raw_data = function(filename){
+  start_string = "furniture_data_2020_week_"
+  middle_string = "inspected_fit_"
+  end_string = "_summary.Rda"
+  format_check = all(sapply(c(start_string, middle_string, end_string), function (x) str_detect(filename, x)))
+  
   params = basename(filename)
-  params = str_remove(params, "furniture_data_2020_week_")
-  params = str_remove(params, "inspected_fit_")
-  params = str_remove(params, "_summary.Rda")
+  params = str_remove(params, start_string)
+  params = str_remove(params, middle_string)
+  params = str_remove(params, end_string)
   
   params = str_split(params, pattern = "_")[[1]]
-  
-  if(length(params)!= 2){
+
+  if((length(params)!= 2) | !format_check){
     message(paste(filename, "not in correct format"))
     return()
   }
