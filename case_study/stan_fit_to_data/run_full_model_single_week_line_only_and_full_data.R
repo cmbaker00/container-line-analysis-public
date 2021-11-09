@@ -37,8 +37,8 @@ run_stanfit_single_week <- function (week){
   {
   data <- read_data(week) %>% filter(Mode == 'Line')
   data <- data %>% mutate(Entry = match(Entry, unique(data$Entry))) %>%
-    mutate(Type = match(Type, data$Type)) %>%
-    mutate(Country = match(Country, data$Country))
+    mutate(Type = match(Type, unique(data$Type))) %>%
+    mutate(Country = match(Country, unique(data$Country)))
   
   intercept_data <- data$RecordIntercept
 
@@ -97,9 +97,9 @@ run_stanfit_single_week <- function (week){
   ##### ALL DATA ANALYSIS ######
   {
   data <- read_data(week)
-  data <- data %>% mutate(Entry = match(Entry, unique(data$Entry))) %>%
-    mutate(Type = match(Type, data$Type)) %>%
-    mutate(Country = match(Country, data$Country))
+  data <- data %>% mutate(Entry = match(Entry, unique(data$Entry)))  %>%
+    mutate(Type = match(Type, unique(data$Type))) %>%
+    mutate(Country = match(Country, unique(data$Country)))
 
   data <- data %>% mutate(Mode = ifelse(Mode == 'Line' | RecordIntercept == 0, 'Line', 'Container'))
   # Store row number of each row to recover original order later
