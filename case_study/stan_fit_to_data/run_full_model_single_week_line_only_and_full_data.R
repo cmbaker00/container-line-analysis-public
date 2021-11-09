@@ -36,8 +36,10 @@ run_stanfit_single_week <- function (week){
 ##### LINE MODE ANALYSIS ######
   {
   data <- read_data(week) %>% filter(Mode == 'Line')
-  data <- data %>% mutate(Entry = match(Entry, unique(data$Entry)))
-
+  data <- data %>% mutate(Entry = match(Entry, unique(data$Entry))) %>%
+    mutate(Type = match(Type, data$Type)) %>%
+    mutate(Country = match(Country, data$Country))
+  
   intercept_data <- data$RecordIntercept
 
   # This code gives every entry a unique number between 1 and number of unique entries
@@ -86,14 +88,18 @@ run_stanfit_single_week <- function (week){
     init = init_fun,
   )
   print(fit_line)
-  saveRDS(fit_line, paste0('case_study/stan_fit_to_data/',data_filename,"_fit_line.rds"))
+  fit_summary <- summary(fit_line)
+  fit_summary_df <- data.frame(fit_summary)
+  saveRDS(fit_summary_df, paste0('case_study/stan_fit_to_data/',data_filename,"_fit_line.RDA"))
 }
 
 
   ##### ALL DATA ANALYSIS ######
   {
   data <- read_data(week)
-  data <- data %>% mutate(Entry = match(Entry, unique(data$Entry)))
+  data <- data %>% mutate(Entry = match(Entry, unique(data$Entry))) %>%
+    mutate(Type = match(Type, data$Type)) %>%
+    mutate(Country = match(Country, data$Country))
 
   data <- data %>% mutate(Mode = ifelse(Mode == 'Line' | RecordIntercept == 0, 'Line', 'Container'))
   # Store row number of each row to recover original order later
@@ -199,7 +205,9 @@ run_stanfit_single_week <- function (week){
   )
 
   print(fit)
-  saveRDS(fit, paste0('case_study/stan_fit_to_data/',data_filename,"_fit_All.rds"))
+  fit_summary <- summary(fit)
+  fit_summary_df <- data.frame(fit_summary)
+  saveRDS(fit_summary_df, paste0('case_study/stan_fit_to_data/',data_filename,"_fit_All.RDA"))
   # fit1000 <- readRDS("fit_1000_correlation.rds")
 }
 }
