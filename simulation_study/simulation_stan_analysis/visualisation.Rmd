@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(boot) # for inv.logit function
 library(RColorBrewer) # for colour schemes in plots
+library(patchwork)
 # library(scales) this library is used for making percentage scales
 source(here::here("simulation_study",
                   "simulation_stan_analysis",
@@ -127,6 +128,19 @@ prior_df = data.frame(
   mutate(
     p = inv.logit(pint + country_effect + beta_doc + entry_effect)
   )
+
+# old prior
+pint = rnorm(N, 0, 2)
+# 4 possible combinations: beta doc or not, entry effect or not.
+old_prior_df = data.frame(
+  pint = rep(pint, 4),
+  country_effect = rep(country_effect, 4),
+  beta_doc = rep(c(beta_doc, zeros), 2),
+  entry_effect = c(rep(entry_effect, 2), rep(zeros, 2))
+  ) %>%
+  mutate(
+    p = inv.logit(pint + country_effect + beta_doc + entry_effect)
+  )
 ```
 
 
@@ -135,11 +149,19 @@ These plots assume probability of documentation is 1/2
 
 
 ```{r prior-ee, fig.cap="Prior with entry effect"}
-prior_df %>%
+p1 = prior_df %>%
   filter(entry_effect > 0) %>%
 ggplot(aes(x = p)) +
   geom_histogram(binwidth = 0.025) +
   labs(title = "Prior with entry effect")
+
+p2 = old_prior_df %>%
+  filter(entry_effect > 0) %>%
+ggplot(aes(x = p)) +
+  geom_histogram(binwidth = 0.025) +
+  labs(title = "Old prior with entry effect")
+
+p1 + p2
 ```
 
 
@@ -272,13 +294,13 @@ ggplot(df, aes(x = num_total_rows, y = summary_mean, color = as.factor(percentag
 All data will have more parameters than line data. The overlapping parameters match (within weeks, not across), so these are the parameters we will compare. 
 
 ```{r}
-raw_data = raw_data %>%
+raw_data_2 = raw_data %>%
   pivot_wider(id_cols = c(param_name, week),
               names_from = type,
               values_from = c(summary_mean, summary_sd, summary_rhat)) %>%
   drop_na()
 
-old_raw_data = old_raw_data %>%
+old_raw_data_2 = old_raw_data %>%
   pivot_wider(id_cols = c(param_name, week),
               names_from = type,
               values_from = c(summary_mean, summary_sd, summary_rhat)) %>%
@@ -287,7 +309,7 @@ old_raw_data = old_raw_data %>%
 
 
 ```{r raw-line-cont, fig.cap="Comparing estimates of p_intercept[i] for all data and line only data"}
-raw_data %>%
+raw_data_2 %>%
   filter(str_detect(param_name, "p_intercept")) %>%
   ggplot(aes(x = summary_mean_all, y = summary_mean_line, color = param_name)) +
   geom_point() +
@@ -302,7 +324,7 @@ raw_data %>%
 ```{r raw-estreme, fig.cap="Estimates that differ by more than a fixed factor"}
 FACTOR = 1.5
 
-raw_data %>%
+raw_data_2 %>%
   mutate(
     ratio = abs(summary_mean_all/summary_mean_line)
   ) %>%
@@ -318,7 +340,7 @@ raw_data %>%
 
 
 ```{r raw-line-cont-old, fig.cap="Comparing estimates of p_intercept[i] for all data and line only data. Using original prior."}
-old_raw_data %>%
+old_raw_data_2 %>%
   filter(str_detect(param_name, "p_intercept")) %>%
   ggplot(aes(x = summary_mean_all, y = summary_mean_line, color = param_name)) +
   geom_point() +
@@ -329,6 +351,71 @@ old_raw_data %>%
        subtitle = "Original prior")
 ```
 
+Compare data from old and new priors
 
+
+```{r}
+compare_priors = raw_data %>%
+  filter(!str_detect(param_name, "entry_effect")) %>%
+  select(param_name, week, type, summary_mean) %>%
+  pivot_wider(names_from = param_name, values_from = summary_mean) %>%
+  group_by(type, week) %>%
+  mutate_at(.vars = vars(matches("p_intercept")),
+            .funs =  ~(.x + `country_effect[1]` + beta_doc)) %>%
+  select(week, type, matches("p_intercept")) %>%
+  ungroup() %>%
+  pivot_longer(cols = matches("p_intercept"), names_to = "param_name", values_to = "estimate") %>%
+  pivot_wider(names_from = type, names_prefix = "raw_", values_from = estimate)
+
+compare_priors = old_raw_data %>%
+  filter(!str_detect(param_name, "entry_effect")) %>%
+  select(param_name, week, type, summary_mean) %>%
+  pivot_wider(names_from = param_name, values_from = summary_mean) %>%
+  group_by(type, week) %>%
+  mutate_at(.vars = vars(matches("p_intercept")),
+            .funs =  ~(.x + `country_effect[1]` + beta_doc)) %>%
+  select(week, type, matches("p_intercept")) %>%
+  ungroup() %>%
+  pivot_longer(cols = matches("p_intercept"), names_to = "param_name", values_to = "estimate") %>%
+  pivot_wider(names_from = type, names_prefix = "old_", values_from = estimate) %>%
+  full_join(compare_priors, by = c("week", "param_name")) 
+```
+
+```{r}
+p1 = ggplot(compare_priors, aes(x = old_all, y = raw_all, color = param_name)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0) +
+  facet_wrap(.~week, labeller = label_both) +
+  theme(legend.position = "none")
+
+
+p2 = ggplot(compare_priors, aes(x = old_line, y = raw_line, color = param_name)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0) +
+  facet_wrap(.~week, labeller = label_both) +
+  theme(legend.position = "none")
+
+p1/p2
+```
+
+
+```{r}
+p1 = ggplot(compare_priors, aes(x = plogis(old_all), y = plogis(raw_all), color = param_name)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0) +
+  facet_wrap(.~week, labeller = label_both, scales = "free") +
+  theme(legend.position = "none")
+
+
+p2 = ggplot(compare_priors, aes(x = plogis(old_line), y = plogis(raw_line), color = param_name)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0) +
+  facet_wrap(.~week, labeller = label_both, scales = "free") +
+  theme(legend.position = "none")
+
+p1/p2
+```
+
+- Based on the change in prior, we expect the results to be more negative/smaller probability, as indicated in the plots above
 
 
