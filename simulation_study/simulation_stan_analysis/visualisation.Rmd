@@ -275,7 +275,13 @@ All data will have more parameters than line data. The overlapping parameters ma
 raw_data = raw_data %>%
   pivot_wider(id_cols = c(param_name, week),
               names_from = type,
-              values_from = c(mean, sd, rhat)) %>%
+              values_from = c(summary_mean, summary_sd, summary_rhat)) %>%
+  drop_na()
+
+old_raw_data = old_raw_data %>%
+  pivot_wider(id_cols = c(param_name, week),
+              names_from = type,
+              values_from = c(summary_mean, summary_sd, summary_rhat)) %>%
   drop_na()
 ```
 
@@ -283,7 +289,7 @@ raw_data = raw_data %>%
 ```{r raw-line-cont, fig.cap="Comparing estimates of p_intercept[i] for all data and line only data"}
 raw_data %>%
   filter(str_detect(param_name, "p_intercept")) %>%
-  ggplot(aes(x = mean_all, y = mean_line, color = param_name)) +
+  ggplot(aes(x = summary_mean_all, y = summary_mean_line, color = param_name)) +
   geom_point() +
   geom_abline(slope = 1, intercept = 0) +
   facet_wrap(.~week, labeller = label_both) +
@@ -294,24 +300,34 @@ raw_data %>%
 
 
 ```{r raw-estreme, fig.cap="Estimates that differ by more than a fixed factor"}
-FACTOR = 3
+FACTOR = 1.5
 
 raw_data %>%
   mutate(
-    ratio = abs(mean_all/mean_line)
+    ratio = abs(summary_mean_all/summary_mean_line)
   ) %>%
   filter(str_detect(param_name, "p_intercept"), (ratio > FACTOR) | (ratio < 1/FACTOR)) %>%
-  ggplot(aes(x = mean_all, y = mean_line, color = param_name)) +
+  ggplot(aes(x = summary_mean_all, y = summary_mean_line, color = param_name)) +
   geom_point() +
-  geom_errorbar(aes(ymin = mean_line+sd_line, ymax = mean_line-sd_line)) +
-  geom_errorbarh(aes(xmin=mean_all-sd_all, xmax=mean_all+sd_all)) +
+  geom_errorbar(aes(ymin = summary_mean_line+summary_sd_line, ymax = summary_mean_line-summary_sd_line)) +
+  geom_errorbarh(aes(xmin=summary_mean_all-summary_sd_all, xmax=summary_mean_all+summary_sd_all)) +
   geom_abline(slope = 1, intercept = 0) +
   facet_wrap(.~week, labeller = label_both) +
   labs(title = paste("Estimates that differ by more than a factor of", FACTOR))
 ```
 
 
-
+```{r raw-line-cont-old, fig.cap="Comparing estimates of p_intercept[i] for all data and line only data. Using original prior."}
+old_raw_data %>%
+  filter(str_detect(param_name, "p_intercept")) %>%
+  ggplot(aes(x = summary_mean_all, y = summary_mean_line, color = param_name)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0) +
+  facet_wrap(.~week, labeller = label_both) +
+  theme(legend.position = "none") +
+  labs(title = "Comparing estimates of p_intercept[i] for all data and line only data",
+       subtitle = "Original prior")
+```
 
 
 
