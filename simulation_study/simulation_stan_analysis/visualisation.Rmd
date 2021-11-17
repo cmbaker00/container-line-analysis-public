@@ -4,7 +4,7 @@ author: "Elena Tartaglia"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   bookdown::html_document2:
-    df_print: paged
+    df_print: kable
     code_folding: hide
 ---
 
@@ -42,7 +42,7 @@ df = summary_data %>%
          min_entry_size == 2,
          max_entry_size == 5,
          entry_correlation_sd == 0,
-         !(param_name %in% c("lp__", "entry_effect[1]"))) 
+         !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) 
 
 ggplot(df, aes(x = percentage_container_data, y = summary_sd)) +
   geom_line() +
@@ -51,7 +51,8 @@ ggplot(df, aes(x = percentage_container_data, y = summary_sd)) +
   labs(title = "Standard deviation of parameter estimates by percentage container data",
        subtitle = paste("Min entry size:", first(df$min_entry_size),
                         "Max entry size:", first(df$max_entry_size),
-                        "Entry correlation:", first(df$entry_correlation_sd)))
+                        "Entry correlation:", first(df$entry_correlation_sd),
+                        "Num rows of data:", first(df$num_total_rows)))
 ```
 
 - Standard deviation of parameter estimates increases as the percentage of container data increases.
@@ -217,7 +218,8 @@ ggplot(df, aes(x = percentage_container_data, y = summary_mean, color = param_na
   labs(title = "Mean parameter estimates by percentage container data",
        subtitle = paste("Min entry size:", first(df$min_entry_size),
                         "Max entry size:", first(df$max_entry_size),
-                        "Entry correlation:", first(df$entry_correlation_sd)))
+                        "Entry correlation:", first(df$entry_correlation_sd),
+                        "Num rows of data:", first(df$num_total_rows)))
   
 ```
 
@@ -249,6 +251,7 @@ ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name, fill = 
   geom_hline(data = exact_df, aes(yintercept = yintercept, color = param_name)) + 
   scale_color_manual(values=mycolors) +
   scale_fill_manual(values=mycolors) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   geom_ribbon(aes(ymax=summary_mean + summary_sd, ymin=summary_mean - summary_sd), alpha=0.2, linetype = 0) +
   facet_wrap(.~param_type) +
   labs(title = "Mean parameter estimates by amount of data",
@@ -314,6 +317,7 @@ raw_data_2 %>%
   ggplot(aes(x = summary_mean_all, y = summary_mean_line, color = param_name)) +
   geom_point() +
   geom_abline(slope = 1, intercept = 0) +
+  coord_fixed() +
   facet_wrap(.~week, labeller = label_both) +
   theme(legend.position = "none") +
   labs(title = "Comparing estimates of p_intercept[i] for all data and line only data")
@@ -322,24 +326,37 @@ raw_data_2 %>%
 
 
 ```{r raw-estreme, fig.cap="Estimates that differ by more than a fixed factor"}
-FACTOR = 1.5
+DIFFERENCE = 0.5
 
 raw_data_2 %>%
   mutate(
-    ratio = abs(summary_mean_all/summary_mean_line)
+    diff = abs(summary_mean_all-summary_mean_line)
   ) %>%
-  filter(str_detect(param_name, "p_intercept"), (ratio > FACTOR) | (ratio < 1/FACTOR)) %>%
+  filter(str_detect(param_name, "p_intercept"), (diff > DIFFERENCE)) %>%
   ggplot(aes(x = summary_mean_all, y = summary_mean_line, color = param_name)) +
   geom_point() +
   geom_errorbar(aes(ymin = summary_mean_line+summary_sd_line, ymax = summary_mean_line-summary_sd_line)) +
   geom_errorbarh(aes(xmin=summary_mean_all-summary_sd_all, xmax=summary_mean_all+summary_sd_all)) +
   geom_abline(slope = 1, intercept = 0) +
+  coord_fixed() +
   facet_wrap(.~week, labeller = label_both) +
-  labs(title = paste("Estimates that differ by more than a factor of", FACTOR))
+  labs(title = paste("Estimates that differ by more than", DIFFERENCE))
+```
+
+```{r}
+raw_data %>%
+  pivot_wider(id_cols = c(param_name, week),
+              names_from = type,
+              values_from = c(summary_mean, summary_sd, summary_rhat)) %>%
+  filter_all(any_vars(is.na(.))) %>%
+  select(param_name, week, summary_mean_all, summary_sd_all, summary_rhat_all) %>%
+  filter(str_detect(param_name, "p_intercept") | str_detect(param_name, "country_effect"))
 ```
 
 
-```{r raw-line-cont-old, fig.cap="Comparing estimates of p_intercept[i] for all data and line only data. Using original prior."}
+
+
+```{r raw-line-cont-old, eval=FALSE, fig.cap="Comparing estimates of p_intercept[i] for all data and line only data. Using original prior."}
 old_raw_data_2 %>%
   filter(str_detect(param_name, "p_intercept")) %>%
   ggplot(aes(x = summary_mean_all, y = summary_mean_line, color = param_name)) +
@@ -354,7 +371,7 @@ old_raw_data_2 %>%
 Compare data from old and new priors
 
 
-```{r}
+```{r, eval=FALSE}
 compare_priors = raw_data %>%
   filter(!str_detect(param_name, "entry_effect")) %>%
   select(param_name, week, type, summary_mean) %>%
@@ -381,7 +398,7 @@ compare_priors = old_raw_data %>%
   full_join(compare_priors, by = c("week", "param_name")) 
 ```
 
-```{r}
+```{r, eval=FALSE}
 p1 = ggplot(compare_priors, aes(x = old_all, y = raw_all, color = param_name)) +
   geom_point() +
   geom_abline(slope = 1, intercept = 0) +
@@ -399,7 +416,7 @@ p1/p2
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 p1 = ggplot(compare_priors, aes(x = plogis(old_all), y = plogis(raw_all), color = param_name)) +
   geom_point() +
   geom_abline(slope = 1, intercept = 0) +
@@ -416,6 +433,6 @@ p2 = ggplot(compare_priors, aes(x = plogis(old_line), y = plogis(raw_line), colo
 p1/p2
 ```
 
-- Based on the change in prior, we expect the results to be more negative/smaller probability, as indicated in the plots above
+<!-- - Based on the change in prior, we expect the results to be more negative/smaller probability, as indicated in the plots above -->
 
 
