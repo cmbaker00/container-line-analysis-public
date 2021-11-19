@@ -11,7 +11,7 @@ prob_line <- 0.25 # probability that an entry is in line mode
 country_effects <- c(.5, -1, .25)
 
 # The true probability of interception of each item type
-true_intercept_probability <- qlogis(c(.01, .05, .1, .2, .5, .7, .9, .95))
+true_intercept_probability <- qlogis(c(0.001, 0.01, 0.02, 0.05, .2))
 
 num_types <- length(true_intercept_probability) # number of item types
 
