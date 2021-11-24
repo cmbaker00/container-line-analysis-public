@@ -39,8 +39,8 @@ summary_data = summary_data %>%
 ```{r sim-sd-pc, fig.cap = "Standard deviation of parameter estimates by percentage container data"}
 df = summary_data %>%
   filter(num_total_rows == 1000,
-         min_entry_size == 2,
-         max_entry_size == 5,
+         min_entry_size == 1,
+         max_entry_size == 20,
          entry_correlation_sd == 0,
          !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) 
 
@@ -49,10 +49,10 @@ ggplot(df, aes(x = percentage_container_data, y = summary_sd)) +
   scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
   facet_wrap(~param_name, scales = "free") +
   labs(title = "Standard deviation of parameter estimates by percentage container data",
-       subtitle = paste("Min entry size:", first(df$min_entry_size),
-                        "Max entry size:", first(df$max_entry_size),
-                        "Entry correlation:", first(df$entry_correlation_sd),
-                        "Num rows of data:", first(df$num_total_rows)))
+       subtitle = paste0("Min entry size:", first(df$min_entry_size),
+                        ", Max entry size:", first(df$max_entry_size),
+                        ", Entry correlation:", first(df$entry_correlation_sd),
+                        ", Num rows of data:", first(df$num_total_rows)))
 ```
 
 - Standard deviation of parameter estimates increases as the percentage of container data increases.
@@ -60,8 +60,8 @@ ggplot(df, aes(x = percentage_container_data, y = summary_sd)) +
 
 ```{r sim-sd-ad, fig.cap="Standard deviation of parameter estimates by amount of data"}
 df = summary_data %>%
-  filter(min_entry_size == 2,
-         max_entry_size == 5,
+  filter(min_entry_size == 1,
+         max_entry_size == 20,
          entry_correlation_sd == 0,
          percentage_container_data == 0.5,
          !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")))
@@ -153,13 +153,13 @@ These plots assume probability of documentation is 1/2
 p1 = prior_df %>%
   filter(entry_effect > 0) %>%
 ggplot(aes(x = p)) +
-  geom_histogram(binwidth = 0.025) +
+  geom_histogram(breaks = seq(0,1,0.025)) +
   labs(title = "Prior with entry effect")
 
 p2 = old_prior_df %>%
   filter(entry_effect > 0) %>%
 ggplot(aes(x = p)) +
-  geom_histogram(binwidth = 0.025) +
+  geom_histogram(breaks = seq(0,1,0.025)) +
   labs(title = "Old prior with entry effect")
 
 p1 + p2
@@ -170,7 +170,7 @@ p1 + p2
 prior_df %>%
   filter(entry_effect == 0) %>%
 ggplot(aes(x = p)) +
-  geom_histogram(binwidth = 0.025) +
+  geom_histogram(breaks = seq(0,1,0.025)) +
   labs(title = "Prior without entry effect")
 ```
 
@@ -180,10 +180,11 @@ ggplot(aes(x = p)) +
 Check parameter estimates against exact values from `simulate_data.R`.
 
 ```{r}
+p_exact_vals = qlogis(c(0.001, 0.01, 0.02, 0.05, .2))
 exact_df = data.frame(
-  param_type = c(rep("p_intercept", 8), rep("country_effect", 3), "beta_doc"),
-  param_name = c(paste0("p_intercept[", seq(8), "]"), paste0("country_effect[", seq(3), "]"), "beta_doc"),
-  yintercept = c(qlogis(c(.01, .05, .1, .2, .5, .7, .9, .95)), .5, -1, .25, -1)
+  param_type = c(rep("p_intercept", length(p_exact_vals)), rep("country_effect", 3), "beta_doc"),
+  param_name = c(paste0("p_intercept[", seq(length(p_exact_vals)), "]"), paste0("country_effect[", seq(3), "]"), "beta_doc"),
+  yintercept = c(p_exact_vals, .5, -1, .25, -1)
 )
 ```
 
@@ -193,8 +194,8 @@ exact_df = data.frame(
 ```{r sim-mean-pc, fig.cap="Mean parameter estimates by percentage container data", fig.width=10}
 df = summary_data %>%
   filter(num_total_rows == 1000,
-         min_entry_size == 2,
-         max_entry_size == 5,
+         min_entry_size == 1,
+         max_entry_size == 20,
          entry_correlation_sd == 0,
          !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) %>%
   mutate(
@@ -224,15 +225,15 @@ ggplot(df, aes(x = percentage_container_data, y = summary_mean, color = param_na
 ```
 
 
-- Estimates for large (positive or negative) `p_intercept` are worse.
+- Estimates for large very negative `p_intercept` are worse.
 
-- Estimate for `p_intercept[5]` gets worse as the percentage of container data increases
+- Estimates get worse as the percentage of container data increases
 
 
 ```{r sim-mean-ad, fig.cap="Mean parameter estimates by amount of data. Shaded error bars represent one standard deviation"}
 df = summary_data %>%
-  filter(min_entry_size == 2,
-         max_entry_size == 5,
+  filter(min_entry_size == 1,
+         max_entry_size == 20,
          entry_correlation_sd == 0,
          percentage_container_data == 0.5,
          !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) %>%
@@ -284,11 +285,7 @@ ggplot(df, aes(x = num_total_rows, y = summary_mean, color = as.factor(percentag
 ```
 
 
-- Estimates get worse as the entry size increases (estimates get worse down the page)
-
-- Estimates get worse as ratio of container data increases (blue estimates are worse than pink)
-
-- Estimates tend to improve with increased data (estimates improve left to right), but sometimes they seem to stabilise away from the exact value.
+- Estimates of `p_intercept` for Entry size 1 are always the same. Something wrong?
 
 
 
