@@ -1,6 +1,6 @@
 source(file.path('simulation_study', 'simulation_stan_analysis', 'subset_simulated_data.R'))
 
-entry_size_list <- c(1,5,10,20)
+entry_size_list <- c(1,2,5,10,20)
 entry_size_min <- entry_size_list[1]
 entry_size_max <- entry_size_list[length(entry_size_list)]
 
