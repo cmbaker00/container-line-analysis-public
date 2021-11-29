@@ -147,3 +147,5 @@ if (length(true_inspect_probability) != num_types){
                              target_num_rows_data,TRUE, TRUE)
   write.csv(simulated_data, sim_filename, row.names = FALSE)
 }
+
+#simulate_data_function(1,1)

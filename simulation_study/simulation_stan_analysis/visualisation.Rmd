@@ -153,13 +153,13 @@ These plots assume probability of documentation is 1/2
 p1 = prior_df %>%
   filter(entry_effect > 0) %>%
 ggplot(aes(x = p)) +
-  geom_histogram(breaks = seq(0,1,0.025)) +
+  geom_histogram(breaks = seq(0,1,0.0025)) +
   labs(title = "Prior with entry effect")
 
 p2 = old_prior_df %>%
   filter(entry_effect > 0) %>%
 ggplot(aes(x = p)) +
-  geom_histogram(breaks = seq(0,1,0.025)) +
+  geom_histogram(breaks = seq(0,1,0.0025)) +
   labs(title = "Old prior with entry effect")
 
 p1 + p2
@@ -170,7 +170,7 @@ p1 + p2
 prior_df %>%
   filter(entry_effect == 0) %>%
 ggplot(aes(x = p)) +
-  geom_histogram(breaks = seq(0,1,0.025)) +
+  geom_histogram(breaks = seq(0,1,0.0025)) +
   labs(title = "Prior without entry effect")
 ```
 
