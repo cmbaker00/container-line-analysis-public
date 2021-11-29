@@ -57,6 +57,8 @@ ggplot(df, aes(x = percentage_container_data, y = summary_sd)) +
 
 - Standard deviation of parameter estimates increases as the percentage of container data increases.
 
+- Exception is for `p_intercept[1]` where it drops dramatically at 100%. Why is that?
+
 
 ```{r sim-sd-ad, fig.cap="Standard deviation of parameter estimates by amount of data"}
 df = summary_data %>%
@@ -83,10 +85,11 @@ ggplot(df, aes(x = num_total_rows, y = summary_sd)) +
 
 ```{r sim-sd-es, fig.cap="Standard deviation of parameter estimates by amount of data", fig.width=16, fig.height=14}
 df = summary_data %>%
-  filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")), num_total_rows >= 1000) %>%
+  filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) %>%
   mutate(
     `Entry Size` = min_entry_size # have selected out data where min and max entry size are equal
-  )
+  ) %>%
+  filter(`Entry Size` > 1)
 
 ggplot(df, aes(x = num_total_rows, y = summary_sd, color = as.factor(percentage_container_data))) +
   geom_point() +
@@ -266,10 +269,11 @@ ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name, fill = 
 
 ```{r sim-mean-es, fig.cap="Mean parameter estimates by amount of data", fig.width=14, fig.height=12}
 df = summary_data %>%
-  filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry")), num_total_rows >= 1000) %>%
+  filter(min_entry_size == max_entry_size, !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) %>%
   mutate(
     `Entry Size` = min_entry_size # have selected out data where min and max entry size are equal
-  )
+  ) %>%
+  filter(`Entry Size` > 1)
 
 
 ggplot(df, aes(x = num_total_rows, y = summary_mean, color = as.factor(percentage_container_data))) +
