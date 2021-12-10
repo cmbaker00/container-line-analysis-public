@@ -190,6 +190,27 @@ As the first step in developing a method to analyse real-world data sets, we sim
 
 In our simulation model, we use a logistic model to generate the probability \(p_i\) that a line is intercepted. We assume that each item type has its own baseline fixed effect, which is \(\alpha_{\text{type}[i]}\) and that there is a fixed effect of having compliant documentation, \(\beta\). Finally we include a random effect which is the entry that line \(i\) is in. The full equation is:
 \begin{align}
+\logit(p_{ijk\ell}) = \alpha_{i} + \beta_j + \delta_k + \gamma_\ell \label{eq:logit_model_sim},
+\end{align}
+where the fixed effects are $\alpha_i$, $\beta_j$ and $\delta_k$: $\alpha_i$ represents the item type, $\beta_j$ whether there is correct documentation, $\delta_k$ the country of provenance. The random effect $\gamma_\ell$ represents the entry effect. The indices can take values
+\begin{align}
+i &=1, \ldots, a, & a&\in \mathbb{N},& a &= \text{\# items}\\
+j &=1, 2, & & & &\text{for without, with documentation}\\
+k &= 1,\ldots, d,& d &\in \mathbb{N},& d &= \text{\# countries}\\
+\ell &= 1,\ldots,g,& g&\in \mathbb{N},& g &= \text{\# entries}
+\end{align}
+
+
+The prior is defined by
+\begin{align}
+\alpha_i &\sim \Normal(-1, 2), \qquad i=1, \ldots, 1, \quad a\in \mathbb{N},\\
+\beta_1 &= 0 , \ \beta_2 \sim \Normal(0, 0.5),\\
+\delta_k &\sim \Normal(0, 0.5), \qquad k = 1,\ldots, d, \quad d \in \mathbb{N}\\
+\gamma_\ell | \sigma &\sim \Normal(0, \sigma), \qquad \ell = 1,\ldots, g, \quad g\in \mathbb{N},\\
+\sigma &\sim \Normal(0, 0.5)
+\end{align}
+{\color{gray} 
+\begin{align}
 \logit(p_i) = \alpha_{\text{type}[i]} + \beta\times\text{document}[i] + \text{entry}[i]. \label{eq:logit_model_sim}
 \end{align}
 For our simulations, we set \(\beta=-1\) and we include 8 item types with \(\alpha\) values 	of -4.60 -2.94 -2.20, -1.39, 0, 0.85, 2.20, and 2.94 (corresponding to interception probabilities of 0.01, 0.05, 0.1, 0.2, 0.5, 0.7, 0.9 and 0.95). We run simulations with and without an entry effect, but when we include entry
@@ -197,7 +218,7 @@ For our simulations, we set \(\beta=-1\) and we include 8 item types with \(\alp
 \text{entry}[i] = \Normal(0, \sigma),
 \end{align}
 where \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set document to be compliant with probability 0.2. We show an example of the format of the data in Table \ref{table:example_data}. 
-
+}
 
 \vspace{0.1cm}
 \begin{table}[h]
