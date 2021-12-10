@@ -169,14 +169,25 @@ p1 + p2
 ```
 
 
-```{r prior-nee, fig.cap="Prior without entry effect"}
+```{r prior-int-only, fig.cap="Prior on intercept probability"}
 prior_df %>%
   filter(entry_effect == 0) %>%
 ggplot(aes(x = p)) +
   geom_histogram(breaks = seq(0,1,0.0025)) +
   labs(title = "Prior without entry effect")
 ```
-
+```{r prior-nee, fig.cap="Prior without entry effect"}
+true_intercept_probability <- qlogis(c(0.001, 0.01, 0.02, 0.05, .2))
+N = 1000000
+set.seed(147)
+pint = rnorm(N, -1, 2)
+prior_df_int_only = data.frame(
+  p = pint)
+prior_df_int_only %>%
+ggplot(aes(x = p)) +
+  geom_histogram(breaks = seq(min(true_intercept_probability)*1.1,2.5,0.0025)) + geom_vline(xintercept = true_intercept_probability)
+  labs(title = "Prior without entry effect")
+```
 
 # Check parameter estimates
 

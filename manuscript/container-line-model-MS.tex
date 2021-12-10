@@ -209,16 +209,18 @@ The prior is defined by
 \gamma_\ell | \sigma &\sim \Normal(0, \sigma), \qquad \ell = 1,\ldots, g, \quad g\in \mathbb{N},\\
 \sigma &\sim \Normal(0, 0.5)
 \end{align}
-{\color{gray} 
-\begin{align}
-\logit(p_i) = \alpha_{\text{type}[i]} + \beta\times\text{document}[i] + \text{entry}[i]. \label{eq:logit_model_sim}
-\end{align}
-For our simulations, we set \(\beta=-1\) and we include 8 item types with \(\alpha\) values 	of -4.60 -2.94 -2.20, -1.39, 0, 0.85, 2.20, and 2.94 (corresponding to interception probabilities of 0.01, 0.05, 0.1, 0.2, 0.5, 0.7, 0.9 and 0.95). We run simulations with and without an entry effect, but when we include entry
-\begin{align}
-\text{entry}[i] = \Normal(0, \sigma),
-\end{align}
-where \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set document to be compliant with probability 0.2. We show an example of the format of the data in Table \ref{table:example_data}. 
-}
+
+%{\color{gray} 
+%\begin{align}
+%\logit(p_i) = \alpha_{\text{type}[i]} + \beta\times\text{document}[i] + \text{entry}[i]. \label{eq:logit_model_sim}
+%\end{align}
+%For our simulations, we set \(\beta=-1\) and we include 8 item types with \(\alpha\) values 	of -4.60 -2.94 -2.20, -1.39, 0, 0.85, 2.20, and 2.94 (corresponding to interception probabilities of 0.01, 0.05, 0.1, 0.2, 0.5, 0.7, 0.9 and 0.95). We run simulations with and without an entry effect, but when we include entry
+%\begin{align}
+%\text{entry}[i] = \Normal(0, \sigma),
+%\end{align}
+%where \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set document to be compliant with probability 0.2.  
+%}
+We show an example of the format of the data in Table \ref{table:example_data}.
 
 \vspace{0.1cm}
 \begin{table}[h]
@@ -279,7 +281,61 @@ However, the container mode data complicates the model, because for each entry t
 The primary aim of our work is to investigate the relative contribution of container mode data to precision of parameter estimates. However, before analysing precision it is important to ensure that we are able to accurately estimate parameters with our model and that precision estimates using STAN match the asymptotic analysis.
 \subsubsection{Model precision}
 To check model precision, we simulate a simplified dataset, with a single item type and no other fixed or random effects, and compare the STAN estimates with the asymptotic approximation, from Eq.~\eqref{eq:general_SE_calc}. As STAN is a Bayesian approach, it is apropriate to comapare the standard error estiamte, Eq.~\eqref{eq:general_SE_calc}, to the standard deviation of the STAN posterior draws. 
-The simulation uses \(p=0.05\) and we vary the number of entries \(N_E\) and the entry size, \(S\) and the comparison is shown in Figure~\ref{fig:SE_est_vs_STAN}.
+The simulation uses \(p=0.05\) and we vary the number of entries \(N_E\) and the entry size, \(S\) and the comparison is shown in Figure~\ref{fig:SD_est_simulated}.
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf}
+\caption{SD as amount of data increases, depending on \(p\) and the amount of container data}
+\label{fig:SD_est_simulated}
+\end{figure}
+
+\section{Case study}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{../visualisations/figures/p_int_est_all_vs_line_data.pdf}
+\caption{SD as amount of data increases, depending on \(p\) and the amount of container data}
+\label{fig:SD_est_simulated}
+\end{figure}
+
+
+\begin{table}[ht]
+\label{tab:estimates_only_from_all_data}
+\caption{Parameter estimates that are only possible when using all data, as opposed to the line-only fits}
+\centering
+\begin{tabular}{rlrrrr}
+  \hline
+ & param\_name & week & summary\_mean\_all & summary\_sd\_all & summary\_rhat\_all \\ 
+  \hline
+1 & p\_intercept[72] & 1.00 & -1.70 & 1.68 & 1.00 \\ 
+  2 & p\_intercept[59] & 2.00 & -1.34 & 1.71 & 1.01 \\ 
+  3 & p\_intercept[60] & 2.00 & -2.07 & 1.63 & 1.04 \\ 
+  4 & p\_intercept[61] & 2.00 & -1.18 & 1.92 & 1.00 \\ 
+  5 & country\_effect[62] & 2.00 & -0.01 & 0.49 & 1.00 \\ 
+  6 & country\_effect[63] & 2.00 & -0.01 & 0.47 & 1.00 \\ 
+  7 & country\_effect[64] & 2.00 & -0.01 & 0.49 & 1.01 \\ 
+  8 & country\_effect[65] & 2.00 & 0.02 & 0.48 & 1.02 \\ 
+  9 & country\_effect[66] & 2.00 & 0.01 & 0.48 & 1.00 \\ 
+  10 & country\_effect[67] & 2.00 & -0.01 & 0.48 & 1.00 \\ 
+  11 & p\_intercept[72] & 3.00 & -1.43 & 1.78 & 1.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\section{Appendix}
+
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates.pdf}
+\caption{SUPPLEMENT FIGURE}
+\label{fig:simulation_estimation}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{../visualisations/figures/pint_prior.pdf}
+\caption{SUPPLEMENT FIGURE}
+\label{fig:p_int_prior}
+\end{figure}
+
 
 
 %%\begin{figure}[h!]
