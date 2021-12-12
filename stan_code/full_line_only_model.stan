@@ -30,7 +30,7 @@ model {
   int country_effect_flag;
   int entry_effect_flag;
   
-  p_intercept ~ normal(-1, 2);
+  p_intercept ~ uniform(0, 1);
   beta_doc ~ normal(0, .5);
   country_effect ~ normal(0, .5);
   sigma_entry ~ uniform(0,0.5);
@@ -42,7 +42,7 @@ model {
   if (num_unique_Entry == 1){entry_effect_flag = 0;};
   
   for (i in 1:num_rows){
-    pvec[i] = p_intercept[Item_class[i]] + country_effect_flag*country_effect[country[i]] + beta_doc*Document[i] + entry_effect_flag*entry_effect[Entry[i]];
+    pvec[i] = logit(p_intercept[Item_class[i]]) + country_effect_flag*country_effect[country[i]] + beta_doc*Document[i] + entry_effect_flag*entry_effect[Entry[i]];
   }
   
   Record_intercept ~ bernoulli_logit(pvec);
