@@ -110,7 +110,7 @@ ggsave(paste0(path,'simulation_estimates.pdf'), width=8, height=8)
   true_intercept_probability <- qlogis(c(0.001, 0.01, 0.02, 0.05, .2))
 N = 1000000
 set.seed(147)
-pint = rnorm(N, -1, 2)
+pint = rnorm(N, -4, 2)
 prior_df_int_only = data.frame(
   p = pint)
 prior_df_int_only %>%
