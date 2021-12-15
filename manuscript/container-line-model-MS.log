@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  15 DEC 2021 16:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  15 DEC 2021 16:58
 entering extended mode
 **./container-line-model-MS.tex
 (container-line-model-MS.tex
@@ -754,8 +754,8 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{C:/Users/cbaker1/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-<../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=22, 284.06125pt x 176.6
+{C:/Users/cbaker1/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3]
+<../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=32, 284.06125pt x 176.6
 6pt>
 File: ../asymptotic_approximation/SE_vs_pr_intercept.pdf Graphic file (type pdf
 )
@@ -763,7 +763,7 @@ File: ../asymptotic_approximation/SE_vs_pr_intercept.pdf Graphic file (type pdf
 Package pdftex.def Info: ../asymptotic_approximation/SE_vs_pr_intercept.pdf  us
 ed on input line 118.
 (pdftex.def)             Requested size: 186.82289pt x 116.1916pt.
-<../asymptotic_approximation/SE_vs_num_lines.pdf, id=23, 284.06125pt x 183.6862
+<../asymptotic_approximation/SE_vs_num_lines.pdf, id=33, 284.06125pt x 183.6862
 5pt>
 File: ../asymptotic_approximation/SE_vs_num_lines.pdf Graphic file (type pdf)
 <use ../asymptotic_approximation/SE_vs_num_lines.pdf>
@@ -771,10 +771,6 @@ Package pdftex.def Info: ../asymptotic_approximation/SE_vs_num_lines.pdf  used
 on input line 122.
 (pdftex.def)             Requested size: 186.82289pt x 120.81285pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[3]
 Overfull \hbox (75.12056pt too wide) detected at line 134
 []
  []
@@ -822,14 +818,6 @@ File: ../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf Graphic file (type
 Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf
   used on input line 161.
 (pdftex.def)             Requested size: 186.82289pt x 121.47304pt.
-<../asymptotic_approximation/SE_twotype_p1_p2_range.pdf, id=56, 284.06125pt x 1
-81.67876pt>
-File: ../asymptotic_approximation/SE_twotype_p1_p2_range.pdf Graphic file (type
- pdf)
-<use ../asymptotic_approximation/SE_twotype_p1_p2_range.pdf>
-Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_p2_range.pdf
-  used on input line 174.
-(pdftex.def)             Requested size: 247.82117pt x 158.50555pt.
  [5 <../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf> <../asymptotic_ap
 proximation/SE_twotype_p1_01_p2_03.pdf
 
@@ -846,63 +834,62 @@ e
 pdfTeX warning: pdflatex (file ../asymptotic_approximation/SE_twotype_p1_01_p2_
 09.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 
->] [6 <../asymptotic_approximation/SE_twotype_p1_p2_range.pdf>]
-Overfull \hbox (40.75032pt too wide) in paragraph at lines 234--251
+>]
+Overfull \hbox (40.75032pt too wide) in paragraph at lines 236--253
  [] 
  []
 
-[7]
-<../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=135, 50
+[6] [7]
+<../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=120, 50
 5.89pt x 578.16pt>
 File: ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf Graphi
 c file (type pdf)
 <use ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>
 Package pdftex.def Info: ../visualisations/figures/sim_study_pint_vs_data_vs_en
-try_size.pdf  used on input line 290.
+try_size.pdf  used on input line 292.
 (pdftex.def)             Requested size: 381.26694pt x 435.74503pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=136, 578.16pt x 3
+<../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=121, 578.16pt x 3
 61.35pt>
 File: ../visualisations/figures/p_int_est_all_vs_line_data.pdf Graphic file (ty
 pe pdf)
 <use ../visualisations/figures/p_int_est_all_vs_line_data.pdf>
 Package pdftex.def Info: ../visualisations/figures/p_int_est_all_vs_line_data.p
-df  used on input line 297.
+df  used on input line 299.
 (pdftex.def)             Requested size: 381.26694pt x 238.28772pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (22.96164pt too wide) in paragraph at lines 307--324
+Overfull \hbox (22.96164pt too wide) in paragraph at lines 309--326
  [][] 
  []
 
-<../visualisations/figures/simulation_estimates.pdf, id=137, 578.16pt x 578.16p
+<../visualisations/figures/simulation_estimates.pdf, id=122, 578.16pt x 578.16p
 t>
 File: ../visualisations/figures/simulation_estimates.pdf Graphic file (type pdf
 )
 <use ../visualisations/figures/simulation_estimates.pdf>
 Package pdftex.def Info: ../visualisations/figures/simulation_estimates.pdf  us
-ed on input line 330.
+ed on input line 332.
 (pdftex.def)             Requested size: 381.26694pt x 381.26036pt.
-[8]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../visualisations/figures/pint_prior.pdf, id=142, 578.16pt x 433.62pt>
+<../visualisations/figures/pint_prior.pdf, id=123, 578.16pt x 433.62pt>
 File: ../visualisations/figures/pint_prior.pdf Graphic file (type pdf)
 <use ../visualisations/figures/pint_prior.pdf>
 Package pdftex.def Info: ../visualisations/figures/pint_prior.pdf  used on inpu
-t line 337.
+t line 339.
 (pdftex.def)             Requested size: 381.26694pt x 285.94527pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(container-line-model-MS.bbl [9 <../visualisations/figures/sim_study_pint_vs_da
-ta_vs_entry_size.pdf>]
+(container-line-model-MS.bbl [8] [9 <../visualisations/figures/sim_study_pint_v
+s_data_vs_entry_size.pdf>]
 Underfull \hbox (badness 1147) in paragraph at lines 49--59
 \OT1/cmr/m/n/10 ing.  \OT1/cmr/m/it/10 Jour-nal of the Royal Sta-tis-ti-cal So-
 ci-ety: Se-ries C (Ap-plied Statis-tics)\OT1/cmr/m/n/10 ,
@@ -914,18 +901,18 @@ Underfull \hbox (badness 1292) in paragraph at lines 49--59
 467-[]9876 . 2008 . 00639 .
  []
 
-[10 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>]) [11] [12 <../v
-isualisations/figures/simulation_estimates.pdf>] [13 <../visualisations/figures
-/pint_prior.pdf>] (container-line-model-MS.aux)
+[10 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>]) [11 <../visual
+isations/figures/simulation_estimates.pdf>] [12 <../visualisations/figures/pint
+_prior.pdf>] (container-line-model-MS.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25922 strings out of 480930
- 641957 string characters out of 2909541
+ 25915 strings out of 480930
+ 641587 string characters out of 2909541
  1156769 words of memory out of 3000000
- 41356 multiletter control sequences out of 15000+200000
+ 41350 multiletter control sequences out of 15000+200000
  541667 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,11n,98p,1207b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -948,9 +935,9 @@ mti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb
 ><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on container-line-model-MS.pdf (13 pages, 513814 bytes).
+Output written on container-line-model-MS.pdf (12 pages, 485904 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
+ 229 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 68 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 63 words of extra memory for PDF output out of 10000 (max. 10000000)
 
