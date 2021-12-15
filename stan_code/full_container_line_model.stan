@@ -44,7 +44,7 @@ model {
   int country_effect_flag;
   int entry_effect_flag;
   
-  p_intercept ~ normal(-1, 2);
+  p_intercept ~ normal(-4, 2);
   beta_doc ~ normal(0, .5);
   country_effect ~ normal(0, .5);
   
