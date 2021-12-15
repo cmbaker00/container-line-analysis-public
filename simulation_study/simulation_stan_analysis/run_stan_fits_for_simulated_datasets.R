@@ -164,7 +164,7 @@ for (fixed_entry_size in entry_size_list){
 
 # Chanign entry sizes, only line 2000 to 5000 of each in steps of 1000
 for (fixed_entry_size in entry_size_list){
-  if (fixed_entry_size > 1) {
+  if (fixed_entry_size == 2) {
     num_scenarios <- 4
     input_params_all_no_sd_change_combination = data.frame(
       min_entry_size = rep(fixed_entry_size, num_scenarios),
