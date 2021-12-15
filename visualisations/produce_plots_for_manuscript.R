@@ -137,7 +137,7 @@ ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name, fill = 
                         ", Entry correlation: ", first(df$entry_correlation_sd),
                         ", Percentage of container data: ", first(df$percentage_container_data)*100, "%"))
 
-ggsave(paste0(path,'simulation_estimates.pdf'), width=8, height=8)
+ggsave(paste0(path,'simulation_estimates_container.pdf'), width=8, height=8)
 }
 
 

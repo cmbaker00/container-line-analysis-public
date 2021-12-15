@@ -32,11 +32,14 @@
 \DeclareMathOperator{\logistic}{logistic}
 \DeclareMathOperator{\Normal}{Normal}
 
+
+\linespread{1.25}
+
+
 \title{Container and line mode}
 \author{Christopher M.\ Baker \and Howard Bondell \and Nathaniel Bloomfield \and Elena Tartaglia \and Andrew P.\ Robinson}
 \begin{document}  
 \maketitle
-
 \begin{abstract}
 In the Australian border biosecurity system, data about shipping containers is recorded in one of two modes: \emph{container} mode or \emph{line} mode. The key difference between the modes is how the \emph{directions} are recorded, that is, data about whether entries were inspected or found to be non-compliant. In general, an entry contains multiple lines of data, where each line is a single type of item. The challenge comes when an entry is in container mode, which results in any directions being listed against every line within the entry, rather than only the [specific??] lines. Container mode data therefore creates a challenge when we try to estimate the probability that certain items are non-compliant, because we can't be sure which records of non-compliance match up with which line. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we finally apply our methods to a real dataset. 
 \end{abstract}
@@ -60,11 +63,11 @@ In practice, pooled testing is manifestly different from the biosecurity scenari
 
 
 \section{Asymptotic analysis}
-We use asymptotic analysis to investigate how the precision of estimates depends on entry size, the number of entries, the probability of interception and whether item types are mixed. This analysis is broken into two parts. The first part assumes that all items are a single type, which allows us to see how the amount of data, probability of interception and entry size affects precision. The second part assumes that there are two items and explores how changing the proportion of entries with both item types mixed affects precision.
+We use asymptotic analysis to investigate how the precision of estimates depends on entry size, the number of entries, the probability of interception and whether item types are mixed. This analysis is broken into two parts. The first part assumes that all items are a single type, which allows us to quantify how the amount of data, probability of interception and entry size affects precision. The second part assumes that there are two different item types, and it explores how changing the proportion of entries with both item types mixed affects precision.
 
-Throughout this asymptotic analysis we make two simplifications. Firstly, we do not separate line mode and container mode because container mode data with entry size 1 is mathematically equivalent to line mode data. Hence, throughout these analysis, entry size 1 means line mode and entry size greater than 1 implies container mode. Secondly, we  assume that each item has a fixed probability of interception. Therefore, we consider each line a Bernoulli trial, which only depends on the item type. When the entry size is greater than one, the relevant probability is whether at least one line was intercepted.
+Throughout this section we make two simplifications. Firstly, we do not separate line mode and container mode because container mode data with entry size 1 is mathematically equivalent to line mode data. Hence, throughout these analysis, entry size 1 means line mode and entry size greater than 1 implies container mode. Secondly, we  assume that each item has a fixed probability of interception. Therefore, we consider each line a Bernoulli trial, which only depends on the item type. When the entry size is greater than one, the relevant probability is whether at least one line was intercepted.
 
-We estimate precision via calculation the Fisher information matrix, \(\mathcal{I}\). The Fisher information  matrix is the expected value of the negative of the Hessian matrix of the log-likelihood evaluated at the maximum likelihood estimate. The standard error estimates are the square roots of the diagonal elements of the inverse of \(\mathcal{I}\).
+We estimate precision via calculation the Fisher information matrix, \(\mathcal{I}\). The Fisher information  matrix is the expected value of the negative of the Hessian matrix of the log-likelihood evaluated at the value of the parameter. We use the standard error estimate as our measurement of precision, which are the square roots of the diagonal elements of the inverse of \(\mathcal{I}\).
 
 \subsection{Single item type}
 For the single item type case, we set the probability of interception to be \(p\), and define \(N\) as the total number of entries, \(I\) as the number of entries intercepted and \(S\) as the size (i.e. the number of lines) in each entry. The likelihood is a binomial distribution, where the outcome is the an entry being intercepted. The probability that an entry is not intercepted is
@@ -591,7 +594,7 @@ The simulation uses \(p=0.05\) and we vary the number of entries \(N_E\) and the
 %        simulated_data[simulated_data$Container == current_container,]$RecordInspect <- 1
 %        if (any(simulated_data[simulated_data$Container == current_container,]$TrueIntercept == 1)){
 %          simulated_data[simulated_data$Container == current_container,]$RecordIntercept <- 1
-%        }
+%        } 
 %      }
 %    }
 %
