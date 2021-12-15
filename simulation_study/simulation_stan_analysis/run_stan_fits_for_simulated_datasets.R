@@ -88,7 +88,7 @@ loop_over_input_params_fit_stan(input_params_all_no_sd)
 # Container only, no SD, varying amount of data
 
 
-num_rows <- c(10000, 15000, 20000, 25000)
+num_rows <- c(5000, 10000, 15000, 20000, 25000)
 num_scenarios <- length(num_rows)
 input_params_all_no_sd = data.frame(
   min_entry_size = rep(entry_size_min, num_scenarios),
