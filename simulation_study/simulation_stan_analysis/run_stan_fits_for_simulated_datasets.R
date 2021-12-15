@@ -69,9 +69,6 @@ loop_over_input_params_fit_stan(input_params_all_no_sd)
 
 # Equal mix of container and line, no SD, varying amount of data - 10k + ROWS
 
-data_filename <- gen_filename_simulate_data(2,5,0,'1e+05')
-load_sim_data <- read.csv(data_filename)
-load_sim_data %>% group_by(Mode) %>% summarise(n())
 
 num_rows <- c(10000, 15000, 20000, 25000)
 num_scenarios <- length(num_rows)
@@ -81,6 +78,24 @@ input_params_all_no_sd = data.frame(
   sd = rep(0, num_scenarios),
   target_num_rows_data = rep('1e+05', num_scenarios),
   num_line_data = num_rows,
+  num_container_data = num_rows,
+  entry_random_effect = rep(FALSE, num_scenarios)
+)
+
+loop_over_input_params_fit_stan(input_params_all_no_sd)
+
+
+# Container only, no SD, varying amount of data
+
+
+num_rows <- c(10000, 15000, 20000, 25000)
+num_scenarios <- length(num_rows)
+input_params_all_no_sd = data.frame(
+  min_entry_size = rep(entry_size_min, num_scenarios),
+  max_entry_size = rep(entry_size_max, num_scenarios),
+  sd = rep(0, num_scenarios),
+  target_num_rows_data = rep('1e+05', num_scenarios),
+  num_line_data = 0,
   num_container_data = num_rows,
   entry_random_effect = rep(FALSE, num_scenarios)
 )
