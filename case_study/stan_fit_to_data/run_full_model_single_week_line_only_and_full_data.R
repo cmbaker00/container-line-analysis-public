@@ -65,11 +65,11 @@ run_stanfit_single_week <- function (week){
                     Record_intercept = intercept_data)
 
 
-  mean_intercept_naive_freq <- qlogis(mean(data$RecordIntercept))
+  mean_intercept_naive_freq <- (mean(data$RecordIntercept))
   num_item_types <- max(unique(data$Type))
   num_countries <- length(unique(data$Country))
 
-  init_fun <- function(...) list(p=rnorm(n=num_item_types, mean_intercept_naive_freq,.3),
+  init_fun <- function(...) list(p=runif(n=num_item_types, mean_intercept_naive_freq/2, pmin(mean_intercept_naive_freq*2, rep(1,num_item_types))),
                                  country_effect = rnorm(n=num_countries, 0, .1),
                                  beta_doc=rnorm(n=1, 0,.1),
                                  sigma_entry=runif(n=1, min = .01, max = .05),
@@ -84,8 +84,8 @@ run_stanfit_single_week <- function (week){
     cores = 8,
     refresh = 100,
     control = list(adapt_delta = .99, max_treedepth = 10),
-    # init_r = .1,
-    init = init_fun,
+    init_r = .1,
+    #init = init_fun,
   )
   print(fit_line)
   fit_summary <- summary(fit_line)
@@ -181,11 +181,11 @@ run_stanfit_single_week <- function (week){
                     line_record_index = line_mode_indices_nums,
                     entry_size = entry_size)
 
-  mean_intercept_naive_freq <- qlogis(mean(data$RecordIntercept))
+  mean_intercept_naive_freq <- (mean(data$RecordIntercept))
   num_item_types <- length(unique(data$Type))
   num_countries <- length(unique(data$Country))
 
-  init_fun <- function(...) list(p=rnorm(n=num_item_types, mean_intercept_naive_freq,.3),
+  init_fun <- function(...) list(p=runif(n=num_item_types, mean_intercept_naive_freq/2, pmin(mean_intercept_naive_freq*2, rep(1,num_item_types))),
                                  country_effect = rnorm(n=num_countries, 0, .1),
                                  beta_doc=rnorm(n=1, 0,.1),
                                  sigma_entry=runif(n=1, min = .01, max = .05),
@@ -200,8 +200,8 @@ run_stanfit_single_week <- function (week){
     cores = 8,
     refresh = 100,
     control = list(adapt_delta = .99, max_treedepth = 10),
-    # init_r = .1,
-    init = init_fun,
+    init_r = .1,
+    #init = init_fun,
   )
 
   print(fit)
