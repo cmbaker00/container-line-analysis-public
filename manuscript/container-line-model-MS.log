@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  15 DEC 2021 17:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  17 DEC 2021 14:23
 entering extended mode
 **./container-line-model-MS.tex
 (container-line-model-MS.tex
@@ -839,32 +839,33 @@ Overfull \hbox (40.75032pt too wide) in paragraph at lines 236--253
  [] 
  []
 
-[6] [7]
-<../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=120, 50
+[6]
+<../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=116, 50
 5.89pt x 578.16pt>
 File: ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf Graphi
 c file (type pdf)
 <use ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>
 Package pdftex.def Info: ../visualisations/figures/sim_study_pint_vs_data_vs_en
-try_size.pdf  used on input line 292.
+try_size.pdf  used on input line 294.
 (pdftex.def)             Requested size: 381.26694pt x 435.74503pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=121, 578.16pt x 3
+<../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=117, 578.16pt x 3
 61.35pt>
 File: ../visualisations/figures/p_int_est_all_vs_line_data.pdf Graphic file (ty
 pe pdf)
 <use ../visualisations/figures/p_int_est_all_vs_line_data.pdf>
 Package pdftex.def Info: ../visualisations/figures/p_int_est_all_vs_line_data.p
-df  used on input line 299.
+df  used on input line 308.
 (pdftex.def)             Requested size: 381.26694pt x 238.28772pt.
+[7]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (22.96164pt too wide) in paragraph at lines 309--326
+Overfull \hbox (22.96164pt too wide) in paragraph at lines 318--335
  [][] 
  []
 
@@ -874,7 +875,7 @@ File: ../visualisations/figures/simulation_estimates.pdf Graphic file (type pdf
 )
 <use ../visualisations/figures/simulation_estimates.pdf>
 Package pdftex.def Info: ../visualisations/figures/simulation_estimates.pdf  us
-ed on input line 332.
+ed on input line 341.
 (pdftex.def)             Requested size: 381.26694pt x 381.26036pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -883,13 +884,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: ../visualisations/figures/pint_prior.pdf Graphic file (type pdf)
 <use ../visualisations/figures/pint_prior.pdf>
 Package pdftex.def Info: ../visualisations/figures/pint_prior.pdf  used on inpu
-t line 339.
+t line 348.
 (pdftex.def)             Requested size: 381.26694pt x 285.94527pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(container-line-model-MS.bbl [8] [9 <../visualisations/figures/sim_study_pint_v
-s_data_vs_entry_size.pdf>]
+(container-line-model-MS.bbl [8 <../visualisations/figures/sim_study_pint_vs_da
+ta_vs_entry_size.pdf>]
 Underfull \hbox (badness 1147) in paragraph at lines 49--59
 \OT1/cmr/m/n/10 ing.  \OT1/cmr/m/it/10 Jour-nal of the Royal Sta-tis-ti-cal So-
 ci-ety: Se-ries C (Ap-plied Statis-tics)\OT1/cmr/m/n/10 ,
@@ -901,43 +902,42 @@ Underfull \hbox (badness 1292) in paragraph at lines 49--59
 467-[]9876 . 2008 . 00639 .
  []
 
-[10 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>]) [11 <../visual
-isations/figures/simulation_estimates.pdf>] [12 <../visualisations/figures/pint
-_prior.pdf>] (container-line-model-MS.aux)
+[9 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>]) [10] [11 <../vi
+sualisations/figures/simulation_estimates.pdf>] [12 <../visualisations/figures/
+pint_prior.pdf>] (container-line-model-MS.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25915 strings out of 480930
- 641587 string characters out of 2909541
+ 25913 strings out of 480930
+ 641566 string characters out of 2909541
  1156769 words of memory out of 3000000
- 41350 multiletter control sequences out of 15000+200000
- 541667 words of font info for 60 fonts, out of 3000000 for 9000
+ 41349 multiletter control sequences out of 15000+200000
+ 541359 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,11n,98p,1207b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Progra
-m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on container-line-model-MS.pdf (12 pages, 490680 bytes).
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on container-line-model-MS.pdf (12 pages, 476667 bytes).
 PDF statistics:
- 229 PDF objects out of 1000 (max. 8388607)
+ 225 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  63 words of extra memory for PDF output out of 10000 (max. 10000000)
 

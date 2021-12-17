@@ -115,7 +115,7 @@ Draw from the prior and plot to see what it looks like.
 ```{r}
 N = 1000000
 set.seed(147)
-pint = rnorm(N, -1, 2)
+pint = rnorm(N, -4, 2)
 beta_doc = rnorm(N, 0, 0.5)
 country_effect = rnorm(N, 0, 0.5)
 sigma_entry = runif(N, 0, 0.5)
