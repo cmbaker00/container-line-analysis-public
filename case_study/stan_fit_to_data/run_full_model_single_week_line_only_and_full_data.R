@@ -212,6 +212,9 @@ run_stanfit_single_week <- function (week){
 }
 }
 
-for (i in c(1,2,3)){
-  run_stanfit_single_week(i)
-}
+#for (i in c(1,2,3)){
+#  run_stanfit_single_week(i)
+#}
+run_stanfit_single_week(1)
+run_stanfit_single_week(2)
+run_stanfit_single_week(3)
