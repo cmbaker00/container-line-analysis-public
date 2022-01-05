@@ -30,7 +30,7 @@ model {
   int country_effect_flag;
   int entry_effect_flag;
   
-  p_intercept ~ normal(-4, 2);
+  p_intercept ~ normal(-4, 4);
   beta_doc ~ normal(0, .5);
   country_effect ~ normal(0, .5);
   sigma_entry ~ uniform(0,0.5);
