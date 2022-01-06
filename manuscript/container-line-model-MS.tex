@@ -192,39 +192,35 @@ As the first step in developing a method to analyse real-world data sets, we sim
 
 \subsection{Data simulation}
 
-
-In our simulation model, we use a logistic model to generate the probability \(p_i\) that a line is intercepted. We assume that each item type has its own baseline fixed effect, which is \(\alpha_{\text{type}[i]}\) and that there is a fixed effect of having compliant documentation, \(\beta\). Finally we include a random effect which is the entry that line \(i\) is in. The full equation is:
+In our simulation model, we use a logistic model to generate the probability \(p_{ijk\ell}\) that a line is intercepted. We assume that this depends on the item type in the line, whether the line has compliant documentation and what country the line comes from, all of which are modelled as fixed effects. We also include a random effect corresponding to the entry that contains the given line. The full equation is:
 \begin{align}
-\logit(p_{ijk\ell}) = \alpha_{i} + \beta\times\mathcal{I} + \delta_k + \gamma_\ell \label{eq:logit_model_sim},
+\logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell \label{eq:logit_model_sim},
 \end{align}
-where the fixed effects are $\alpha_i$, $\beta_j$ and $\delta_k$: $\alpha_i$ represents the item type, $\beta_j$ whether there is correct documentation, $\delta_k$ the country of provenance. The random effect $\gamma_\ell$ represents the entry effect. The indices can take values
+where the fixed effects are $\alpha_i$, $\beta\mathbb{I}_j$ and $\delta_k$: $\alpha_i$ represents the item type, the indicator variable $\mathbb{I}_j$ denotes whether there is correct documentation, the coefficient $\beta$ is the weight given when there is correct documentation, and $\delta_k$ represents the country of provenance. The random effect $\gamma_\ell$ represents the entry effect. The indices can take values
 \begin{align}
 i &=1, \ldots, a, & a&\in \mathbb{N},& a &= \text{\# items}\\
-j &=1, 2, & & & &\text{for without, with documentation}\\
+j &= 1, 2, & & & &\text{without and with documentation}\\
 k &= 1,\ldots, d,& d &\in \mathbb{N},& d &= \text{\# countries}\\
-\ell &= 1,\ldots,g,& g&\in \mathbb{N},& g &= \text{\# entries}
+\ell &= 1,\ldots,g,& g&\in \mathbb{N},& g &= \text{\# entries}.
 \end{align}
-
-
-The prior is defined by
+The values of the indicator variable are
 \begin{align}
-\alpha_i &\sim \Normal(-1, 2), \qquad i=1, \ldots, 1, \quad a\in \mathbb{N},\\
-\beta_1 &= 0 , \ \beta_2 \sim \Normal(0, 0.5),\\
-\delta_k &\sim \Normal(0, 0.5), \qquad k = 1,\ldots, d, \quad d \in \mathbb{N}\\
-\gamma_\ell | \sigma &\sim \Normal(0, \sigma), \qquad \ell = 1,\ldots, g, \quad g\in \mathbb{N},\\
-\sigma &\sim \Normal(0, 0.5)
+\mathbb{I}_1 & = 0,& &\text{without documentation}\\
+\mathbb{I}_2 &= 1,& &\text{with documentation}.
+\end{align}
+The random effect $\gamma_\ell$ has distribution
+\begin{align}
+\gamma_\ell | \sigma &\sim \Normal(0, \sigma), & \ell &= 1,\ldots, g, & g&\in \mathbb{N}.
 \end{align}
 
-%{\color{gray} 
-%\begin{align}
-%\logit(p_i) = \alpha_{\text{type}[i]} + \beta\times\text{document}[i] + \text{entry}[i]. \label{eq:logit_model_sim}
-%\end{align}
-%For our simulations, we set \(\beta=-1\) and we include 8 item types with \(\alpha\) values 	of -4.60 -2.94 -2.20, -1.39, 0, 0.85, 2.20, and 2.94 (corresponding to interception probabilities of 0.01, 0.05, 0.1, 0.2, 0.5, 0.7, 0.9 and 0.95). We run simulations with and without an entry effect, but when we include entry
-%\begin{align}
-%\text{entry}[i] = \Normal(0, \sigma),
-%\end{align}
-%where \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set document to be compliant with probability 0.2.  
-%}
+
+{\color{gray} 
+For our simulations, we set \(\beta=-1\) and we include 8 item types with \(\alpha\) values 	of -4.60 -2.94 -2.20, -1.39, 0, 0.85, 2.20, and 2.94 (corresponding to interception probabilities of 0.01, 0.05, 0.1, 0.2, 0.5, 0.7, 0.9 and 0.95). We run simulations with and without an entry effect, but when we include entry
+\begin{align}
+\text{entry}[i] = \Normal(0, \sigma),
+\end{align}
+where \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set document to be compliant with probability 0.2.  
+}
 We show an example of the format of the data in Table \ref{table:example_data}.
 
 \vspace{0.1cm}
@@ -257,30 +253,36 @@ Line & Entry & Type & Document & Entry correlation & Mode & Container & Intercep
 \subsection{STAN model}
 We use the RSTAN package to model the system. The basic structure for fitting the simulated data is to define the probability of interception for each line (following Eq.~\eqref{eq:logit_model_sim})
 \begin{align}
-\logit(p_i) = \alpha_{\text{type}[i]} + \beta\times\text{document}[i] + \text{entry}[i], \label{eq:logit_model_fit_sim}
+\logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell, \label{eq:logit_model_fit_sim}
 \end{align}
 where 
 \begin{align}
-\text{entry}[i]\sim\Normal(0,\sigma).
+\gamma_\ell | \sigma &\sim \Normal(0, \sigma), & \ell &= 1,\ldots, g, & g&\in \mathbb{N}.
 \end{align}
 As we fit our model in a Bayesian framework using STAN, we set priors on each parameter:
+The prior is defined by
 \begin{align}
-\alpha_{\text{type}[i]} &\sim \Normal(0, 100)\\
-\beta&\sim \text{Uniform}(-2,2)\\
-\sigma&\sim \text{Uniform}(0,1).
+\alpha_i &\sim \Normal(-1, 2), & i&=1, \ldots, a, & a&\in \mathbb{N},\\
+\beta &\sim \Normal(0, 0.5),\\
+\delta_k &\sim \Normal(0, 0.5), & k &= 1,\ldots, d, & d &\in \mathbb{N}\\
+\sigma &\sim \Normal(0, 0.5)
 \end{align}
 
 If the data were exclusively, fitting the model would be relatively standard, as it is logistic regression. For the line mode data we can write
+{
+\color{red}
 \begin{align}
 \text{Intercepted}_{i,\text{line}} \sim \text{Bernoulli}(p_i).
 \end{align}
-
+}
 
 However, the container mode data complicates the model, because for each entry there is only one response variable (the interception), irrespective of how many lines are contained within the entry. Hence, as we did in the asymptotic analysis for the container data (Eq.~\eqref{eq:container_mode_like}), we need to calculate the probability that at least one line in the entry is intercepted:
+{
+\color{red}
 \begin{align}
 \mathbb P(\text{Entry } j \text{ intercepted}) = q_j = 1 - \prod_{i=\text{Lines}\in j} (1-p_i).
 \end{align}
-
+}
 %
 %\subsection{Model verification}
 %The primary aim of our work is to investigate the relative contribution of container mode data to precision of parameter estimates. However, before analysing precision it is important to ensure that we are able to accurately estimate parameters with our model and that precision estimates using STAN match the asymptotic analysis.
