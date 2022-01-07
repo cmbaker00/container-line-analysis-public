@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.6)  7 JAN 2022 17:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.6)  7 JAN 2022 17:21
 entering extended mode
 **./entry-line-model-MS.tex
 (entry-line-model-MS.tex
@@ -935,7 +935,7 @@ File: ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf Graphi
 c file (type pdf)
 <use ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>
 Package pdftex.def Info: ../visualisations/figures/sim_study_pint_vs_data_vs_en
-try_size.pdf  used on input line 308.
+try_size.pdf  used on input line 305.
 (pdftex.def)             Requested size: 381.26694pt x 435.74503pt.
 <../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=125, 578.16pt x 3
 61.35pt>
@@ -943,10 +943,10 @@ File: ../visualisations/figures/p_int_est_all_vs_line_data.pdf Graphic file (ty
 pe pdf)
 <use ../visualisations/figures/p_int_est_all_vs_line_data.pdf>
 Package pdftex.def Info: ../visualisations/figures/p_int_est_all_vs_line_data.p
-df  used on input line 322.
+df  used on input line 319.
 (pdftex.def)             Requested size: 381.26694pt x 238.28772pt.
  [9 <../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>]
-Overfull \hbox (22.96164pt too wide) in paragraph at lines 332--349
+Overfull \hbox (22.96164pt too wide) in paragraph at lines 329--346
  [][] 
  []
 
@@ -956,7 +956,7 @@ File: ../visualisations/figures/simulation_estimates.pdf Graphic file (type pdf
 )
 <use ../visualisations/figures/simulation_estimates.pdf>
 Package pdftex.def Info: ../visualisations/figures/simulation_estimates.pdf  us
-ed on input line 355.
+ed on input line 352.
 (pdftex.def)             Requested size: 381.26694pt x 381.26036pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -965,7 +965,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: ../visualisations/figures/pint_prior.pdf Graphic file (type pdf)
 <use ../visualisations/figures/pint_prior.pdf>
 Package pdftex.def Info: ../visualisations/figures/pint_prior.pdf  used on inpu
-t line 362.
+t line 359.
 (pdftex.def)             Requested size: 381.26694pt x 285.94527pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -990,10 +990,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25792 strings out of 492450
- 646185 string characters out of 3119539
- 983435 words of memory out of 3000000
- 29712 multiletter control sequences out of 15000+200000
+ 25793 strings out of 492450
+ 646201 string characters out of 3119539
+ 984435 words of memory out of 3000000
+ 29713 multiletter control sequences out of 15000+200000
  12969 words of font info for 50 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,11n,98p,1346b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1022,7 +1022,7 @@ b><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmtt10.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/amsfonts/symbols/msbm10.pfb><C:/Users/tar064/AppData/Local/Programs/MiKT
 eX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on entry-line-model-MS.pdf (13 pages, 490800 bytes).
+Output written on entry-line-model-MS.pdf (13 pages, 490959 bytes).
 PDF statistics:
  233 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

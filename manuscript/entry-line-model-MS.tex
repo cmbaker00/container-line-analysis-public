@@ -218,12 +218,9 @@ The random effect $\gamma_\ell$ has distribution
 \end{align}
 
 
-For our simulations, we set \(\beta=-1\), and we include $a=5$ item types with \(\alpha_i\) values 	of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2). We chose an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data.
+For our simulations, chose parameters which we expect to be similar to their values in real-world data. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2). We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data. We used $d=3$ countries and choose their weights to be .5, -1 and .25, {\color{red} because\ldots}
 {
 \color{red}
-Country: .5, -1, .25
-Entry effect: 0
-
 We run simulations with and without an entry effect, but when we include entry \eqref{eq:entry_effect} it takes a normal distribution with mean zero and standard deviation \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set the probability of having correct documentation to be 0.2.}
 
 {\color{red} Do we need to specify how we generated values for countries and entries?}  
