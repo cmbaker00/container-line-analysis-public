@@ -41,7 +41,7 @@
 \begin{document}  
 \maketitle
 \begin{abstract}
-In the Australian border biosecurity system, data about shipping containers is recorded in one of two modes: \emph{entry} mode or \emph{line} mode. The key difference between the modes is how the \emph{directions} are recorded, that is, data about whether entries were inspected or found to be non-compliant. In general, an entry contains multiple lines of data, where each line is a single type of item. Analysis is simple when the data is recorded in line mode: the directions are recorded individually for each line. The challenge comes when data is recorded in entry mode, because the same direction is recorded each line in the entry. In other words, if at least one line in an entry is non-compliant, then all lines in that entry are recorded as non-compliant. Therefore, entry mode data creates a challenge when we try to estimate the probability that certain {\color{red} items (lines?)} are non-compliant, because we do not know which records of non-compliance match up with which line. We develop a statistical model to use entry mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of entry mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset. 
+In the Australian border biosecurity system, data about shipping containers is recorded in one of two modes: \emph{entry} mode or \emph{line} mode. The key difference between the modes is how the \emph{directions} are recorded, that is, data about whether entries were inspected or found to be non-compliant. In general, an entry contains multiple lines of data, where each line is a single type of item. Analysis is simple when the data is recorded in line mode: the directions are recorded individually for each line. The challenge comes when data is recorded in entry mode, because the same direction is recorded each line in the entry. In other words, if at least one line in an entry is non-compliant, then all lines in that entry are recorded as non-compliant. Therefore, entry mode data creates a challenge when we try to estimate the probability that certain items are non-compliant, because we do not know which records of non-compliance match up with which line. We develop a statistical model to use entry mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of entry mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset. 
 \end{abstract}
 
 \section{Introduction}
@@ -49,13 +49,15 @@ In the Australian border biosecurity system, data about shipping containers is r
 \paragraph{Biosecurity is important.}
 
 \paragraph{Border biosecurity is important - pathways}
+[Consider including the following here: In this paper, we assume that the outcome is either compliant or non-compliant. 
+Describing non-compliance.]
 
 \paragraph{Strategic analysis requires interception data.}
 
 \paragraph{Cargo (volumes, activity, etc)}
 
 \paragraph{Data capture - line and entry mode}
-Data recording compliance of cargo entering Australia is recorded in two main formats: line mode and entry mode. Entry mode is often referred to as container mode in biosecurity practice, but we will only use the term entry mode in this paper for simplicity. A line is a group of the same type of item being imported. An entry is a group of lines. When cargo enters the country, each line is given directions, which consist of a decision to check the line for compliance and the outcome after checking. In line mode, the directions assigned to each line are recorded along with the outcome for that line. In entry mode, directions are only recorded per entry. This means that in entry mode, if any line in that entry is found to be non-compliant, every line in that entry is recorded to be non-compliant. If all of the lines in the entry are compliant, then they are all marked compliant, so in this case line and entry mode are equivalent.
+Data recording compliance of cargo entering Australia is recorded in two main formats: line mode and entry mode. Entry mode is often referred to as container mode in biosecurity practice, but we will only use the term entry mode in this paper for simplicity. A line is a group of the same type of item being imported. An entry is a group of lines. When cargo enters the country, each line is given \emph{directions}, which consist of a decision whether to check the line for compliance and the outcome after checking. In line mode, the directions assigned to each line are recorded along with the outcome for that line. In entry mode, directions are only recorded per entry. This means that in entry mode, if any line in that entry is found to be non-compliant, every line in that entry is recorded to be non-compliant. If all of the lines in the entry are compliant, then they are all marked compliant, so in this case line and entry mode are equivalent.
 
 Our biosecurity data is closely related to pooled testing, which is often used for disease surveillance. Within the pooled testing literature there is generally two branches: one aims to identify positives within a pool, while the other seeks to use pooled data to estimate quantities about the population. It is the latter -- estimating quantities -- that we are interested in. The fundamental problem is estimating a prevalence, \(p\), within a population, when only pooled data is available \citep{thompson_estimation_1962}. More recent work has focussed on improving estimates by reducing bias, either through altering the sampling strategy \citep{schaarschmidt_experimental_2007,hepworth_debiased_2009} or by incorporating bias correction into models  \citep{hepworth_bias_2017,hepworth_bias_2021}. There have also been extensions of the problem where \(p\) is not a constant, but it is estimated using linear regression using only the pooled data \citep{delaigle_nonparametric_2015, chatterjee_regression_2020, mcmahan_bayesian_2017, liu_generalized_2020}. These papers have made significant progress in fitting increasingly complex models.
 
@@ -216,9 +218,13 @@ The random effect $\gamma_\ell$ has distribution
 \end{align}
 
 
-For our simulations, we set \(\beta=-1\), and we include $a=5$ item types with \(\alpha_i\) values 	of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2). We chose an negative effect of having correct documentation, because {\color{red} we expect lines with correct documentation have a lower chance of containing illegal items}. We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data.
+For our simulations, we set \(\beta=-1\), and we include $a=5$ item types with \(\alpha_i\) values 	of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2). We chose an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data.
+{
+\color{red}
+Country: .5, -1, .25
+Entry effect: 0
 
-We run simulations with and without an entry effect, but when we include entry \eqref{eq:entry_effect} it takes a normal distribution with mean zero and standard deviation \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set document to be compliant with probability 0.2 {\color{red} Does this need to be in the model?}.
+We run simulations with and without an entry effect, but when we include entry \eqref{eq:entry_effect} it takes a normal distribution with mean zero and standard deviation \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set the probability of having correct documentation to be 0.2.}
 
 {\color{red} Do we need to specify how we generated values for countries and entries?}  
 
@@ -226,25 +232,25 @@ We show an example of the format of the data in Table \ref{table:example_data}.
 
 \vspace{0.1cm}
 \begin{table}[h]
-\caption{Example simulated data. Lines 1-3 are all marked as intercepted because entry 1 is in entry mode, even though only 1 or 2 of the lines were actually intercepted. {\color{red} How did you choose the values of entry correlation? Do we still need the entry column?}}
+\caption{Example simulated data. Lines 1-3 are all marked as intercepted because entry 1 is in entry mode, even though only 1 or 2 of the lines were actually intercepted.}
 \label{table:example_data}
 \begin{center}
 
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline 
-Line & Entry & Type & Documentation & Entry correlation & Mode & Container & Intercepted \\ 
+Line & Entry & Type & Documentation & Mode & Intercepted \\ 
 \hline 
-1 & 1 & 3 & 1 & 0.023 & Entry & 1 & 1 \\ 
+1 & 1 & 3 & 1  & Entry & 1 \\ 
 \hline 
-2 & 1 & 2 & 0 & 0.023 & Entry & 1 & 1 \\ 
+2 & 1 & 2 & 0  & Entry & 1 \\ 
 \hline 
-3 & 1 & 1 & 0 & 0.023 & Entry & 1 & 1 \\ 
+3 & 1 & 1 & 0 & Entry & 1 \\ 
 \hline 
-4 & 2 & 5 & 0 & 0.08 &Line & 2 & 0 \\ 
+4 & 2 & 5 & 0 &Line & 0 \\ 
 \hline 
-5 & 3 & 4 & 1 & -0.37 &Line & 2 & 1 \\ 
+5 & 3 & 4 & 1 &Line & 1 \\ 
 \hline 
-\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ 
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ 
 \hline 
 \end{tabular} 
 
@@ -268,20 +274,26 @@ As we fit our model in a Bayesian framework, we set priors on each parameter:
 \sigma &\sim \Normal(0, 0.5)
 \end{align}
 
-If the data were exclusively in line mode, fitting the model would be relatively standard, as it is logistic regression. For the line mode data we can write
-{
-\color{red}
-\begin{align}
-\text{Intercepted}_{i,\text{line}} \sim \text{Bernoulli}(p_i).
-\end{align}
-}
+The probability $p_{ijk\ell}$ is the probability of non-compliance of a line that has characteristics $(i,j,k,\ell)$. We denote the probability that line $n$ is non-compliant as $p_{(n)}$, where $p_{(n)} = p_{ijk\ell}$ if that line has characteristics $(i,j,k,\ell)$.
 
-However, the entry mode data complicates the model, because for each entry there is only one response variable (the interception), irrespective of how many lines are contained within the entry. Hence, as we did in the asymptotic analysis for the entry data (Eq.~\eqref{eq:entry_mode_like}), we need to calculate the probability that at least one line in the entry is intercepted:
+If the data were exclusively in line mode, fitting the model would be relatively standard, as it is logistic regression. For the line mode data, the random variable that indicates whether line $n$ is non-compliant has a Bernoulli distribution
+\begin{align}
+\text{Non-compliant}_{n, \text{line}} \sim \text{Bernoulli}(p_{(n)}).
+\end{align}
+
+However, the entry mode data complicates the model, because for each entry there is only one response variable, irrespective of how many lines are contained within the entry. Hence, as we did in the asymptotic analysis for the entry data (Eq.~\eqref{eq:entry_mode_like}), we need to calculate the probability that at least one line in the entry is non-compliant:
+\begin{align}
+\mathbb P(\text{Entry } \ell \text{ non-compliant}) = q_\ell = 1 - \prod_{n\in\text{lines}(\ell)} (1-p_{(n)}),
+\end{align}
+where $\text{lines}(\ell)$ is the set of all lines in entry $\ell$.
+
+Therefore, for entry mode data, the random variable that indicates whether entry $\ell$ is non-compliant has distribution
+\begin{align}
+\text{Non-compliant}_{\ell, \text{entry}} \sim \text{Bernoulli}(q_\ell).
+\end{align} 
 {
 \color{red}
-\begin{align}
-\mathbb P(\text{Entry } j \text{ intercepted}) = q_j = 1 - \prod_{i=\text{Lines}\in j} (1-p_i).
-\end{align}
+Why are we talking about the distributions of these random variables in the STAN model section?
 }
 %
 %\subsection{Model verification}
