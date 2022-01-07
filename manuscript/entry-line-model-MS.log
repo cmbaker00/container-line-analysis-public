@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.6)  7 JAN 2022 11:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.6)  7 JAN 2022 14:33
 entering extended mode
-**./container-line-model-MS.tex
-(container-line-model-MS.tex
+**./entry-line-model-MS.tex
+(entry-line-model-MS.tex
 LaTeX2e <2019-10-01> patch level 3
 ("C:\Users\tar064\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls"
 Document Class: article 2019/10/25 v1.4k Standard LaTeX document class
@@ -745,12 +745,9 @@ File: lstlang2.sty 2019/09/10 1.8c listings language file
 ("C:\Users\tar064\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang3
 .sty"
 File: lstlang3.sty 2019/09/10 1.8c listings language file
-) (container-line-model-MS.aux
-
-LaTeX Warning: Label `fig:SD_est_simulated' multiply defined.
-
 )
-\openout1 = `container-line-model-MS.aux'.
+No file entry-line-model-MS.aux.
+\openout1 = `entry-line-model-MS.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
@@ -845,31 +842,90 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/tar064/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-[2] [3]
+
+Package natbib Warning: Citation `thompson_estimation_1962' on page 2 undefined
+ on input line 60.
+
+
+Package natbib Warning: Citation `schaarschmidt_experimental_2007' on page 2 un
+defined on input line 60.
+
+
+Package natbib Warning: Citation `hepworth_debiased_2009' on page 2 undefined o
+n input line 60.
+
+
+Package natbib Warning: Citation `hepworth_bias_2017' on page 2 undefined on in
+put line 60.
+
+
+Package natbib Warning: Citation `hepworth_bias_2021' on page 2 undefined on in
+put line 60.
+
+
+Package natbib Warning: Citation `delaigle_nonparametric_2015' on page 2 undefi
+ned on input line 60.
+
+
+Package natbib Warning: Citation `chatterjee_regression_2020' on page 2 undefin
+ed on input line 60.
+
+
+Package natbib Warning: Citation `mcmahan_bayesian_2017' on page 2 undefined on
+ input line 60.
+
+
+Package natbib Warning: Citation `liu_generalized_2020' on page 2 undefined on 
+input line 60.
+
+[2]
+
+LaTeX Warning: Reference `eq:entry_mode_like' on page 3 undefined on input line
+ 82.
+
+[3]
+
+LaTeX Warning: Reference `eq:general_SE_calc' on page 4 undefined on input line
+ 114.
+
+
+LaTeX Warning: Reference `fig:asymptotic_SE_plots' on page 4 undefined on input
+ line 114.
+
+
+LaTeX Warning: Reference `eq:general_SE_calc' on page 4 undefined on input line
+ 114.
+
+
+LaTeX Warning: Reference `fig:asymptotic_SE_plots' on page 4 undefined on input
+ line 114.
+
 <../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=32, 284.06125pt x 176.6
 6pt>
 File: ../asymptotic_approximation/SE_vs_pr_intercept.pdf Graphic file (type pdf
 )
 <use ../asymptotic_approximation/SE_vs_pr_intercept.pdf>
 Package pdftex.def Info: ../asymptotic_approximation/SE_vs_pr_intercept.pdf  us
-ed on input line 118.
+ed on input line 119.
 (pdftex.def)             Requested size: 186.82289pt x 116.1916pt.
 <../asymptotic_approximation/SE_vs_num_lines.pdf, id=33, 284.06125pt x 183.6862
 5pt>
 File: ../asymptotic_approximation/SE_vs_num_lines.pdf Graphic file (type pdf)
 <use ../asymptotic_approximation/SE_vs_num_lines.pdf>
 Package pdftex.def Info: ../asymptotic_approximation/SE_vs_num_lines.pdf  used 
-on input line 122.
+on input line 123.
 (pdftex.def)             Requested size: 186.82289pt x 120.81285pt.
 
-Overfull \hbox (75.12056pt too wide) detected at line 134
-[]
- []
+LaTeX Warning: Reference `eq:general_SE_calc' on page 4 undefined on input line
+ 126.
 
 
-Overfull \hbox (84.89755pt too wide) detected at line 139
-[]
- []
+LaTeX Warning: Reference `eq:general_SE_calc' on page 4 undefined on input line
+ 126.
+
+
+LaTeX Warning: Reference `eq:loglikelihood_arbitrary_entry_size' on page 4 unde
+fined on input line 132.
 
 [4 <../asymptotic_approximation/SE_vs_pr_intercept.pdf> <../asymptotic_approxim
 ation/SE_vs_num_lines.pdf
@@ -877,40 +933,57 @@ ation/SE_vs_num_lines.pdf
 pdfTeX warning: pdflatex (file ../asymptotic_approximation/SE_vs_num_lines.pdf)
 : PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf, id=52, 284.06125pt x 
+Overfull \hbox (75.12056pt too wide) detected at line 135
+[]
+ []
+
+
+Overfull \hbox (84.89755pt too wide) detected at line 140
+[]
+ []
+
+
+LaTeX Warning: Reference `eq:p1_two_type_SE_est' on page 5 undefined on input l
+ine 143.
+
+
+LaTeX Warning: Reference `fig:two_type_se_fourplot' on page 5 undefined on inpu
+t line 145.
+
+<../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf, id=53, 284.06125pt x 
 181.67876pt>
 File: ../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf Graphic file (typ
 e pdf)
 <use ../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf>
 Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_01_p2_005.pd
-f  used on input line 150.
+f  used on input line 151.
 (pdftex.def)             Requested size: 186.82289pt x 119.49251pt.
-<../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf, id=53, 284.06125pt x 1
+<../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf, id=54, 284.06125pt x 1
 81.67876pt>
 File: ../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf Graphic file (type
  pdf)
 <use ../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf>
 Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf
-  used on input line 154.
+  used on input line 155.
 (pdftex.def)             Requested size: 186.82289pt x 119.49251pt.
-<../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf, id=54, 284.06125pt x 
+<../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf, id=55, 284.06125pt x 
 184.69pt>
 File: ../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf Graphic file (typ
 e pdf)
 <use ../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf>
 Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_01_p2_075.pd
-f  used on input line 158.
+f  used on input line 159.
 (pdftex.def)             Requested size: 186.82289pt x 121.47304pt.
-<../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf, id=55, 284.06125pt x 1
+<../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf, id=56, 284.06125pt x 1
 84.69pt>
 File: ../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf Graphic file (type
  pdf)
 <use ../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf>
 Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf
-  used on input line 161.
+  used on input line 162.
 (pdftex.def)             Requested size: 186.82289pt x 121.47304pt.
- [5 <../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf> <../asymptotic_ap
-proximation/SE_twotype_p1_01_p2_03.pdf
+[5] [6 <../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf> <../asymptotic
+_approximation/SE_twotype_p1_01_p2_03.pdf
 
 pdfTeX warning: pdflatex (file ../asymptotic_approximation/SE_twotype_p1_01_p2_
 03.pdf): PDF inclusion: multiple pdfs with page group included in a single page
@@ -925,114 +998,126 @@ e
 pdfTeX warning: pdflatex (file ../asymptotic_approximation/SE_twotype_p1_01_p2_
 09.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 
->] [6]
-Overfull \hbox (45.05592pt too wide) in paragraph at lines 232--249
+>]
+
+LaTeX Warning: Reference `eq:entry_effect' on page 7 undefined on input line 22
+1.
+
+
+LaTeX Warning: Reference `table:example_data' on page 7 undefined on input line
+ 225.
+
+
+Overfull \hbox (45.05592pt too wide) in paragraph at lines 233--250
  [] 
  []
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `eq:logit_model_sim' on page 7 undefined on input line
+ 255.
+
 [7]
-<../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=120, 50
+
+LaTeX Warning: Reference `eq:entry_mode_like' on page 8 undefined on input line
+ 279.
+
+<../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=121, 50
 5.89pt x 578.16pt>
 File: ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf Graphi
 c file (type pdf)
 <use ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>
 Package pdftex.def Info: ../visualisations/figures/sim_study_pint_vs_data_vs_en
-try_size.pdf  used on input line 295.
+try_size.pdf  used on input line 296.
 (pdftex.def)             Requested size: 381.26694pt x 435.74503pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=121, 578.16pt x 3
+[8]
+<../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=125, 578.16pt x 3
 61.35pt>
 File: ../visualisations/figures/p_int_est_all_vs_line_data.pdf Graphic file (ty
 pe pdf)
 <use ../visualisations/figures/p_int_est_all_vs_line_data.pdf>
 Package pdftex.def Info: ../visualisations/figures/p_int_est_all_vs_line_data.p
-df  used on input line 309.
+df  used on input line 310.
 (pdftex.def)             Requested size: 381.26694pt x 238.28772pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (22.96164pt too wide) in paragraph at lines 319--336
+Overfull \hbox (22.96164pt too wide) in paragraph at lines 320--337
  [][] 
  []
 
-<../visualisations/figures/simulation_estimates.pdf, id=122, 578.16pt x 578.16p
+<../visualisations/figures/simulation_estimates.pdf, id=126, 578.16pt x 578.16p
 t>
 File: ../visualisations/figures/simulation_estimates.pdf Graphic file (type pdf
 )
 <use ../visualisations/figures/simulation_estimates.pdf>
 Package pdftex.def Info: ../visualisations/figures/simulation_estimates.pdf  us
-ed on input line 342.
+ed on input line 343.
 (pdftex.def)             Requested size: 381.26694pt x 381.26036pt.
-[8]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../visualisations/figures/pint_prior.pdf, id=126, 578.16pt x 433.62pt>
+<../visualisations/figures/pint_prior.pdf, id=127, 578.16pt x 433.62pt>
 File: ../visualisations/figures/pint_prior.pdf Graphic file (type pdf)
 <use ../visualisations/figures/pint_prior.pdf>
 Package pdftex.def Info: ../visualisations/figures/pint_prior.pdf  used on inpu
-t line 349.
+t line 350.
 (pdftex.def)             Requested size: 381.26694pt x 285.94527pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(container-line-model-MS.bbl [9 <../visualisations/figures/sim_study_pint_vs_da
-ta_vs_entry_size.pdf>]
-Underfull \hbox (badness 1147) in paragraph at lines 49--59
-\OT1/cmr/m/n/10 ing.  \OT1/cmr/m/it/10 Jour-nal of the Royal Sta-tis-ti-cal So-
-ci-ety: Se-ries C (Ap-plied Statis-tics)\OT1/cmr/m/n/10 ,
- []
+No file entry-line-model-MS.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+[9 <../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>]
+[10 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>] [11 <../visuali
+sations/figures/simulation_estimates.pdf>] [12 <../visualisations/figures/pint_
+prior.pdf>] (entry-line-model-MS.aux)
+
+LaTeX Warning: There were undefined references.
 
 
-Underfull \hbox (badness 1292) in paragraph at lines 49--59
-\OT1/cmr/m/n/10 58(1):105--121, 2009.  ISSN 1467-9876.  doi: $10 . 1111 / j . 1
-467-[]9876 . 2008 . 00639 .
- []
-
-[10 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>]) [11 <../visual
-isations/figures/simulation_estimates.pdf>] [12 <../visualisations/figures/pint
-_prior.pdf>] (container-line-model-MS.aux)
-
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 25790 strings out of 492450
- 646228 string characters out of 3119539
- 982435 words of memory out of 3000000
- 29711 multiletter control sequences out of 15000+200000
- 12661 words of font info for 49 fonts, out of 3000000 for 9000
+ 25758 strings out of 492450
+ 645098 string characters out of 3119539
+ 985435 words of memory out of 3000000
+ 29683 multiletter control sequences out of 15000+200000
+ 12801 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,11n,98p,1207b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 68i,11n,98p,1369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmbx12.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmbx9.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/tar064/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/tar064/AppDa
-ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users
-/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.
-pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr12.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/tar064/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/tar064/AppData
-/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/ta
-r064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-<C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmsy5.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/tar064/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/tar064/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/ta
-r064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pf
+s/cm/cmbx10.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/tar064/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/tar064/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/User
+s/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5
+.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmmi7.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr10.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/tar064/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/tar064/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/
+tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pf
+b><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmr9.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/tar064/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/tar064/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/t
+ar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pf
 b><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
 s/symbols/msbm10.pfb><C:/Users/tar064/AppData/Local/Programs/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/symbols/msbm7.pfb>
-Output written on container-line-model-MS.pdf (12 pages, 473499 bytes).
+Output written on entry-line-model-MS.pdf (12 pages, 460606 bytes).
 PDF statistics:
  225 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

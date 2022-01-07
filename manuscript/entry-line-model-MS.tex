@@ -36,36 +36,37 @@
 \linespread{1.25}
 
 
-\title{Container and line mode}
+\title{Entry and line mode}
 \author{Christopher M.\ Baker \and Howard Bondell \and Nathaniel Bloomfield \and Elena Tartaglia \and Andrew P.\ Robinson}
 \begin{document}  
 \maketitle
 \begin{abstract}
-In the Australian border biosecurity system, data about shipping containers is recorded in one of two modes: \emph{container} mode or \emph{line} mode. The key difference between the modes is how the \emph{directions} are recorded, that is, data about whether entries were inspected or found to be non-compliant. In general, an entry contains multiple lines of data, where each line is a single type of item. The challenge comes when an entry is in container mode, which results in any directions being listed against every line within the entry, rather than only the [specific??] lines. Container mode data therefore creates a challenge when we try to estimate the probability that certain items are non-compliant, because we can't be sure which records of non-compliance match up with which line. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we finally apply our methods to a real dataset. 
+In the Australian border biosecurity system, data about shipping containers is recorded in one of two modes: \emph{entry} mode or \emph{line} mode. The key difference between the modes is how the \emph{directions} are recorded, that is, data about whether entries were inspected or found to be non-compliant. In general, an entry contains multiple lines of data, where each line is a single type of item. Analysis is simple when the data is recorded in line mode: the directions are recorded individually for each line. The challenge comes when data is recorded in entry mode, because the same direction is recorded each line in the entry. In other words, if at least one line in an entry is non-compliant, then all lines in that entry are recorded as non-compliant. Therefore, entry mode data creates a challenge when we try to estimate the probability that certain {\color{red} items (lines?)} are non-compliant, because we do not know which records of non-compliance match up with which line. We develop a statistical model to use entry mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of entry mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset. 
 \end{abstract}
 
 \section{Introduction}
 
-Biosecurity is important.
+\paragraph{Biosecurity is important.}
 
-Border biosecurity is important - pathways
+\paragraph{Border biosecurity is important - pathways}
 
-Strategic analysis requires interception data.
+\paragraph{Strategic analysis requires interception data.}
 
-Cargo (volumes, activity, etc)
+\paragraph{Cargo (volumes, activity, etc)}
 
-Data capture - line and container mode
+\paragraph{Data capture - line and entry mode}
+Data recording compliance of cargo entering Australia is recorded in two main formats: line mode and entry mode. Entry mode is often referred to as container mode in biosecurity practice, but we will only use the term entry mode in this paper for simplicity. A line is a group of the same type of item being imported. An entry is a group of lines. When cargo enters the country, each line is given directions, which consist of a decision to check the line for compliance and the outcome after checking. In line mode, the directions assigned to each line are recorded along with the outcome for that line. In entry mode, directions are only recorded per entry. This means that in entry mode, if any line in that entry is found to be non-compliant, every line in that entry is recorded to be non-compliant. If all of the lines in the entry are compliant, then they are all marked compliant, so in this case line and entry mode are equivalent.
 
-Our biosecurity is closely related to pooled testing, which is often used for disease surveillance. Within the pooled testing literature there is generally two branches: one aims to identify positives within a pool, while the other seeks to use pooled data to estimate quantities about the population. It is the latter -- estimating quantities -- that we are interested in. The fundamental problem is estimating a prevalence, \(p\), within a population, when only pooled data is available \citep{thompson_estimation_1962}. More recent work has focussed on improving estimates by reducing bias, either through altering the sampling strategy \citep{schaarschmidt_experimental_2007,hepworth_debiased_2009} or by incorporating bias correction into models  \citep{hepworth_bias_2017,hepworth_bias_2021}. There have also been extensions of the problem where \(p\) is not a constant, but it is estimated using linear regression using only the pooled data \citep{delaigle_nonparametric_2015, chatterjee_regression_2020, mcmahan_bayesian_2017, liu_generalized_2020}. These papers have made significant progress in fitting increasingly complex models.
+Our biosecurity data is closely related to pooled testing, which is often used for disease surveillance. Within the pooled testing literature there is generally two branches: one aims to identify positives within a pool, while the other seeks to use pooled data to estimate quantities about the population. It is the latter -- estimating quantities -- that we are interested in. The fundamental problem is estimating a prevalence, \(p\), within a population, when only pooled data is available \citep{thompson_estimation_1962}. More recent work has focussed on improving estimates by reducing bias, either through altering the sampling strategy \citep{schaarschmidt_experimental_2007,hepworth_debiased_2009} or by incorporating bias correction into models  \citep{hepworth_bias_2017,hepworth_bias_2021}. There have also been extensions of the problem where \(p\) is not a constant, but it is estimated using linear regression using only the pooled data \citep{delaigle_nonparametric_2015, chatterjee_regression_2020, mcmahan_bayesian_2017, liu_generalized_2020}. These papers have made significant progress in fitting increasingly complex models.
 
-In practice, pooled testing is manifestly different from the biosecurity scenario. Pooled testing exists by design, as a way to gather information about a population while reducing testing. In biosecurity, the searching is done to every individual line, and the results are only pooled at the point of data capture. Hence, we are interested in how much information we are losing due to aggregating results as container mode. Or, equivalently, how much better could we be at managing bio-security risk if we stopped using container mode when an entry contains multiple lines?
+In practice, pooled testing is manifestly different from the biosecurity scenario. Pooled testing exists by design, as a way to gather information about a population while reducing testing. In biosecurity, the searching is done to every individual line, and the results are only pooled at the point of data capture. Hence, we are interested in how much information we are losing due to aggregating results as entry mode. Or, equivalently, how much better could we be at managing bio-security risk if we stopped using entry mode when an entry contains multiple lines?
 
-In this paper we investigate how container mode affects our ability to identify the biosecurity risk of items. We start with an asymptotic analysis, where we calculate the precision of estimates the implications of mixing different item types in container mode. We then do a simulation estimation study, which allows us to understand how larger entries and more item types affect precision of estimates. Finally, we analyse a subset of Australian border interception data to see the real-world differences between using the line-only data and including the container mode data.
+In this paper we investigate how entry mode affects our ability to identify the biosecurity risk of items. We start with an asymptotic analysis, where we calculate the precision of estimates the implications of mixing different item types in entry mode. We then do a simulation estimation study, which allows us to understand how larger entries and more item types affect precision of estimates. Finally, we analyse a subset of Australian border interception data to see the real-world differences between using the line-only data and including the entry mode data.
 
 \section{Asymptotic analysis}
 We use asymptotic analysis to investigate how the precision of estimates depends on entry size, the number of entries, the probability of interception and whether item types are mixed. This analysis is broken into two parts. The first part assumes that all items are a single type, which allows us to quantify how the amount of data, probability of interception and entry size affects precision. The second part assumes that there are two different item types, and it explores how changing the proportion of entries with both item types mixed affects precision.
 
-Throughout this section we make two simplifications. Firstly, we do not separate line mode and container mode because container mode data with entry size 1 is mathematically equivalent to line mode data. Hence, throughout these analysis, entry size 1 means line mode and entry size greater than 1 implies container mode. Secondly, we  assume that each item has a fixed probability of interception. Therefore, we consider each line a Bernoulli trial, which only depends on the item type. When the entry size is greater than one, the relevant probability is whether at least one line was intercepted.
+Throughout this section we make two simplifications. Firstly, we do not separate line mode and entry mode because entry mode data with entry size 1 is mathematically equivalent to line mode data. Hence, throughout these analysis, entry size 1 means line mode and entry size greater than 1 implies entry mode. Secondly, we  assume that each item has a fixed probability of interception. Therefore, we consider each line a Bernoulli trial, which only depends on the item type. When the entry size is greater than one, the relevant probability is whether at least one line was intercepted.
 
 We estimate precision via calculation the Fisher information matrix, \(\mathcal{I}\). The Fisher information  matrix is the expected value of the negative of the Hessian matrix of the log-likelihood evaluated at the value of the parameter. We use the standard error estimate as our measurement of precision, which are the square roots of the diagonal elements of the inverse of \(\mathcal{I}\).
 
@@ -76,9 +77,9 @@ For the single item type case, we set the probability of interception to be \(p\
 \end{align}
 meaning that the binomial likelihood for a set entry size, S, is
 \begin{align}
-\mathcal{L}_S = \left(1-(1-p)^S\right)^I\left(1-p)^S\right)^{N-I}. \label{eq:container_mode_like}
+\mathcal{L}_S = \left(1-(1-p)^S\right)^I\left(1-p)^S\right)^{N-I}. \label{eq:entry_mode_like}
 \end{align}
-To generalise Eq.~\eqref{eq:container_mode_like} to arbitrary entry sizes, we need the product over entry size:
+To generalise Eq.~\eqref{eq:entry_mode_like} to arbitrary entry sizes, we need the product over entry size:
 \begin{align}
 \mathcal{L}& = \prod_{S\in\mathbb{N}} \left(1-(1-p)^S\right)^{I_{E,S}}\left((1-p)^S\right)^{N_{E,S}-I_{E,S}},
 \label{eq:aymptotic_full_likelihood}
@@ -110,7 +111,7 @@ SE = \sqrt{\frac{1}{-\sum_{S\in\mathbb{N}}\frac{N_{E,S}S^2(1-p)^{S-2}}{(1-p)^S-1
 \end{align}
 
 
-Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of interception, the entry size and the number of lines affect the standard error, and we plot these relationships in Figure~\ref{fig:asymptotic_SE_plots}. The left plot shows that the standard error depends on the probability of interception and that the relationship depends on the entry size. For all entry sizes, the standard error is small when the probability of interception is small (below \(\sim 0.3\)). However, for larger values of the probability of interception, the standard error increase significantly if the entry size is three or greater. The large \(p\) behaviour is driven by the \((1-p)^{S-2}\) term in Eq.~\eqref{eq:general_SE_calc}, which means SE goes to 0 if \(S=1\), while it diverges if \(S\geq 3\). Figure~\ref{fig:asymptotic_SE_plots} also shows how the standard error decreases as the number of lines of data increases. The lower the entry size is, the lower the standard error, and, as \(SE\sim\sqrt{1/N_{E,S}}\), container mode data with larger entry sizes require a large amount of data to reach the same standard error. 
+Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of interception, the entry size and the number of lines affect the standard error, and we plot these relationships in Figure~\ref{fig:asymptotic_SE_plots}. The left plot shows that the standard error depends on the probability of interception and that the relationship depends on the entry size. For all entry sizes, the standard error is small when the probability of interception is small (below \(\sim 0.3\)). However, for larger values of the probability of interception, the standard error increase significantly if the entry size is three or greater. The large \(p\) behaviour is driven by the \((1-p)^{S-2}\) term in Eq.~\eqref{eq:general_SE_calc}, which means SE goes to 0 if \(S=1\), while it diverges if \(S\geq 3\). Figure~\ref{fig:asymptotic_SE_plots} also shows how the standard error decreases as the number of lines of data increases. The lower the entry size is, the lower the standard error, and, as \(SE\sim\sqrt{1/N_{E,S}}\), entry mode data with larger entry sizes require a large amount of data to reach the same standard error. 
 
 
 \begin{figure}[h!]
@@ -130,7 +131,7 @@ Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of in
 \subsection{Two item types}
 In this section we consider a situation where there are two items with probabilities of interception of \(p_1\) and \(p_2\), and we examine how these different items type probabilities interact. We focus on a scenario where every entry is of size two, meaning there are three types of entries: only type 1; only type 2; or mixed, with one line of type 1 and one of  type 2. We denote the number of lines within a single entry of type 1 and 2 as \(S_1\) and \(S_2\) respectively, and \(I(S_1,S_2\) and \(N(S_1,S_2)\) are the number of interceptions and total number of entries with \(S_1\) type 1 lines and \(S_2\) type 2 lines. For our case, we can have \(S_1=2, S_2=0\), \(S_1=1, S_2=1\) or \(S_1=0, S_2=2\). Rewriting the log-likelihood from Eq.~\eqref{eq:loglikelihood_arbitrary_entry_size}, we get
 \begin{align}
-\log\mathcal{L} = \sum_{S_1,S_2}{I(S_1,S_2)}\log\left(1-(1-p_1)^{S_1}(1-p_2)^{S_2}\right) + (N(S_1,S_2)-I(S_1,S_2))\log\left((1-p_1)^{S_1}(1-p_2)^{S_2}\right). \label{eq:container_mode_loglike_2types}
+\log\mathcal{L} = \sum_{S_1,S_2}{I(S_1,S_2)}\log\left(1-(1-p_1)^{S_1}(1-p_2)^{S_2}\right) + (N(S_1,S_2)-I(S_1,S_2))\log\left((1-p_1)^{S_1}(1-p_2)^{S_2}\right). \label{eq:entry_mode_loglike_2types}
 \end{align}
 We compute the Fisher information matrix and the standard error using Mathematica. The standard error for \(p_1\) is
 
@@ -166,7 +167,7 @@ Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with t
 \end{figure}
 
 %
-%Across the plots in Figure~\ref{fig:two_type_se_fourplot}, the behavior of the standard error for \(p_1\) looks quite similar. However, comparing the standard error for \(p_1\) for different values of \(p_2\) shows that the value of \(p_2\) has a measurable impact on the standard error of the \(p_1\) estimate (Figure~\ref{fig:two_type_p1_fixed_p2_vary}). Here we see that the standard error for \(p_1\) increases as the value of \(p_2\) increases. Combing this result with the results in Figure~\ref{fig:two_type_se_fourplot}, we see that if low and high probability items are mixed in container mode, we can estimate the risk of the high probability items, but it comes at the detriment for our ability to identify low-risk items. 
+%Across the plots in Figure~\ref{fig:two_type_se_fourplot}, the behavior of the standard error for \(p_1\) looks quite similar. However, comparing the standard error for \(p_1\) for different values of \(p_2\) shows that the value of \(p_2\) has a measurable impact on the standard error of the \(p_1\) estimate (Figure~\ref{fig:two_type_p1_fixed_p2_vary}). Here we see that the standard error for \(p_1\) increases as the value of \(p_2\) increases. Combing this result with the results in Figure~\ref{fig:two_type_se_fourplot}, we see that if low and high probability items are mixed in entry mode, we can estimate the risk of the high probability items, but it comes at the detriment for our ability to identify low-risk items. 
 %
 %
 %
@@ -181,9 +182,9 @@ Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with t
 
 From the asymptotic analysis we can conclude two key lessons:
 \begin{enumerate}
-\item Container mode data is most useful when the probability of interception, \(p\), is small. In the extreme case where \(p\rightarrow 0\), container mode data is equivalent to line mode data because whenever an entry is \emph{not} intercepted, we know every line was not intercepted, regardless of whether it is container mode or line mode. 
-\item When \(p\) is not small (e.g. greater than 0.5) it can still be useful to analyse container mode data, but only if the amount of line mode data is small. However, if there is sufficient line mode data to get acceptable precise parameter estimates, there would be little to gain by using container mode data.
-\item Entries in container mode with mixed entries can increase or decrease the precision of estimates, depending on the true probability of interception. If the probability of interception is low, mixed entries tend to lead to lower precision, but item types with high probability of interception may lead to lower standard errors.
+\item Entry mode data is most useful when the probability of interception, \(p\), is small. In the extreme case where \(p\rightarrow 0\), entry mode data is equivalent to line mode data because whenever an entry is \emph{not} intercepted, we know every line was not intercepted, regardless of whether it is entry mode or line mode. 
+\item When \(p\) is not small (e.g. greater than 0.5) it can still be useful to analyse entry mode data, but only if the amount of line mode data is small. However, if there is sufficient line mode data to get acceptable precise parameter estimates, there would be little to gain by using entry mode data.
+\item Entries in entry mode with mixed entries can increase or decrease the precision of estimates, depending on the true probability of interception. If the probability of interception is low, mixed entries tend to lead to lower precision, but item types with high probability of interception may lead to lower standard errors.
 \end{enumerate}
 
 
@@ -225,7 +226,7 @@ We show an example of the format of the data in Table \ref{table:example_data}.
 
 \vspace{0.1cm}
 \begin{table}[h]
-\caption{Example simulated data. Lines 1-3 are all marked as intercepted because entry 1 is in container mode, even though only 1 or 2 of the lines were actually intercepted. {\color{red} How did you choose the values of entry correlation? Do we still need the container column?}}
+\caption{Example simulated data. Lines 1-3 are all marked as intercepted because entry 1 is in entry mode, even though only 1 or 2 of the lines were actually intercepted. {\color{red} How did you choose the values of entry correlation? Do we still need the entry column?}}
 \label{table:example_data}
 \begin{center}
 
@@ -275,7 +276,7 @@ If the data were exclusively in line mode, fitting the model would be relatively
 \end{align}
 }
 
-However, the container mode data complicates the model, because for each entry there is only one response variable (the interception), irrespective of how many lines are contained within the entry. Hence, as we did in the asymptotic analysis for the container data (Eq.~\eqref{eq:container_mode_like}), we need to calculate the probability that at least one line in the entry is intercepted:
+However, the entry mode data complicates the model, because for each entry there is only one response variable (the interception), irrespective of how many lines are contained within the entry. Hence, as we did in the asymptotic analysis for the entry data (Eq.~\eqref{eq:entry_mode_like}), we need to calculate the probability that at least one line in the entry is intercepted:
 {
 \color{red}
 \begin{align}
@@ -284,7 +285,7 @@ However, the container mode data complicates the model, because for each entry t
 }
 %
 %\subsection{Model verification}
-%The primary aim of our work is to investigate the relative contribution of container mode data to precision of parameter estimates. However, before analysing precision it is important to ensure that we are able to accurately estimate parameters with our model and that precision estimates using STAN match the asymptotic analysis.
+%The primary aim of our work is to investigate the relative contribution of entry mode data to precision of parameter estimates. However, before analysing precision it is important to ensure that we are able to accurately estimate parameters with our model and that precision estimates using STAN match the asymptotic analysis.
 %\subsubsection{Model precision}
 %To check model precision, we simulate a simplified dataset, with a single item type and no other fixed or random effects, and compare the STAN estimates with the asymptotic approximation, from Eq.~\eqref{eq:general_SE_calc}. As STAN is a Bayesian approach, it is apropriate to comapare the standard error estiamte, Eq.~\eqref{eq:general_SE_calc}, to the standard deviation of the STAN posterior draws. 
 %The simulation uses \(p=0.05\) and we vary the number of entries \(N_E\) and the entry size, \(S\) and the comparison is shown in Figure~\ref{fig:SD_est_simulated}.
@@ -293,7 +294,7 @@ However, the container mode data complicates the model, because for each entry t
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf}
-\caption{SD as amount of data increases, depending on \(p\) and the amount of container data}
+\caption{SD as amount of data increases, depending on \(p\) and the amount of entry data}
 \label{fig:SD_est_simulated}
 \end{figure}
 
@@ -307,7 +308,7 @@ We use border interception data from Australia to compare the diff
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/p_int_est_all_vs_line_data.pdf}
-\caption{SD as amount of data increases, depending on \(p\) and the amount of container data}
+\caption{SD as amount of data increases, depending on \(p\) and the amount of entry data}
 \label{fig:SD_est_simulated}
 \end{figure}
 
@@ -391,30 +392,30 @@ We use border interception data from Australia to compare the diff
 %
 %\section{Precision and data}
 %\subsection{Full model precision}
-%Here we investigate how the precision of estimates depend on the type and amount of data used. The three main variables are entry size, mode and number of rows. We generate simulated data sets with the entry size for every entry set to either 2, 3, 4 or 5. For mode, we fit either only the container data, only the line data, all (ie a random mix of container and line). Finally, we also vary the number of rows, from 1,000 up to 32,000.
+%Here we investigate how the precision of estimates depend on the type and amount of data used. The three main variables are entry size, mode and number of rows. We generate simulated data sets with the entry size for every entry set to either 2, 3, 4 or 5. For mode, we fit either only the entry data, only the line data, all (ie a random mix of entry and line). Finally, we also vary the number of rows, from 1,000 up to 32,000.
 %
-%Figure~\ref{fig:line_container_comparison} shows the difference in the standard deviation of estimate for p2 and entry size 3 by data type, showing line only data has the best precision, followed by all and finally by container mode. 
+%Figure~\ref{fig:line_entry_comparison} shows the difference in the standard deviation of estimate for p2 and entry size 3 by data type, showing line only data has the best precision, followed by all and finally by entry mode. 
 %
 %
 %\begin{figure}[ht]
 %\includegraphics[width=\textwidth]{../results/num_rows_by_data_typep[2]containersize3.pdf}
-%\caption{Comparison between line/container/all. Note `container size' should actually be `entry size'.}
-%\label{fig:line_container_comparison}
+%\caption{Comparison between line/entry/all. Note `entry size' should actually be `entry size'.}
+%\label{fig:line_entry_comparison}
 %\end{figure}
 %
-%To see how combining container and line data changes the standard error, we fit the model using \(n\) rows of line mode data; \(n\) rows of container mode data; and then we combine these to make a `combined' dataset with \(n+n\) rows. Figure~\ref{fig:facet_plot_entry_size_p1to4} shows the results for various entry sizes and for p[1], p[2], p[3] and p[4]. The horisontal axis is \(n\), meaning that for each point, the combined data set has twice as much data compared to container or line mode.
+%To see how combining entry and line data changes the standard error, we fit the model using \(n\) rows of line mode data; \(n\) rows of entry mode data; and then we combine these to make a `combined' dataset with \(n+n\) rows. Figure~\ref{fig:facet_plot_entry_size_p1to4} shows the results for various entry sizes and for p[1], p[2], p[3] and p[4]. The horisontal axis is \(n\), meaning that for each point, the combined data set has twice as much data compared to entry or line mode.
 %
 %\begin{figure}[ht]
 %\includegraphics[width=\textwidth]{../results/data_type_comparison_combined_facet.pdf}
-%\caption{Comparison between line/container/all}
+%\caption{Comparison between line/entry/all}
 %\label{fig:facet_plot_entry_size_p1to4}
 %\end{figure}
 %
-%Next, rather than comparing n line with n container and n+n line and container, compare n line with a combination of n line + m*n container, where m is a multiplyer.Figure \ref{fig:facet_plot_container_multiplyer_1_3}
+%Next, rather than comparing n line with n entry and n+n line and entry, compare n line with a combination of n line + m*n entry, where m is a multiplyer.Figure \ref{fig:facet_plot_entry_multiplyer_1_3}
 %\begin{figure}[ht]
 %\includegraphics[width=\textwidth]{../results/container_multiplyer_facet_more_reduced.pdf}
 %\caption{Comparison between line and combination}
-%\label{fig:facet_plot_container_multiplyer_1_3}
+%\label{fig:facet_plot_entry_multiplyer_1_3}
 %\end{figure}
 %
 %\section{Real data}
@@ -424,7 +425,7 @@ We use border interception data from Australia to compare the diff
 %\centering
 %\begin{tabular}{rrrrrr}
 %  \hline
-% & Broker.key & n\_line & n\_container & perc\_line\_int & perc\_cont\_int \\ 
+% & Broker.key & n\_line & n\_entry & perc\_line\_int & perc\_cont\_int \\ 
 %  \hline
 %1 & 59216.00 &  53 &   7 & 0.09 & 0.57 \\ 
 %  2 & 150563.00 &  29 &  14 & 0.17 & 0.36 \\ 
@@ -452,18 +453,18 @@ We use border interception data from Australia to compare the diff
 %
 %
 %
-%We choose a broker that has 8.5k lines of data. 21 types of item and 8 countries. 5k lines are in container mode and the remainder are in line mode. We exclude any item types from that dataset which have no container mode data. We fit the model using all the data, the line only data and the container only data. We show a scatter plot of the estimates of the fixed effects for the container mode only and the line mode only fits in figure \ref{fig:country_effect_real_linevcontainer}. We report all of the means and standard deviations in table~\ref{tab:real_data_fit_comparison}.
+%We choose a broker that has 8.5k lines of data. 21 types of item and 8 countries. 5k lines are in entry mode and the remainder are in line mode. We exclude any item types from that dataset which have no entry mode data. We fit the model using all the data, the line only data and the entry only data. We show a scatter plot of the estimates of the fixed effects for the entry mode only and the line mode only fits in figure \ref{fig:country_effect_real_lineventry}. We report all of the means and standard deviations in table~\ref{tab:real_data_fit_comparison}.
 %
 %
 %% latex table generated in R 4.0.5 by xtable 1.8-4 package
 %% Tue Aug 31 14:37:59 2021
 %\begin{table}[ht]
-%\caption{The amount of data for each parameter and the estimate and standard deviation for fits using all of the data, only the line data and only the container data.}
+%\caption{The amount of data for each parameter and the estimate and standard deviation for fits using all of the data, only the line data and only the entry data.}
 %\label{tab:real_data_fit_comparison}
 %\centering
 %\begin{tabular}{rrrrrrrrr}
 %  \hline
-% & num\_line & num\_container & all\_mean & all\_sd & line\_mean & line\_sd & container\_mean & container\_sd \\ 
+% & num\_line & num\_entry & all\_mean & all\_sd & line\_mean & line\_sd & entry\_mean & entry\_sd \\ 
 %  \hline
 %p\_intercept[1] & 2442 & 4423 & -5.46 & 0.42 & -4.62 & 0.45 & -6.48 & 0.73 \\ 
 %  p\_intercept[2] & 529 & 995 & -6.16 & 0.65 & -5.44 & 0.68 & -5.58 & 0.87 \\ 
@@ -485,9 +486,9 @@ We use border interception data from Australia to compare the diff
 %
 %
 %\begin{figure}[ht]
-%\includegraphics[width=\textwidth]{../model/P_effect_line_v_container_scatterplot.pdf}
+%\includegraphics[width=\textwidth]{../model/P_effect_line_v_entry_scatterplot.pdf}
 %\caption{Country effect and doc effect for real data}
-%\label{fig:country_effect_real_linevcontainer}
+%\label{fig:country_effect_real_lineventry}
 %\end{figure}
 
 %\section{Simulation code}
@@ -495,7 +496,7 @@ We use border interception data from Australia to compare the diff
 %library(tidyverse)
 %library(optimx)
 %
-%simulation_name <- 'container_line_simulated_data' # A name that is used as part of the save filename
+%simulation_name <- 'entry_line_simulated_data' # A name that is used as part of the save filename
 %
 %# The true probability of interception of each item type
 %true_intercept_probability <- c(.01, .05, .1, .2, .5, .7, .9, .95)
@@ -520,9 +521,9 @@ We use border interception data from Australia to compare the diff
 %}
 %
 %for (entry_size in c(2,3,4)){
-%  # In general, container size can be a random number
-%  max_container_size <- entry_size
-%  min_container_size <- entry_size
+%  # In general, entry size can be a random number
+%  max_entry_size <- entry_size
+%  min_entry_size <- entry_size
 %
 %
 %  create_row_of_data <- function (doc){
@@ -551,10 +552,10 @@ We use border interception data from Australia to compare the diff
 %    # Adds the data for a row to the dataframe
 %    if (current_rows == 0){
 %      # If the dataframe is empty, then create it
-%      # Note, at this stage True and Record are identical, and these are adjusted later, for rows in container mode.
+%      # Note, at this stage True and Record are identical, and these are adjusted later, for rows in entry mode.
 %      test_data <- data.frame(Type = entry_true_data[1],
 %                              Mode=mode,
-%                              Container=current_container,
+%                              Entry=current_entry,
 %                              Line=line,
 %                              Documentation=doc,
 %                              TrueInspect=entry_true_data[2],
@@ -562,7 +563,7 @@ We use border interception data from Australia to compare the diff
 %                              RecordInspect=entry_true_data[2],
 %                              RecordIntercept=entry_true_data[3])
 %    } else {
-%      test_data <- rbind(df, c(entry_true_data[1], mode, current_container,line, doc,
+%      test_data <- rbind(df, c(entry_true_data[1], mode, current_entry,line, doc,
 %                               entry_true_data[2],
 %                               entry_true_data[3],
 %                               entry_true_data[2],
@@ -580,13 +581,13 @@ We use border interception data from Australia to compare the diff
 %    print(c(entry_size, current_rows)) # display current state of loop
 %
 %    # Draw the entry size, which is the number of rows of data in the entry
-%    entry_size <- sample.int(max_container_size - (min_container_size - 1), 1) + (min_container_size - 1)
+%    entry_size <- sample.int(max_entry_size - (min_entry_size - 1), 1) + (min_entry_size - 1)
 %
-%    # Draw whether the entry is in line or container mode
+%    # Draw whether the entry is in line or entry mode
 %    if (runif(1) < prob_line){
 %      mode <- 'Line'
 %    } else {
-%      mode <- 'Container'
+%      mode <- 'Entry'
 %    }
 %
 %    # For the number of rows of data in the entry, create the data and add it to the data frame
@@ -599,13 +600,13 @@ We use border interception data from Australia to compare the diff
 %                                        doc=doc, current_rows=current_rows, df=simulated_data)
 %    }
 %
-%    if (mode == 'Container'){
-%      # If the entry is in container mode, if any row of data is inspected, all rows of data are set to inspected.
+%    if (mode == 'Entry'){
+%      # If the entry is in entry mode, if any row of data is inspected, all rows of data are set to inspected.
 %      # Similarly, if a row is intercpeted, all rows in the entry is set to intercepted.
-%      if (any(simulated_data[simulated_data$Container == current_container,]$TrueInspect == 1)){
-%        simulated_data[simulated_data$Container == current_container,]$RecordInspect <- 1
-%        if (any(simulated_data[simulated_data$Container == current_container,]$TrueIntercept == 1)){
-%          simulated_data[simulated_data$Container == current_container,]$RecordIntercept <- 1
+%      if (any(simulated_data[simulated_data$Entry == current_entry,]$TrueInspect == 1)){
+%        simulated_data[simulated_data$Entry == current_entry,]$RecordInspect <- 1
+%        if (any(simulated_data[simulated_data$Entry == current_entry,]$TrueIntercept == 1)){
+%          simulated_data[simulated_data$Entry == current_entry,]$RecordIntercept <- 1
 %        } 
 %      }
 %    }
@@ -614,10 +615,10 @@ We use border interception data from Australia to compare the diff
 %    current_rows <- nrow(simulated_data) # Update the current number of rows of data.
 %  }
 %
-%  write.csv(simulated_data, paste0('../data/', simulation_name, min_container_size, '_', max_container_size,
+%  write.csv(simulated_data, paste0('../data/', simulation_name, min_entry_size, '_', max_entry_size,
 %                                   '_rows_', target_num_rows_data, '.csv'), row.names = FALSE)
 %}
 %\end{lstlisting}
-\bibliography{container-line}{}
+\bibliography{entry-line}{}
 %\bibliographystyle{plain}
 \end{document}
