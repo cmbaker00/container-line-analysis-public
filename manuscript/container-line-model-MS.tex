@@ -211,37 +211,37 @@ The values of the indicator variable are
 The random effect $\gamma_\ell$ has distribution
 \begin{align}
 \gamma_\ell | \sigma &\sim \Normal(0, \sigma), & \ell &= 1,\ldots, g, & g&\in \mathbb{N}.
+\label{eq:entry_effect}
 \end{align}
 
 
-{\color{gray} 
-For our simulations, we set \(\beta=-1\) and we include 8 item types with \(\alpha\) values 	of -4.60 -2.94 -2.20, -1.39, 0, 0.85, 2.20, and 2.94 (corresponding to interception probabilities of 0.01, 0.05, 0.1, 0.2, 0.5, 0.7, 0.9 and 0.95). We run simulations with and without an entry effect, but when we include entry
-\begin{align}
-\text{entry}[i] = \Normal(0, \sigma),
-\end{align}
-where \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set document to be compliant with probability 0.2.  
-}
+For our simulations, we set \(\beta=-1\), and we include $a=5$ item types with \(\alpha_i\) values 	of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2). We chose an negative effect of having correct documentation, because {\color{red} we expect lines with correct documentation have a lower chance of containing illegal items}. We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data.
+
+We run simulations with and without an entry effect, but when we include entry \eqref{eq:entry_effect} it takes a normal distribution with mean zero and standard deviation \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set document to be compliant with probability 0.2 {\color{red} Does this need to be in the model?}.
+
+{\color{red} Do we need to specify how we generated values for countries and entries?}  
+
 We show an example of the format of the data in Table \ref{table:example_data}.
 
 \vspace{0.1cm}
 \begin{table}[h]
-\caption{Example simulated data. Lines 1-3 are all marked as intercepted because entry 1 is in container mode, even though only 1 or 2 of the lines were actually intercepted}
+\caption{Example simulated data. Lines 1-3 are all marked as intercepted because entry 1 is in container mode, even though only 1 or 2 of the lines were actually intercepted. {\color{red} How did you choose the values of entry correlation? Do we still need the container column?}}
 \label{table:example_data}
 \begin{center}
 
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline 
-Line & Entry & Type & Document & Entry correlation & Mode & Container & Intercepted \\ 
+Line & Entry & Type & Documentation & Entry correlation & Mode & Container & Intercepted \\ 
 \hline 
-1 & 1 & 3 & 1 & 0.023 & Container & 1 & 1 \\ 
+1 & 1 & 3 & 1 & 0.023 & Entry & 1 & 1 \\ 
 \hline 
-2 & 1 & 2 & 0 & 0.023 &Container & 1 & 1 \\ 
+2 & 1 & 2 & 0 & 0.023 & Entry & 1 & 1 \\ 
 \hline 
-3 & 1 & 1 & 0 & 0.023 &Container & 1 & 1 \\ 
+3 & 1 & 1 & 0 & 0.023 & Entry & 1 & 1 \\ 
 \hline 
 4 & 2 & 5 & 0 & 0.08 &Line & 2 & 0 \\ 
 \hline 
-5 & 3 & 8 & 1 & -0.37 &Line & 2 & 1 \\ 
+5 & 3 & 4 & 1 & -0.37 &Line & 2 & 1 \\ 
 \hline 
 \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ 
 \hline 
@@ -251,7 +251,7 @@ Line & Entry & Type & Document & Entry correlation & Mode & Container & Intercep
 \end{table}
 
 \subsection{STAN model}
-We use the RSTAN package to model the system. The basic structure for fitting the simulated data is to define the probability of interception for each line (following Eq.~\eqref{eq:logit_model_sim})
+We model the system in a Bayesian framework, using the RSTAN package in R. The basic structure for fitting the simulated data is to define the probability of interception for each line (following Eq.~\eqref{eq:logit_model_sim})
 \begin{align}
 \logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell, \label{eq:logit_model_fit_sim}
 \end{align}
@@ -259,8 +259,7 @@ where
 \begin{align}
 \gamma_\ell | \sigma &\sim \Normal(0, \sigma), & \ell &= 1,\ldots, g, & g&\in \mathbb{N}.
 \end{align}
-As we fit our model in a Bayesian framework using STAN, we set priors on each parameter:
-The prior is defined by
+As we fit our model in a Bayesian framework, we set priors on each parameter:
 \begin{align}
 \alpha_i &\sim \Normal(-1, 2), & i&=1, \ldots, a, & a&\in \mathbb{N},\\
 \beta &\sim \Normal(0, 0.5),\\
@@ -268,7 +267,7 @@ The prior is defined by
 \sigma &\sim \Normal(0, 0.5)
 \end{align}
 
-If the data were exclusively, fitting the model would be relatively standard, as it is logistic regression. For the line mode data we can write
+If the data were exclusively in line mode, fitting the model would be relatively standard, as it is logistic regression. For the line mode data we can write
 {
 \color{red}
 \begin{align}
