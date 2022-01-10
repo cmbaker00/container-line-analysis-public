@@ -65,6 +65,33 @@ In practice, pooled testing is manifestly different from the biosecurity scenari
 
 In this paper we investigate how entry mode affects our ability to identify the biosecurity risk of items. We start with an asymptotic analysis, where we calculate the precision of estimates the implications of mixing different item types in entry mode. We then do a simulation estimation study, which allows us to understand how larger entries and more item types affect precision of estimates. Finally, we analyse a subset of Australian border interception data to see the real-world differences between using the line-only data and including the entry mode data.
 
+\section{Model overview}\label{sec:model}
+Throughout this paper, we focus on estimating the probability that a line is non-compliant, using information about it, including the type of item, country of origin and whether it has complete documentation. The full model for the probability that a line is non-compliant, \(p_{ijk\ell}\),  is: 
+\begin{align}
+\logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell \label{eq:logit_model_sim},
+\end{align}
+where the fixed effects are $\alpha_i$, $\beta\mathbb{I}_j$ and $\delta_k$: $\alpha_i$ represents the item type, the indicator variable $\mathbb{I}_j$ denotes whether there is correct documentation, the coefficient $\beta$ is the weight given when there is correct documentation, and $\delta_k$ represents the country of provenance. The random effect $\gamma_\ell$ represents the entry effect. The indices can take values
+\begin{align}
+i &=1, \ldots, a, & a&\in \mathbb{N},& a &= \text{\# items}\\
+j &= 1, 2, & & & &\text{without and with documentation}\\
+k &= 1,\ldots, d,& d &\in \mathbb{N},& d &= \text{\# countries}\\
+\ell &= 1,\ldots,g,& g&\in \mathbb{N},& g &= \text{\# entries}.
+\end{align}
+The values of the indicator variable are
+\begin{align}
+\mathbb{I}_1 & = 0,& &\text{without documentation}\\
+\mathbb{I}_2 &= 1,& &\text{with documentation}.
+\end{align}
+The random effect $\gamma_\ell$ has distribution
+\begin{align}
+\gamma_\ell | \sigma &\sim \Normal(0, \sigma), & \ell &= 1,\ldots, g, & g&\in \mathbb{N}.
+\label{eq:entry_effect}
+\end{align}
+
+This paper includes three analyses: an asymptotic analysis,
+ a simulation study, and a case study of Australian biosecurity data. For the asymptotic analysis we only consider different item types, so we rather than using Eq.~\eqref{eq:logit_model_fit_sim}, we just consider the probability that a line of item type \(i\) is non-compliant, \(p_i\). The simulation study and the case study both use the full model, as defined above. 
+
+
 \section{Asymptotic analysis}
 We use asymptotic analysis to investigate how the precision of estimates depends on entry size, the number of entries, the probability of interception and whether item types are mixed. This analysis is broken into two parts. The first part assumes that all items are a single type, which allows us to quantify how the amount of data, probability of interception and entry size affects precision. The second part assumes that there are two different item types, and it explores how changing the proportion of entries with both item types mixed affects precision.
 
@@ -194,31 +221,7 @@ From the asymptotic analysis we can conclude two key lessons:
 As the first step in developing a method to analyse real-world data sets, we simulate a data set that contains key complexities including multiple item types, fixed effects and random effects. Once we have simulated data, we can fit a model to estimate parameters. The advantage of our approach is that we can (1) verify that our model behaves correctly and (2) explore how model precision varies in a more complex setting.
 
 \subsection{Data simulation}
-
-In our simulation model, we use a logistic model to generate the probability \(p_{ijk\ell}\) that a line is intercepted. We assume that this depends on the item type in the line, whether the line has compliant documentation and what country the line comes from, all of which are modelled as fixed effects. We also include a random effect corresponding to the entry that contains the given line. The full equation is:
-\begin{align}
-\logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell \label{eq:logit_model_sim},
-\end{align}
-where the fixed effects are $\alpha_i$, $\beta\mathbb{I}_j$ and $\delta_k$: $\alpha_i$ represents the item type, the indicator variable $\mathbb{I}_j$ denotes whether there is correct documentation, the coefficient $\beta$ is the weight given when there is correct documentation, and $\delta_k$ represents the country of provenance. The random effect $\gamma_\ell$ represents the entry effect. The indices can take values
-\begin{align}
-i &=1, \ldots, a, & a&\in \mathbb{N},& a &= \text{\# items}\\
-j &= 1, 2, & & & &\text{without and with documentation}\\
-k &= 1,\ldots, d,& d &\in \mathbb{N},& d &= \text{\# countries}\\
-\ell &= 1,\ldots,g,& g&\in \mathbb{N},& g &= \text{\# entries}.
-\end{align}
-The values of the indicator variable are
-\begin{align}
-\mathbb{I}_1 & = 0,& &\text{without documentation}\\
-\mathbb{I}_2 &= 1,& &\text{with documentation}.
-\end{align}
-The random effect $\gamma_\ell$ has distribution
-\begin{align}
-\gamma_\ell | \sigma &\sim \Normal(0, \sigma), & \ell &= 1,\ldots, g, & g&\in \mathbb{N}.
-\label{eq:entry_effect}
-\end{align}
-
-
-For our simulations, chose parameters which we expect to be similar to their values in real-world data. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2). We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data. We used $d=3$ countries and choose their weights to be .5, -1 and .25, {\color{red} because\ldots}
+We simulate data from the full model (as described in Section~\ref{sec:model}). For our simulations, chose parameters which we expect to be similar to their values in real-world data. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2, if all other effects were 0). We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data. We used $d=3$ countries and choose their weights to be .5, -1 and .25, {\color{red} because\ldots}
 {
 \color{red}
 We run simulations with and without an entry effect, but when we include entry \eqref{eq:entry_effect} it takes a normal distribution with mean zero and standard deviation \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set the probability of having correct documentation to be 0.2.}
@@ -265,7 +268,7 @@ where
 \end{align}
 As we fit our model in a Bayesian framework, we set priors on each parameter:
 \begin{align}
-\alpha_i &\sim \Normal(-1, 2), & i&=1, \ldots, a, & a&\in \mathbb{N},\\
+\alpha_i &\sim \Normal(-4, 4), & i&=1, \ldots, a, & a&\in \mathbb{N},\\
 \beta &\sim \Normal(0, 0.5),\\
 \delta_k &\sim \Normal(0, 0.5), & k &= 1,\ldots, d, & d &\in \mathbb{N}\\
 \sigma &\sim \Normal(0, 0.5)
@@ -291,7 +294,7 @@ Therefore, for entry mode data, the random variable that indicates whether entry
 {
 \color{red}
 Why are we talking about the distributions of these random variables in the STAN model section?
-}
+}{\color{blue} this defines the likelihood}
 %
 %\subsection{Model verification}
 %The primary aim of our work is to investigate the relative contribution of entry mode data to precision of parameter estimates. However, before analysing precision it is important to ensure that we are able to accurately estimate parameters with our model and that precision estimates using STAN match the asymptotic analysis.
