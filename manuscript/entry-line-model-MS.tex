@@ -88,6 +88,13 @@ The random effect $\gamma_\ell$ has distribution
 \label{eq:entry_effect}
 \end{align}
 
+If all data were in line mode, the above model would be a fairly standard mixed effects logistic regression with categorical variables. However, because of entry mode, we don't observe outcomes for each line, as every line in the entry is marked as non-compliant if any line in the entry is found to be non-compliant. Therefore, the outcome is whether the entry is compliant and we need to calculate the probability that the entry is non-compliant, which is 1 minus the probability that every line in the entry is compliant:
+\begin{align}
+\text{Entry non-compliant} = 1-\prod[1-p].\label{eq:entry_pr}
+\end{align}
+Hence, for entries in entry mode, we treat the entry mode as a Bernoulli random variable with probability defined by Eq.~\eqref{eq:entry_pr}, while for entries in line mode, we treat each line as a Bernoulli random variable with probability as defined in Eq.~\eqref{eq:logit_model_sim}.
+
+
 This paper includes three analyses: an asymptotic analysis,
  a simulation study, and a case study of Australian biosecurity data. For the asymptotic analysis we only consider different item types, so we rather than using Eq.~\eqref{eq:logit_model_fit_sim}, we just consider the probability that a line of item type \(i\) is non-compliant, \(p_i\). The simulation study and the case study both use the full model, as defined above. 
 
@@ -276,25 +283,25 @@ As we fit our model in a Bayesian framework, we set priors on each parameter:
 
 The probability $p_{ijk\ell}$ is the probability of non-compliance of a line that has characteristics $(i,j,k,\ell)$. We denote the probability that line $n$ is non-compliant as $p_{(n)}$, where $p_{(n)} = p_{ijk\ell}$ if that line has characteristics $(i,j,k,\ell)$.
 
-If the data were exclusively in line mode, fitting the model would be relatively standard, as it is logistic regression. For the line mode data, the random variable that indicates whether line $n$ is non-compliant has a Bernoulli distribution
-\begin{align}
-\text{Non-compliant}_{n, \text{line}} \sim \text{Bernoulli}(p_{(n)}).
-\end{align}
-
-However, the entry mode data complicates the model, because for each entry there is only one response variable, irrespective of how many lines are contained within the entry. Hence, as we did in the asymptotic analysis for the entry data (Eq.~\eqref{eq:entry_mode_like}), we need to calculate the probability that at least one line in the entry is non-compliant:
-\begin{align}
-\mathbb P(\text{Entry } \ell \text{ non-compliant}) = q_\ell = 1 - \prod_{n\in\text{lines}(\ell)} (1-p_{(n)}),
-\end{align}
-where $\text{lines}(\ell)$ is the set of all lines in entry $\ell$.
-
-Therefore, for entry mode data, the random variable that indicates whether entry $\ell$ is non-compliant has distribution
-\begin{align}
-\text{Non-compliant}_{\ell, \text{entry}} \sim \text{Bernoulli}(q_\ell).
-\end{align} 
-{
-\color{red}
-Why are we talking about the distributions of these random variables in the STAN model section?
-}{\color{blue} this defines the likelihood}
+%If the data were exclusively in line mode, fitting the model would be relatively standard, as it is logistic regression. For the line mode data, the random variable that indicates whether line $n$ is non-compliant has a Bernoulli distribution
+%\begin{align}
+%\text{Non-compliant}_{n, \text{line}} \sim \text{Bernoulli}(p_{(n)}).
+%\end{align}
+%
+%However, the entry mode data complicates the model, because for each entry there is only one response variable, irrespective of how many lines are contained within the entry. Hence, as we did in the asymptotic analysis for the entry data (Eq.~\eqref{eq:entry_mode_like}), we need to calculate the probability that at least one line in the entry is non-compliant:
+%\begin{align}
+%\mathbb P(\text{Entry } \ell \text{ non-compliant}) = q_\ell = 1 - \prod_{n\in\text{lines}(\ell)} (1-p_{(n)}),
+%\end{align}
+%where $\text{lines}(\ell)$ is the set of all lines in entry $\ell$.
+%
+%Therefore, for entry mode data, the random variable that indicates whether entry $\ell$ is non-compliant has distribution
+%\begin{align}
+%\text{Non-compliant}_{\ell, \text{entry}} \sim \text{Bernoulli}(q_\ell).
+%\end{align} 
+%{
+%\color{red}
+%Why are we talking about the distributions of these random variables in the STAN model section?
+%}{\color{blue} this defines the likelihood}
 %
 %\subsection{Model verification}
 %The primary aim of our work is to investigate the relative contribution of entry mode data to precision of parameter estimates. However, before analysing precision it is important to ensure that we are able to accurately estimate parameters with our model and that precision estimates using STAN match the asymptotic analysis.
