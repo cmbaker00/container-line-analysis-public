@@ -128,8 +128,8 @@ input_params_all_no_sd_change_combination = data.frame(
   max_entry_size = rep(fixed_entry_size, num_scenarios),
   sd = rep(0, num_scenarios),
   target_num_rows_data = rep('1e+05', num_scenarios),
-  num_line_data =      c(seq(500,2500,by=500),rep(0,5)),
-  num_container_data = c(seq(500,2500,by=500),seq(500,2500,by=500)),
+  num_line_data =      c(seq(250,1250,by=250),rep(0,5)),
+  num_container_data = c(seq(250,1250,by=250),seq(500,2500,by=500)),
   entry_random_effect = rep(FALSE, num_scenarios)
 )
 
