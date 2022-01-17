@@ -34,7 +34,7 @@ df = summary_data %>%
   mutate(
     `Entry Size` = min_entry_size # have selected out data where min and max entry size are equal
   ) %>%
-  filter(`Entry Size` > 1) %>% filter(num_total_rows >= 2000)
+  filter(`Entry Size` > 1) %>% filter(num_total_rows >= 500, num_total_rows <= 2500)
 
 ggplot(df, aes(x = num_total_rows, y = summary_sd, color = as.factor(percentage_container_data))) +
   geom_point() +
