@@ -24,9 +24,22 @@ exact_df = data.frame(
 )
 mycolors <- colorRampPalette(brewer.pal(8, "Dark2"))(nrow(exact_df))
 
+{
+orig_line_only_entry_size <- 2
+copy_line_only_entry_size_list <- c(1,5,10,20)
+line_summary_data <- summary_data %>% filter(num_container_rows == 0, min_entry_size==max_entry_size)
+
+for (i in copy_line_only_entry_size_list){
+line_summary_data$min_entry_size = i
+line_summary_data$max_entry_size = i
+
+summary_data <- rbind(summary_data, line_summary_data)
+}
+}
 
 
 
+## PLOT - SD VS ROWS + ENTRY SIZE
   {
 
 df = summary_data %>%
@@ -48,6 +61,7 @@ ggsave(paste0(path,'sim_study_pint_vs_data_vs_entry_size.pdf'), width = 7, heigh
 }
 
 
+## PLOT P INT REAL DATA
 
 {raw_data_2 = raw_data %>%
   pivot_wider(id_cols = c(param_name, week),
@@ -70,39 +84,74 @@ raw_data_2 %>%
 
 
 
-
+## PLOT - PARAM ESTIMATES VS TRUE - SIMULATIION
 {
-df = summary_data %>%
-  filter(min_entry_size == 1,
-         max_entry_size == 20,
-         entry_correlation_sd == 0,
-         percentage_container_data == 0.5,
-         !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) %>%
-  mutate(
-    param_type = case_when(
-      gsub("[^a-zA-Z]", "", param_name) == "pintercept" ~ "p_intercept",
-      gsub("[^a-zA-Z]", "", param_name) == "countryeffect" ~ "country_effect",
-      TRUE ~ "beta_doc"
-    )
-  ) %>%
-  relocate(param_name, param_type)
+  df = summary_data %>%
+    filter(min_entry_size == 1,
+           max_entry_size == 20,
+           entry_correlation_sd == 0,
+           percentage_container_data == 0.5,
+           !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) %>%
+    mutate(
+      param_type = case_when(
+        gsub("[^a-zA-Z]", "", param_name) == "pintercept" ~ "p_intercept",
+        gsub("[^a-zA-Z]", "", param_name) == "countryeffect" ~ "country_effect",
+        TRUE ~ "beta_doc"
+      )
+    ) %>%
+    relocate(param_name, param_type)
+  
+  ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name, fill = param_name)) +
+    geom_point() +
+    geom_line(linetype = "dashed") +
+    geom_hline(data = exact_df, aes(yintercept = yintercept, color = param_name)) +
+    scale_color_manual(values=mycolors) +
+    scale_fill_manual(values=mycolors) +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+    geom_ribbon(aes(ymax=summary_mean + summary_sd, ymin=summary_mean - summary_sd), alpha=0.2, linetype = 0) +
+    facet_wrap(.~param_type) +
+    labs(title = "Mean parameter estimates by amount of data",
+         subtitle = paste0("Min entry size: ", first(df$min_entry_size),
+                           ", Max entry size: ", first(df$max_entry_size),
+                           ", Entry correlation: ", first(df$entry_correlation_sd),
+                           ", Percentage of container data: ", first(df$percentage_container_data)*100, "%"))
+  
+  ggsave(paste0(path,'simulation_estimates.pdf'), width=8, height=8)
+}
 
-ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name, fill = param_name)) +
-  geom_point() +
-  geom_line(linetype = "dashed") +
-  geom_hline(data = exact_df, aes(yintercept = yintercept, color = param_name)) +
-  scale_color_manual(values=mycolors) +
-  scale_fill_manual(values=mycolors) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  geom_ribbon(aes(ymax=summary_mean + summary_sd, ymin=summary_mean - summary_sd), alpha=0.2, linetype = 0) +
-  facet_wrap(.~param_type) +
-  labs(title = "Mean parameter estimates by amount of data",
-       subtitle = paste0("Min entry size: ", first(df$min_entry_size),
-                        ", Max entry size: ", first(df$max_entry_size),
-                        ", Entry correlation: ", first(df$entry_correlation_sd),
-                        ", Percentage of container data: ", first(df$percentage_container_data)*100, "%"))
-
-ggsave(paste0(path,'simulation_estimates.pdf'), width=8, height=8)
+## PLOT - PARAM ESTIMATES VS TRUE - SIMULATIION WITH SD
+{
+  df = summary_data %>%
+    filter(min_entry_size == 1,
+           max_entry_size == 20,
+           entry_correlation_sd == 0.25,
+           percentage_container_data == 0.5,
+           !(param_name %in% c("lp__", "entry_effect[1]", "sigma_entry"))) %>%
+    mutate(
+      param_type = case_when(
+        gsub("[^a-zA-Z]", "", param_name) == "pintercept" ~ "p_intercept",
+        gsub("[^a-zA-Z]", "", param_name) == "countryeffect" ~ "country_effect",
+        TRUE ~ "beta_doc"
+      )
+    ) %>%
+    relocate(param_name, param_type)
+  
+  ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name, fill = param_name)) +
+    geom_point() +
+    geom_line(linetype = "dashed") +
+    geom_hline(data = exact_df, aes(yintercept = yintercept, color = param_name)) +
+    scale_color_manual(values=mycolors) +
+    scale_fill_manual(values=mycolors) +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+    geom_ribbon(aes(ymax=summary_mean + summary_sd, ymin=summary_mean - summary_sd), alpha=0.2, linetype = 0) +
+    facet_wrap(.~param_type) +
+    labs(title = "Mean parameter estimates by amount of data",
+         subtitle = paste0("Min entry size: ", first(df$min_entry_size),
+                           ", Max entry size: ", first(df$max_entry_size),
+                           ", Entry correlation: ", first(df$entry_correlation_sd),
+                           ", Percentage of container data: ", first(df$percentage_container_data)*100, "%"))
+  
+  ggsave(paste0(path,'simulation_estimates_random_effect.pdf'), width=8, height=8)
 }
 
 
