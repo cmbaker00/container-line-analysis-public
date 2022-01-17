@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.1.14)  17 JAN 2022 15:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.1.14)  17 JAN 2022 15:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -674,11 +674,7 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count315
 \l__pdf_internal_box=\box67
 )
-(./entry-line-model-MS.aux
-
-LaTeX Warning: Label `fig:SD_est_simulated' multiply defined.
-
-)
+(./entry-line-model-MS.aux)
 \openout1 = `entry-line-model-MS.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
@@ -695,7 +691,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
- (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count316
 \scratchdimen=\dimen304
@@ -774,8 +771,77 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
- [4]
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package natbib Warning: Citation `thompson_estimation_1962' on page 2 undefined
+ on input line 62.
+
+
+Package natbib Warning: Citation `schaarschmidt_experimental_2007' on page 2 un
+defined on input line 62.
+
+
+Package natbib Warning: Citation `hepworth_debiased_2009' on page 2 undefined o
+n input line 62.
+
+
+Package natbib Warning: Citation `hepworth_bias_2017' on page 2 undefined on in
+put line 62.
+
+
+Package natbib Warning: Citation `hepworth_bias_2021' on page 2 undefined on in
+put line 62.
+
+
+Package natbib Warning: Citation `delaigle_nonparametric_2015' on page 2 undefi
+ned on input line 62.
+
+
+Package natbib Warning: Citation `chatterjee_regression_2020' on page 2 undefin
+ed on input line 62.
+
+
+Package natbib Warning: Citation `mcmahan_bayesian_2017' on page 2 undefined on
+ input line 62.
+
+
+Package natbib Warning: Citation `liu_generalized_2020' on page 2 undefined on 
+input line 62.
+
+[2]
+
+LaTeX Warning: Reference `eq:entry_pr' on page 3 undefined on input line 95.
+
+
+LaTeX Warning: Reference `eq:logit_model_sim' on page 3 undefined on input line
+ 95.
+
+
+LaTeX Warning: Reference `eq:logit_model_fit_sim' on page 3 undefined on input 
+line 99.
+
+[3]
+
+LaTeX Warning: Reference `eq:entry_mode_like' on page 4 undefined on input line
+ 118.
+
+[4]
+
+LaTeX Warning: Reference `eq:general_SE_calc' on page 5 undefined on input line
+ 150.
+
+
+LaTeX Warning: Reference `fig:asymptotic_SE_plots' on page 5 undefined on input
+ line 150.
+
+
+LaTeX Warning: Reference `eq:general_SE_calc' on page 5 undefined on input line
+ 150.
+
+
+LaTeX Warning: Reference `fig:asymptotic_SE_plots' on page 5 undefined on input
+ line 150.
+
 <../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=37, 284.06125pt x 176.6
 6pt>
 File: ../asymptotic_approximation/SE_vs_pr_intercept.pdf Graphic file (type pdf
@@ -791,8 +857,20 @@ File: ../asymptotic_approximation/SE_vs_num_lines.pdf Graphic file (type pdf)
 Package pdftex.def Info: ../asymptotic_approximation/SE_vs_num_lines.pdf  used 
 on input line 159.
 (pdftex.def)             Requested size: 186.82289pt x 120.81285pt.
- [5 <../asymptotic_approximation/SE_vs_pr_intercept.pdf> <../asymptotic_approxi
-mation/SE_vs_num_lines.pdf
+
+LaTeX Warning: Reference `eq:general_SE_calc' on page 5 undefined on input line
+ 162.
+
+
+LaTeX Warning: Reference `eq:general_SE_calc' on page 5 undefined on input line
+ 162.
+
+
+LaTeX Warning: Reference `eq:loglikelihood_arbitrary_entry_size' on page 5 unde
+fined on input line 168.
+
+[5 <../asymptotic_approximation/SE_vs_pr_intercept.pdf> <../asymptotic_approxim
+ation/SE_vs_num_lines.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../asymptotic_approximation/
 SE_vs_num_lines.pdf): PDF inclusion: multiple pdfs with page group included in 
@@ -801,6 +879,14 @@ a single page
 Overfull \hbox (84.89755pt too wide) detected at line 176
 []
  []
+
+
+LaTeX Warning: Reference `eq:p1_two_type_SE_est' on page 6 undefined on input l
+ine 179.
+
+
+LaTeX Warning: Reference `fig:two_type_se_fourplot' on page 6 undefined on inpu
+t line 181.
 
 <../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf, id=58, 284.06125pt x 
 181.67876pt>
@@ -850,7 +936,23 @@ uded in a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../asymptotic_approximation/
 SE_twotype_p1_01_p2_09.pdf): PDF inclusion: multiple pdfs with page group inclu
 ded in a single page
->] [8]
+>]
+
+LaTeX Warning: Reference `sec:model' on page 8 undefined on input line 231.
+
+
+LaTeX Warning: Reference `eq:entry_effect' on page 8 undefined on input line 23
+4.
+
+
+LaTeX Warning: Reference `table:example_data' on page 8 undefined on input line
+ 238.
+
+
+LaTeX Warning: Reference `eq:logit_model_sim' on page 8 undefined on input line
+ 268.
+
+[8]
 <../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=125, 50
 5.89pt x 578.16pt>
 File: ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf Graphi
@@ -879,13 +981,13 @@ Overfull \hbox (22.96164pt too wide) in paragraph at lines 339--356
  [][] 
  []
 
-<../visualisations/figures/simulation_estimates.pdf, id=127, 578.16pt x 578.16p
-t>
-File: ../visualisations/figures/simulation_estimates.pdf Graphic file (type pdf
-)
-<use ../visualisations/figures/simulation_estimates.pdf>
-Package pdftex.def Info: ../visualisations/figures/simulation_estimates.pdf  us
-ed on input line 362.
+<../visualisations/figures/simulation_estimates_random_effect.pdf, id=127, 578.
+16pt x 578.16pt>
+File: ../visualisations/figures/simulation_estimates_random_effect.pdf Graphic 
+file (type pdf)
+<use ../visualisations/figures/simulation_estimates_random_effect.pdf>
+Package pdftex.def Info: ../visualisations/figures/simulation_estimates_random_
+effect.pdf  used on input line 362.
 (pdftex.def)             Requested size: 381.26694pt x 381.26036pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -912,16 +1014,27 @@ Underfull \hbox (badness 1292) in paragraph at lines 49--59
 467-[]9876 . 2008 . 00639 .
  []
 
-[11 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>]) [12 <../visual
-isations/figures/simulation_estimates.pdf>] [13 <../visualisations/figures/pint
-_prior.pdf>] (./entry-line-model-MS.aux)
+[11 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>])
 
-LaTeX Warning: There were multiply-defined labels.
+Package natbib Warning: There were undefined citations.
+
+[12 <../visualisations/figures/simulation_estimates_random_effect.pdf>]
+[13 <../visualisations/figures/pint_prior.pdf>] (./entry-line-model-MS.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
  26150 strings out of 478994
- 649765 string characters out of 5858184
+ 649849 string characters out of 5858184
  1218825 words of memory out of 5000000
  43202 multiletter control sequences out of 15000+600000
  412759 words of font info for 63 fonts, out of 8000000 for 9000
@@ -948,10 +1061,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2021/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on entry-line-model-MS.pdf (13 pages, 451157 bytes).
+Output written on entry-line-model-MS.pdf (13 pages, 446582 bytes).
 PDF statistics:
- 237 PDF objects out of 1000 (max. 8388607)
- 165 compressed objects within 2 object streams
+ 238 PDF objects out of 1000 (max. 8388607)
+ 166 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  63 words of extra memory for PDF output out of 10000 (max. 10000000)
 
