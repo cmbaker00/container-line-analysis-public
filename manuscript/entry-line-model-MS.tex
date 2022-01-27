@@ -167,7 +167,7 @@ Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of in
 \subsection{Two item types}
 In this section we consider a situation where there are two items with probabilities of interception of \(p_1\) and \(p_2\), and we examine how these different items type probabilities interact. We focus on a scenario where every entry is of size two, meaning there are three types of entries: only type 1; only type 2; or mixed, with one line of type 1 and one of  type 2. We denote the number of lines within a single entry of type 1 and 2 as \(S_1\) and \(S_2\) respectively, and \(I(S_1,S_2\) and \(N(S_1,S_2)\) are the number of interceptions and total number of entries with \(S_1\) type 1 lines and \(S_2\) type 2 lines. For our case, we can have \(S_1=2, S_2=0\), \(S_1=1, S_2=1\) or \(S_1=0, S_2=2\). Rewriting the log-likelihood from Eq.~\eqref{eq:loglikelihood_arbitrary_entry_size}, we get
 \begin{align}
-\log\mathcal{L} &= \sum_{S_1,S_2}{I(S_1,S_2)}\log\left(1-(1-p_1)^{S_1}(1-p_2)^{S_2}\right) + \\ &\quad\quad\quad \left(N(S_1,S_2)-I(S_1,S_2)\right)\log\left((1-p_1)^{S_1}(1-p_2)^{S_2}\right). \label{eq:entry_mode_loglike_2types}
+\log\mathcal{L} = \sum_{S_1,S_2}{I(S_1,S_2)}\log\left(1-(1-p_1)^{S_1}(1-p_2)^{S_2}\right) + (N(S_1,S_2)-I(S_1,S_2))\log\left((1-p_1)^{S_1}(1-p_2)^{S_2}\right). \label{eq:entry_mode_loglike_2types}
 \end{align}
 We compute the Fisher information matrix and the standard error using Mathematica. The standard error for \(p_1\) is
 
@@ -359,7 +359,7 @@ We use border interception data from Australia to compare the diff
 
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
+\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates.pdf}
 \caption{SUPPLEMENT FIGURE}
 \label{fig:simulation_estimation}
 \end{figure}
