@@ -1,5 +1,48 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: entry-line-model-MS.aux
+This is BibTeX, Version 0.99d (MiKTeX 2.9.7400 64-bit)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: entry-line-model-MS.aux
 The style file: abbrvnat.bst
 Database file #1: entry-line.bib
 Warning--there's a number but no volume in liu_generalized_2020
+You've used 10 entries,
+            2773 wiz_defined-function locations,
+            683 strings with 7342 characters,
+and the built_in function-call counts, 4916 in all, are:
+= -- 500
+> -- 233
+< -- 8
++ -- 79
+- -- 69
+* -- 419
+:= -- 783
+add.period$ -- 60
+call.type$ -- 10
+change.case$ -- 53
+chr.to.int$ -- 10
+cite$ -- 21
+duplicate$ -- 200
+empty$ -- 382
+format.name$ -- 91
+if$ -- 1020
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 10
+newline$ -- 88
+num.names$ -- 40
+pop$ -- 61
+preamble$ -- 1
+purify$ -- 43
+quote$ -- 0
+skip$ -- 150
+stack$ -- 0
+substring$ -- 216
+swap$ -- 15
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 110
+warning$ -- 1
+while$ -- 45
+width$ -- 0
+write$ -- 196
 (There was 1 warning)
