@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{10}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -75,6 +75,12 @@ C.~S. McMahan, J.~M. Tebbs, T.~E. Hanson, and C.~R. Bilder.
 \newblock \doi{10.1111/biom.12704}.
 \newblock URL \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.12704}.
 \newblock \_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/biom.12704.
+
+\bibitem[Rai and Singh(2020)]{rai2020invasive}
+P.~K. Rai and J.~Singh.
+\newblock Invasive alien plant species: Their impact on environment, ecosystem
+  services and human health.
+\newblock \emph{Ecological indicators}, 111:\penalty0 106020, 2020.
 
 \bibitem[Schaarschmidt(2007)]{schaarschmidt_experimental_2007}
 F.~Schaarschmidt.
