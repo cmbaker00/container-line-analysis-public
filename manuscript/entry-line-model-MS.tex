@@ -102,7 +102,7 @@ This paper includes three analyses: an asymptotic analysis,
  a simulation study, and a case study of Australian biosecurity data. For the asymptotic analysis we only consider different item types, so we rather than using Eq.~\eqref{eq:logit_model_fit_sim}, we just consider the probability that a line of item type \(i\) is non-compliant, \(p_i\). The simulation study and the case study both use the full model, as defined above. 
 
 
-\section{Asymptotic analysis}
+\section{Asymptotic analysis}\label{sec:asymptotic_analysis}
 We use asymptotic analysis to investigate how the precision of estimates depends on entry size, the number of entries, the probability of interception and whether item types are mixed. This analysis is broken into two parts. The first part assumes that all items are a single type, which allows us to quantify how the amount of data, probability of interception and entry size affects precision. The second part assumes that there are two different item types, and it explores how changing the proportion of entries with both item types mixed affects precision.
 
 Throughout this section we make two simplifications. Firstly, we do not separate line mode and entry mode because entry mode data with entry size 1 is mathematically equivalent to line mode data. Hence, throughout these analysis, entry size 1 means line mode and entry size greater than 1 implies entry mode. Secondly, we  assume that each item has a fixed probability of interception. Therefore, we consider each line a Bernoulli trial, which only depends on the item type. When the entry size is greater than one, the relevant probability is whether at least one line was intercepted.
@@ -315,11 +315,11 @@ The probability $p_{ijk\ell}$ is the probability of non-compliance of a line tha
 \subsection{Simulation results}
 We fit the STAN model to the simulated data for two reasons. Firstly we confirm confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of entry mode data affects precision, over a range of entry sizes.
 
-Figure~\ref{fig:simulation_estimation}
+Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. Overall, the STAN estimates are close to the true values when there is a large amount of data. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}).
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
-\caption{SUPPLEMENT FIGURE}
+\caption{Results from the STAN model, fitted to simulated data. 50\% of the data is in entry mode and 50\% is in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter.}
 \label{fig:simulation_estimation}
 \end{figure}
 
