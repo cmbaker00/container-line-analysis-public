@@ -146,22 +146,34 @@ raw_data_2 %>%
     ) %>%
     relocate(param_name, param_type)
   
+  # New facet labels
+  facet_labs <- c("beta", "delta", "alpha") # new names
+  names(facet_labs) <- c("beta_doc", "country_effect", "p_intercept") # old names
+  
+  # New legend labels
+  legend_labs = c("beta", paste0("delta_", c(1, 2, 3)), paste0("alpha_", seq(1,5)))
+  
   ggplot(df, aes(x = num_total_rows, y = summary_mean, color = param_name, fill = param_name)) +
     geom_point() +
     geom_line(linetype = "dashed") +
     geom_hline(data = exact_df, aes(yintercept = yintercept, color = param_name)) +
-    scale_color_manual(values=mycolors) +
-    scale_fill_manual(values=mycolors) +
+    scale_color_manual(values=mycolors, 
+                       name="Parameters",
+                       labels=legend_labs) +
+    scale_fill_manual(values=mycolors,
+                      name="Parameters",
+                      labels=legend_labs) +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
     geom_ribbon(aes(ymax=summary_mean + summary_sd, ymin=summary_mean - summary_sd), alpha=0.2, linetype = 0) +
-    facet_wrap(.~param_type) +
+    facet_wrap(.~param_type,
+               labeller = labeller(param_type = facet_labs)) +
     labs(title = "Mean parameter estimates by amount of data",
          subtitle = paste0("Min entry size: ", first(df$min_entry_size),
                            ", Max entry size: ", first(df$max_entry_size),
                            ", Entry correlation: ", first(df$entry_correlation_sd),
                            ", Percentage of container data: ", first(df$percentage_container_data)*100, "%")) +
     xlab('Total number of lines') + ylab('Parameter value')
-  
+
   ggsave(paste0(path,'simulation_estimates_random_effect.pdf'), width=8, height=8)
 }
 
