@@ -41,7 +41,7 @@ summary_data <- rbind(summary_data, line_summary_data)
 
 ## PLOT - SD VS ROWS + ENTRY SIZE
   {
-
+true_intercept_probability <- qlogis(c(0.001, 0.01, 0.02, 0.05, .2))
 df = summary_data %>%
   filter(min_entry_size == max_entry_size, !(param_name %in% c("beta_doc", "country_effect[1]", "country_effect[2]", "country_effect[3]","lp__", "entry_effect[1]", "sigma_entry"))) %>%
   mutate(
@@ -49,13 +49,23 @@ df = summary_data %>%
   ) %>%
   filter(`Entry Size` > 1) %>% filter(num_total_rows >= 500, num_total_rows <= 2500)
 
+df$alpha_vals = NaN
+  p_intercept_names = unique(df$param_name)
+  for (i in 1:length(p_intercept_names)){
+    c_pint_true_pr <- true_intercept_probability[as.integer(substring(unique(df$param_name)[i],13,13))]
+    df$alpha_vals[df$param_name==p_intercept_names[i]] <- paste0('alpha = ',round(c_pint_true_pr,1))
+  }
+
+
+
 ggplot(df, aes(x = num_total_rows, y = summary_sd, color = as.factor(percentage_container_data))) +
   geom_point() +
   geom_line() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  facet_grid(`Entry Size`~param_name, labeller = labeller(.rows = label_both, .cols = label_value)) +
+  facet_grid(`Entry Size`~alpha_vals, labeller = labeller(.rows = label_both, .cols = label_value)) +
   scale_color_discrete(name = "Ratio container data") +
-  labs(title = "Standard deviation of parameter estimates by amount of data")
+  labs(title = "Standard deviation of parameter estimates by amount of data") +
+  ylab('Standard deviation') + xlab('Total number of lines')
 ggsave(paste0(path,'sim_study_pint_vs_data_vs_entry_size.pdf'), width = 7, height = 8)
 
 }
@@ -149,7 +159,8 @@ raw_data_2 %>%
          subtitle = paste0("Min entry size: ", first(df$min_entry_size),
                            ", Max entry size: ", first(df$max_entry_size),
                            ", Entry correlation: ", first(df$entry_correlation_sd),
-                           ", Percentage of container data: ", first(df$percentage_container_data)*100, "%"))
+                           ", Percentage of container data: ", first(df$percentage_container_data)*100, "%")) +
+    xlab('Total number of lines') + ylab('Parameter value')
   
   ggsave(paste0(path,'simulation_estimates_random_effect.pdf'), width=8, height=8)
 }

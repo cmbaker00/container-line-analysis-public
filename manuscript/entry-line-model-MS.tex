@@ -2,6 +2,7 @@
 
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{amsfonts}
 \usepackage{listings}
 \usepackage{lstbayes}
@@ -46,7 +47,7 @@ In the Australian border biosecurity system, data about shipping containers is r
 
 \section{Introduction}
 
-Invasive species pose a multifaceted threat to society, leading to reductions in agricultural productivity, as well as damages to the environment, human health, and the economy \citep{rai2020invasive}. A large amount of effort goes into managing invasive species, in either eradicating them, or suppressing their numbers to reduce damages. The costs associated with managing invasive species provides governments with an incentive to manage biosecurity risks at their borders to prevent new species establishing. 
+Invasive species pose a multifaceted threat to society, leading to reductions in agricultural productivity, as well as damages to the environment, human health, and the economy \citep{kumar_rai_invasive_2020}. A large amount of effort goes into managing invasive species \citep{jardine_estimating_2018}, in either eradicating them \citep{baker_recent_2020,holmes_globally_2019, wenger_estimating_2017,helmstedt_prioritizing_2016}, or suppressing their numbers to reduce damages \citep{binny_long-term_2021,brook_effects_2012,sharov_slow_2002}. The costs associated with managing invasive species provides governments with an incentive to manage biosecurity risks at their borders to prevent new species establishing. 
 
 Given the massive scale of global trade, biosecurity regulators need to be able to allocate their resources, but to do so effectively they must understand this risks associated with various entries. At the border, one of the most effective ways of achieving this is by using the outcome of previously conducted inspections as intelligence that informs future operations. This allows regulators to identify high risk commodities and importers, and modify their inspection targets and policies accordingly.
 
@@ -59,19 +60,19 @@ Australian biosecurity data in entry mode is closely related to pooled testing, 
 In practice, however, pooled testing is manifestly different from the biosecurity scenario. Pooled testing exists by design, as a way to gather information about a population while reducing testing. In biosecurity, the searching is done to every individual line, and the results are only pooled at the point of data capture. Hence, we are interested in how much information we are losing due to aggregating results as entry mode. Or, equivalently, how much better could we be at managing bio-security risk if we stopped using entry mode when an entry contains multiple lines?
 
 In this paper we investigate how entry mode affects our ability to identify the biosecurity risk of items. We start with an asymptotic analysis, where we calculate the precision of estimates and determine the implications of mixing different item types in entry mode. We then  , which allows us to understand how larger entries and more item types affect the precision of our estimates. Finally, we analyse border interception data provided by the Australian Department of Agriculture, Water and the Environment (DAWE) to see the real-world differences between using the line-only data and including the entry mode data.
+\section{Model overview}
+\subsection{Data}\label{sec:data}
 
-\section{The dataset}\label{sec:data}
-
-To make our language about the data more price, we will epliciltly define what we mean by entries, lines and directions. Entries are a collection of lines, and a line is a group of the same type of item or commodity being imported. When cargo enters the country, each line is given \emph{directions}. These detail all of the activities undertaken by the biosecurity regulator to manage the biosecurity risk of each line, and also the outcome of those activities.
+To make our language about the data more precise, we will epliciltly define what we mean by entries, lines and directions. Entries are a collection of lines, and a line is a group of the same type of item or commodity being imported. When cargo enters the country, each line is given \emph{directions}. These detail all of the activities undertaken by the biosecurity regulator to manage the biosecurity risk of each line, and also the outcome of those activities.
 
 In line mode, the directions assigned to each line are recorded along with the outcome for that line. In entry mode, directions are only recorded per entry. This means that in entry mode, if any line in that entry has an inspection, and non-compliance is found, every line in that entry is recorded to be non-compliant. If all of the lines in the entry are compliant, then they are all marked compliant, so in this case line and entry mode are equivalent.
 
-\section{Model overview}\label{sec:model}
-Throughout this paper, we focus on estimating the probability that a line is non-compliant, using information about it, including the type of item, country of origin and whether it has complete documentation. The full model for the probability that a line is non-compliant, \(p_{ijk\ell}\),  is: 
+\subsection{Modelling}\label{sec:model}
+Throughout this paper, we focus on estimating the probability that a line is non-compliant using information including the type of item, country of origin and whether it has complete documentation. The full model for the probability that a line is non-compliant, \(p_{ijk\ell}\),  is: 
 \begin{align}
 \logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell \label{eq:logit_model_sim},
 \end{align}
-where the fixed effects are $\alpha_i$, $\beta\mathbb{I}_j$ and $\delta_k$: $\alpha_i$ represents the item type, the indicator variable $\mathbb{I}_j$ denotes whether there is correct documentation, the coefficient $\beta$ is the weight given when there is correct documentation, and $\delta_k$ represents the country of provenance. The random effect $\gamma_\ell$ represents the entry effect. The indices can take values
+where the fixed effects are $\alpha_i$, $\beta\mathbb{I}_j$ and $\delta_k$: $\alpha_i$ represents the item type, the indicator variable $\mathbb{I}_j$ denotes whether there is correct documentation, the coefficient $\beta$ is the weight given when there is correct documentation, and $\delta_k$ represents the country of provenance. The random effect $\gamma_\ell$ represents the entry effect, which we include because there may be correlations between lines within an entry. The indices can take values
 \begin{align}
 i &=1, \ldots, a, & a&\in \mathbb{N},& a &= \text{\# items}\\
 j &= 1, 2, & & & &\text{without and with documentation}\\
@@ -91,9 +92,10 @@ The random effect $\gamma_\ell$ has distribution
 
 If all data were in line mode, the above model would be a fairly standard mixed effects logistic regression with categorical variables. However, because of entry mode, we don't observe outcomes for each line, as every line in the entry is marked as non-compliant if any line in the entry is found to be non-compliant. Therefore, the outcome is whether the entry is compliant and we need to calculate the probability that the entry is non-compliant, which is 1 minus the probability that every line in the entry is compliant:
 \begin{align}
-\text{Entry non-compliant} = 1-\prod[1-p].\label{eq:entry_pr}
+\mathbb{P}\left(\text{Entry } l \text{ non-compliant}\right) = q_l = 1-\prod_{n\in\text{lines}(l)}[1-p_n],\label{eq:entry_pr}
 \end{align}
-Hence, for entries in entry mode, we treat the entry mode as a Bernoulli random variable with probability defined by Eq.~\eqref{eq:entry_pr}, while for entries in line mode, we treat each line as a Bernoulli random variable with probability as defined in Eq.~\eqref{eq:logit_model_sim}.
+where \(p_n\) is the probability that the \(n^\text{th}\) line is non-compliant, calculated from Eq.~\eqref{eq:logit_model_sim}.
+Hence, for entries in entry mode, we treat the entry  as a Bernoulli random variable with probability defined by Eq.~\eqref{eq:entry_pr}, while for entries in line mode, we treat each line as a Bernoulli random variable with probability as defined in Eq.~\eqref{eq:logit_model_sim}.
 
 
 This paper includes three analyses: an asymptotic analysis,
@@ -168,12 +170,19 @@ Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of in
 \subsection{Two item types}
 In this section we consider a situation where there are two items with probabilities of interception of \(p_1\) and \(p_2\), and we examine how these different items type probabilities interact. We focus on a scenario where every entry is of size two, meaning there are three types of entries: only type 1; only type 2; or mixed, with one line of type 1 and one of  type 2. We denote the number of lines within a single entry of type 1 and 2 as \(S_1\) and \(S_2\) respectively, and \(I(S_1,S_2\) and \(N(S_1,S_2)\) are the number of interceptions and total number of entries with \(S_1\) type 1 lines and \(S_2\) type 2 lines. For our case, we can have \(S_1=2, S_2=0\), \(S_1=1, S_2=1\) or \(S_1=0, S_2=2\). Rewriting the log-likelihood from Eq.~\eqref{eq:loglikelihood_arbitrary_entry_size}, we get
 \begin{align}
-\log\mathcal{L} = \sum_{S_1,S_2}{I(S_1,S_2)}\log\left(1-(1-p_1)^{S_1}(1-p_2)^{S_2}\right) + (N(S_1,S_2)-I(S_1,S_2))\log\left((1-p_1)^{S_1}(1-p_2)^{S_2}\right). \label{eq:entry_mode_loglike_2types}
+\log\mathcal{L} =& \sum_{S_1,S_2}{I(S_1,S_2)}\log\left(1-(1-p_1)^{S_1}(1-p_2)^{S_2}\right) + \nonumber
+\\ &\quad\quad(N(S_1,S_2)-I(S_1,S_2))\log\left((1-p_1)^{S_1}(1-p_2)^{S_2}\right). \label{eq:entry_mode_loglike_2types}
 \end{align}
 We compute the Fisher information matrix and the standard error using Mathematica. The standard error for \(p_1\) is
 
 \begin{align}
-\frac{1}{2} \sqrt{-\frac{{p_1} \left(p_1^2-3 p_1+2\right) (N_{1,2} (p_1-1) (p_2-2) p_2+4 N_{2,2} (p_2-1) (p_1 (p_2-1)-p_2))}{N_{1,1} (p_1-1) (N_{1,2} (p_1-1) (p_2-2) p_2+4 N_{2,2} (p_2-1) (p_1 (p_2-1)-p_2))+N_{1,2} N_{2,2} (p_1-2) p_1 (p_2-1)^2}},\label{eq:p1_two_type_SE_est}
+\frac{1 }
+{2}
+\sqrt{
+-\frac{\textstyle{{p_1} \left(p_1^2-3 p_1+2\right) (N_{1,2} (p_1-1) (p_2-2) p_2}{+4 N_{2,2} (p_2-1) (p_1 (p_2-1)-p_2))}}
+{\splitfrac{N_{1,1} (p_1-1) (N_{1,2} (p_1-1) (p_2-2) p_2+4 N_{2,2} (p_2-1) (p_1 (p_2-1)-p_2))}{+N_{1,2} N_{2,2} (p_1-2) p_1 (p_2-1)^2}}
+}
+,\label{eq:p1_two_type_SE_est}
 \end{align}
 where \(N_{1,1}\) and \(N_{2,2}\) are the number of entries with two type 1 lines and two type 2 lines respectively, while \(N_{1,2}\) are the number of entries with both type 1 and type 2 lines. The standard error for \(p_2\) is the same, with \(N_{1,1}\) and \(N_{2,2}\) switched and \(p_1\) and \(p_2\) switched. 
 
@@ -220,8 +229,7 @@ Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with t
 From the asymptotic analysis we can conclude two key lessons:
 \begin{enumerate}
 \item Entry mode data is most useful when the probability of interception, \(p\), is small. In the extreme case where \(p\rightarrow 0\), entry mode data is equivalent to line mode data because whenever an entry is \emph{not} intercepted, we know every line was not intercepted, regardless of whether it is entry mode or line mode. 
-\item When \(p\) is not small (e.g. greater than 0.5) it can still be useful to analyse entry mode data, but only if the amount of line mode data is small. However, if there is sufficient line mode data to get acceptable precise parameter estimates, there would be little to gain by using entry mode data.
-\item Entries in entry mode with mixed entries can increase or decrease the precision of estimates, depending on the true probability of interception. If the probability of interception is low, mixed entries tend to lead to lower precision, but item types with high probability of interception may lead to lower standard errors.
+\item Entries in entry mode with mixed entries can increase or decrease the precision of estimates, depending on the true probability of non-compliance. 
 \end{enumerate}
 
 
@@ -229,24 +237,18 @@ From the asymptotic analysis we can conclude two key lessons:
 As the first step in developing a method to analyse real-world data sets, we simulate a data set that contains key complexities including multiple item types, fixed effects and random effects. Once we have simulated data, we can fit a model to estimate parameters. The advantage of our approach is that we can (1) verify that our model behaves correctly and (2) explore how model precision varies in a more complex setting.
 
 \subsection{Data simulation}
-We simulate data from the full model (as described in Section~\ref{sec:model}). For our simulations, chose parameters which we expect to be similar to their values in real-world data. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2, if all other effects were 0). We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data. We used $d=3$ countries and choose their weights to be .5, -1 and .25, {\color{red} because\ldots}
-{
-\color{red}
-We run simulations with and without an entry effect, but when we include entry \eqref{eq:entry_effect} it takes a normal distribution with mean zero and standard deviation \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set the probability of having correct documentation to be 0.2.}
-
-{\color{red} Do we need to specify how we generated values for countries and entries?}  
-
-We show an example of the format of the data in Table \ref{table:example_data}.
+We simulate data from the full model (as described in Section~\ref{sec:model}). For our simulations, chose parameters which we expect to be similar to their values in real-world data. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2, if all other effects were 0). We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data. We used $d=3$ countries and set their weights to be .5, -1 and .25.
+For within-entry correlation, we set \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set the probability of having correct documentation to be 0.2. We show an example of the format of the data in Table \ref{table:example_data}.
 
 \vspace{0.1cm}
 \begin{table}[h]
-\caption{Example simulated data. Lines 1-3 are all marked as intercepted because entry 1 is in entry mode, even though only 1 or 2 of the lines were actually intercepted.}
+\caption{Example simulated data. Lines 1-3 are all marked as non-compliant because entry 1 is in entry mode, even though only 1 or 2 of the lines were actually non-compliant.}
 \label{table:example_data}
 \begin{center}
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline 
-Line & Entry & Type & Documentation & Mode & Intercepted \\ 
+Line & Entry & Type & Documentation & Mode & Non-compliant \\ 
 \hline 
 1 & 1 & 3 & 1  & Entry & 1 \\ 
 \hline 
@@ -311,6 +313,19 @@ The probability $p_{ijk\ell}$ is the probability of non-compliance of a line tha
 %The simulation uses \(p=0.05\) and we vary the number of entries \(N_E\) and the entry size, \(S\) and the comparison is shown in Figure~\ref{fig:SD_est_simulated}.
 
 \subsection{Simulation results}
+We fit the STAN model to the simulated data for two reasons. Firstly we confirm confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of entry mode data affects precision, over a range of entry sizes.
+
+Figure~\ref{fig:simulation_estimation}
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
+\caption{SUPPLEMENT FIGURE}
+\label{fig:simulation_estimation}
+\end{figure}
+
+
+
+
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf}
@@ -355,22 +370,6 @@ We use border interception data from Australia to compare the diff
    \hline
 \end{tabular}
 \end{table}
-
-\section{Appendix}
-
-
-\begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates.pdf}
-\caption{SUPPLEMENT FIGURE}
-\label{fig:simulation_estimation}
-\end{figure}
-
-
-\begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/pint_prior.pdf}
-\caption{SUPPLEMENT FIGURE}
-\label{fig:p_int_prior}
-\end{figure}
 
 
 
