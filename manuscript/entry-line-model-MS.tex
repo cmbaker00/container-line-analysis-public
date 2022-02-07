@@ -313,9 +313,9 @@ The probability $p_{ijk\ell}$ is the probability of non-compliance of a line tha
 %The simulation uses \(p=0.05\) and we vary the number of entries \(N_E\) and the entry size, \(S\) and the comparison is shown in Figure~\ref{fig:SD_est_simulated}.
 
 \subsection{Simulation results}
-We fit the STAN model to the simulated data for two reasons. Firstly we confirm confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of entry mode data affects precision, over a range of entry sizes.
+We fit the STAN model to the simulated data for two reasons. Firstly we confirm confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of entry mode data affects precision, over a range of entry sizes. To measure precision, we use the standard deviation of the posterior samples, because it is the Bayesian equivalent of the standard error calculations in Section~\ref{sec:asymptotic_analysis}.
 
-Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. Overall, the STAN estimates are close to the true values when there is a large amount of data. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}).
+Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. Overall, the STAN estimates are close to the true values when there is a large amount of data. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}). Although our estimates are close, we do not expect them to be exact because of the priors and there may be a bias in the model that we do not account for. 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
@@ -323,13 +323,12 @@ Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good 
 \label{fig:simulation_estimation}
 \end{figure}
 
-
-
+The precision of model estimates depends on the entry size, the probability of non-compliance and the amount of entry mode data (Figure~\ref{fig:SD_est_simulated}). The best-case scenario is when all data is in line mode (ratio of entry mode = 0), and the distance from that line shows the impact of using a mix, or only, entry mode data. We find that the difference between the precision estimates depends strongly on the combination of factors. There are some combinations where all analyses return similar precision (e.g. \(\alpha=-1.4\) and entry size 10), while other combinations have a large gap where the line only data far outperforms the others (e.g. \(\alpha=-4.6\) and entry size = 5).
 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf}
-\caption{SD as amount of data increases, depending on \(p\) and the amount of entry data}
+\caption{The standard deviation of the alpha parameter estimates for simulations with varying entry size and total number of lines. The ratio of entry mode data is the proportion of data in entry mode, meaning that 0 corresponds to line mode data-sets, 0.5 if a mixed data-set and 1 is purely entry mode. }
 \label{fig:SD_est_simulated}
 \end{figure}
 
@@ -337,20 +336,40 @@ Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good 
 
 
 \section{Case study}
-We use border interception data from Australia to compare the diff
+We apply our model to some real biosecurity data, to see how our understanding of the system changes by fitting the full data, compared to only using the entry mode data. The data set is of furniture imports in 2020, and we choose to analyse the 3 weeks of data that have the most non-compliance in entry-mode. We choose these weeks because non-compliance in entry mode is the most interesting for this analysis (for weeks where there is no entry mode non-compliance, the entire data is equivalent to line mode). For confidentiality, for each week we re-name the item type, the country and the week to be integers (week 1, 2 and 3 do not correspond to the first 3 weeks of the year, and country 1 and item 1 are not the same in weeks 1 and 2). Relabeling the data does not cause issues because we are not trying to compare estimates between weeks or draw inferences between countries or item types in this analysis. A summary of the data is given in Table~\ref{tab:real_data_summary}.
+
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Mon Feb 07 17:13:09 2022
+\begin{table}[ht]
+\caption{The number of lines in entry mode and line mode for each week. The ratio is the fraction of the week's data that is in entry mode.}
+\label{tab:real_data_summary}
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ Week & Entry & Line & Ratio \\ 
+  \hline
+ 1.00 & 516 & 6741 & 0.07 \\ 
+  2.00 & 1667 & 7213 & 0.19 \\ 
+   3.00 & 679 & 6832 & 0.09 \\ 
+   \hline
+\end{tabular}
+\end{table}
 
 
+We fit our STAN model to the data from each week, using all the data and the line-only subset of the data. Because the line-only analysis is a subset of the data, not every country or item is present in the line-only data set. For the parameters that do match, we generate a scatter plot of the mean estimates to see how frequently we get different estimates (Figure~\ref{fig:case_study_scatter}). For many of the parameters, we get very similar results irrespective of which data we use. This is not surprising, given that most of the data is in line mode and that line mode data generally gives more information than entry mode data. However, it is interesting that including the entry mode data results in quite large changes to some of the parameter estimates. 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/p_int_est_all_vs_line_data.pdf}
-\caption{SD as amount of data increases, depending on \(p\) and the amount of entry data}
-\label{fig:SD_est_simulated}
+\caption{Scatter plot of parameter estimates using the line only data and all data. Dots that fall on the solid black line indicate when we get the same parameter estimate from each data set.}
+\label{fig:case_study_scatter}
 \end{figure}
+
+Analysing the full data set, rather than the line-only data, gives us information about more items and countries. Table~\ref{tab:estimates_only_from_all_data} show all of the parameter estimates that we only get when including the entry mode data in the analysis. 
 
 
 \begin{table}[ht]
-\label{tab:estimates_only_from_all_data}
 \caption{Parameter estimates that are only possible when using all data, as opposed to the line-only fits}
+\label{tab:estimates_only_from_all_data}
 \centering
 \begin{tabular}{rlrrrr}
   \hline
@@ -370,6 +389,14 @@ We use border interception data from Australia to compare the diff
    \hline
 \end{tabular}
 \end{table}
+
+\section{Discussion}
+
+In this paper we sought to understand how entry-mode data affects our ability to estimate risks in the biosecurity setting. Due to the relative ease of analysing line data, in our experience, entry mode data is often excluded from data analysis. From our analysis of real biosecurity data, we find that including the entry mode data in analysis can markedly change some results and that by only using line data the analysis is somewhat blinkered -- there are parameter estimates that simply cannot be made. 
+
+Through our simulation study and our asymptotic analysis we gain an understanding of how mixing entry mode data into line mode data impacts our ability to make precise inferences. We see that mixing lines that have different probabilities of being non-compliant has divergent affects on model precision. In the asymptotic analysis we see that mixing a high-probability item with a lower probability item makes it easier to precisely estimate the high-probability item's parameter, while mixing two low-probability items makes it challenging to make inferences about either. These interactions between items are exacerbated in the simulation study, where we have larger entries and more item types, and we see differing patterns of item types, entry sizes and amounts of data where the presence of entry-mode data degrades model precision, compared to a line-only analyis. 
+
+While we are able to model the full dataset, the continuing presence of entry mode data will be a barrier for future data analysis. Most statistical and machine learning algorithms are designed such that each row of data will have explanatory variables and an outcome. With entry-mode data, we have the explanatory variables, but only partial information about the outcome. Hence, we need customised algorithms (such as described in this paper) to analyse it appropriately. It may be possible to use an expectation-minimisation algorithm type approach in combination with machine learning to allow us to use more methods with these data. However, we are unaware of current implementations of this, and, at the very least, it would greatly increase computational time.
 
 
 

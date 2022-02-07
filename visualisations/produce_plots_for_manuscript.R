@@ -63,7 +63,7 @@ ggplot(df, aes(x = num_total_rows, y = summary_sd, color = as.factor(percentage_
   geom_line() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   facet_grid(`Entry Size`~alpha_vals, labeller = labeller(.rows = label_both, .cols = label_value)) +
-  scale_color_discrete(name = "Ratio container data") +
+  scale_color_discrete(name = "Ratio of entry\nmode data") +
   labs(title = "Standard deviation of parameter estimates by amount of data") +
   ylab('Standard deviation') + xlab('Total number of lines')
 ggsave(paste0(path,'sim_study_pint_vs_data_vs_entry_size.pdf'), width = 7, height = 8)
@@ -229,6 +229,19 @@ ggplot(aes(x = p)) +
   labs(title = "Prior without entry effect")
   ggsave(paste0(path,'pint_prior.pdf'), width = 8, height=6)
 }
+
+  {
+  week1 <- read.csv('case_study/data_for_stan/furniture_data_2020_week_1_inspected.csv') %>% mutate(Week=1)
+  week2 <- read.csv('case_study/data_for_stan/furniture_data_2020_week_2_inspected.csv') %>% mutate(Week=2)
+  week3 <- read.csv('case_study/data_for_stan/furniture_data_2020_week_3_inspected.csv') %>% mutate(Week=3)
+  real_data <- rbind(week1, week2,week3)
+  real_data[real_data$Mode=='Container',]$Mode <- 'Entry'
+  xtable(real_data %>% group_by(Week, Mode) %>% summarise('Number of lines'=n()) %>%
+    pivot_wider(id_cols = c(Week),
+                names_from = Mode,
+                values_from = 'Number of lines') %>% mutate('Ratio'=Entry/(Entry+Line)))
+}
+
 
 xtable(
 raw_data %>%
