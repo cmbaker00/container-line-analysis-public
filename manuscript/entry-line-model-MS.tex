@@ -37,35 +37,35 @@
 \linespread{1.25}
 
 
-\title{Entry and line mode}
+\title{Container and line mode}
 \author{Christopher M.\ Baker \and Howard Bondell \and Nathaniel Bloomfield \and Elena Tartaglia \and Andrew P.\ Robinson}
 \begin{document}  
 \maketitle
 \begin{abstract}
-In the Australian border biosecurity system, data about shipping containers is recorded in one of two modes: \emph{entry} mode or \emph{line} mode. The key difference between the modes is how the \emph{directions} are recorded, that is, data about whether entries were inspected or found to be non-compliant. In general, an entry contains multiple lines of data, where each line is a single type of item or commodity. Analysis is simple when the data is recorded in line mode: the directions are recorded individually for each line. The challenge comes when data is recorded in entry mode, because the same direction is recorded against each line in the entry. In other words, if at least one line in an entry has a non-compliant inspection result, then all lines in that entry are recorded as non-compliant. Therefore, entry mode data creates a challenge when we try to estimate the probability that certain items are non-compliant, because we do not know which records of non-compliance match up with which line. We develop a statistical model to use entry mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of entry mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset. 
+National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In the Australian border biosecurity system, data about shipping containers are recorded in one of two modes: \emph{container} mode or \emph{line} mode. The key difference between the modes is how the \emph{directions} are recorded, that is, data about whether entries were inspected and subsequently found to be non-compliant. In general, an entry contains multiple lines of data, where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry. In other words, if at least one line in an entry has a non-compliant inspection result, then all lines in that entry are recorded as non-compliant. Therefore, container mode data creates a challenge for estimating the probability that certain items are non-compliant, because matching the records of non-compliance to the line information is impossible. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the pathway is recovered using the new model. 
 \end{abstract}
 
 \section{Introduction}
 
-Invasive species pose a multifaceted threat to society, leading to reductions in agricultural productivity, as well as damages to the environment, human health, and the economy \citep{kumar_rai_invasive_2020}. A large amount of effort goes into managing invasive species \citep{jardine_estimating_2018}, in either eradicating them \citep{baker_recent_2020,holmes_globally_2019, wenger_estimating_2017,helmstedt_prioritizing_2016}, or suppressing their numbers to reduce damages \citep{binny_long-term_2021,brook_effects_2012,sharov_slow_2002}. The costs associated with managing invasive species provides governments with an incentive to manage biosecurity risks at their borders to prevent new species establishing. 
+Invasive species pose a multifaceted threat to society, leading to reductions in agricultural productivity, as well as damages to the environment, human health, and the economy \citep{kumar_rai_invasive_2020}. Considerable effort is devoted to managing invasive species \citep{jardine_estimating_2018}, in either eradicating them \citep{baker_recent_2020,holmes_globally_2019, wenger_estimating_2017,helmstedt_prioritizing_2016}, or suppressing their numbers to reduce damages \citep{binny_long-term_2021,brook_effects_2012,sharov_slow_2002}. The costs associated with managing invasive species provides governments with an incentive to manage biosecurity risks at national borders to prevent the establishment of the new species. 
 
-Given the massive scale of global trade, biosecurity regulators need to be able to allocate their resources, but to do so effectively they must understand this risks associated with various entries. At the border, one of the most effective ways of achieving this is by using the outcome of previously conducted inspections as intelligence that informs future operations. This allows regulators to identify high risk commodities and importers, and modify their inspection targets and policies accordingly.
+Given the massive scale of global trade, biosecurity regulators need to be able to allocate their resources efficiently, but to do so they must understand the risks associated with various entries. At the border, one of the most effective ways of achieving this is by using the outcome of previously conducted inspections as intelligence that informs future operations. This allows regulators to identify high risk commodities and importers, and modify their inspection targets and policies accordingly.
 
 However, gaining insight from border inspections is a massive logistical challenge, as data must be consistently recorded in a format that makes this analysis possible. Putting infrastructure into place to collect this data, and collecting it accurately can be expensive and challenging. Often, shortcuts may be taken that render the data less valuable in analysing patterns of risk.
 
-In Australia systems have been put in place to capture biosecurity data since the early 90's. However, to reduce the administrative burden on border staff, two ways of recording cargo inspections were implemented: line mode and entry mode. In line mode, the details of which items within an entry are inspected and found to be compliant or non-compliant are fully recorded. However, in entry mode, the results of an inspection are applied to all items within an entry. Entry mode makes it much quicker for border staff to manage entries with a large number of items, but means that when the data are analysed, entries in entry mode a censored \textemdash{} in these cases, it is unknown which items were inspected and found to be compliant or non-compliant. This makes analysis of the data to identify trends in biosecurity risk challenging.
+In Australia systems have been put in place to capture biosecurity data since the early 90's. However, to reduce the administrative burden on border staff, two ways of recording cargo inspections were implemented, namely line mode and container mode. In line mode, the details of which items within an entry are inspected and found to be compliant or non-compliant are fully recorded. However, in container mode, the results of an inspection are applied to all items within an entry. Container mode was introduced so that containers could be released piecmeal in order to minimise the bottle-necks rcreated in ports when lines that comprise many containers are held until all of the line has been cleared.  Container mode makes it much quicker for border staff to manage entries with a large number of items, but means that when the data are analysed, entries in container mode a censored \textemdash{} in these cases, it is unknown which items were inspected and found to be compliant or non-compliant. This makes analysis of the data to identify trends in biosecurity risk challenging.
 
-Australian biosecurity data in entry mode is closely related to pooled testing, which is often used for disease surveillance. Within the pooled testing literature there is two main branches: one aims to identify positives within a pool, while the other seeks to use pooled data to estimate quantities about the population. It is the latter -- estimating quantities -- that we are interested in. The fundamental problem is estimating a prevalence, \(p\), within a population, when only pooled data is available \citep{thompson_estimation_1962}. More recent work has focused on improving estimates by reducing bias, either through altering the sampling strategy \citep{schaarschmidt_experimental_2007,hepworth_debiased_2009} or by incorporating bias correction into models  \citep{hepworth_bias_2017,hepworth_bias_2021}. There have also been extensions of the problem where \(p\) is not a constant, but it is estimated using linear regression using only the pooled data \citep{delaigle_nonparametric_2015, chatterjee_regression_2020, mcmahan_bayesian_2017, liu_generalized_2020}. These papers have made significant progress in fitting increasingly complex models.
+ Data that have been collected in container mode are closely related to the data collected under \emph{pooled testing}, which is often used for disease surveillance. Within the pooled testing literature there are two main branches: one aims to identify positives within a pool, while the other seeks to use pooled data to estimate quantities about the population. It is the latter -- estimating quantities -- that we are interested in. The fundamental problem is estimating a prevalence, \(p\), within a population, when only pooled data are available \citep{thompson_estimation_1962}. More recent work has focused on improving estimates by reducing bias, either through altering the sampling strategy \citep{schaarschmidt_experimental_2007,hepworth_debiased_2009} or by incorporating bias correction into models  \citep{hepworth_bias_2017,hepworth_bias_2021}. There have also been extensions of the problem where \(p\) is not a constant, but it is estimated using linear regression using only the pooled data \citep{delaigle_nonparametric_2015, chatterjee_regression_2020, mcmahan_bayesian_2017, liu_generalized_2020}. These papers have made significant progress in fitting increasingly complex models.
 
-In practice, however, pooled testing is manifestly different from the biosecurity scenario. Pooled testing exists by design, as a way to gather information about a population while reducing testing. In biosecurity, the searching is done to every individual line, and the results are only pooled at the point of data capture. Hence, we are interested in how much information we are losing due to aggregating results as entry mode. Or, equivalently, how much better could we be at managing bio-security risk if we stopped using entry mode when an entry contains multiple lines?
+In practice, however, pooled testing is manifestly different from the biosecurity scenario. Pooled testing exists by design, as a way to gather information about a population while reducing testing. In biosecurity, inspection is applied to every individual line, and the results are only pooled at the point of data capture. Hence, we are interested in how much information we are losing due to aggregating results as container mode. Or, equivalently, how much better could we be at managing biosecurity risk if we stopped using container mode when an entry contains multiple lines?
 
-In this paper we investigate how entry mode affects our ability to identify the biosecurity risk of items. We start with an asymptotic analysis, where we calculate the precision of estimates and determine the implications of mixing different item types in entry mode. We then  , which allows us to understand how larger entries and more item types affect the precision of our estimates. Finally, we analyse border interception data provided by the Australian Department of Agriculture, Water and the Environment (DAWE) to see the real-world differences between using the line-only data and including the entry mode data.
+In this paper we investigate the effect of container mode data collection upon our ability to estimate the biosecurity risk of items. We start with an asymptotic analysis, where we calculate the precision of estimates and determine the implications of mixing different item types in container mode. We then develop a simulation experiment that allows us to understand how larger entries and more item types affect the precision of our estimates. Finally, we analyse border interception data provided by the Australian Department of Agriculture, Water and the Environment (DAWE) to identify the real-world differences between using the line-only data and including the container mode data.
 \section{Model overview}
 \subsection{Data}\label{sec:data}
 
-To make our language about the data more precise, we will epliciltly define what we mean by entries, lines and directions. Entries are a collection of lines, and a line is a group of the same type of item or commodity being imported. When cargo enters the country, each line is given \emph{directions}. These detail all of the activities undertaken by the biosecurity regulator to manage the biosecurity risk of each line, and also the outcome of those activities.
+To make our language about the data more precise, we will epliciltly define what we mean by entries, lines and directions. Entries are a collection of lines, and a line is a group of the same type of item or commodity being imported. When cargo enters the country, each line is given \emph{directions}. These directions detail all of the activities undertaken by the biosecurity regulator to manage the biosecurity risk of each line, and also the outcome of those activities.
 
-In line mode, the directions assigned to each line are recorded along with the outcome for that line. In entry mode, directions are only recorded per entry. This means that in entry mode, if any line in that entry has an inspection, and non-compliance is found, every line in that entry is recorded to be non-compliant. If all of the lines in the entry are compliant, then they are all marked compliant, so in this case line and entry mode are equivalent.
+In line mode, the directions assigned to each line are recorded along with the outcome for that line. In container mode, directions are only recorded per entry. This means that in container mode, if any line in that entry has an inspection, and non-compliance is found, then every line in that entry is recorded to be non-compliant. If all of the lines in the entry are compliant, then they are all marked compliant, so in this case line and container mode are equivalent.
 
 \subsection{Modelling}\label{sec:model}
 Throughout this paper, we focus on estimating the probability that a line is non-compliant using information including the type of item, country of origin and whether it has complete documentation. The full model for the probability that a line is non-compliant, \(p_{ijk\ell}\),  is: 
@@ -90,12 +90,12 @@ The random effect $\gamma_\ell$ has distribution
 \label{eq:entry_effect}
 \end{align}
 
-If all data were in line mode, the above model would be a fairly standard mixed effects logistic regression with categorical variables. However, because of entry mode, we don't observe outcomes for each line, as every line in the entry is marked as non-compliant if any line in the entry is found to be non-compliant. Therefore, the outcome is whether the entry is compliant and we need to calculate the probability that the entry is non-compliant, which is 1 minus the probability that every line in the entry is compliant:
+If all data were in line mode then the above model would be a fairly standard mixed effects logistic regression with categorical variables. However, because of the use of container mode to capture the data, we don't observe outcomes for each line, as every line in the entry is marked as non-compliant if any line in the entry is found to be non-compliant. Therefore, the outcome is whether the entry is compliant and we need to calculate the probability that the entry is non-compliant, which is 1 minus the probability that every line in the entry is compliant:
 \begin{align}
 \mathbb{P}\left(\text{Entry } l \text{ non-compliant}\right) = q_l = 1-\prod_{n\in\text{lines}(l)}[1-p_n],\label{eq:entry_pr}
 \end{align}
-where \(p_n\) is the probability that the \(n^\text{th}\) line is non-compliant, calculated from Eq.~\eqref{eq:logit_model_sim}.
-Hence, for entries in entry mode, we treat the entry  as a Bernoulli random variable with probability defined by Eq.~\eqref{eq:entry_pr}, while for entries in line mode, we treat each line as a Bernoulli random variable with probability as defined in Eq.~\eqref{eq:logit_model_sim}.
+where \(p_n\) is the probability that the \(n^\text{th}\) line is non-compliant, calculated from Eq.~\eqref{eq:logit_model_sim}.\footnote{FIXME?: The change in index between this equation compared with the previous is a little jarring.}}
+Hence, for entries in container mode, we treat the entry  as a Bernoulli random variable with probability defined by Eq.~\eqref{eq:entry_pr}, while for entries in line mode, we treat each line as a Bernoulli random variable with probability as defined in Eq.~\eqref{eq:logit_model_sim}.
 
 
 This paper includes three analyses: an asymptotic analysis,
@@ -103,22 +103,22 @@ This paper includes three analyses: an asymptotic analysis,
 
 
 \section{Asymptotic analysis}\label{sec:asymptotic_analysis}
-We use asymptotic analysis to investigate how the precision of estimates depends on entry size, the number of entries, the probability of interception and whether item types are mixed. This analysis is broken into two parts. The first part assumes that all items are a single type, which allows us to quantify how the amount of data, probability of interception and entry size affects precision. The second part assumes that there are two different item types, and it explores how changing the proportion of entries with both item types mixed affects precision.
+We use asymptotic analysis to investigate how the precision of estimates depends on entry size, the number of entries, the probability of interception and whether item types are mixed. This analysis comprises two parts. The first assumes that all items are a single type, which allows us to quantify how the amount of data, probability of interception and entry size affect precision. The second part assumes that there are two different item types, and it explores how changing the proportion of entries with both item types mixed affects precision.
 
-Throughout this section we make two simplifications. Firstly, we do not separate line mode and entry mode because entry mode data with entry size 1 is mathematically equivalent to line mode data. Hence, throughout these analysis, entry size 1 means line mode and entry size greater than 1 implies entry mode. Secondly, we  assume that each item has a fixed probability of interception. Therefore, we consider each line a Bernoulli trial, which only depends on the item type. When the entry size is greater than one, the relevant probability is whether at least one line was intercepted.
+Throughout this section we make two simplifications. Firstly, we do not separate line mode and container mode because container mode data with entry size 1 is mathematically equivalent to line mode data. Hence, throughout these analysis, entry size 1 means line mode and entry size greater than 1 implies container mode. Secondly, we  assume that each item has a fixed probability of interception. Therefore, we consider each line a Bernoulli trial, which only depends on the item type. When the entry size is greater than one, the relevant probability is whether at least one line was intercepted.
 
-We estimate precision via calculation the Fisher information matrix, \(\mathcal{I}\). The Fisher information  matrix is the expected value of the negative of the Hessian matrix of the log-likelihood evaluated at the value of the parameter. We use the standard error estimate as our measurement of precision, which are the square roots of the diagonal elements of the inverse of \(\mathcal{I}\).
+We estimate precision via calculation the Fisher information matrix, \(\mathcal{I}\). The Fisher information  matrix is the expected value of the negative of the Hessian matrix of the log-likelihood evaluated at the value of the parameter.\footnote{Might reconsider the inclusion of this sentence depending on the target journal.}  We use the standard error estimate as our measurement of precision, which are the square roots of the diagonal elements of the inverse of \(\mathcal{I}\).
 
 \subsection{Single item type}
 For the single item type case, we set the probability of interception to be \(p\), and define \(N\) as the total number of entries, \(I\) as the number of entries intercepted and \(S\) as the size (i.e. the number of lines) in each entry. The likelihood is a binomial distribution, where the outcome is the an entry being intercepted. The probability that an entry is not intercepted is
 \begin{align}
 \mathbb{P}(\text{entry not intercepted}) = (1-p)^S,
 \end{align}
-meaning that the binomial likelihood for a set entry size, S, is
+meaning that the binomial likelihood for a set entry size $S$ is
 \begin{align}
 \mathcal{L}_S = \left(1-(1-p)^S\right)^I\left(1-p)^S\right)^{N-I}. \label{eq:entry_mode_like}
 \end{align}
-To generalise Eq.~\eqref{eq:entry_mode_like} to arbitrary entry sizes, we need the product over entry size:
+To generalise Eq.~\eqref{eq:entry_mode_like} to arbitrary entry sizes, we take the product over entry size:
 \begin{align}
 \mathcal{L}& = \prod_{S\in\mathbb{N}} \left(1-(1-p)^S\right)^{I_{E,S}}\left((1-p)^S\right)^{N_{E,S}-I_{E,S}},
 \label{eq:aymptotic_full_likelihood}
@@ -128,14 +128,14 @@ where \(S\) is the entry size, \(I_{E,S}\) is the number of inteceptions of entr
 \log\mathcal{L}& = \sum_{S\in\mathbb{N}}{I_{E,S}} \log\left(1-(1-p)^S\right)+(N_{E,S}-I_{E,S})\log\left((1-p)^S\right).
 \label{eq:loglikelihood_arbitrary_entry_size}
 \end{align}
-As there is only one parameter, we calculate its second derivative rather than there being a Hessian matrix:
+As there is only one parameter, we calculate its second derivative (rather than needing a Hessian matrix):
 \begin{align}
 \left[\frac{\partial^2 \log\mathcal{L}}{\partial p^2}\right]= \sum_{S\in\mathbb{N}}
 \frac{S\left(N_{E,S} + \frac{I_{E,S}((1+S)(1-p)^S-1)}
 {\left((1-p)^S-1 \right)^2} \right)}
 {(1-p)^2}.\label{eq:loglike_2nd_deriv}
 \end{align}
-To calculate the Fisher information, we need the expected value of the number of interceptions, which depends on the size of the entry:
+To calculate the Fisher information, we take the expectation of the number of interceptions, which depends on the size of the entry:
 \begin{align}
 \mathbb{E}\left[I_{E,S}\right] = N_{E,S}(1-(1-p)^S). \label{eq:exp_intercept}
 \end{align} 
@@ -146,11 +146,11 @@ Hence the Fisher information is
 \end{align}
 and the standard error estimate is
 \begin{align}
-SE = \sqrt{\frac{1}{-\sum_{S\in\mathbb{N}}\frac{N_{E,S}S^2(1-p)^{S-2}}{(1-p)^S-1}}}.\label{eq:general_SE_calc}
+SE = (-\sum_{S\in\mathbb{N}}\frac{N_{E,S}S^2(1-p)^{S-2}}{(1-p)^S-1})^{-1/2}. \label{eq:general_SE_calc}
 \end{align}
 
 
-Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of interception, the entry size and the number of lines affect the standard error, and we plot these relationships in Figure~\ref{fig:asymptotic_SE_plots}. The left plot shows that the standard error depends on the probability of interception and that the relationship depends on the entry size. For all entry sizes, the standard error is small when the probability of interception is small (below \(\sim 0.3\)). However, for larger values of the probability of interception, the standard error increase significantly if the entry size is three or greater. The large \(p\) behaviour is driven by the \((1-p)^{S-2}\) term in Eq.~\eqref{eq:general_SE_calc}, which means SE goes to 0 if \(S=1\), while it diverges if \(S\geq 3\). Figure~\ref{fig:asymptotic_SE_plots} also shows how the standard error decreases as the number of lines of data increases. The lower the entry size is, the lower the standard error, and, as \(SE\sim\sqrt{1/N_{E,S}}\), entry mode data with larger entry sizes require a large amount of data to reach the same standard error. 
+Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of interception, the entry size and the number of lines affect the standard error, and we plot these relationships in Figure~\ref{fig:asymptotic_SE_plots}. The left plot shows that the standard error depends on the probability of interception and that the relationship depends on the entry size. For all entry sizes, the standard error is small when the probability of interception is small (below \(\sim 0.3\)). However, for larger values of the probability of interception, the standard error increase significantly if the entry size is three or greater. The large \(p\) behaviour is driven by the \((1-p)^{S-2}\) term in Eq.~\eqref{eq:general_SE_calc}, which means SE goes to 0 if \(S=1\), while it diverges if \(S\geq 3\). Figure~\ref{fig:asymptotic_SE_plots} also shows how the standard error decreases as the number of lines of data increases. The lower the entry size is, the lower the standard error, and, as \(SE\sim\sqrt{1/N_{E,S}}\), container mode data with larger entry sizes require a large amount of data to reach the same standard error. 
 
 
 \begin{figure}[h!]
@@ -168,7 +168,7 @@ Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of in
 
 
 \subsection{Two item types}
-In this section we consider a situation where there are two items with probabilities of interception of \(p_1\) and \(p_2\), and we examine how these different items type probabilities interact. We focus on a scenario where every entry is of size two, meaning there are three types of entries: only type 1; only type 2; or mixed, with one line of type 1 and one of  type 2. We denote the number of lines within a single entry of type 1 and 2 as \(S_1\) and \(S_2\) respectively, and \(I(S_1,S_2\) and \(N(S_1,S_2)\) are the number of interceptions and total number of entries with \(S_1\) type 1 lines and \(S_2\) type 2 lines. For our case, we can have \(S_1=2, S_2=0\), \(S_1=1, S_2=1\) or \(S_1=0, S_2=2\). Rewriting the log-likelihood from Eq.~\eqref{eq:loglikelihood_arbitrary_entry_size}, we get
+In this section we consider a situation where there are two items with probabilities of interception of \(p_1\) and \(p_2\), and we examine how these different items probabilities interact. We focus on a scenario where every entry is of size two, meaning there are three types of entries: only type 1; only type 2; or mixed, with one line of type 1 and one of  type 2. We denote the number of lines within a single entry of type 1 and 2 as \(S_1\) and \(S_2\) respectively, and \(I(S_1,S_2\) and \(N(S_1,S_2)\) are the number of interceptions and total number of entries with \(S_1\) type 1 lines and \(S_2\) type 2 lines. For our case, we can have \(S_1=2, S_2=0\), \(S_1=1, S_2=1\) or \(S_1=0, S_2=2\). Rewriting the log-likelihood from Eq.~\eqref{eq:loglikelihood_arbitrary_entry_size}, we get
 \begin{align}
 \log\mathcal{L} =& \sum_{S_1,S_2}{I(S_1,S_2)}\log\left(1-(1-p_1)^{S_1}(1-p_2)^{S_2}\right) + \nonumber
 \\ &\quad\quad(N(S_1,S_2)-I(S_1,S_2))\log\left((1-p_1)^{S_1}(1-p_2)^{S_2}\right). \label{eq:entry_mode_loglike_2types}
@@ -188,7 +188,7 @@ where \(N_{1,1}\) and \(N_{2,2}\) are the number of entries with two type 1 line
 
 By examining Eq.~\eqref{eq:p1_two_type_SE_est} we can see that the behavior of the standard errors is more complex than when we considered only one type of item. Notably, the number of entries of only type 2, \(N_{2,2}\), is in the equation for the type 1 standard error, along with the probability of interception of type 2, \(p_2\). 
 
-Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with the proportion of mixed entries, for different interception probabilities. In each case, we hold \(p_1\) at 0.1, and we vary \(p_2\) for 0.05 up to 0.9 across the four plots. Interestingly, how the standard error changes as a function of the proportion of mixed entries changes markedly, depending on the value of \(p_2\). In particular, when \(p_2\) is 0.7 and 0.9, the standard error for the \(p_1\) increases as the proportion of mixed entries increases, while the standard error for \(p_2\) actually decreases, while the proportion of mixed entries is below \(\sim 90 \%\).
+Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with the proportion of mixed entries, for different interception probabilities. In each case, we hold \(p_1\) at 0.1, and we vary \(p_2\) for 0.05 up to 0.9 across the four plots. The way that the standard error changes as a function of the proportion of mixed entries changes markedly, depending on the value of \(p_2\). In particular, when \(p_2\) is 0.7 and 0.9, the standard error for \(p_1\) increases as the proportion of mixed entries increases, while the standard error for \(p_2\) actually decreases, while the proportion of mixed entries is below \(\sim 90 \%\).
 
 
 
@@ -213,7 +213,7 @@ Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with t
 \end{figure}
 
 %
-%Across the plots in Figure~\ref{fig:two_type_se_fourplot}, the behavior of the standard error for \(p_1\) looks quite similar. However, comparing the standard error for \(p_1\) for different values of \(p_2\) shows that the value of \(p_2\) has a measurable impact on the standard error of the \(p_1\) estimate (Figure~\ref{fig:two_type_p1_fixed_p2_vary}). Here we see that the standard error for \(p_1\) increases as the value of \(p_2\) increases. Combing this result with the results in Figure~\ref{fig:two_type_se_fourplot}, we see that if low and high probability items are mixed in entry mode, we can estimate the risk of the high probability items, but it comes at the detriment for our ability to identify low-risk items. 
+%Across the plots in Figure~\ref{fig:two_type_se_fourplot}, the behavior of the standard error for \(p_1\) looks quite similar. However, comparing the standard error for \(p_1\) for different values of \(p_2\) shows that the value of \(p_2\) has a measurable impact on the standard error of the \(p_1\) estimate (Figure~\ref{fig:two_type_p1_fixed_p2_vary}). Here we see that the standard error for \(p_1\) increases as the value of \(p_2\) increases. Combing this result with the results in Figure~\ref{fig:two_type_se_fourplot}, we see that if low and high probability items are mixed in container mode, we can estimate the risk of the high probability items, but it comes at the detriment for our ability to identify low-risk items. 
 %
 %
 %
@@ -226,10 +226,10 @@ Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with t
 
 \subsection{Asymptotic analysis conclusions}
 
-From the asymptotic analysis we can conclude two key lessons:
+From the asymptotic analysis we make two observations:
 \begin{enumerate}
-\item Entry mode data is most useful when the probability of interception, \(p\), is small. In the extreme case where \(p\rightarrow 0\), entry mode data is equivalent to line mode data because whenever an entry is \emph{not} intercepted, we know every line was not intercepted, regardless of whether it is entry mode or line mode. 
-\item Entries in entry mode with mixed entries can increase or decrease the precision of estimates, depending on the true probability of non-compliance. 
+\item Container mode data are most useful when the probability of interception, \(p\), is small. In the extreme case where \(p\rightarrow 0\), container mode data are equivalent to line mode data because whenever an entry is \emph{not} intercepted, we know every line was not intercepted, regardless of whether it is container mode or line mode. 
+\item Entries in container mode with mixed entries can increase or decrease the precision of estimates, depending on the true probability of non-compliance. 
 \end{enumerate}
 
 
@@ -237,12 +237,12 @@ From the asymptotic analysis we can conclude two key lessons:
 As the first step in developing a method to analyse real-world data sets, we simulate a data set that contains key complexities including multiple item types, fixed effects and random effects. Once we have simulated data, we can fit a model to estimate parameters. The advantage of our approach is that we can (1) verify that our model behaves correctly and (2) explore how model precision varies in a more complex setting.
 
 \subsection{Data simulation}
-We simulate data from the full model (as described in Section~\ref{sec:model}). For our simulations, chose parameters which we expect to be similar to their values in real-world data. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and .2, if all other effects were 0). We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data. We used $d=3$ countries and set their weights to be .5, -1 and .25.
+We simulate data from the full model (as described in Section~\ref{sec:model}). For our simulations, we chose parameters that we expect to be similar to real-world values. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to interception probabilities of 0.001, 0.01, 0.02, 0.05 and 0.2, if all other effects were 0). We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data. We used $d=3$ countries and set their weights to be 0.5, -1 and 0.25.
 For within-entry correlation, we set \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set the probability of having correct documentation to be 0.2. We show an example of the format of the data in Table \ref{table:example_data}.
 
 \vspace{0.1cm}
 \begin{table}[h]
-\caption{Example simulated data. Lines 1-3 are all marked as non-compliant because entry 1 is in entry mode, even though only 1 or 2 of the lines were actually non-compliant.}
+\caption{Example simulated data. Lines 1-3 are all marked as non-compliant because entry 1 is in container mode, even though only 1 or 2 of the lines were actually non-compliant.}
 \label{table:example_data}
 \begin{center}
 
@@ -250,11 +250,11 @@ For within-entry correlation, we set \(\sigma = 0.25\). For each entry we draw w
 \hline 
 Line & Entry & Type & Documentation & Mode & Non-compliant \\ 
 \hline 
-1 & 1 & 3 & 1  & Entry & 1 \\ 
+1 & 1 & 3 & 1  & Container & 1 \\ 
 \hline 
-2 & 1 & 2 & 0  & Entry & 1 \\ 
+2 & 1 & 2 & 0  & Container & 1 \\ 
 \hline 
-3 & 1 & 1 & 0 & Entry & 1 \\ 
+3 & 1 & 1 & 0 & Container & 1 \\ 
 \hline 
 4 & 2 & 5 & 0 &Line & 0 \\ 
 \hline 
@@ -268,7 +268,7 @@ Line & Entry & Type & Documentation & Mode & Non-compliant \\
 \end{table}
 
 \subsection{STAN model}
-We model the system in a Bayesian framework, using the RSTAN package in R. The basic structure for fitting the simulated data is to define the probability of interception for each line (following Eq.~\eqref{eq:logit_model_sim})
+We model the system in a Bayesian framework, using the RSTAN package in R.\footnote{FIXME: we should explain why we used a Bayesian approach.} The basic structure for fitting the simulated data is to define the probability of interception for each line (following Eq.~\eqref{eq:logit_model_sim})
 \begin{align}
 \logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell, \label{eq:logit_model_fit_sim}
 \end{align}
@@ -291,13 +291,13 @@ The probability $p_{ijk\ell}$ is the probability of non-compliance of a line tha
 %\text{Non-compliant}_{n, \text{line}} \sim \text{Bernoulli}(p_{(n)}).
 %\end{align}
 %
-%However, the entry mode data complicates the model, because for each entry there is only one response variable, irrespective of how many lines are contained within the entry. Hence, as we did in the asymptotic analysis for the entry data (Eq.~\eqref{eq:entry_mode_like}), we need to calculate the probability that at least one line in the entry is non-compliant:
+%However, the container mode data complicates the model, because for each entry there is only one response variable, irrespective of how many lines are contained within the entry. Hence, as we did in the asymptotic analysis for the entry data (Eq.~\eqref{eq:entry_mode_like}), we need to calculate the probability that at least one line in the entry is non-compliant:
 %\begin{align}
 %\mathbb P(\text{Entry } \ell \text{ non-compliant}) = q_\ell = 1 - \prod_{n\in\text{lines}(\ell)} (1-p_{(n)}),
 %\end{align}
 %where $\text{lines}(\ell)$ is the set of all lines in entry $\ell$.
 %
-%Therefore, for entry mode data, the random variable that indicates whether entry $\ell$ is non-compliant has distribution
+%Therefore, for container mode data, the random variable that indicates whether entry $\ell$ is non-compliant has distribution
 %\begin{align}
 %\text{Non-compliant}_{\ell, \text{entry}} \sim \text{Bernoulli}(q_\ell).
 %\end{align} 
@@ -307,28 +307,30 @@ The probability $p_{ijk\ell}$ is the probability of non-compliance of a line tha
 %}{\color{blue} this defines the likelihood}
 %
 %\subsection{Model verification}
-%The primary aim of our work is to investigate the relative contribution of entry mode data to precision of parameter estimates. However, before analysing precision it is important to ensure that we are able to accurately estimate parameters with our model and that precision estimates using STAN match the asymptotic analysis.
+%The primary aim of our work is to investigate the relative contribution of container mode data to precision of parameter estimates. However, before analysing precision it is important to ensure that we are able to accurately estimate parameters with our model and that precision estimates using STAN match the asymptotic analysis.
 %\subsubsection{Model precision}
 %To check model precision, we simulate a simplified dataset, with a single item type and no other fixed or random effects, and compare the STAN estimates with the asymptotic approximation, from Eq.~\eqref{eq:general_SE_calc}. As STAN is a Bayesian approach, it is apropriate to comapare the standard error estiamte, Eq.~\eqref{eq:general_SE_calc}, to the standard deviation of the STAN posterior draws. 
 %The simulation uses \(p=0.05\) and we vary the number of entries \(N_E\) and the entry size, \(S\) and the comparison is shown in Figure~\ref{fig:SD_est_simulated}.
 
-\subsection{Simulation results}
-We fit the STAN model to the simulated data for two reasons. Firstly we confirm confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of entry mode data affects precision, over a range of entry sizes. To measure precision, we use the standard deviation of the posterior samples, because it is the Bayesian equivalent of the standard error calculations in Section~\ref{sec:asymptotic_analysis}.
 
-Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. Overall, the STAN estimates are close to the true values when there is a large amount of data. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}). Although our estimates are close, we do not expect them to be exact because of the priors and there may be a bias in the model that we do not account for. 
+We fit the STAN model to the simulated data for two reasons. Firstly we confirm confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of container mode data affects precision, over a range of entry sizes. To measure precision, we use the standard deviation of the posterior samples, because it is the Bayesian equivalent of the standard error calculations in Section~\ref{sec:asymptotic_analysis}.
+
+\subsection{Simulation results}
+
+Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. Overall, the STAN estimates are close to the true values when there is a large amount of data. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}). Although our estimates are close, we do not expect them to be exact because of the priors and there may be a bias in the model that we do not account for.\footnote{FIXME: not sure what this is referring to?} 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
-\caption{Results from the STAN model, fitted to simulated data. 50\% of the data is in entry mode and 50\% is in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter.}
+\caption{Results from the STAN model, fitted to simulated data. 50\% of the data are in container mode and 50\% are in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter.}
 \label{fig:simulation_estimation}
 \end{figure}
 
-The precision of model estimates depends on the entry size, the probability of non-compliance and the amount of entry mode data (Figure~\ref{fig:SD_est_simulated}). The best-case scenario is when all data is in line mode (ratio of entry mode = 0), and the distance from that line shows the impact of using a mix, or only, entry mode data. We find that the difference between the precision estimates depends strongly on the combination of factors. There are some combinations where all analyses return similar precision (e.g. \(\alpha=-1.4\) and entry size 10), while other combinations have a large gap where the line only data far outperforms the others (e.g. \(\alpha=-4.6\) and entry size = 5).
+The precision of model estimates depends on the entry size, the probability of non-compliance and the amount of container mode data (Figure~\ref{fig:SD_est_simulated}). The best-case scenario is when all data are in line mode (ratio of container mode = 0), and the distance from that line shows the impact of using a mix, or only, container mode data. We find that the difference between the precision estimates depends strongly on the combination of factors. There are some combinations where all analyses return similar precision (e.g. \(\alpha=-1.4\) and entry size 10), while other combinations have a large gap where the line only data far outperforms the others (e.g. \(\alpha=-4.6\) and entry size = 5).
 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf}
-\caption{The standard deviation of the alpha parameter estimates for simulations with varying entry size and total number of lines. The ratio of entry mode data is the proportion of data in entry mode, meaning that 0 corresponds to line mode data-sets, 0.5 if a mixed data-set and 1 is purely entry mode. }
+\caption{The standard deviation of the alpha parameter estimates for simulations with varying entry size and total number of lines. The ratio of container mode data is the proportion of data in container mode, meaning that 0 corresponds to line mode data-sets, 0.5 if a mixed data-set and 1 is purely container mode. }
 \label{fig:SD_est_simulated}
 \end{figure}
 
@@ -336,27 +338,27 @@ The precision of model estimates depends on the entry size, the probability of n
 
 
 \section{Case study}
-We apply our model to some real biosecurity data, to see how our understanding of the system changes by fitting the full data, compared to only using the entry mode data. The data set is of furniture imports in 2020, and we choose to analyse the 3 weeks of data that have the most non-compliance in entry-mode. We choose these weeks because non-compliance in entry mode is the most interesting for this analysis (for weeks where there is no entry mode non-compliance, the entire data is equivalent to line mode). For confidentiality, for each week we re-name the item type, the country and the week to be integers (week 1, 2 and 3 do not correspond to the first 3 weeks of the year, and country 1 and item 1 are not the same in weeks 1 and 2). Relabeling the data does not cause issues because we are not trying to compare estimates between weeks or draw inferences between countries or item types in this analysis. A summary of the data is given in Table~\ref{tab:real_data_summary}.
+We apply our model to some real biosecurity data, to see how our understanding of the system changes by fitting the full data, compared to only using the container mode data. The data set is of furniture imports in 2020, and we choose to analyse the three weeks of data that have the most non-compliance in container-mode. \footnote{FIXME: why only three weeks?} We choose these weeks because non-compliance in container mode is the most interesting for this analysis (for weeks where there is no container mode non-compliance, the entire data are equivalent to line mode). For confidentiality, for each week we re-name the item type, the country and the week to be integers (week 1, 2 and 3 do not correspond to the first 3 weeks of the year, and country 1 and item 1 are not the same in weeks 1 and 2). Relabeling the data does not cause issues because we are not trying to compare estimates between weeks or draw inferences between countries or item types in this analysis. A summary of the data is given in Table~\ref{tab:real_data_summary}.
 
 % latex table generated in R 4.0.5 by xtable 1.8-4 package
 % Mon Feb 07 17:13:09 2022
 \begin{table}[ht]
-\caption{The number of lines in entry mode and line mode for each week. The ratio is the fraction of the week's data that is in entry mode.}
+\caption{The number of lines in container mode and line mode for each week. The ratio is the fraction of the week's data that is in container mode.}
 \label{tab:real_data_summary}
 \centering
 \begin{tabular}{rrrrr}
   \hline
  Week & Entry & Line & Ratio \\ 
   \hline
- 1.00 & 516 & 6741 & 0.07 \\ 
-  2.00 & 1667 & 7213 & 0.19 \\ 
-   3.00 & 679 & 6832 & 0.09 \\ 
+ 1 & 516 & 6741 & 0.07 \\ 
+  2 & 1667 & 7213 & 0.19 \\ 
+   3 & 679 & 6832 & 0.09 \\ 
    \hline
 \end{tabular}
 \end{table}
 
 
-We fit our STAN model to the data from each week, using all the data and the line-only subset of the data. Because the line-only analysis is a subset of the data, not every country or item is present in the line-only data set. For the parameters that do match, we generate a scatter plot of the mean estimates to see how frequently we get different estimates (Figure~\ref{fig:case_study_scatter}). For many of the parameters, we get very similar results irrespective of which data we use. This is not surprising, given that most of the data is in line mode and that line mode data generally gives more information than entry mode data. However, it is interesting that including the entry mode data results in quite large changes to some of the parameter estimates. 
+We fit our STAN model to the data from each week, using all the data and the line-only subset of the data. Because the line-only analysis is a subset of the data, not every country or item is present in the line-only data set. For the parameters that do match, we generate a scatter plot of the mean estimates to see how frequently we get different estimates (Figure~\ref{fig:case_study_scatter}). For many of the parameters, we get very similar results irrespective of which data we use. This is not surprising, given that most of the data are in line mode and that line mode data generally gives more information than container mode data. However, it is interesting that including the container mode data results in quite large changes to some of the parameter estimates. 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../visualisations/figures/p_int_est_all_vs_line_data.pdf}
@@ -364,7 +366,7 @@ We fit our STAN model to the data from each week, using all the data and the lin
 \label{fig:case_study_scatter}
 \end{figure}
 
-Analysing the full data set, rather than the line-only data, gives us information about more items and countries. Table~\ref{tab:estimates_only_from_all_data} show all of the parameter estimates that we only get when including the entry mode data in the analysis. 
+Analysing the full data set, rather than the line-only data, gives us information about more items and countries. Table~\ref{tab:estimates_only_from_all_data} shows all of the parameter estimates that we only get when including the container mode data in the analysis. 
 
 
 \begin{table}[ht]
@@ -392,13 +394,13 @@ Analysing the full data set, rather than the line-only data, gives us informatio
 
 \section{Discussion}
 
-In this paper we sought to understand how entry-mode data affects our ability to estimate risks in the biosecurity setting. Due to the relative ease of analysing line data, in our experience, entry mode data is often excluded from data analysis. From our analysis of real biosecurity data, we find that including the entry mode data in analysis can markedly change some results and that by only using line data the analysis is somewhat blinkered -- there are parameter estimates that simply cannot be made. 
+In this paper we sought to understand how container-mode data affects our ability to estimate risks in the biosecurity setting. Due to the relative ease of analysing line data, in our experience, container mode data are often excluded from data analysis. From our analysis of real biosecurity data, we find that including the container mode data in analysis can markedly change some results and that by only using line data the analysis is somewhat limited -- there are parameter estimates that simply cannot be made. 
 
-Through our simulation study and our asymptotic analysis we gain an understanding of how mixing entry mode data into line mode data impacts our ability to make precise inferences. We see that mixing lines that have different probabilities of being non-compliant has divergent affects on model precision. In the asymptotic analysis we see that mixing a high-probability item with a lower probability item makes it easier to precisely estimate the high-probability item's parameter, while mixing two low-probability items makes it challenging to make inferences about either. These interactions between items are exacerbated in the simulation study, where we have larger entries and more item types, and we see differing patterns of item types, entry sizes and amounts of data where the presence of entry-mode data degrades model precision, compared to a line-only analyis. 
+Through our simulation study and our asymptotic analysis we gain an understanding of how mixing container mode data into line mode data impacts our ability to make precise inferences. We see that mixing lines that have different probabilities of being non-compliant has divergent affects on model precision. In the asymptotic analysis we see that mixing a high-probability item with a lower probability item makes it easier to precisely estimate the high-probability item's parameter, while mixing two low-probability items makes it challenging to make inferences about either. These interactions between items are exacerbated in the simulation study, where we have larger entries and more item types, and we see differing patterns of item types, entry sizes and amounts of data where the presence of container-mode data degrades model precision, compared to a line-only analyis. 
 
-While we are able to model the full dataset, the continuing presence of entry mode data will be a barrier for future data analysis. Most statistical and machine learning algorithms are designed such that each row of data will have explanatory variables and an outcome. With entry-mode data, we have the explanatory variables, but only partial information about the outcome. Hence, we need customised algorithms (such as described in this paper) to analyse it appropriately. It may be possible to use an expectation-minimisation algorithm type approach in combination with machine learning to allow us to use more methods with these data. However, we are unaware of current implementations of this, and, at the very least, it would greatly increase computational time.
+While we are able to model the full dataset, the continuing presence of container mode data will be a barrier for future data analysis. Most statistical and machine learning algorithms are designed such that each row of data will have explanatory variables and an outcome. With container-mode data, we have the explanatory variables, but only partial information about the outcome. Hence, we need customised algorithms (such as described in this paper) to analyse it appropriately. It may be possible to use an expectation-minimisation algorithm type approach in combination with machine learning to allow us to use more methods with these data. However, we are unaware of current implementations of this, and, at the very least, it would greatly increase computational time.
 
-While the grouping of biosecurity data into entry mode
+While the grouping of biosecurity data into container mode
 
 
 %%\begin{figure}[h!]
@@ -439,9 +441,9 @@ While the grouping of biosecurity data into entry mode
 %
 %\section{Precision and data}
 %\subsection{Full model precision}
-%Here we investigate how the precision of estimates depend on the type and amount of data used. The three main variables are entry size, mode and number of rows. We generate simulated data sets with the entry size for every entry set to either 2, 3, 4 or 5. For mode, we fit either only the entry data, only the line data, all (ie a random mix of entry and line). Finally, we also vary the number of rows, from 1,000 up to 32,000.
+%Here we investigate how the precision of estimates depend on the type and amount of data used. The three main variables are entry size, mode and number of rows. We generate simulated data sets with the entry size for every entry set to either 2, 3, 4 or 5. For mode, we fit either only the container data, only the line data, all (ie a random mix of container and line). Finally, we also vary the number of rows, from 1,000 up to 32,000.
 %
-%Figure~\ref{fig:line_entry_comparison} shows the difference in the standard deviation of estimate for p2 and entry size 3 by data type, showing line only data has the best precision, followed by all and finally by entry mode. 
+%Figure~\ref{fig:line_entry_comparison} shows the difference in the standard deviation of estimate for p2 and entry size 3 by data type, showing line only data has the best precision, followed by all and finally by container mode. 
 %
 %
 %\begin{figure}[ht]
@@ -450,7 +452,7 @@ While the grouping of biosecurity data into entry mode
 %\label{fig:line_entry_comparison}
 %\end{figure}
 %
-%To see how combining entry and line data changes the standard error, we fit the model using \(n\) rows of line mode data; \(n\) rows of entry mode data; and then we combine these to make a `combined' dataset with \(n+n\) rows. Figure~\ref{fig:facet_plot_entry_size_p1to4} shows the results for various entry sizes and for p[1], p[2], p[3] and p[4]. The horisontal axis is \(n\), meaning that for each point, the combined data set has twice as much data compared to entry or line mode.
+%To see how combining container and line data changes the standard error, we fit the model using \(n\) rows of line mode data; \(n\) rows of container mode data; and then we combine these to make a `combined' dataset with \(n+n\) rows. Figure~\ref{fig:facet_plot_entry_size_p1to4} shows the results for various entry sizes and for p[1], p[2], p[3] and p[4]. The horisontal axis is \(n\), meaning that for each point, the combined data set has twice as much data compared to container or line mode.
 %
 %\begin{figure}[ht]
 %\includegraphics[width=\textwidth]{../results/data_type_comparison_combined_facet.pdf}
@@ -458,7 +460,7 @@ While the grouping of biosecurity data into entry mode
 %\label{fig:facet_plot_entry_size_p1to4}
 %\end{figure}
 %
-%Next, rather than comparing n line with n entry and n+n line and entry, compare n line with a combination of n line + m*n entry, where m is a multiplyer.Figure \ref{fig:facet_plot_entry_multiplyer_1_3}
+%Next, rather than comparing n line with n container and n+n line and container, compare n line with a combination of n line + m*n container, where m is a multiplyer.Figure \ref{fig:facet_plot_entry_multiplyer_1_3}
 %\begin{figure}[ht]
 %\includegraphics[width=\textwidth]{../results/container_multiplyer_facet_more_reduced.pdf}
 %\caption{Comparison between line and combination}
@@ -472,7 +474,7 @@ While the grouping of biosecurity data into entry mode
 %\centering
 %\begin{tabular}{rrrrrr}
 %  \hline
-% & Broker.key & n\_line & n\_entry & perc\_line\_int & perc\_cont\_int \\ 
+% & Broker.key & n\_line & n\_container & perc\_line\_int & perc\_cont\_int \\ 
 %  \hline
 %1 & 59216.00 &  53 &   7 & 0.09 & 0.57 \\ 
 %  2 & 150563.00 &  29 &  14 & 0.17 & 0.36 \\ 
@@ -500,18 +502,18 @@ While the grouping of biosecurity data into entry mode
 %
 %
 %
-%We choose a broker that has 8.5k lines of data. 21 types of item and 8 countries. 5k lines are in entry mode and the remainder are in line mode. We exclude any item types from that dataset which have no entry mode data. We fit the model using all the data, the line only data and the entry only data. We show a scatter plot of the estimates of the fixed effects for the entry mode only and the line mode only fits in figure \ref{fig:country_effect_real_lineventry}. We report all of the means and standard deviations in table~\ref{tab:real_data_fit_comparison}.
+%We choose a broker that has 8.5k lines of data. 21 types of item and 8 countries. 5k lines are in container mode and the remainder are in line mode. We exclude any item types from that dataset which have no container mode data. We fit the model using all the data, the line only data and the container only data. We show a scatter plot of the estimates of the fixed effects for the container mode only and the line mode only fits in figure \ref{fig:country_effect_real_lineventry}. We report all of the means and standard deviations in table~\ref{tab:real_data_fit_comparison}.
 %
 %
 %% latex table generated in R 4.0.5 by xtable 1.8-4 package
 %% Tue Aug 31 14:37:59 2021
 %\begin{table}[ht]
-%\caption{The amount of data for each parameter and the estimate and standard deviation for fits using all of the data, only the line data and only the entry data.}
+%\caption{The amount of data for each parameter and the estimate and standard deviation for fits using all of the data, only the line data and only the container data.}
 %\label{tab:real_data_fit_comparison}
 %\centering
 %\begin{tabular}{rrrrrrrrr}
 %  \hline
-% & num\_line & num\_entry & all\_mean & all\_sd & line\_mean & line\_sd & entry\_mean & entry\_sd \\ 
+% & num\_line & num\_container & all\_mean & all\_sd & line\_mean & line\_sd & container\_mean & container\_sd \\ 
 %  \hline
 %p\_intercept[1] & 2442 & 4423 & -5.46 & 0.42 & -4.62 & 0.45 & -6.48 & 0.73 \\ 
 %  p\_intercept[2] & 529 & 995 & -6.16 & 0.65 & -5.44 & 0.68 & -5.58 & 0.87 \\ 
@@ -599,22 +601,22 @@ While the grouping of biosecurity data into entry mode
 %    # Adds the data for a row to the dataframe
 %    if (current_rows == 0){
 %      # If the dataframe is empty, then create it
-%      # Note, at this stage True and Record are identical, and these are adjusted later, for rows in entry mode.
-%      test_data <- data.frame(Type = entry_true_data[1],
+%      # Note, at this stage True and Record are identical, and these are adjusted later, for rows in container mode.
+%      test_data <- data.frame(Type = container_true_data[1],
 %                              Mode=mode,
-%                              Entry=current_entry,
+%                              Container=current_container,
 %                              Line=line,
 %                              Documentation=doc,
-%                              TrueInspect=entry_true_data[2],
-%                              TrueIntercept=entry_true_data[3],
-%                              RecordInspect=entry_true_data[2],
-%                              RecordIntercept=entry_true_data[3])
+%                              TrueInspect=container_true_data[2],
+%                              TrueIntercept=container_true_data[3],
+%                              RecordInspect=container_true_data[2],
+%                              RecordIntercept=container_true_data[3])
 %    } else {
-%      test_data <- rbind(df, c(entry_true_data[1], mode, current_entry,line, doc,
-%                               entry_true_data[2],
-%                               entry_true_data[3],
-%                               entry_true_data[2],
-%                               entry_true_data[3]))
+%      test_data <- rbind(df, c(container_true_data[1], mode, current_container,line, doc,
+%                               container_true_data[2],
+%                               container_true_data[3],
+%                               container_true_data[2],
+%                               container_true_data[3]))
 %    }
 %    return(test_data)
 %  }
@@ -630,11 +632,11 @@ While the grouping of biosecurity data into entry mode
 %    # Draw the entry size, which is the number of rows of data in the entry
 %    entry_size <- sample.int(max_entry_size - (min_entry_size - 1), 1) + (min_entry_size - 1)
 %
-%    # Draw whether the entry is in line or entry mode
+%    # Draw whether the entry is in line or container mode
 %    if (runif(1) < prob_line){
 %      mode <- 'Line'
 %    } else {
-%      mode <- 'Entry'
+%      mode <- 'Container'
 %    }
 %
 %    # For the number of rows of data in the entry, create the data and add it to the data frame
@@ -647,8 +649,8 @@ While the grouping of biosecurity data into entry mode
 %                                        doc=doc, current_rows=current_rows, df=simulated_data)
 %    }
 %
-%    if (mode == 'Entry'){
-%      # If the entry is in entry mode, if any row of data is inspected, all rows of data are set to inspected.
+%    if (mode == 'Container'){
+%      # If the entry is in container mode, if any row of data is inspected, all rows of data are set to inspected.
 %      # Similarly, if a row is intercpeted, all rows in the entry is set to intercepted.
 %      if (any(simulated_data[simulated_data$Entry == current_entry,]$TrueInspect == 1)){
 %        simulated_data[simulated_data$Entry == current_entry,]$RecordInspect <- 1
