@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{19}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -168,6 +168,23 @@ C.~S. McMahan, J.~M. Tebbs, T.~E. Hanson, and C.~R. Bilder.
 \newblock \doi{10.1111/biom.12704}.
 \newblock URL \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.12704}.
 \newblock \_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/biom.12704.
+
+\bibitem[Mutesa et~al.(2021)Mutesa, Ndishimye, Butera, Souopgui, Uwineza,
+  Rutayisire, Ndoricimpaye, Musoni, Rujeni, Nyatanyi, Ntagwabira, Semakula,
+  Musanabaganwa, Nyamwasa, Ndashimye, Ujeneza, Mwikarago, Muvunyi, Mazarati,
+  Nsanzimana, Turok, and Ndifon]{mutesa_pooled_2021}
+L.~Mutesa, P.~Ndishimye, Y.~Butera, J.~Souopgui, A.~Uwineza, R.~Rutayisire,
+  E.~L. Ndoricimpaye, E.~Musoni, N.~Rujeni, T.~Nyatanyi, E.~Ntagwabira,
+  M.~Semakula, C.~Musanabaganwa, D.~Nyamwasa, M.~Ndashimye, E.~Ujeneza, I.~E.
+  Mwikarago, C.~M. Muvunyi, J.~B. Mazarati, S.~Nsanzimana, N.~Turok, and
+  W.~Ndifon.
+\newblock A pooled testing strategy for identifying {SARS}-{CoV}-2 at low
+  prevalence.
+\newblock \emph{Nature}, 589\penalty0 (7841):\penalty0 276--280, Jan. 2021.
+\newblock ISSN 1476-4687.
+\newblock \doi{10.1038/s41586-020-2885-5}.
+\newblock URL \url{https://www.nature.com/articles/s41586-020-2885-5}.
+\newblock Number: 7841 Publisher: Nature Publishing Group.
 
 \bibitem[Schaarschmidt(2007)]{schaarschmidt_experimental_2007}
 F.~Schaarschmidt.

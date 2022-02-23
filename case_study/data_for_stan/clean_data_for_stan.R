@@ -26,7 +26,7 @@ for (i in 0:51){
 
 colnames(data_summary_df) <- c('week', 'start_date', 'end_date', 'perc_containter','num_container_int')
 
-weeks_to_use <- data_summary_df %>% filter(num_container_int >= 4, perc_containter > 0)
+weeks_to_use <- data_summary_df %>% filter(num_container_int >= 3, perc_containter > 0)
 
 
 full_data <- full_data %>% arrange(desc(Direction.mode)) %>%
@@ -58,3 +58,5 @@ for (i in seq_len(nrow(weeks_to_use))){
   write.csv(full_data_week, paste0('case_study/data_for_stan/furniture_data_2020_week_',i,'_inspected.csv'),
             row.names = FALSE)
 }
+
+data

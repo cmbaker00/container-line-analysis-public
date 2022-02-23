@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  7 FEB 2022 17:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  23 FEB 2022 16:41
 entering extended mode
-**./entry-line-model-MS.tex
-(entry-line-model-MS.tex
+**./container-line-model-MS.tex
+(container-line-model-MS.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-04-06>
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
@@ -692,8 +692,8 @@ File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count307
 \l__pdf_internal_box=\box66
 )
-(entry-line-model-MS.aux)
-\openout1 = `entry-line-model-MS.aux'.
+(container-line-model-MS.aux)
+\openout1 = `container-line-model-MS.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
@@ -788,7 +788,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {C:/Users/cbaker1/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [
 4] [5]
-<../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=39, 284.06125pt x 176.6
+<../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=38, 284.06125pt x 176.6
 6pt>
 File: ../asymptotic_approximation/SE_vs_pr_intercept.pdf Graphic file (type pdf
 )
@@ -796,7 +796,7 @@ File: ../asymptotic_approximation/SE_vs_pr_intercept.pdf Graphic file (type pdf
 Package pdftex.def Info: ../asymptotic_approximation/SE_vs_pr_intercept.pdf  us
 ed on input line 158.
 (pdftex.def)             Requested size: 186.82289pt x 116.1916pt.
-<../asymptotic_approximation/SE_vs_num_lines.pdf, id=40, 284.06125pt x 183.6862
+<../asymptotic_approximation/SE_vs_num_lines.pdf, id=39, 284.06125pt x 183.6862
 5pt>
 File: ../asymptotic_approximation/SE_vs_num_lines.pdf Graphic file (type pdf)
 <use ../asymptotic_approximation/SE_vs_num_lines.pdf>
@@ -809,7 +809,7 @@ mation/SE_vs_num_lines.pdf
 pdfTeX warning: pdflatex (file ../asymptotic_approximation/SE_vs_num_lines.pdf)
 : PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf, id=59, 284.06125pt x 
+<../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf, id=64, 284.06125pt x 
 181.67876pt>
 File: ../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf Graphic file (typ
 e pdf)
@@ -817,7 +817,7 @@ e pdf)
 Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_01_p2_005.pd
 f  used on input line 197.
 (pdftex.def)             Requested size: 186.82289pt x 119.49251pt.
-<../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf, id=60, 284.06125pt x 1
+<../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf, id=65, 284.06125pt x 1
 81.67876pt>
 File: ../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf Graphic file (type
  pdf)
@@ -825,7 +825,7 @@ File: ../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf Graphic file (type
 Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf
   used on input line 201.
 (pdftex.def)             Requested size: 186.82289pt x 119.49251pt.
-<../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf, id=61, 284.06125pt x 
+<../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf, id=66, 284.06125pt x 
 184.69pt>
 File: ../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf Graphic file (typ
 e pdf)
@@ -833,7 +833,7 @@ e pdf)
 Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_01_p2_075.pd
 f  used on input line 205.
 (pdftex.def)             Requested size: 186.82289pt x 121.47304pt.
-<../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf, id=62, 284.06125pt x 1
+<../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf, id=67, 284.06125pt x 1
 84.69pt>
 File: ../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf Graphic file (type
  pdf)
@@ -841,8 +841,8 @@ File: ../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf Graphic file (type
 Package pdftex.def Info: ../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf
   used on input line 208.
 (pdftex.def)             Requested size: 186.82289pt x 121.47304pt.
- [7 <../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf> <../asymptotic_ap
-proximation/SE_twotype_p1_01_p2_03.pdf
+ [7] [8 <../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf> <../asymptoti
+c_approximation/SE_twotype_p1_01_p2_03.pdf
 
 pdfTeX warning: pdflatex (file ../asymptotic_approximation/SE_twotype_p1_01_p2_
 03.pdf): PDF inclusion: multiple pdfs with page group included in a single page
@@ -857,53 +857,57 @@ e
 pdfTeX warning: pdflatex (file ../asymptotic_approximation/SE_twotype_p1_01_p2_
 09.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 
->] [8]
-<../visualisations/figures/simulation_estimates_random_effect.pdf, id=123, 578.
+>] [9]
+<../visualisations/figures/simulation_estimates_random_effect.pdf, id=131, 578.
 16pt x 578.16pt>
 File: ../visualisations/figures/simulation_estimates_random_effect.pdf Graphic 
 file (type pdf)
 <use ../visualisations/figures/simulation_estimates_random_effect.pdf>
 Package pdftex.def Info: ../visualisations/figures/simulation_estimates_random_
-effect.pdf  used on input line 321.
+effect.pdf  used on input line 323.
 (pdftex.def)             Requested size: 381.26694pt x 381.26036pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=124, 50
+<../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=132, 50
 5.89pt x 578.16pt>
 File: ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf Graphi
 c file (type pdf)
 <use ../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>
 Package pdftex.def Info: ../visualisations/figures/sim_study_pint_vs_data_vs_en
-try_size.pdf  used on input line 330.
+try_size.pdf  used on input line 332.
 (pdftex.def)             Requested size: 381.26694pt x 435.74503pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9] [10 <../visualisations/figures/simulation_estimates_random_effect.pdf>]
-[11 <../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>]
+[10] [11 <../visualisations/figures/simulation_estimates_random_effect.pdf>]
 <../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=147, 578.16pt x 3
 61.35pt>
 File: ../visualisations/figures/p_int_est_all_vs_line_data.pdf Graphic file (ty
 pe pdf)
 <use ../visualisations/figures/p_int_est_all_vs_line_data.pdf>
 Package pdftex.def Info: ../visualisations/figures/p_int_est_all_vs_line_data.p
-df  used on input line 362.
+df  used on input line 364.
 (pdftex.def)             Requested size: 381.26694pt x 238.28772pt.
 
-Overfull \hbox (22.96164pt too wide) in paragraph at lines 374--391
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (22.96164pt too wide) in paragraph at lines 376--393
  [][] 
  []
 
-[12 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>]
-(entry-line-model-MS.bbl
+[12 <../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>]
+[13 <../visualisations/figures/p_int_est_all_vs_line_data.pdf>] [14]
+(container-line-model-MS.bbl
 Underfull \hbox (badness 1270) in paragraph at lines 9--20
 \OT1/cmr/m/it/10 tice\OT1/cmr/m/n/10 , n/a(n/a):e246, 2020.  ISSN 2578-4854.  d
 oi: $10 . 1111 / csp2 . 246$.  URL
  []
 
-[13]
+[15]
 Underfull \hbox (badness 1147) in paragraph at lines 98--108
 \OT1/cmr/m/n/10 ing.  \OT1/cmr/m/it/10 Jour-nal of the Royal Sta-tis-ti-cal So-
 ci-ety: Se-ries C (Ap-plied Statis-tics)\OT1/cmr/m/n/10 ,
@@ -915,37 +919,36 @@ Underfull \hbox (badness 1292) in paragraph at lines 98--108
 467-[]9876 . 2008 . 00639 .
  []
 
-[14] [15]) [16] (entry-line-model-MS.aux) ) 
+[16]) [17] (container-line-model-MS.aux) ) 
 Here is how much of TeX's memory you used:
- 26494 strings out of 480930
- 652086 string characters out of 2909541
- 1166459 words of memory out of 3000000
- 41921 multiletter control sequences out of 15000+200000
+ 26497 strings out of 480930
+ 652220 string characters out of 2909541
+ 1167471 words of memory out of 3000000
+ 41924 multiletter control sequences out of 15000+200000
  541359 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,15n,98p,1388b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/symbols/msbm7.pfb>
-Output written on entry-line-model-MS.pdf (16 pages, 468979 bytes).
+ 68i,15n,98p,1630b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on container-line-model-MS.pdf (17 pages, 470058 bytes).
 PDF statistics:
- 232 PDF objects out of 1000 (max. 8388607)
+ 237 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  58 words of extra memory for PDF output out of 10000 (max. 10000000)
 
