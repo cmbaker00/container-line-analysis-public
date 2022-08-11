@@ -42,7 +42,7 @@
 \begin{document}  
 \maketitle
 \begin{abstract}
-National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In Australia, these data come from the \emph{directions} applied to imported cargo, that is, whether cargo were inspected and found to be non-compliant. In the Australian border biosecurity system, shipping cargo documentation is lodged in \emph{container} mode or \emph{line} mode, the key difference between the modes is how directions are given and subsequently recorded. In general, an entry contains multiple lines of data, where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry. In other words, if at least one line in an entry has a non-compliant inspection result, then all lines in that entry are recorded as non-compliant. Therefore, container mode data creates a challenge for estimating the probability that certain items are non-compliant, because matching the records of non-compliance to the line information is impossible. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the pathway is recovered using the new model.
+National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In the Australian border biosecurity system, data about shipping containers are recorded in one of two modes: \emph{container} mode or \emph{line} mode. The key difference between the modes is how the \emph{directions} are recorded, that is, data about whether entries were inspected and subsequently found to be non-compliant. In general, an entry contains multiple lines of data, where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry. In other words, if at least one line in an entry has a non-compliant inspection result, then all lines in that entry are recorded as non-compliant. Therefore, container mode data creates a challenge for estimating the probability that certain items are non-compliant, because matching the records of non-compliance to the line information is impossible. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the pathway is recovered using the new model. 
 \end{abstract}
 
 \section{Introduction}
@@ -53,11 +53,11 @@ Given the massive scale of global trade, biosecurity regulators need to be able 
 
 However, gaining insight from border inspections is a massive logistical challenge, as data must be consistently recorded in a format that makes this analysis possible. Putting infrastructure into place to collect this data, and collecting it accurately can be expensive and challenging. Often, shortcuts may be taken that render the data less valuable in analysing patterns of risk.
 
-In Australia systems have been put in place to capture biosecurity data since the early 90's. However, to reduce the administrative burden on border staff, two ways of recording cargo inspections were implemented, namely line mode and container mode. In line mode, the details of which items within an entry are inspected and found to be compliant or non-compliant are fully recorded. However, in container mode, the results of an inspection are applied to all items within an entry. Container mode was introduced so that containers could be released piecemeal in order to minimise the bottle-necks created in ports when lines that comprise many containers are held until all of the line has been cleared.  Container mode makes it much quicker for border staff to manage entries with a large number of items, but means that when the data are analysed, entries in container mode are censored \textemdash{} in these cases, it is unknown which items were inspected and found to be compliant or non-compliant. This makes analysis of the data to identify trends in biosecurity risk challenging.
+In Australia systems have been put in place to capture biosecurity data since the early 90's. However, to reduce the administrative burden on border staff, two ways of recording cargo inspections were implemented, namely line mode and container mode. In line mode, the details of which items within an entry are inspected and found to be compliant or non-compliant are fully recorded. However, in container mode, the results of an inspection are applied to all items within an entry. Container mode was introduced so that containers could be released piecmeal in order to minimise the bottle-necks rcreated in ports when lines that comprise many containers are held until all of the line has been cleared.  Container mode makes it much quicker for border staff to manage entries with a large number of items, but means that when the data are analysed, entries in container mode a censored \textemdash{} in these cases, it is unknown which items were inspected and found to be compliant or non-compliant. This makes analysis of the data to identify trends in biosecurity risk challenging.
 
  Data that have been collected in container mode are closely related to the data collected under \emph{pooled testing}, which is often used for disease surveillance. Within the pooled testing literature there are two main branches: one aims to identify positives within a pool, while the other seeks to use pooled data to estimate quantities about the population. It is the latter -- estimating quantities -- that we are interested in. The fundamental problem is estimating a prevalence, \(p\), within a population, when only pooled data are available \citep{thompson_estimation_1962}. More recent work has focused on improving estimates by reducing bias, either through altering the sampling strategy \citep{schaarschmidt_experimental_2007,hepworth_debiased_2009} or by incorporating bias correction into models  \citep{hepworth_bias_2017,hepworth_bias_2021}. There have also been extensions of the problem where \(p\) is not a constant, but it is estimated using linear regression using only the pooled data \citep{delaigle_nonparametric_2015, chatterjee_regression_2020, mcmahan_bayesian_2017, liu_generalized_2020}. These papers have made significant progress in fitting increasingly complex models, but do not focus on the impacts of different types of pooling on the precision of model estimates.
 
-In practice, however, pooled testing is manifestly different from the biosecurity scenario. Pooled testing exists by design, as a way to gather information about a population while reducing testing. In biosecurity, inspection is applied to every individual line, and the results are pooled at the point of data capture --- as a side-effect of the selected mode. Hence, we are interested in how much information we are losing due to aggregating results as container mode. Or, equivalently, how much better could we be at managing biosecurity risk if we stopped using container mode when an entry contains multiple lines?
+In practice, however, pooled testing is manifestly different from the biosecurity scenario. Pooled testing exists by design, as a way to gather information about a population while reducing testing. In biosecurity, inspection is applied to every individual line, and the results are only pooled at the point of data capture. Hence, we are interested in how much information we are losing due to aggregating results as container mode. Or, equivalently, how much better could we be at managing biosecurity risk if we stopped using container mode when an entry contains multiple lines?
 
 In this paper we investigate the effect of container mode data collection upon our ability to estimate the biosecurity risk of items. We start with an asymptotic analysis, where we calculate the precision of estimates and determine the implications of mixing different item types in container mode. We then develop a simulation experiment that allows us to understand how larger entries and more item types affect the precision of our estimates. Finally, we analyse biosecurity data provided by the Australian Department of Agriculture, Water and the Environment (DAWE) to identify the real-world differences between using the line-only data and including the container mode data.
 \section{Model overview}
@@ -90,16 +90,16 @@ The random effect $\gamma_\ell$ has distribution
 \label{eq:entry_effect}
 \end{align}
 
-If all data were in line mode then the above model would be a fairly standard mixed effects logistic regression with categorical variables. However, because of the use of container mode to capture the data, we don't observe outcomes for each line, as every line in the entry is marked as non-compliant if any line in the entry is found to be non-compliant. Therefore, the outcome is whether the entry is recorded as compliant and we need to calculate the probability that the entry is non-compliant, which is 1 minus the probability that every line in the entry is compliant:
+If all data were in line mode then the above model would be a fairly standard mixed effects logistic regression with categorical variables. However, because of the use of container mode to capture the data, we don't observe outcomes for each line, as every line in the entry is marked as non-compliant if any line in the entry is found to be non-compliant. Therefore, the outcome is whether the entry is compliant and we need to calculate the probability that the entry is non-compliant, which is 1 minus the probability that every line in the entry is compliant:
 \begin{align}
 \mathbb{P}\left(\text{Entry } l \text{ non-compliant}\right) = q_l = 1-\prod_{ijk \text{ for lines in }l}[1-p_{ijkl}],\label{eq:entry_pr}
 \end{align}
-where \(p_{ijkl}\) is the probability that a line with indexes $ijkl$ is non-compliant, calculated from Eq.~\eqref{eq:logit_model_sim}.
+where \(p_n\) is the probability that the \(n^\text{th}\) line is non-compliant, calculated from Eq.~\eqref{eq:logit_model_sim}.
 Hence, for entries in container mode, we treat the entry  as a Bernoulli random variable with probability defined by Eq.~\eqref{eq:entry_pr}, while for entries in line mode, we treat each line as a Bernoulli random variable with probability as defined in Eq.~\eqref{eq:logit_model_sim}.
 
 
 This paper includes three analyses: an asymptotic analysis,
- a simulation study, and a case study of Australian biosecurity data. For the asymptotic analysis we only consider different item types, so we rather than using Eq.~\eqref{eq:logit_model_sim}, we just consider the probability that a line of item type \(i\) is non-compliant, \(p_i\). The simulation study and the case study both use the full model, as defined above. 
+ a simulation study, and a case study of Australian biosecurity data. For the asymptotic analysis we only consider different item types, so we rather than using Eq.~\eqref{eq:logit_model_fit_sim}, we just consider the probability that a line of item type \(i\) is non-compliant, \(p_i\). The simulation study and the case study both use the full model, as defined above. 
 
 
 \section{Asymptotic analysis}\label{sec:asymptotic_analysis}
@@ -110,45 +110,44 @@ Throughout this section we make two simplifications. Firstly, we do not separate
 We estimate precision via calculation the Fisher information matrix, \(\mathcal{I}\), is the expected value of the negative of the Hessian matrix of the log-likelihood evaluated at the value of the parameter.  We use the standard error estimate as our measurement of precision, which are the square roots of the diagonal elements of the inverse of \(\mathcal{I}\).
 
 \subsection{Single item type}
-For the single item type case, we set the probability of non-compliance to be \(p\), and define \(N\) as the total number of entries, \(I\) as the number of entries intercepted (that is, non-compliant) and \(S\) as the size (i.e. the number of lines) in each entry. The likelihood is a binomial distribution, where the outcome is an entry being intercepted. The probability that an entry is not intercepted is
+For the single item type case, we set the probability of non-compliance to be \(p\), and define \(N\) as the total number of entries, \(I\) as the number of entries intercepted and \(S\) as the size (i.e. the number of lines) in each entry. The likelihood is a binomial distribution, where the outcome is the an entry being intercepted. The probability that an entry is not intercepted is
 \begin{align}
 \mathbb{P}(\text{entry not intercepted}) = (1-p)^S,
 \end{align}
-meaning that the binomial likelihood for a set entry size $S$ is proportional to
+meaning that the binomial likelihood for a set entry size $S$ is
 \begin{align}
-\mathcal{L}_S \propto \left(1-(1-p)^S\right)^I\left(1-p)^S\right)^{N-I}. \label{eq:entry_mode_like}
+\mathcal{L}_S = \left(1-(1-p)^S\right)^I\left(1-p)^S\right)^{N-I}. \label{eq:entry_mode_like}
 \end{align}
 To generalise Eq.~\eqref{eq:entry_mode_like} to arbitrary entry sizes, we take the product over entry size:
 \begin{align}
-\mathcal{L}& \propto \prod_{S\in\mathbb{N}} \left(1-(1-p)^S\right)^{I_{E,S}}\left((1-p)^S\right)^{N_{E,S}-I_{E,S}},
+\mathcal{L}& = \prod_{S\in\mathbb{N}} \left(1-(1-p)^S\right)^{I_{E,S}}\left((1-p)^S\right)^{N_{E,S}-I_{E,S}},
 \label{eq:aymptotic_full_likelihood}
 \end{align}
-where \(S\) is the entry size, \(I_{E,S}\) is the number of inteceptions of entry size \(S\) and \(N_{E,S}\) is the number of entries of size \(S\).  The log-likelihood for a given size is:
+where \(S\) is the entry size, \(I_{E,S}\) is the number of inteceptions of entry size \(S\) and \(N_{E,S}\) is the number of entries of size \(S\).  The log-likelihood is
 \begin{align}
-\log\mathcal{L}_S& = {I_{E,S}} \log\left(1-(1-p)^S\right)+(N_{E,S}-I_{E,S})\log\left((1-p)^S\right) + \text{const}.
+\log\mathcal{L}& = \sum_{S\in\mathbb{N}}{I_{E,S}} \log\left(1-(1-p)^S\right)+(N_{E,S}-I_{E,S})\log\left((1-p)^S\right).
 \label{eq:loglikelihood_arbitrary_entry_size}
 \end{align}
 As there is only one parameter, we calculate its second derivative (rather than needing a Hessian matrix):
 \begin{align}
-\left[\frac{\partial^2 \log\mathcal{L}_S}{\partial p^2}\right]=
+\left[\frac{\partial^2 \log\mathcal{L}}{\partial p^2}\right]= \sum_{S\in\mathbb{N}}
 \frac{S\left(N_{E,S} + \frac{I_{E,S}((1+S)(1-p)^S-1)}
 {\left((1-p)^S-1 \right)^2} \right)}
 {(1-p)^2}.\label{eq:loglike_2nd_deriv}
 \end{align}
-To calculate the Fisher information, we take the expectation of the number of non-compliant entries, which depends on the size of the entry:
+To calculate the Fisher information, we take the expectation of the number of entries with non-compliance, which depends on the size of the entry:
 \begin{align}
 \mathbb{E}\left[I_{E,S}\right] = N_{E,S}(1-(1-p)^S). \label{eq:exp_intercept}
 \end{align} 
 Hence the Fisher information is
 \begin{align}
-\mathcal{I}_S = -\mathbb{E}\left[\frac{\partial^2 \log\mathcal{L}_S}{\partial p^2}\right]=
- -\frac{N_{E,S}S^2(1-p)^{S-2}}{(1-p)^S-1}, \label{eq:fisher_information}
+\mathcal{I} = -\mathbb{E}\left[\frac{\partial^2 \log\mathcal{L}}{\partial p^2}\right]=
+ -\sum_{S\in\mathbb{N}}\frac{N_{E,S}S^2(1-p)^{S-2}}{(1-p)^S-1}, \label{eq:fisher_information}
 \end{align}
 and the standard error estimate is
 \begin{align}
-SE = \left(\frac{N_{E,S}S^2(1-p)^{S-2}}{1-(1-p)^S}\right)^{-1/2}. \label{eq:general_SE_calc}
+SE = \left(-\sum_{S\in\mathbb{N}}\frac{N_{E,S}S^2(1-p)^{S-2}}{(1-p)^S-1}\right)^{-1/2}. \label{eq:general_SE_calc}
 \end{align}
-This value assumes all entries have a specific size $S$, as is used below. For the general case, the information $\mathcal{I}_S$ sums over the possible sizes.
 
 
 Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of non-compliance, the entry size and the number of lines affect the standard error, and we plot these relationships in Figure~\ref{fig:asymptotic_SE_plots}. The left plot shows that the standard error depends on the probability of non-compliance and that the relationship depends on the entry size. For all entry sizes, the standard error is small when the probability of non-compliance is small (below \(\sim 0.3\)). However, for larger values of the probability of non-compliance, the standard error increase significantly if the entry size is three or greater. The large \(p\) behaviour is driven by the \((1-p)^{S-2}\) term in Eq.~\eqref{eq:general_SE_calc}, which means SE goes to 0 if \(S=1\), while it diverges if \(S\geq 3\). Figure~\ref{fig:asymptotic_SE_plots} also shows how the standard error decreases as the number of lines of data increases. The lower the entry size is, the lower the standard error, and, as \(SE\sim\sqrt{1/N_{E,S}}\), container mode data with larger entry sizes require a large amount of data to reach the same standard error. 
@@ -230,7 +229,7 @@ Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with t
 From the asymptotic analysis we make two observations:
 \begin{enumerate}
 \item Container mode data are most useful when the probability of non-compliance, \(p\), is small. In the extreme case where \(p\rightarrow 0\), container mode data are equivalent to line mode data because whenever an entry is \emph{not} intercepted, we know every line was not intercepted, regardless of whether it is container mode or line mode. 
-\item Entries in container mode with lines of different item types can increase or decrease the precision of estimates, depending on the true probability of non-compliance.
+\item Entries in container mode with mixed entries can increase or decrease the precision of estimates, depending on the true probability of non-compliance. 
 \end{enumerate}
 
 
@@ -314,7 +313,7 @@ The probability $p_{ijk\ell}$ is the probability of non-compliance of a line tha
 %The simulation uses \(p=0.05\) and we vary the number of entries \(N_E\) and the entry size, \(S\) and the comparison is shown in Figure~\ref{fig:SD_est_simulated}.
 
 
-We fit the STAN model to the simulated data for two reasons. Firstly we to confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of container mode data affects precision, over a range of entry sizes. To measure precision, we use the standard deviation of the posterior samples, because it is the Bayesian equivalent of the standard error calculations in Section~\ref{sec:asymptotic_analysis}.
+We fit the STAN model to the simulated data for two reasons. Firstly we confirm confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of container mode data affects precision, over a range of entry sizes. To measure precision, we use the standard deviation of the posterior samples, because it is the Bayesian equivalent of the standard error calculations in Section~\ref{sec:asymptotic_analysis}.
 
 \subsection{Simulation results}
 
