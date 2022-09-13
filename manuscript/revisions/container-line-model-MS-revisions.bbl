@@ -1,0 +1,243 @@
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Baker and Bode(2020)]{baker_recent_2020}
+C.~M. Baker and M.~Bode.
+\newblock Recent advances of quantitative modeling to support invasive species
+  eradication on islands.
+\newblock \emph{Conservation Science and Practice}, n/a\penalty0
+  (n/a):\penalty0 e246, 2020.
+\newblock ISSN 2578-4854.
+\newblock \doi{10.1111/csp2.246}.
+\newblock URL
+  \url{https://conbio.onlinelibrary.wiley.com/doi/abs/10.1111/csp2.246}.
+\newblock \_eprint:
+  https://conbio.onlinelibrary.wiley.com/doi/pdf/10.1111/csp2.246.
+
+\bibitem[Binny et~al.(2021)Binny, Innes, Fitzgerald, Pech, James, Price,
+  Gillies, and Byrom]{binny_long-term_2021}
+R.~N. Binny, J.~Innes, N.~Fitzgerald, R.~Pech, A.~James, R.~Price, C.~Gillies,
+  and A.~E. Byrom.
+\newblock Long-term biodiversity trajectories for pest-managed ecological
+  restorations: eradication vs. suppression.
+\newblock \emph{Ecological Monographs}, n/a\penalty0 (n/a), 2021.
+\newblock ISSN 1557-7015.
+\newblock \doi{https://doi.org/10.1002/ecm.1439}.
+\newblock URL
+  \url{https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1002/ecm.1439}.
+\newblock \_eprint:
+  https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1002/ecm.1439.
+
+\bibitem[Brook et~al.(2012)Brook, Johnson, and Ritchie]{brook_effects_2012}
+L.~A. Brook, C.~N. Johnson, and E.~G. Ritchie.
+\newblock Effects of predator control on behaviour of an apex predator and
+  indirect consequences for mesopredator suppression.
+\newblock \emph{Journal of Applied Ecology}, 49\penalty0 (6):\penalty0
+  1278--1286, Dec. 2012.
+\newblock ISSN 1365-2664.
+\newblock \doi{10.1111/j.1365-2664.2012.02207.x}.
+\newblock URL
+  \url{http://onlinelibrary.wiley.com.ezp.lib.unimelb.edu.au/doi/10.1111/j.1365-2664.2012.02207.x/abstract}.
+
+\bibitem[Brooks et~al.(2011)Brooks, Gelman, Jones, and
+  Meng]{brooks2011handbook}
+S.~Brooks, A.~Gelman, G.~Jones, and X.-L. Meng.
+\newblock \emph{Handbook of Markov Chain Monte Carlo}.
+\newblock CRC press, 2011.
+
+\bibitem[Chatterjee and Bandyopadhyay(2020)]{chatterjee_regression_2020}
+A.~Chatterjee and T.~Bandyopadhyay.
+\newblock Regression models for group testing: {Identifiability} and
+  asymptotics.
+\newblock \emph{Journal of Statistical Planning and Inference}, 204:\penalty0
+  141--152, Jan. 2020.
+\newblock ISSN 0378-3758.
+\newblock \doi{10.1016/j.jspi.2019.05.003}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0378375818301423}.
+
+\bibitem[Delaigle and Hall(2015)]{delaigle_nonparametric_2015}
+A.~Delaigle and P.~Hall.
+\newblock Nonparametric methods for group testing data, taking dilution into
+  account.
+\newblock \emph{Biometrika}, 102\penalty0 (4):\penalty0 871--887, Dec. 2015.
+\newblock ISSN 0006-3444.
+\newblock \doi{10.1093/biomet/asv049}.
+\newblock URL \url{https://doi.org/10.1093/biomet/asv049}.
+
+\bibitem[Helmstedt et~al.(2016)Helmstedt, Shaw, Bode, Terauds, Springer,
+  Robinson, and Possingham]{helmstedt_prioritizing_2016}
+K.~J. Helmstedt, J.~D. Shaw, M.~Bode, A.~Terauds, K.~Springer, S.~A. Robinson,
+  and H.~P. Possingham.
+\newblock Prioritizing eradication actions on islands: it's not all or nothing.
+\newblock \emph{Journal of Applied Ecology}, 53:\penalty0 733--741, Jan. 2016.
+\newblock ISSN 1365-2664.
+\newblock \doi{10.1111/1365-2664.12599}.
+\newblock URL
+  \url{http://onlinelibrary.wiley.com.ezp.lib.unimelb.edu.au/doi/10.1111/1365-2664.12599/abstract}.
+
+\bibitem[Hepworth and Biggerstaff(2017)]{hepworth_bias_2017}
+G.~Hepworth and B.~J. Biggerstaff.
+\newblock Bias {Correction} in {Estimating} {Proportions} by {Pooled}
+  {Testing}.
+\newblock \emph{Journal of Agricultural, Biological and Environmental
+  Statistics}, 22\penalty0 (4):\penalty0 602--614, Dec. 2017.
+\newblock ISSN 1537-2693.
+\newblock \doi{10.1007/s13253-017-0297-2}.
+\newblock URL \url{https://doi.org/10.1007/s13253-017-0297-2}.
+
+\bibitem[Hepworth and Biggerstaff(2021)]{hepworth_bias_2021}
+G.~Hepworth and B.~J. Biggerstaff.
+\newblock Bias {Correction} in {Estimating} {Proportions} by {Imperfect}
+  {Pooled} {Testing}.
+\newblock \emph{Journal of Agricultural, Biological and Environmental
+  Statistics}, 26\penalty0 (1):\penalty0 90--104, Mar. 2021.
+\newblock ISSN 1537-2693.
+\newblock \doi{10.1007/s13253-020-00411-5}.
+\newblock URL \url{https://doi.org/10.1007/s13253-020-00411-5}.
+
+\bibitem[Hepworth and Watson(2009)]{hepworth_debiased_2009}
+G.~Hepworth and R.~Watson.
+\newblock Debiased estimation of proportions in group testing.
+\newblock \emph{Journal of the Royal Statistical Society: Series C (Applied
+  Statistics)}, 58\penalty0 (1):\penalty0 105--121, 2009.
+\newblock ISSN 1467-9876.
+\newblock \doi{10.1111/j.1467-9876.2008.00639.x}.
+\newblock URL
+  \url{https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9876.2008.00639.x}.
+\newblock \_eprint:
+  https://rss.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-9876.2008.00639.x.
+
+\bibitem[Holmes et~al.(2019)Holmes, Spatz, Oppel, Tershy, Croll, Keitt,
+  Genovesi, Burfield, Will, Bond, Wegmann, Aguirre-Muñoz, Raine, Knapp, Hung,
+  Wingate, Hagen, Méndez-Sánchez, Rocamora, Yuan, Fric, Millett, Russell,
+  Liske-Clark, Vidal, Jourdan, Campbell, Springer, Swinnerton,
+  Gibbons-Decherong, Langrand, Brooke, McMinn, Bunbury, Oliveira, Sposimo,
+  Geraldes, McClelland, Hodum, Ryan, Borroto-Páez, Pierce, Griffiths, Fisher,
+  Wanless, Pasachnik, Cranwell, Micol, and Butchart]{holmes_globally_2019}
+N.~D. Holmes, D.~R. Spatz, S.~Oppel, B.~Tershy, D.~A. Croll, B.~Keitt,
+  P.~Genovesi, I.~J. Burfield, D.~J. Will, A.~L. Bond, A.~Wegmann,
+  A.~Aguirre-Muñoz, A.~F. Raine, C.~R. Knapp, C.-H. Hung, D.~Wingate,
+  E.~Hagen, F.~Méndez-Sánchez, G.~Rocamora, H.-W. Yuan, J.~Fric, J.~Millett,
+  J.~Russell, J.~Liske-Clark, E.~Vidal, H.~Jourdan, K.~Campbell, K.~Springer,
+  K.~Swinnerton, L.~Gibbons-Decherong, O.~Langrand, M.~d.~L. Brooke, M.~McMinn,
+  N.~Bunbury, N.~Oliveira, P.~Sposimo, P.~Geraldes, P.~McClelland, P.~Hodum,
+  P.~G. Ryan, R.~Borroto-Páez, R.~Pierce, R.~Griffiths, R.~N. Fisher,
+  R.~Wanless, S.~A. Pasachnik, S.~Cranwell, T.~Micol, and S.~H.~M. Butchart.
+\newblock Globally important islands where eradicating invasive mammals will
+  benefit highly threatened vertebrates.
+\newblock \emph{PLOS ONE}, 14\penalty0 (3):\penalty0 e0212128, Mar. 2019.
+\newblock ISSN 1932-6203.
+\newblock \doi{10.1371/journal.pone.0212128}.
+\newblock URL
+  \url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0212128}.
+
+\bibitem[Jardine and Sanchirico(2018)]{jardine_estimating_2018}
+S.~L. Jardine and J.~N. Sanchirico.
+\newblock Estimating the cost of invasive species control.
+\newblock \emph{Journal of Environmental Economics and Management},
+  87:\penalty0 242--257, Jan. 2018.
+\newblock ISSN 0095-0696.
+\newblock \doi{10.1016/j.jeem.2017.07.004}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0095069616301322}.
+
+\bibitem[Keeling and Rohani(2008)]{keeling2022modeling}
+M.~J. Keeling and P.~Rohani.
+\newblock \emph{Modeling Infectious Diseases in Humans and Animals}.
+\newblock Princeton University Press, 2008.
+\newblock ISBN 9780691116174.
+\newblock URL \url{http://www.jstor.org/stable/j.ctvcm4gk0}.
+
+\bibitem[Kumar~Rai and Singh(2020)]{kumar_rai_invasive_2020}
+P.~Kumar~Rai and J.~S. Singh.
+\newblock Invasive alien plant species: {Their} impact on environment,
+  ecosystem services and human health.
+\newblock \emph{Ecological Indicators}, 111:\penalty0 106020, Apr. 2020.
+\newblock ISSN 1470-160X.
+\newblock \doi{10.1016/j.ecolind.2019.106020}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S1470160X19310167}.
+
+\bibitem[Liu et~al.(2020)Liu, McMahan, Tebbs, Gallagher, and
+  Bilder]{liu_generalized_2020}
+Y.~Liu, C.~S. McMahan, J.~M. Tebbs, C.~M. Gallagher, and C.~R. Bilder.
+\newblock Generalized additive regression for group testing data.
+\newblock \emph{Biostatistics}, \penalty0 (kxaa003), Feb. 2020.
+\newblock ISSN 1465-4644.
+\newblock \doi{10.1093/biostatistics/kxaa003}.
+\newblock URL \url{https://doi.org/10.1093/biostatistics/kxaa003}.
+
+\bibitem[McMahan et~al.(2017)McMahan, Tebbs, Hanson, and
+  Bilder]{mcmahan_bayesian_2017}
+C.~S. McMahan, J.~M. Tebbs, T.~E. Hanson, and C.~R. Bilder.
+\newblock Bayesian regression for group testing data.
+\newblock \emph{Biometrics}, 73\penalty0 (4):\penalty0 1443--1452, 2017.
+\newblock ISSN 1541-0420.
+\newblock \doi{10.1111/biom.12704}.
+\newblock URL \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.12704}.
+\newblock \_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/biom.12704.
+
+\bibitem[Mutesa et~al.(2021)Mutesa, Ndishimye, Butera, Souopgui, Uwineza,
+  Rutayisire, Ndoricimpaye, Musoni, Rujeni, Nyatanyi, Ntagwabira, Semakula,
+  Musanabaganwa, Nyamwasa, Ndashimye, Ujeneza, Mwikarago, Muvunyi, Mazarati,
+  Nsanzimana, Turok, and Ndifon]{mutesa_pooled_2021}
+L.~Mutesa, P.~Ndishimye, Y.~Butera, J.~Souopgui, A.~Uwineza, R.~Rutayisire,
+  E.~L. Ndoricimpaye, E.~Musoni, N.~Rujeni, T.~Nyatanyi, E.~Ntagwabira,
+  M.~Semakula, C.~Musanabaganwa, D.~Nyamwasa, M.~Ndashimye, E.~Ujeneza, I.~E.
+  Mwikarago, C.~M. Muvunyi, J.~B. Mazarati, S.~Nsanzimana, N.~Turok, and
+  W.~Ndifon.
+\newblock A pooled testing strategy for identifying {SARS}-{CoV}-2 at low
+  prevalence.
+\newblock \emph{Nature}, 589\penalty0 (7841):\penalty0 276--280, Jan. 2021.
+\newblock ISSN 1476-4687.
+\newblock \doi{10.1038/s41586-020-2885-5}.
+\newblock URL \url{https://www.nature.com/articles/s41586-020-2885-5}.
+\newblock Number: 7841 Publisher: Nature Publishing Group.
+
+\bibitem[Schaarschmidt(2007)]{schaarschmidt_experimental_2007}
+F.~Schaarschmidt.
+\newblock Experimental design for one-sided confidence intervals or hypothesis
+  tests in binomial group testing.
+\newblock \emph{Communications in Biometry and Crop Science}, 2007.
+\newblock ISSN 1896-0782.
+\newblock URL
+  \url{http://agrobiol.sggw.waw.pl/~cbcs/pobierz.php?plik=CBCS_2_1_5.pdf}.
+\newblock Publisher: Faculty of Agriculture and Biology, Warsaw Agricultural
+  University, Poland.
+
+\bibitem[Sharov et~al.(2002)Sharov, Leonard, Liebhold, Roberts, and
+  Dickerson]{sharov_slow_2002}
+A.~Sharov, D.~Leonard, A.~Liebhold, E.~Roberts, and W.~Dickerson.
+\newblock “{Slow} {The} {Spread}”: {A} {National} {Program} to {Contain}
+  the {Gypsy} {Moth}.
+\newblock \emph{Journal of Forestry}, 100\penalty0 (5):\penalty0 30--36, July
+  2002.
+
+\bibitem[Thompson(1962)]{thompson_estimation_1962}
+K.~H. Thompson.
+\newblock Estimation of the {Proportion} of {Vectors} in a {Natural}
+  {Population} of {Insects}.
+\newblock \emph{Biometrics}, 18\penalty0 (4):\penalty0 568--578, 1962.
+\newblock ISSN 0006-341X.
+\newblock \doi{10.2307/2527902}.
+\newblock URL \url{https://www.jstor.org/stable/2527902}.
+\newblock Publisher: [Wiley, International Biometric Society].
+
+\bibitem[Wenger et~al.(2017)Wenger, Adams, Iacona, Lohr, Pressey, Morris, and
+  Craigie]{wenger_estimating_2017}
+A.~S. Wenger, V.~M. Adams, G.~D. Iacona, C.~Lohr, R.~L. Pressey, K.~Morris, and
+  I.~D. Craigie.
+\newblock Estimating realistic costs for strategic management planning of
+  invasive species eradications on islands.
+\newblock \emph{Biological Invasions}, pages 1--19, Nov. 2017.
+\newblock ISSN 1387-3547, 1573-1464.
+\newblock \doi{10.1007/s10530-017-1627-6}.
+\newblock URL
+  \url{https://link.springer.com/article/10.1007/s10530-017-1627-6}.
+
+\end{thebibliography}
