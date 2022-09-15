@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.19)  15 SEP 2022 10:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.19)  15 SEP 2022 10:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -708,6 +708,24 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count322
+\output=\toks49
+\linenoprevgraf=\count323
+\linenumbersep=\dimen317
+\linenumberwidth=\dimen318
+\c@linenumber=\count324
+\c@pagewiselinenumber=\count325
+\c@LN@truepage=\count326
+\c@internallinenumber=\count327
+\c@internallinenumbers=\count328
+\quotelinenumbersep=\dimen319
+\bframerule=\dimen320
+\bframesep=\dimen321
+\bframebox=\box71
+LaTeX Info: Redefining \\ on input line 3056.
+)
 (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
@@ -719,40 +737,40 @@ File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-10-17 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count322
-\l__pdf_internal_box=\box71
+\l__color_backend_stack_int=\count329
+\l__pdf_internal_box=\box72
 )
 (./container-line-model-MS-revisions.aux)
 \openout1 = `container-line-model-MS-revisions.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
 
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count323
-\scratchdimen=\dimen317
-\scratchbox=\box72
-\nofMPsegments=\count324
-\nofMParguments=\count325
-\everyMPshowfont=\toks49
-\MPscratchCnt=\count326
-\MPscratchDim=\dimen318
-\MPnumerator=\count327
-\makeMPintoPDFobject=\count328
-\everyMPtoPDFconversion=\toks50
+\scratchcounter=\count330
+\scratchdimen=\dimen322
+\scratchbox=\box73
+\nofMPsegments=\count331
+\nofMParguments=\count332
+\everyMPshowfont=\toks50
+\MPscratchCnt=\count333
+\MPscratchDim=\dimen323
+\MPnumerator=\count334
+\makeMPintoPDFobject=\count335
+\everyMPtoPDFconversion=\toks51
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -762,7 +780,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count329
+\c@lstlisting=\count336
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -802,17 +820,17 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 56.
+ on input line 57.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 61.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 61.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -821,21 +839,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
  [4] [5]
-<..//../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=38, 284.06125pt x 1
+<..//../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=39, 284.06125pt x 1
 76.66pt>
 File: ..//../asymptotic_approximation/SE_vs_pr_intercept.pdf Graphic file (type
  pdf)
 <use ..//../asymptotic_approximation/SE_vs_pr_intercept.pdf>
 Package pdftex.def Info: ..//../asymptotic_approximation/SE_vs_pr_intercept.pdf
-  used on input line 207.
+  used on input line 209.
 (pdftex.def)             Requested size: 186.82289pt x 116.1916pt.
-<..//../asymptotic_approximation/SE_vs_num_lines.pdf, id=39, 284.06125pt x 183.
+<..//../asymptotic_approximation/SE_vs_num_lines.pdf, id=40, 284.06125pt x 183.
 68625pt>
 File: ..//../asymptotic_approximation/SE_vs_num_lines.pdf Graphic file (type pd
 f)
 <use ..//../asymptotic_approximation/SE_vs_num_lines.pdf>
 Package pdftex.def Info: ..//../asymptotic_approximation/SE_vs_num_lines.pdf  u
-sed on input line 211.
+sed on input line 213.
 (pdftex.def)             Requested size: 186.82289pt x 120.81285pt.
 
 [6 <..//../asymptotic_approximation/SE_vs_pr_intercept.pdf> <..//../asymptotic_
@@ -844,37 +862,37 @@ approximation/SE_vs_num_lines.pdf
 pdfTeX warning: pdflatex (file ..//../asymptotic_approximation/SE_vs_num_lines.
 pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf, id=64, 284.06125p
+<..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf, id=65, 284.06125p
 t x 181.67876pt>
 File: ..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf Graphic file 
 (type pdf)
 <use ..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf>
 Package pdftex.def Info: ..//../asymptotic_approximation/SE_twotype_p1_01_p2_00
-5.pdf  used on input line 246.
+5.pdf  used on input line 248.
 (pdftex.def)             Requested size: 186.82289pt x 119.49251pt.
-<..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf, id=65, 284.06125pt
+<..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf, id=66, 284.06125pt
  x 181.67876pt>
 File: ..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf Graphic file (
 type pdf)
 <use ..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf>
 Package pdftex.def Info: ..//../asymptotic_approximation/SE_twotype_p1_01_p2_03
-.pdf  used on input line 250.
+.pdf  used on input line 252.
 (pdftex.def)             Requested size: 186.82289pt x 119.49251pt.
-<..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf, id=66, 284.06125p
+<..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf, id=67, 284.06125p
 t x 184.69pt>
 File: ..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf Graphic file 
 (type pdf)
 <use ..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf>
 Package pdftex.def Info: ..//../asymptotic_approximation/SE_twotype_p1_01_p2_07
-5.pdf  used on input line 254.
+5.pdf  used on input line 256.
 (pdftex.def)             Requested size: 186.82289pt x 121.47304pt.
-<..//../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf, id=67, 284.06125pt
+<..//../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf, id=68, 284.06125pt
  x 184.69pt>
 File: ..//../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf Graphic file (
 type pdf)
 <use ..//../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf>
 Package pdftex.def Info: ..//../asymptotic_approximation/SE_twotype_p1_01_p2_09
-.pdf  used on input line 257.
+.pdf  used on input line 259.
 (pdftex.def)             Requested size: 186.82289pt x 121.47304pt.
  [7] [8 <..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf> <..//../a
 symptotic_approximation/SE_twotype_p1_01_p2_03.pdf
@@ -893,45 +911,45 @@ pdfTeX warning: pdflatex (file ..//../asymptotic_approximation/SE_twotype_p1_01
 _p2_09.pdf): PDF inclusion: multiple pdfs with page group included in a single 
 page
 >] [9]
-<..//../visualisations/figures/simulation_estimates_random_effect.pdf, id=131, 
+<..//../visualisations/figures/simulation_estimates_random_effect.pdf, id=132, 
 578.16pt x 578.16pt>
 File: ..//../visualisations/figures/simulation_estimates_random_effect.pdf Grap
 hic file (type pdf)
 <use ..//../visualisations/figures/simulation_estimates_random_effect.pdf>
 Package pdftex.def Info: ..//../visualisations/figures/simulation_estimates_ran
-dom_effect.pdf  used on input line 372.
+dom_effect.pdf  used on input line 374.
 (pdftex.def)             Requested size: 381.26694pt x 381.26036pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<..//../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=132
+<..//../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf, id=133
 , 505.89pt x 578.16pt>
 File: ..//../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf Gr
 aphic file (type pdf)
 <use ..//../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf>
 Package pdftex.def Info: ..//../visualisations/figures/sim_study_pint_vs_data_v
-s_entry_size.pdf  used on input line 381.
+s_entry_size.pdf  used on input line 383.
 (pdftex.def)             Requested size: 381.26694pt x 435.74503pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [10] [11 <..//../visualisations/figures/simulation_estimates_random_effect.pdf>
 ]
-<..//../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=147, 578.16pt
+<..//../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=148, 578.16pt
  x 361.35pt>
 File: ..//../visualisations/figures/p_int_est_all_vs_line_data.pdf Graphic file
  (type pdf)
 <use ..//../visualisations/figures/p_int_est_all_vs_line_data.pdf>
 Package pdftex.def Info: ..//../visualisations/figures/p_int_est_all_vs_line_da
-ta.pdf  used on input line 413.
+ta.pdf  used on input line 415.
 (pdftex.def)             Requested size: 381.26694pt x 238.28772pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (22.96164pt too wide) in paragraph at lines 425--442
+Overfull \hbox (22.96164pt too wide) in paragraph at lines 427--444
  [][] 
  []
 
@@ -955,39 +973,40 @@ Underfull \hbox (badness 1292) in paragraph at lines 104--114
 467-[]9876 . 2008 . 00639 .
  []
 
-[16]) [17] (./container-line-model-MS-revisions.aux) ) 
+[16] [17]) [18] (./container-line-model-MS-revisions.aux) ) 
 Here is how much of TeX's memory you used:
- 27146 strings out of 478599
- 670725 string characters out of 5854091
- 1262714 words of memory out of 5000000
- 44578 multiletter control sequences out of 15000+600000
- 412727 words of font info for 63 fonts, out of 8000000 for 9000
+ 27356 strings out of 478599
+ 673929 string characters out of 5854091
+ 1292203 words of memory out of 5000000
+ 44784 multiletter control sequences out of 15000+600000
+ 413027 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,15n,97p,1660b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2021/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2021/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/
-amsfonts/symbols/msbm10.pfb>
-Output written on container-line-model-MS-revisions.pdf (17 pages, 473576 bytes
+ 99i,15n,97p,1604b,935s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/
+2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2
+021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/20
+21/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2021
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publ
+ic/amsfonts/symbols/msbm10.pfb>
+Output written on container-line-model-MS-revisions.pdf (18 pages, 492536 bytes
 ).
 PDF statistics:
- 254 PDF objects out of 1000 (max. 8388607)
- 163 compressed objects within 2 object streams
+ 262 PDF objects out of 1000 (max. 8388607)
+ 168 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  58 words of extra memory for PDF output out of 10000 (max. 10000000)
 
