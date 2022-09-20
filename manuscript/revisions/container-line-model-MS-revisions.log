@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  20 SEP 2022 16:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  20 SEP 2022 16:13
 entering extended mode
 **./container-line-model-MS-revisions.tex
 (container-line-model-MS-revisions.tex
@@ -932,7 +932,7 @@ Overfull \hbox (22.96164pt too wide) in paragraph at lines 452--469
  []
 
 [13 <../../visualisations/figures/p_int_est_all_vs_line_data.pdf>] [14]
-(container-line-model-MS-revisions.bbl [15]
+[15] (container-line-model-MS-revisions.bbl
 Underfull \hbox (badness 1270) in paragraph at lines 9--20
 \OT1/cmr/m/it/10 tice\OT1/cmr/m/n/10 , n/a(n/a):e246, 2020.  ISSN 2578-4854.  d
 oi: $10 . 1111 / csp2 . 246$.  URL
@@ -977,7 +977,7 @@ ts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on container-line-model-MS-revisions.pdf (18 pages, 518394 bytes
+Output written on container-line-model-MS-revisions.pdf (18 pages, 519100 bytes
 ).
 PDF statistics:
  266 PDF objects out of 1000 (max. 8388607)
