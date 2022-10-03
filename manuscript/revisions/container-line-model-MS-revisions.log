@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  20 SEP 2022 16:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.7.27)  3 OCT 2022 11:48
 entering extended mode
 **./container-line-model-MS-revisions.tex
 (container-line-model-MS-revisions.tex
@@ -958,7 +958,7 @@ Here is how much of TeX's memory you used:
  42297 multiletter control sequences out of 15000+200000
  541627 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,15n,98p,1589b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 68i,15n,98p,1588b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
@@ -976,7 +976,7 @@ c/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on container-line-model-MS-revisions.pdf (18 pages, 480665 bytes
+Output written on container-line-model-MS-revisions.pdf (18 pages, 483084 bytes
 ).
 PDF statistics:
  262 PDF objects out of 1000 (max. 8388607)
