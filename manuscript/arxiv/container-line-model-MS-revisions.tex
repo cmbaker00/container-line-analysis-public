@@ -50,7 +50,6 @@
 
 \linespread{1.25}
 
-\linenumbers
 
 \title{GLM for partially pooled categorical predictors with a case study in biosecurity}
 \author{Christopher M.\ Baker \and Howard Bondell \and Nathaniel Bloomfield \and Elena Tartaglia \and Andrew P.\ Robinson}
@@ -226,11 +225,11 @@ Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of no
 
 \begin{figure}[h!]
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_vs_pr_intercept.pdf}
+\includegraphics[width=\textwidth]{SE_vs_pr_intercept.pdf}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_vs_num_lines.pdf}
+\includegraphics[width=\textwidth]{SE_vs_num_lines.pdf}
 \end{subfigure}
 
 \caption{The standard error (Eq.~\eqref{eq:general_SE_calc}) as the probability of non-compliance, \(p\), is varied (left) and as the number of lines are varied (right). For the left plot the number of lines is held constant at 120. For the right plot, the probability of non-compliance is held constant at 0.5}
@@ -266,18 +265,18 @@ Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with t
 
 \begin{figure}[H]
 \begin{subfigure}[b]{.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf}
+\includegraphics[width=\textwidth]{SE_twotype_p1_01_p2_005.pdf}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf}
+\includegraphics[width=\textwidth]{SE_twotype_p1_01_p2_03.pdf}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf}
+\includegraphics[width=\textwidth]{SE_twotype_p1_01_p2_075.pdf}
 \end{subfigure}
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf}
+\includegraphics[width=\textwidth]{SE_twotype_p1_01_p2_09.pdf}
 \end{subfigure}
 
 \caption{The standard error when for entry size 2, when the proportion of mixed entries is varied. In each plot there are 50 total entries and \(p_1\) is held constant at 0.1, while \(p_2\) goes from 0.05 up to 0.9.}
@@ -396,7 +395,7 @@ We fit the STAN model to the simulated data for two reasons. Firstly we confirm 
 Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. Overall, the STAN estimates are close to the true values when there is a large amount of data. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}).  
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
+\includegraphics[width=\textwidth]{simulation_estimates_random_effect.pdf}
 \caption{Results from the STAN model, fitted to simulated data. 50\% of the data are in container mode and 50\% are in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter.}
 \label{fig:simulation_estimation}
 \end{figure}
@@ -405,7 +404,7 @@ The precision of model estimates depends on the entry size, the probability of n
 
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf}
+\includegraphics[width=\textwidth]{sim_study_pint_vs_data_vs_entry_size.pdf}
 \caption{The standard deviation of the alpha parameter estimates for simulations with varying entry size and total number of lines. The ratio of container mode data is the proportion of data in container mode, meaning that 0 corresponds to line mode data-sets, 0.5 if a mixed data-set and 1 is purely container mode. }
 \label{fig:SD_est_simulated}
 \end{figure}
@@ -437,7 +436,7 @@ We apply our model to some real biosecurity data, to see how our understanding o
 We fit our STAN model to the data from each week, using all the data and the line-only subset of the data. Because the line-only analysis is a subset of the data, not every country or item is present in the line-only data set. For the parameters that do match, we generate a scatter plot of the mean estimates to see how frequently we get different estimates (Figure~\ref{fig:case_study_scatter}). For many of the parameters, we get very similar results irrespective of which data we use. This is not surprising, given that most of the data are in line mode and that line mode data gives more information than container mode data. However, it is interesting that including the container mode data results in quite large changes to some of the parameter estimates. 
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/p_int_est_all_vs_line_data.pdf}
+\includegraphics[width=\textwidth]{p_int_est_all_vs_line_data.pdf}
 \caption{Scatter plot of parameter estimates using the line only data and all data. Dots that fall on the solid black line indicate when we get the same parameter estimate from each data set.}
 \label{fig:case_study_scatter}
 \end{figure}
