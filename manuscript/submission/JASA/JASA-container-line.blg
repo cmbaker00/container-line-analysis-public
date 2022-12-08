@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (MiKTeX 2.9.7400 64-bit)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: JASA-container-line.aux
+The style file: Chicago.bst
+Database file #1: container-line.bib
+Warning--page numbers missing in binny_long-term_2021
+Warning--no volume for liu_generalized_2020
+Warning--page numbers missing in liu_generalized_2020
+Warning--no number and no volume in schaarschmidt_experimental_2007
+Warning--page numbers missing in schaarschmidt_experimental_2007
+Warning--no number and no volume in wenger_estimating_2017
+You've used 21 entries,
+            2861 wiz_defined-function locations,
+            748 strings with 10768 characters,
+and the built_in function-call counts, 22076 in all, are:
+= -- 1522
+> -- 2558
+< -- 0
++ -- 842
+- -- 884
+* -- 2436
+:= -- 4220
+add.period$ -- 70
+call.type$ -- 21
+change.case$ -- 237
+chr.to.int$ -- 21
+cite$ -- 27
+duplicate$ -- 368
+empty$ -- 870
+format.name$ -- 960
+if$ -- 3937
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 23
+newline$ -- 115
+num.names$ -- 210
+pop$ -- 177
+preamble$ -- 1
+purify$ -- 365
+quote$ -- 0
+skip$ -- 405
+stack$ -- 0
+substring$ -- 795
+swap$ -- 117
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 400
+warning$ -- 6
+while$ -- 199
+width$ -- 0
+write$ -- 289
+(There were 6 warnings)

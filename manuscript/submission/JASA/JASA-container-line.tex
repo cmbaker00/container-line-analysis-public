@@ -1,34 +1,26 @@
-\documentclass{article}  
-
-\usepackage[dvipsnames,table,xcdraw]{xcolor}
-\usepackage{soul}
+\documentclass[12pt]{article}
 \usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{natbib}
+\usepackage{xcolor,soul}
+\usepackage{url} % not crucial - just used below for the URL 
+
 \usepackage{mathtools}
 \usepackage{amsfonts}
 \usepackage{listings}
 \usepackage{lstbayes}
 \usepackage{booktabs}
-\usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{pgfplots}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage[authoryear]{natbib}
-\usepackage{float}
-\usepackage{url}
-\usepackage{lineno}
-\bibliographystyle{abbrvnat}
-\geometry{a4paper,margin=38mm,bindingoffset=0mm,heightrounded,}
 
-\lstset{language=R,
-    basicstyle=\small\ttfamily,
-%    stringstyle=\color{DarkGreen},
-    otherkeywords={0,1,2,3,4,5,6,7,8,9},
-    morekeywords={TRUE,FALSE},
-    deletekeywords={data,frame,length,as,character},
-%    keywordstyle=\color{blue},
-%    commentstyle=\color{DarkGreen},
-}
+%\pdfminorversion=4
+% NOTE: To produce blinded version, replace "0" with "1" below.
+\newcommand{\blind}{0}
+
+
 
 \newif\ifproofread
 \sethlcolor{Lavender}
@@ -41,28 +33,84 @@
 \fi
 }
 
-\graphicspath{{../}}
-
 \DeclareMathOperator{\logit}{logit}
 \DeclareMathOperator{\logistic}{logistic}
 \DeclareMathOperator{\Normal}{Normal}
 
 
-\linespread{1.25}
+% DON'T change margins - should be 1 inch all around.
+\addtolength{\oddsidemargin}{-.5in}%
+\addtolength{\evensidemargin}{-1in}%
+\addtolength{\textwidth}{1in}%
+\addtolength{\textheight}{1.7in}%
+\addtolength{\topmargin}{-1in}%
 
-\linenumbers
 
-\title{GLM for partially pooled categorical predictors with a case study in biosecurity}
-\author{Christopher M.\ Baker \and Howard Bondell \and Nathaniel Bloomfield \and Elena Tartaglia \and Andrew P.\ Robinson}
+
+
 \begin{document}
 
-%\proofreadtrue
+%\bibliographystyle{natbib}
+
+\def\spacingset#1{\renewcommand{\baselinestretch}%
+{#1}\small\normalsize} \spacingset{1}
 
 
-\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\if1\blind
+{
+  \title{\bf GLM for partially pooled categorical predictors with a case study in biosecurity}
+  \author{Christopher M. Baker\thanks{
+    We would like to thank Tom Waring for their contribution to editing this manuscript.}\hspace{.2cm}\\
+    School of Mathematics and Statistics, University of Melbourne, Australia\\
+    Centre of Excellence for Biosecurity Risk Analysis, University of Melbourne, Australia\\
+    Melbourne Centre for Data Science, University of Melbourne, Australia\\
+    and \\
+    Howard Bondell \\
+    School of Mathematics and Statistics, University of Melbourne, Australia\\
+    Melbourne Centre for Data Science, University of Melbourne, Australia\\
+    and \\
+    Nathaniel Bloomfield\\
+    School of Mathematics and Statistics, University of Melbourne, Australia\\
+    Centre of Excellence for Biosecurity Risk Analysis, University of Melbourne, Australia\\
+    Melbourne Centre for Data Science, University of Melbourne, Australia\\
+    and \\
+    Elena Tartaglia \\
+    Data61, Commonwealth Scientific and Industrial Research Organisation, Australia\\
+    and\\
+    Andrew P. Robinson\\
+    School of Mathematics and Statistics, University of Melbourne, Australia\\
+    Centre of Excellence for Biosecurity Risk Analysis, University of Melbourne, Australia
+    }
+  \maketitle
+} \fi
+
+\if0\blind
+{
+  \bigskip
+  \bigskip
+  \bigskip
+  \begin{center}
+    {\LARGE\bf GLM for partially pooled categorical predictors with a case study in biosecurity}
+\end{center}
+  \medskip
+} \fi
+
+\bigskip
 \begin{abstract}
-National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In the Australian border biosecurity system, data about cargo entries are collected from records of directions: that is, the records of actions taken by the biosecurity regulator. An entry is a collection of import lines where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry, meaning that we don’t know which line(s) within the entry are non-compliant. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the risk of non-compliance is recovered using the new model.
+National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In the Australian border biosecurity system, data about cargo entries are collected from records of directions: that is, the records of actions taken by the biosecurity regulator. An entry is a collection of import lines where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry, meaning that we don?t know which line(s) within the entry are non-compliant. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the risk of non-compliance is recovered using the new model.
 \end{abstract}
+
+\noindent%
+{\it Keywords:} Bayesian inference;  risk analysis; cargo 
+\vfill
+
+\newpage
+\spacingset{1.9} % DON'T change the spacing!
+
+
 
 \section{Introduction}
 
@@ -84,7 +132,7 @@ In this paper we investigate the effect of container mode data collection upon o
 \section{Model overview}
 \subsection{Data}\label{sec:data}
 % Section quoted in review response:
-% “Non-compliant” and “Perhaps the analysis … was limited by insufficient data …”
+% ?Non-compliant? and ?Perhaps the analysis ? was limited by insufficient data ??
 
 To make our language about the data more precise, we will explicitly define what we mean by entries, lines and directions. Entries are a collection of lines, and a line is a group of the same type of item or commodity being imported. When cargo enters the country, each line is given \emph{directions}. These directions detail all of the activities undertaken by the biosecurity regulator to manage the biosecurity risk of each line, and also the outcome of those activities. \rev{To isolate the uncertainty that arises from use of container mode, we focus on one aspect of the directions recorded against import lines: whether they were deemed compliant (within biosecurity regulations) or not.}
 
@@ -225,11 +273,11 @@ Using Eq.~\eqref{eq:general_SE_calc} we can understand how the probability of no
 
 \begin{figure}[h!]
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_vs_pr_intercept.pdf}
+\includegraphics[width=\textwidth]{SE_vs_pr_intercept.pdf}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_vs_num_lines.pdf}
+\includegraphics[width=\textwidth]{SE_vs_num_lines.pdf}
 \end{subfigure}
 
 \caption{The standard error (Eq.~\eqref{eq:general_SE_calc}) as the probability of non-compliance, \(p\), is varied (left) and as the number of lines are varied (right). For the left plot the number of lines is held constant at 120. For the right plot, the probability of non-compliance is held constant at 0.5}
@@ -263,20 +311,20 @@ Figure~\ref{fig:two_type_se_fourplot} shows how the standard error varies with t
 
 
 
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{subfigure}[b]{.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf}
+\includegraphics[width=\textwidth]{SE_twotype_p1_01_p2_005.pdf}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf}
+\includegraphics[width=\textwidth]{SE_twotype_p1_01_p2_03.pdf}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf}
+\includegraphics[width=\textwidth]{SE_twotype_p1_01_p2_075.pdf}
 \end{subfigure}
 \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf}
+\includegraphics[width=\textwidth]{SE_twotype_p1_01_p2_09.pdf}
 \end{subfigure}
 
 \caption{The standard error when for entry size 2, when the proportion of mixed entries is varied. In each plot there are 50 total entries and \(p_1\) is held constant at 0.1, while \(p_2\) goes from 0.05 up to 0.9.}
@@ -395,7 +443,7 @@ We fit the STAN model to the simulated data for two reasons. Firstly we confirm 
 Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. Overall, the STAN estimates are close to the true values when there is a large amount of data. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}).  
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
+\includegraphics[width=\textwidth]{simulation_estimates_random_effect.pdf}
 \caption{Results from the STAN model, fitted to simulated data. 50\% of the data are in container mode and 50\% are in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter.}
 \label{fig:simulation_estimation}
 \end{figure}
@@ -404,7 +452,7 @@ The precision of model estimates depends on the entry size, the probability of n
 
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf}
+\includegraphics[width=\textwidth]{sim_study_pint_vs_data_vs_entry_size.pdf}
 \caption{The standard deviation of the alpha parameter estimates for simulations with varying entry size and total number of lines. The ratio of container mode data is the proportion of data in container mode, meaning that 0 corresponds to line mode data-sets, 0.5 if a mixed data-set and 1 is purely container mode. }
 \label{fig:SD_est_simulated}
 \end{figure}
@@ -436,7 +484,7 @@ We apply our model to some real biosecurity data, to see how our understanding o
 We fit our STAN model to the data from each week, using all the data and the line-only subset of the data. Because the line-only analysis is a subset of the data, not every country or item is present in the line-only data set. For the parameters that do match, we generate a scatter plot of the mean estimates to see how frequently we get different estimates (Figure~\ref{fig:case_study_scatter}). For many of the parameters, we get very similar results irrespective of which data we use. This is not surprising, given that most of the data are in line mode and that line mode data gives more information than container mode data. However, it is interesting that including the container mode data results in quite large changes to some of the parameter estimates. 
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/p_int_est_all_vs_line_data.pdf}
+\includegraphics[width=\textwidth]{p_int_est_all_vs_line_data.pdf}
 \caption{Scatter plot of parameter estimates using the line only data and all data. Dots that fall on the solid black line indicate when we get the same parameter estimate from each data set.}
 \label{fig:case_study_scatter}
 \end{figure}
@@ -482,12 +530,23 @@ However, pooled data will continue to be collected in various fields, for exampl
 While there is extensive work in pooled testing protocols for case identification, there is less work on identifying pool sizes when aiming to make inferences about aspects of the population.
 Our work shows that pooling tests with variable underlying prevalence affects precision differentially. Hence, careful considering should be given to designing pools when the data will be used to make inferences about the population.}
 
+\if1\blind
+{
 \section{Code availability}
 All code is available at \url{https://github.com/cmbaker00/container-line-analysis-public}.
 
-\section{Acknowledgements}
-We would like to thank Tom Waring for their contribution to editing this manuscript.
+} \fi
+
+\if0\blind
+{
+  \bigskip
+ 
+} \fi
+
+
+
+
+\bibliographystyle{Chicago}
 
 \bibliography{container-line}{}
-%\bibliographystyle{plain}
 \end{document}
