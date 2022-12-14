@@ -46,24 +46,48 @@
 \DeclareMathOperator{\logit}{logit}
 \DeclareMathOperator{\logistic}{logistic}
 \DeclareMathOperator{\Normal}{Normal}
-
+\newcommand{\at}{\makeatletter @\makeatother}
 
 \linespread{1.25}
 
 \linenumbers
 
 \title{GLM for partially pooled categorical predictors with a case study in biosecurity}
-\author{Christopher M.\ Baker \and Howard Bondell \and Nathaniel Bloomfield \and Elena Tartaglia \and Andrew P.\ Robinson}
+\author{Christopher M.\ Baker\(^{1,2,3}\) \and Howard Bondell\(^{1,2}\) \and Nathaniel Bloomfield\(^{1,2,3}\) \and Elena Tartaglia\(^{4}\) \and Andrew P.\ Robinson\(^{1,3}\)}
+
 \begin{document}
 
 %\proofreadtrue
 
 
 \maketitle
+
+\begin{enumerate}
+\item School of Mathematics and Statistics, The University of Melbourne
+\item Melbourne Centre for Data Science, The University of Melbourne
+\item Centre of Excellence for Biosecurity Risk Analysis, The University of Melbourne
+\item Data61, Commonwealth Scientific and Industrial Research Organisation
+\end{enumerate}
+
+\noindent
+cbaker1\at unimelb.edu.au\\
+howard.bondell\at unimelb.edu.au\\
+nathaniel.bloomfield\at unimelb.edu.au  \\
+elena.tartaglia\at data61.csiro.au \\
+apro\at unimelb.edu.au 
+
+
+\section*{Acknowledgements}
+We would like to thank Tom Waring for their contribution to editing this manuscript.
+
+\newpage
 \begin{abstract}
-National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In the Australian border biosecurity system, data about cargo entries are collected from records of directions: that is, the records of actions taken by the biosecurity regulator. An entry is a collection of import lines where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry, meaning that we don’t know which line(s) within the entry are non-compliant. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the risk of non-compliance is recovered using the new model.
+
+National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In the Australian border biosecurity system, data about cargo entries are collected from records of directions: that is, the records of actions taken by the biosecurity regulator. An entry is a collection of import lines where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry, meaning that we don?t know which line(s) within the entry are non-compliant. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the risk of non-compliance is recovered using the new model.
 \end{abstract}
 
+\noindent%
+{\it Keywords:} Bayesian inference;  risk analysis; cargo 
 \section{Introduction}
 
 Invasive species pose a multifaceted threat to society, leading to reductions in agricultural productivity, as well as damages to the environment, human health, and the economy \citep{kumar_rai_invasive_2020}. Considerable effort is devoted to managing invasive species \citep{jardine_estimating_2018}, in either eradicating them \citep{baker_recent_2020,holmes_globally_2019, wenger_estimating_2017,helmstedt_prioritizing_2016}, or suppressing their numbers to reduce damages \citep{binny_long-term_2021,brook_effects_2012,sharov_slow_2002}. The costs associated with managing invasive species provides governments with an incentive to manage biosecurity risks at national borders to prevent the establishment of the new species. 
@@ -485,8 +509,12 @@ Our work shows that pooling tests with variable underlying prevalence affects pr
 \section{Code availability}
 All code is available at \url{https://github.com/cmbaker00/container-line-analysis-public}.
 
-\section{Acknowledgements}
-We would like to thank Tom Waring for their contribution to editing this manuscript.
+\section{Data availability}
+The data that support the findings of this simulation study are openly available at \url{https://github.com/cmbaker00/container-line-analysis-public}. The case study data are available from the Australian Department of Agriculture, Fisheries and Forestry. Restrictions apply to the availability of these data, which were used under license for this study.
+
+\section{Conflict of interest}
+The authors declare no conflict of interest.
+
 
 \bibliography{container-line}{}
 %\bibliographystyle{plain}
