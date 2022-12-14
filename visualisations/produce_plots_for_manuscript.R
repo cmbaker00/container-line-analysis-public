@@ -64,7 +64,7 @@ ggplot(df, aes(x = num_total_rows, y = summary_sd, color = as.factor(percentage_
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   facet_grid(`Entry Size`~alpha_vals, labeller = labeller(.rows = label_both, .cols = label_value)) +
   scale_color_discrete(name = "Ratio of entry\nmode data") +
-  labs(title = "Standard deviation of parameter estimates by amount of data") +
+ # labs(title = "Standard deviation of parameter estimates by amount of data") +
   ylab('Standard deviation') + xlab('Total number of lines')
 ggsave(paste0(path,'sim_study_pint_vs_data_vs_entry_size.pdf'), width = 7, height = 8)
 
@@ -86,8 +86,8 @@ raw_data_2 %>%
   geom_abline(slope = 1, intercept = 0) +
   coord_fixed() +
   facet_wrap(.~week, labeller = label_both) +
-  theme(legend.position = "none") +
-  labs(title = "Comparing estimates of p_intercept[i] for all data and line only data")
+  theme(legend.position = "none") 
+ # labs(title = "Comparing estimates of p_intercept[i] for all data and line only data")
 
   ggsave(paste0(path,'p_int_est_all_vs_line_data.pdf'), width = 8, height = 5)
 }
