@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d (MiKTeX 2.9.7400 64-bit)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: JASA-container-line.aux
+The top-level auxiliary file: GLM_Baker_biom.aux
 The style file: Chicago.bst
 Database file #1: container-line.bib
 Warning--page numbers missing in binny_long-term_2021
@@ -11,7 +11,7 @@ Warning--page numbers missing in schaarschmidt_experimental_2007
 Warning--no number and no volume in wenger_estimating_2017
 You've used 21 entries,
             2861 wiz_defined-function locations,
-            748 strings with 10768 characters,
+            748 strings with 10758 characters,
 and the built_in function-call counts, 22076 in all, are:
 = -- 1522
 > -- 2558
