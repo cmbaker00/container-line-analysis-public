@@ -1,0 +1,85 @@
+This is BibTeX, Version 0.99d (TeX Live 2021)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: aoas-template.aux
+The style file: imsart-nameyear.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: container-line.bib
+Warning--string name "dec" is undefined
+--line 30 of file container-line.bib
+Warning--string name "jul" is undefined
+--line 45 of file container-line.bib
+Warning--string name "jan" is undefined
+--line 77 of file container-line.bib
+Warning--string name "nov" is undefined
+--line 94 of file container-line.bib
+Warning--string name "jan" is undefined
+--line 110 of file container-line.bib
+Warning--string name "mar" is undefined
+--line 129 of file container-line.bib
+Warning--string name "mar" is undefined
+--line 187 of file container-line.bib
+Warning--string name "dec" is undefined
+--line 205 of file container-line.bib
+Warning--string name "dec" is undefined
+--line 287 of file container-line.bib
+Warning--string name "jan" is undefined
+--line 305 of file container-line.bib
+Warning--string name "feb" is undefined
+--line 322 of file container-line.bib
+Warning--string name "apr" is undefined
+--line 339 of file container-line.bib
+Warning--string name "jan" is undefined
+--line 359 of file container-line.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 21 entries,
+            5204 wiz_defined-function locations,
+            1013 strings with 13001 characters,
+and the built_in function-call counts, 173722 in all, are:
+= -- 26572
+> -- 541
+< -- 32
++ -- 6741
+- -- 180
+* -- 12379
+:= -- 26033
+add.period$ -- 83
+call.type$ -- 21
+change.case$ -- 116
+chr.to.int$ -- 21
+cite$ -- 21
+duplicate$ -- 1097
+empty$ -- 9910
+format.name$ -- 805
+if$ -- 40400
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 0
+newline$ -- 252
+num.names$ -- 95
+pop$ -- 681
+preamble$ -- 1
+purify$ -- 74
+quote$ -- 0
+skip$ -- 15369
+stack$ -- 0
+substring$ -- 30299
+swap$ -- 486
+text.length$ -- 189
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 534
+warning$ -- 0
+while$ -- 285
+width$ -- 0
+write$ -- 503
+(There were 13 warnings)
