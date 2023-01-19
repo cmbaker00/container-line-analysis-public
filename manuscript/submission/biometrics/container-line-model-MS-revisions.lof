@@ -1,0 +1,56 @@
+\begin{figure}
+
+\begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_vs_pr_intercept.pdf}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_vs_num_lines.pdf}
+\end{subfigure}
+
+\caption{The standard error (Eq.~\eqref{eq:general_SE_calc}) as the probability of non-compliance, \(p\), is varied (left) and as the number of lines are varied (right). For the left plot the number of lines is held constant at 120. For the right plot, the probability of non-compliance is held constant at 0.5.\\ \\}
+\label{fig:asymptotic_SE_plots}
+
+\end{figure}
+\begin{figure}
+
+\begin{subfigure}[b]{.49\textwidth}
+\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf}
+\end{subfigure}
+\begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf}
+\end{subfigure}
+
+\caption{The standard error when for entry size 2, when the proportion of mixed entries is varied. In each plot there are 50 total entries and \(p_1\) is held constant at 0.1, while \(p_2\) goes from 0.05 up to 0.9.}
+\label{fig:two_type_se_fourplot}
+
+\end{figure}
+\begin{figure}
+
+\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
+\caption{Results from the STAN model, fitted to simulated data. 50\% of the data are in container mode and 50\% are in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter.}
+\label{fig:simulation_estimation}
+
+\end{figure}
+\begin{figure}
+
+\includegraphics[width=\textwidth]{../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf}
+\caption{The standard deviation of the alpha parameter estimates for simulations with varying entry size and total number of lines. The ratio of container mode data is the proportion of data in container mode, meaning that 0 corresponds to line mode data-sets, 0.5 if a mixed data-set and 1 is purely container mode. }
+\label{fig:SD_est_simulated}
+
+\end{figure}
+\begin{figure}
+
+\includegraphics[width=\textwidth]{../visualisations/figures/p_int_est_all_vs_line_data.pdf}
+\caption{Scatter plot of parameter estimates using the line only data and all data. Dots that fall on the solid black line indicate when we get the same parameter estimate from each data set.}
+\label{fig:case_study_scatter}
+
+\end{figure}
