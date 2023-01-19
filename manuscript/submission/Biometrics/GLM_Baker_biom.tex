@@ -1,4 +1,370 @@
-\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  
+%  Use of biom.cls and the template to typeset an already published
+%  Biometrics article:
+%
+%  Verbeke, G. and Molenberghs, G. (2003).  The use of score tests for
+%     inference on variance components.  Biometrics 59, 254-262.
+%
+%  The format of the two-column typeset version produced by biom.cls
+%  differs a bit from that published in 2003 owing to some differences
+%  in formatting parameters.  
+%
+%  The LaTeX source kindly provided by these authors has been ``dropped''
+%  into the template file with little modification.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[useAMS,usenatbib,referee]{biom}
+%\documentclass[useAMS,usenatbib]{biom}
+
+\newcommand{\Yi}{\bm{Y_i}}
+\newcommand{\Yiobs}{\bm{Y_i}^{\! o}}
+\newcommand{\yiobs}{\bm{y_i}^{\! o}}
+\newcommand{\h}{\mbox{\boldmath $h$}}
+\newcommand{\etal}{et al.\ }
+%\newcommand{\bm}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\subN}{\mbox{\tiny N}}
+\newcommand{\subX}{\mbox{\tiny X}}
+\newcommand{\subML}{\mbox{\tiny ML}}
+\newcommand{\subREML}{\mbox{\tiny REML}}
+\newcommand{\subZ}{\mbox{\tiny Z}}
+\newcommand{\subO}{\mbox{\tiny $0$}}
+\newcommand{\subeen}{\mbox{\tiny $1$}}
+\newcommand{\subtwee}{\mbox{\tiny $2$}}
+\newcommand{\subOLS}{\mbox{\tiny OLS}}
+\newcommand{\subA}{\mbox{\tiny A}}
+\newcommand{\subB}{\mbox{\tiny B}}
+\newcommand{\subC}{\mbox{\tiny C}}
+\newcommand{\subI}{\mbox{\tiny I}}
+\newcommand{\subK}{\mbox{\tiny K}}
+\newcommand{\subR}{\mbox{\tiny R}}
+\newcommand{\subF}{\mbox{\tiny F}}
+\newcommand{\vc}{\mbox{vec}}
+\newcommand{\subM}{\mbox{\tiny M}}
+\newcommand{\subH}{\mbox{\tiny H}}
+\newcommand{\subAIC}{\mbox{\tiny AIC}}
+\newcommand{\subSBC}{\mbox{\tiny SBC}}
+\newcommand{\subQ}{\mbox{\tiny Q}}
+\newcommand{\bhoed}{\widehat{\bm{b_i}}}
+\newcommand{\bbhoed}{\widehat{\bm{B_i}}}
+\newcommand{\ahoed}{\widehat{\bm\alpha}}
+\newcommand{\thoed}{\widehat{\bm\theta}}
+\newcommand{\whoed}{\widehat{W_i}}
+\newcommand{\psihoed}{\widehat{\bm\psi}_{\subN}}
+\newcommand{\epsi}{\bm{\varepsilon_i}}
+
+\newcommand{\epsei}{\bm{\varepsilon_{\subeen i}}}
+\newcommand{\epsti}{\bm{\varepsilon_{\subtwee i}}}
+
+\newcommand{\ei}{\bm{e_i}}
+\newcommand{\yi}{\bm{y_i}}
+\newcommand{\ri}{\bm{r_i}}
+\newcommand{\reri}{\bm{\Re_i}}
+\newcommand{\bi}{\bm{b_i}}
+\newcommand{\calr}{\mbox{$\bm{{\cal R}}$}}
+\newcommand{\calx}{\mbox{${\cal X}$}}
+\newcommand{\calp}{\mbox{${\cal P}$}}
+\newcommand{\calz}{\mbox{${\cal Z}$}}
+\newcommand{\caln}{\mbox{${\cal N}$}}
+\newcommand{\caly}{\mbox{${\cal Y}$}}
+\newcommand{\cala}{\mbox{${\cal A}$}}
+\newcommand{\calage}{\mbox{${\cal A}ge$}}
+\newcommand{\vinv}{\mbox{$V_i^{-1}$}}
+\newcommand{\vinvtwee}{\mbox{$V_i^{-1/2}$}}
+\newcommand{\zk}{\mbox{$Z_i^{(k)}$}}
+\newcommand{\zl}{\mbox{$Z_i^{(l)}$}}
+\newcommand{\ak}{\mbox{$A_i^{(k)}$}}
+\newcommand{\aj}{\mbox{$A_i^{(j)}$}}
+\newcommand{\zp}{\mbox{$Z_i^{(p)}$}}
+\newcommand{\zq}{\mbox{$Z_i^{(q)}$}}
+\newcommand{\tr}{\mbox{tr}}
+\newcommand{\anmin}{\mbox{$\ddot{L}^{-1}$}}
+
+\newcommand{\xieen}{X_i^{(1)}}
+\newcommand{\xitwee}{X_i^{(2)}}
+\newcommand{\betaeen}{\bm\beta^{(1)}}
+\newcommand{\betatwee}{\bm\beta^{(2)}}
+\newcommand{\zieen}{Z_i^{(1)}}
+\newcommand{\zitwee}{Z_i^{(2)}}
+\newcommand{\bieen}{b_i^{(1)}}
+\newcommand{\bitwee}{\bm{b_i}^{(2)}}
+\newcommand{\een}{\bm{1_{n_i}}}
+\newcommand{\yigem}{\overline{\bm{y}}_i}
+
+\newcommand{\xeen}{X^{(1)}}
+\newcommand{\xtwee}{X^{(2)}}
+\newcommand{\zeen}{Z^{(1)}}
+\newcommand{\ztwee}{Z^{(2)}}
+\newcommand{\been}{\bm{b}^{(1)}}
+\newcommand{\btwee}{\bm{b}^{(2)}}
+\newcommand{\btweenul}{\bm{b_0^{(2)}}}
+\newcommand{\y}{\bm{y}}
+\newcommand{\e}{\bm{e}}
+\newcommand{\boldb}{\bm{b}}
+
+
+\newcommand{\BSig}{\mbox{\unboldmath{$\Sigma$}}}                 
+ \newcommand{\comb}[2]{\left(\begin{array}{c}{{#1}}\\{{#2}}\end{array}\right)}
+ \newcommand{\matt}[4]{\left(\begin{array}{cc}{{#1}}&{{#2}}\\{{#3}}&{{#4}}    
+            \end{array}\right)}                    
+
+ \newcommand{\br}{\mbox{\boldmath{$r$}}}                     
+ \newcommand{\bea}{\mbox{\boldmath{$e_1$}}}                   
+ \newcommand{\beb}{\mbox{\boldmath{$e_2$}}}                   
+ \newcommand{\bej}{\mbox{\boldmath{$e_j$}}}                   
+ \newcommand{\rP}{P}                           
+ \newcommand{\rE}{E}                           
+ \newcommand{\Bmur}{\Bmu^{(r)}}
+ \newcommand{\Bmud}{\Bmu{(d)}}
+ \newcommand{\Bmut}{\Bmu{(d)}}
+\newcommand{\BSigr}{\Sigma^{(r)}}
+\newcommand{\BSigd}{\Sigma{(d)}}
+\newcommand{\BSigt}{\Sigma{(d)}}
+\newcommand{\Bmu}{\mbf{\mu}}
+\newcommand{\rN}{\mbox{N}}
+\newcommand{\mat}[2]{\mbox{$\left(\begin{array}{#1}#2\end{array}\right)$}}
+\newcommand{\mbf}[1]{\mbox{\boldmath$#1$}}
+
+ \newcommand{\saa}{\sigma_{11}}                         
+ \newcommand{\sab}{\sigma_{12}}                         
+ \newcommand{\sbb}{\sigma_{22}}                       
+ \newcommand{\yprev}{Y_{_{\mbox{\tiny pr}}}}
+ \newcommand{\ycurr}{Y_{_{\mbox{\tiny c}}}}
+ \newcommand{\Cov}{\mbox{Cov}}
+ \newcommand{\bitem}{\begin{itemize}}
+ \newcommand{\eitem}{\end{itemize}}
+ \newcommand{\vet}[1]{\mbox{\boldmath $#1$}}
+ \newcommand{\vetje}[1]{\mbox{\boldmath $\scriptstyle #1$}}
+ \newcommand{\pmin}{\phantom{-}}
+ \newcommand{\pvert}{\phantom{|}}
+ \newcommand{\recht}[1]{\mbox{#1}}
+ \newcommand{\hoogte}{\rule{0pt}{\baselineskip}}
+ \newcommand{\hoogteke}[1]{\rule{0pt}{#1}}
+ \newcommand{\Ran}{\mbox{Ran}}
+ \newcommand{\sst}{\scriptstyle}
+ \newcommand{\ds}{\displaystyle}
+ \newcommand{\CD}{\protect\mbox{\rm CD}}
+ \newcommand{\p}{\mbox{\rm p}}
+ \newcommand{\pp}{\mbox{\rm P}}
+ \newcommand{\fakestde}{\mbox{$\phantom{(0.00)}$}}
+ 
+ \newcommand{\x}{\mbox{\boldmath $x$}}
+ \newcommand{\alp}{\mbox{\boldmath $\alpha$}}
+ \newcommand{\bet}{\mbox{\boldmath $\beta$}}
+ \newcommand{\betah}{\mbox{$\widehat{\beta}$}}
+ \newcommand{\epsilonh}{\mbox{$\widehat{\epsilon}$}}
+ \newcommand{\beps}{\mbox{\boldmath $\varepsilon$}}
+ \newcommand{\betaw}{\mbox{$\tilde{\bet}_W$}}
+ \newcommand{\beth}{\mbox{$\widehat{\bet}$}}
+ \newcommand{\bepsh}{\mbox{$\widehat{\beps}$}}
+ \newcommand{\gam}{\mbox{\boldmath $\gamma$}}
+ \newcommand{\vpsi}{\vet{\psi}}
+ \newcommand{\vt}{\mbox{$\vet{\theta}$}}
+ \newcommand{\bmu}{\mbox{\boldmath $\mu$}}
+ \newcommand{\bnu}{\mbox{\boldmath $\nu$}}
+ \newcommand{\bdelta}{\mbox{\boldmath $\delta$}}
+ \newcommand{\btau}{\mbox{\boldmath $\tau$}}
+ \newcommand{\bLambda}{\mbox{\boldmath $\Lambda$}}
+ \newcommand{\blambda}{\mbox{\boldmath $\lambda$}}
+ \newcommand{\bflambda}{\mbox{\boldmath $\lambda$}}
+ \newcommand{\bSigma}{\mbox{\boldmath $\Sigma$}}
+ \newcommand{\bOmega}{\mbox{\boldmath $\Omega$}}
+ \newcommand{\bPsi}{\mbox{\boldmath $\Psi$}}
+\newcommand{\bpsi}{\mbox{\boldmath $\psi$}}
+ \newcommand{\bsigma}{\mbox{\boldmath $\sigma$}}
+ \newcommand{\bSigmah}{\mbox{$\widehat{\bSigma}$}}
+ \newcommand{\brho}{\mbox{\boldmath $\rho$}}
+ \newcommand{\boeta}{\mbox{\boldmath $\eta$}}
+ \newcommand{\nul}{\mbox{\bfseries 0}}
+ \newcommand{\rechts}{\phantom{.}\hfill}
+ \newcommand{\W}{\mbox{\boldmath $W$}}
+ \newcommand{\BA}{\mbox{\boldmath $A$}}
+ \newcommand{\ba}{\mbox{\boldmath $a$}}
+ \newcommand{\bd}{\mbox{\boldmath $d$}}
+ \newcommand{\bg}{\mbox{\boldmath $g$}}
+ %\newcommand{\bh}{\mbox{\boldmath $h$}}
+ \newcommand{\bw}{\mbox{\boldmath $w$}}
+ \newcommand{\BB}{\mbox{\boldmath $B$}}
+ \newcommand{\BM}{\mbox{\boldmath $M$}}
+ \newcommand{\BN}{\mbox{\boldmath $N$}}
+ \newcommand{\BC}{\mbox{\boldmath $C$}}
+ \newcommand{\BD}{\mbox{\boldmath $D$}}
+ \newcommand{\BE}{\mbox{\boldmath $E$}}
+ \newcommand{\BH}{\mbox{\boldmath $H$}}
+ \newcommand{\bh}{\mbox{\boldmath $h$}}
+
+ \newcommand{\BK}{\mbox{\boldmath $K$}}
+ \newcommand{\BG}{\mbox{\boldmath $G$}}
+ \newcommand{\BR}{\mbox{\boldmath $R$}}
+ \newcommand{\BQ}{\mbox{\boldmath $Q$}}
+ \newcommand{\BS}{\mbox{\boldmath $S$}}
+ \newcommand{\bs}{\mbox{\boldmath $s$}}
+ \newcommand{\BV}{\mbox{\boldmath $V$}}
+ \newcommand{\BW}{\mbox{\boldmath $W$}}
+ \newcommand{\BY}{\mbox{\boldmath $Y$}}
+ \newcommand{\BX}{\mbox{\boldmath $X$}}
+ \newcommand{\BP}{\mbox{\boldmath $P$}}
+ \newcommand{\X}{\mbox{\boldmath $X$}}
+ \newcommand{\BU}{\mbox{\boldmath $U$}}
+ \newcommand{\BJ}{\mbox{\boldmath $J$}}
+ \newcommand{\BI}{\mbox{\boldmath $I$}}
+ \newcommand{\bx}{\mbox{\boldmath $x$}}
+%\newcommand{\bq}{\mbox{\boldmath $q$}}
+ \newcommand{\by}{\mbox{\boldmath $y$}}
+  \newcommand{\byo}{\mbox{\boldmath{$\by_o$}}} 
+ \newcommand{\bym}{\mbox{\boldmath{$\by_m$}}}
+  \newcommand{\bt}{\mbox{\boldmath $t$}}
+ \newcommand{\bu}{\mbox{\boldmath $u$}}
+ \newcommand{\byh}{\mbox{$\widehat{\by}$}}
+ \newcommand{\BYH}{\mbox{$\widehat{\BY}$}}
+ \newcommand{\be}{\mbox{\boldmath $e$}}
+ \newcommand{\bv}{\mbox{\boldmath $v$}}
+ \newcommand{\BZ}{\mbox{\boldmath $Z$}}
+ \newcommand{\bz}{\mbox{\boldmath $z$}}
+ \newcommand{\xbarj}[1]{\mbox{$\overline{x}_{#1}$}}
+ \newcommand{\xbar}{\mbox{$\overline{\bx}$}}
+ \newcommand{\xb}{\mbox{$\overline{x}$}}
+ \newcommand{\yb}{\mbox{$\overline{y}$}}
+ \newcommand{\Xbar}{\mbox{$\overline{\BX}$}}
+ \newcommand{\Ybar}{\mbox{$\overline{\BY}$}}
+ \newcommand{\Zbar}{\mbox{$\overline{\BZ}$}}
+ \newcommand{\Dbar}{\mbox{$\overline{\BD}$}}
+ \newcommand{\dbar}{\mbox{$\overline{\bd}$}}
+ \newcommand{\ybar}{\mbox{$\overline{\by}$}}
+ \newcommand{\Spooled}{\mbox{$\BS_{\mbox{\scriptsize pooled}}$}}
+ \newcommand{\Spooledinv}{\mbox{$\BS_{\mbox{\scriptsize pooled}}^{-1}$}}
+ 
+ \newcommand{\bxi}{\mbox{$\bx_i$}}
+ \newcommand{\byi}{\mbox{$\by_i$}}
+ \newcommand{\BXi}{\mbox{$\BX_i$}}
+ \newcommand{\BZi}{\mbox{$\BZ_i$}}
+ \newcommand{\BVi}{\mbox{$\BV_{i}$}}
+ \newcommand{\BVih}{\mbox{$\widehat{\BVi}$}}
+ \newcommand{\BWi}{\mbox{$\BW_{i}$}}
+ \newcommand{\BWih}{\mbox{$\widehat{\BWi}$}}
+ \newcommand{\BDi}{\mbox{$\BD_i$}}
+ \newcommand{\BDih}{\mbox{$\widehat{\BDi}$}}
+ \newcommand{\BRi}{\mbox{$\BR_i$}}
+ \newcommand{\BZERO}{\mbox{\boldmath $0$}}
+ 
+ \newcommand{\muij}{\mbox{$\mu_{ij}$}}
+ \newcommand{\bmui}{\mbox{$\bmu_i$}}
+ \newcommand{\bmuh}{\mbox{$\widehat{\bmu}$}}
+ \newcommand{\bmuih}{\mbox{$\bmuh_i$}}
+ \newcommand{\bb}{\mbox{\boldmath $b$}}
+ \newcommand{\bc}{\mbox{\boldmath $c$}}
+ \newcommand{\bbone}{\mbox{\boldmath $\beta_1$}}
+ \newcommand{\bbh}{\mbox{$\widehat{\bb}$}}
+ \newcommand{\bbhone}{\mbox{$\widehat{\bb}_1$}}
+ \newcommand{\etaij}{\mbox{$\eta_{ij}$}}
+ \newcommand{\boetai}{\mbox{$\boeta_i$}}
+ \newcommand{\bl}{\mbox{\boldmath $\ell$}}
+ \newcommand{\BL}{\mbox{\boldmath $L$}}
+ \newcommand{\BHh}{\mbox{$\widehat{\BH}$}}
+ \newcommand{\BXk}{\mbox{$\BX_k$}}
+ \newcommand{\BZk}{\mbox{$\BZ_k$}}
+ \newcommand{\BVk}{\mbox{$\BV_{k}$}}
+ \newcommand{\BVkh}{\mbox{$\widehat{\BVk}$}}
+ \newcommand{\BWk}{\mbox{$\BW_{k}$}}
+ \newcommand{\BWkh}{\mbox{$\widehat{\BWk}$}}
+ \newcommand{\BDk}{\mbox{$\BD_k$}}
+ \newcommand{\BDkh}{\mbox{$\widehat{\BDk}$}}
+ \newcommand{\BRk}{\mbox{$\BR_k$}}
+ \newcommand{\byk}{\mbox{\boldmath $y_{k}$}}
+ \newcommand{\bzk}{\mbox{\boldmath $z_{k}$}}
+ \newcommand{\mukj}{\mbox{$\mu_{kj}$}}
+ \newcommand{\bmuk}{\mbox{$\bmu_k$}}
+ \newcommand{\bmukh}{\mbox{$\bmuh_k$}}
+ \newcommand{\etakj}{\mbox{$\eta_{kj}$}}
+ \newcommand{\boetak}{\mbox{$\boeta_k$}}
+ \newcommand{\tn}{\mbox{$\widehat{\vt}_K$}}
+ \newcommand{\ttilde}{\mbox{$\tilde{\vt}_K$}}
+ \newcommand{\tast}{\mbox{$\vt_{\ast}$}}
+ \newcommand{\gtn}{\mbox{$\tilde{\vet{\gamma}}_K$}}
+ \newcommand{\pj}{p_{\vet{j}}}
+ \newcommand{\yj}{y_{\vet{j}}}
+ 
+ \newcommand{\ymis}{\mbox{$Y_{\mbox{\small m}}$}}
+ \newcommand{\yobs}{\mbox{$Y_{\mbox{\small o}}$}}
+ \newcommand{\zmis}{\mbox{$\BZ_{\mbox{\small m}}$}}
+ \newcommand{\zobs}{\mbox{$\BZ_{\mbox{\small o}}$}}
+ 
+ \newcommand{\SStr}{\mbox{$SS_{\mbox{tr}}$}}
+ \newcommand{\SSres}{\mbox{$SS_{\mbox{res}}$}}
+ 
+ \newcommand{\suml}{\sum_{\ell=1}^g}
+ \newcommand{\sumk}{\sum_{k=1}^b}
+ \newcommand{\sumi}{\sum_{i=1}^{n_\ell}}
+ 
+ \newcommand{\bfY}{{\bfseries Y}}
+ \newcommand{\bfy}{{\bfseries y}}
+ \newcommand{\bfsigma}{\mbox{\boldmath $\sigma$}}
+ \newcommand{\bfpsi}{\mbox{\boldmath $\psi$}}
+ \newcommand{\bfpi}{\mbox{\boldmath $\pi$}}
+ \newcommand{\bfgamma}{\mbox{\boldmath $\gamma$}}
+ \newcommand{\bfSigma}{\mbox{\boldmath $\Sigma$}}
+ \newcommand{\bftheta}{\mbox{\boldmath $\theta$}}
+ \newcommand{\bfomega}{\mbox{\boldmath $\omega$}}
+ \newcommand{\bfmu}{\mbox{\boldmath $\mu$}}
+ \newcommand{\bfr}{ {\bfseries r} }
+ \newcommand{\bfzero}{{\bfseries 0}}
+ \newcommand{\hatF}{{ \widehat {F} }}
+ \newcommand{\hf}{{ \widehat {f} }}
+ \newcommand{\hatW}{{ \widehat {W} }}
+ \newcommand{\hbff}{{ \widehat {\bfseries f} }}
+ \newcommand{\hatB}{{ \widehat {B} }}
+ \newcommand{\hmu}{{ \widehat {\mu} }}
+ 
+ \newcommand{\bhat}{\widehat{\mbox{\boldmath$\beta$}}}
+ \newcommand{\bbar}{\bar{\mbox{\boldmath$\beta$}}}
+ \newcommand{\that}{\widehat{\mbox{\boldmath$\theta$}}}
+ \newcommand{\ghat}{\widehat{\mbox{\boldmath$\gamma$}}}
+ \newcommand{\ahat}{\widehat{\mbox{\boldmath$\alpha$}}}
+ \newcommand{\htheta}{\widehat{\theta}}
+ \newcommand{\ttheta}{\tilde{\theta}}
+ \newcommand{\hgamma}{\widehat{\gamma}}
+ \newcommand{\Var}{{\rm var}}
+ \newcommand{\pr}{{\rm pr}}
+ \newcommand{\obs}{{\rm obs}}
+ \newcommand{\mis}{{\rm mis}}
+ \newcommand{\invoeg}[2]
+ {
+ \begin{center}
+ \framebox[16cm]{\hoogteke{#1} #2}
+ \end{center}
+ }
+ \newcommand{\I}{\mbox{\boldmath $I$}}
+ \newcommand{\Wi}{\mbox{\boldmath $W_{\mbox{\boldmath$i$}}$}}
+ \newcommand{\V}{\mbox{\boldmath $V$}}
+ \newcommand{\U}{\mbox{\boldmath $U$}}
+ \newcommand{\R}{\mbox{\boldmath $R$}}
+ \newcommand{\Y}{\mbox{\boldmath $Y$}}
+ \newcommand{\D}{\mbox{\boldmath $D$}}
+ \newcommand{\B}{\mbox{\boldmath $B$}}
+ \newcommand{\Z}{\mbox{\boldmath $Z$}}
+ \newcommand{\bfeta}{ {\mbox{\boldmath $\eta$}} }
+ \newcommand{\bfnu}{ {\mbox{\boldmath $\nu$}} }
+ \newcommand{\bfU}{ {\bfseries U} }
+ \newcommand{\bfW}{ {\bfseries W} }
+ \newcommand{\bfP}{ {\bfseries P} }
+ \newcommand{\bfH}{ {\bfseries H} }
+ \newcommand{\z}{\mbox{\boldmath $z$}}
+ \newcommand{\zi}{\mbox{\boldmath $z_{\mbox{\boldmath$i$}}$}}
+ \newcommand{\bfbeta}{\mbox{\boldmath $\beta$}}
+ \newcommand{\vSigma}{\mbox{\boldmath $\Sigma$}}
+ \newcommand{\vbeta}{\mbox{\boldmath $\beta$}}
+ \newcommand{\valpha}{\mbox{\boldmath $\alpha$}}
+ \newcommand{\vgamma}{\mbox{\boldmath $\gamma$}}
+ \newcommand{\si}{\mbox{\boldmath $s_{\mbox{\boldmath$i$}}$}}
+ \newcommand{\vmu}{\mbox{\boldmath $\mu$}}
+ \newcommand{\vmui}{\mbox{\boldmath $\mu_{\mbox{\boldmath$i$}}$}}
+ \newcommand{\vtau}{\mbox{\boldmath $\tau$}}
+ \newcommand{\vTheta}{\mbox{\boldmath $\Theta$}}
+ \newcommand{\Xie}{\mbox{\boldmath $X_{\mbox{\boldmath$i$}}$}}
+ \newcommand{\zbar}{\mbox{\boldmath $\overline{z}$}}
+ \newcommand{\Corr}{  {\rm Corr}  }
+
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{enumerate}
@@ -11,15 +377,10 @@
 \usepackage{listings}
 \usepackage{lstbayes}
 \usepackage{booktabs}
-\usepackage{geometry}
+%\usepackage{geometry}
 \usepackage{pgfplots}
 \usepackage{caption}
 \usepackage{subcaption}
-
-%\pdfminorversion=4
-% NOTE: To produce blinded version, replace "0" with "1" below.
-\newcommand{\blind}{0}
-
 
 
 \newif\ifproofread
@@ -33,84 +394,83 @@
 \fi
 }
 
+
 \DeclareMathOperator{\logit}{logit}
 \DeclareMathOperator{\logistic}{logistic}
 \DeclareMathOperator{\Normal}{Normal}
+\newcommand{\at}{\makeatletter @\makeatother}
+
+%\def\bSig\mathbf{\Sigma}
+%\newcommand{\VS}{V\&S}
+%\newcommand{\tr}{\mbox{tr}}
 
 
-% DON'T change margins - should be 1 inch all around.
-\addtolength{\oddsidemargin}{-.5in}%
-\addtolength{\evensidemargin}{-1in}%
-\addtolength{\textwidth}{1in}%
-\addtolength{\textheight}{1.7in}%
-\addtolength{\topmargin}{-1in}%
+%  The rotating package allows you to have tables displayed in landscape
+%  mode.  The rotating package is NOT included in this distribution, but
+%  can be obtained from the CTAN archive.  USE OF LANDSCAPE TABLES IS
+%  STRONGLY DISCOURAGED -- create landscape tables only as a last resort if
+%  you see no other way to display the information.  If you do do this,
+%  then you need the following command.
+
+\usepackage[figuresright]{rotating}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[GLM for partially pooled data]{GLM for partially pooled categorical predictors with a case study in biosecurity}
 
 
-
+\author
+{Christopher M.\ Baker\emailx{cbaker1@unimelb.edu.au} \\
+School of Mathematics and Statistics, The University of Melbourne, Australia\\
+Centre of Excellence for Biosecurity Risk Analysis,  The University of Melbourne, Australia\\
+Melbourne Centre for Data Science,  The University of Melbourne, Australia
+\and
+Howard Bondell \emailx{ howard.bondell@unimelb.edu.au} \\
+School of Mathematics and Statistics, The University of Melbourne, Australia\\
+Melbourne Centre for Data Science,  The University of Melbourne, Australia
+\and
+Nathaniel Bloomfield \emailx{nathaniel.bloomfield@unimelb.edu.au } \\
+School of Mathematics and Statistics, The University of Melbourne, Australia\\
+Centre of Excellence for Biosecurity Risk Analysis,  The University of Melbourne, Australia\\
+Melbourne Centre for Data Science,  The University of Melbourne, Australia
+\and
+Elena Tartaglia \emailx{elena.tartaglia@data61.csiro.au } \\
+Commonweatlh Scientific and Industrial Research Organisation, Australia
+\and
+Andrew Robinson \emailx{apro@unimelb.edu.au } \\
+Centre of Excellence for Biosecurity Risk Analysis,  The University of Melbourne, Australia}
 
 \begin{document}
 
-%\bibliographystyle{natbib}
+%  This will produce the submission and review information that appears
+%  right after the reference section.  Of course, it will be unknown when
+%  you submit your paper, so you can either leave this out or put in 
+%  sample dates (these will have no effect on the fate of your paper in the
+%  review process!)
 
-\def\spacingset#1{\renewcommand{\baselinestretch}%
-{#1}\small\normalsize} \spacingset{1}
+%\date{{\it Received April} 2007. {\it Revised April} 2007.  {\it
+%Accepted April} 2007.}
 
+\pagerange{\pageref{firstpage}--\pageref{lastpage}} 
+%\volume{63}
+%\pubyear{2007}
+%\artmonth{December}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\doi{10.1111/j.1541-0420.2005.00454.x}
 
+\label{firstpage}
 
-\if1\blind
-{
-  \title{\bf GLM for partially pooled categorical predictors with a case study in biosecurity}
-  \author{Christopher M. Baker\thanks{
-    We would like to thank Tom Waring for their contribution to editing this manuscript.}\hspace{.2cm}\\
-    School of Mathematics and Statistics, University of Melbourne, Australia\\
-    Centre of Excellence for Biosecurity Risk Analysis, University of Melbourne, Australia\\
-    Melbourne Centre for Data Science, University of Melbourne, Australia\\
-    and \\
-    Howard Bondell \\
-    School of Mathematics and Statistics, University of Melbourne, Australia\\
-    Melbourne Centre for Data Science, University of Melbourne, Australia\\
-    and \\
-    Nathaniel Bloomfield\\
-    School of Mathematics and Statistics, University of Melbourne, Australia\\
-    Centre of Excellence for Biosecurity Risk Analysis, University of Melbourne, Australia\\
-    Melbourne Centre for Data Science, University of Melbourne, Australia\\
-    and \\
-    Elena Tartaglia \\
-    Data61, Commonwealth Scientific and Industrial Research Organisation, Australia\\
-    and\\
-    Andrew P. Robinson\\
-    School of Mathematics and Statistics, University of Melbourne, Australia\\
-    Centre of Excellence for Biosecurity Risk Analysis, University of Melbourne, Australia
-    }
-  \maketitle
-} \fi
+%  put the summary for your paper here
 
-\if0\blind
-{
-  \bigskip
-  \bigskip
-  \bigskip
-  \begin{center}
-    {\LARGE\bf GLM for partially pooled categorical predictors with a case study in biosecurity}
-\end{center}
-  \medskip
-} \fi
-
-\bigskip
 \begin{abstract}
 National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In the Australian border biosecurity system, data about cargo entries are collected from records of directions: that is, the records of actions taken by the biosecurity regulator. An entry is a collection of import lines where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry, meaning that we don?t know which line(s) within the entry are non-compliant. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the risk of non-compliance is recovered using the new model.
 \end{abstract}
 
-\noindent%
-{\it Keywords:} Bayesian inference;  risk analysis; cargo 
-\vfill
+\begin{keywords}
+Bayesian inference;  risk analysis; cargo.
+\end{keywords}
 
-\newpage
-\spacingset{1.9} % DON'T change the spacing!
-
-
+\maketitle
 
 \section{Introduction}
 
@@ -530,23 +890,20 @@ However, pooled data will continue to be collected in various fields, for exampl
 While there is extensive work in pooled testing protocols for case identification, there is less work on identifying pool sizes when aiming to make inferences about aspects of the population.
 Our work shows that pooling tests with variable underlying prevalence affects precision differentially. Hence, careful considering should be given to designing pools when the data will be used to make inferences about the population.}
 
-\if1\blind
-{
-\section{Code availability}
+
+\section*{Acknowledgements}
+We would like to thank Tom Waring for their contribution to editing this manuscript.
+\section*{Code availability}
 All code is available at \url{https://github.com/cmbaker00/container-line-analysis-public}.
 
-} \fi
-
-\if0\blind
-{
-  \bigskip
- 
-} \fi
-
-
-
+%\bibliographystyle{biom}
 
 \bibliographystyle{Chicago}
 
 \bibliography{container-line}{}
+\label{lastpage}
+
+
+
 \end{document}
+

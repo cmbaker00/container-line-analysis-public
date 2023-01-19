@@ -1,0 +1,131 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Anderberg}{Anderberg}{1983}]{b1}
+Anderberg, M.~R. (1983).
+\newblock {\em Cluster Analysis for Applications}.
+\newblock New York: Academic Press.
+
+\bibitem[\protect\citeauthoryear{Arabie and Carroll}{Arabie and
+  Carroll}{1980}]{b2}
+Arabie, P. and Carroll, J.~D. (1980).
+\newblock Mapclus: A mathematical programming approach to fitting the adclus
+  models.
+\newblock {\em Psychometrika} {\bf 445,} 211--235.
+
+\bibitem[\protect\citeauthoryear{Ball and Hall}{Ball and Hall}{1965}]{b3}
+Ball, G.~H. and Hall, D.~J. (1965).
+\newblock A novel method of data analysis and pattern classification.
+\newblock Technical report, Stanford Research Institute, California.
+
+\bibitem[\protect\citeauthoryear{Banfield and Raftery}{Banfield and
+  Raftery}{1993}]{b4}
+Banfield, J.~D. and Raftery, A.~E. (1993).
+\newblock Model-based gaussian and non-gaussian clustering.
+\newblock {\em Biometrics} {\bf 49,} 803--821.
+
+\bibitem[\protect\citeauthoryear{Beale}{Beale}{1969}]{b5}
+Beale, E. M.~L. (1969).
+\newblock Euclidean cluster analysis.
+\newblock {\em Bulletin of the International Statistical Institute} {\bf 43,}
+  92--94.
+
+\bibitem[\protect\citeauthoryear{Bezdek}{Bezdek}{1974}]{b6}
+Bezdek, J.~C. (1974).
+\newblock Numerical taxonomy with fuzzy sets.
+\newblock {\em Journal of Methematical Biology} {\bf 1,} 57--71.
+
+\bibitem[\protect\citeauthoryear{Binder}{Binder}{1978}]{b7}
+Binder, D.~A. (1978).
+\newblock Bayesian cluster analysis.
+\newblock {\em Biometrika} {\bf 65,} 31--38.
+
+\bibitem[\protect\citeauthoryear{Blashfield}{Blashfield}{1976}]{b8}
+Blashfield, R.~K. (1976).
+\newblock Mixture model tests of cluster analysis: Accuracy of four
+  agglomerative hierarchical methods.
+\newblock {\em Psychological Bulletin} {\bf 83,} 377--385.
+
+\bibitem[\protect\citeauthoryear{Breiman, Friedman, Olshen, and Stone}{Breiman
+  et~al.}{1984}]{b9}
+Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984).
+\newblock {\em Classification and Regression Trees}.
+\newblock Belmont: Wadsworth.
+
+\bibitem[\protect\citeauthoryear{Calinski and Harabasz}{Calinski and
+  Harabasz}{1974}]{b10}
+Calinski, T. and Harabasz, J. (1974).
+\newblock A dendrite method for cluster analysis.
+\newblock {\em Communications in Statistics} {\bf 3,} 1--27.
+
+\bibitem[\protect\citeauthoryear{Campbell, Fraley, Murtagh, and
+  Raftery}{Campbell et~al.}{1997}]{b11}
+Campbell, J.~G., Fraley, C., Murtagh, F., and Raftery, A.~E. (1997).
+\newblock Linear flaw detection in woven textiles using model-based clustering.
+\newblock {\em Pattern Recognition Letters} {\bf 18,} 1539--1548.
+
+\bibitem[\protect\citeauthoryear{Campbell, Fraley, Stanford, Murtagh, and
+  Raftery}{Campbell et~al.}{1999}]{b12}
+Campbell, J.~G., Fraley, C., Stanford, D., Murtagh, F., and Raftery, A.~E.
+  (1999).
+\newblock Model-based methods for real-time textile fault detection.
+\newblock {\em International Journal of Imaging Systems and Technology} {\bf
+  10,} 339--346.
+
+\bibitem[\protect\citeauthoryear{Carmichael, Gorge, and Julius}{Carmichael
+  et~al.}{1968}]{b14}
+Carmichael, J.~W., Gorge, L.~A., and Julius, R.~S. (1968).
+\newblock Finding natural clusters.
+\newblock {\em Systematic Zoology} {\bf 17,} 144--150.
+
+\bibitem[\protect\citeauthoryear{Carmichael and Sneath}{Carmichael and
+  Sneath}{1969}]{b13}
+Carmichael, J.~W. and Sneath, P. H.~A. (1969).
+\newblock Taxometric maps.
+\newblock {\em Systematic Zoology} {\bf 18,} 402--415.
+
+\bibitem[\protect\citeauthoryear{Cattell and Coulter}{Cattell and
+  Coulter}{1966}]{b15}
+Cattell, R.~B. and Coulter, M.~A. (1966).
+\newblock Principles of behavioural taxonomy and the mathematical basis of the
+  taxonome computer program.
+\newblock {\em British Journal of Mathematical and Statistical Psychology} {\bf
+  19,} 237--269.
+
+\bibitem[\protect\citeauthoryear{Cormack}{Cormack}{1971}]{b16}
+Cormack, R. (1971).
+\newblock A review of classification.
+\newblock {\em Journal of the Royal Statistical Society A} {\bf 134,} 321--367.
+
+\bibitem[\protect\citeauthoryear{Crawford and Wishart}{Crawford and
+  Wishart}{1976}]{b17}
+Crawford, R. M.~M. and Wishart, D. (1976).
+\newblock A rapid multivariate method for the detection and classification of
+  groups of ecologically related species.
+\newblock {\em Journal of Economics} {\bf 55,} 505--524.
+
+\bibitem[\protect\citeauthoryear{Dasgupta and Raftery}{Dasgupta and
+  Raftery}{1998}]{b19}
+Dasgupta, A. and Raftery, A.~E. (1998).
+\newblock Detecting features in spatial point processes with clutter via
+  model-based clustering.
+\newblock {\em Journal of the American Statistical Association} {\bf 93,}
+  294--302.
+
+\bibitem[\protect\citeauthoryear{Day}{Day}{1969}]{b18}
+Day, N.~E. (1969).
+\newblock Estimating the components of a mixture of normal distributions.
+\newblock {\em Biometrika} {\bf 56,} 463--474.
+
+\bibitem[\protect\citeauthoryear{De~Soete}{De~Soete}{1986}]{b21}
+De~Soete, G. (1986).
+\newblock Optimal variable weighting for ultrametric and additive tree
+  clustering.
+\newblock {\em Quality and Quantity} {\bf 20,} 169--180.
+
+\bibitem[\protect\citeauthoryear{Dempster, Laird, and Rubin}{Dempster
+  et~al.}{1977}]{b20}
+Dempster, A.~P., Laird, N.~M., and Rubin, D.~B. (1977).
+\newblock Maximum likelihood for incomplete data via the em algorithm.
+\newblock {\em Journal of the Royal Statistical Society B} {\bf 39,} 1--38.
+
+\end{thebibliography}

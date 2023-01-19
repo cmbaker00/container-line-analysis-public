@@ -86,6 +86,8 @@ raw_data_2 %>%
   geom_abline(slope = 1, intercept = 0) +
   coord_fixed() +
   facet_wrap(.~week, labeller = label_both) +
+  xlab('Mean estimate - all data') +
+  ylab('Mean estimate - line mode data') +
   theme(legend.position = "none") 
  # labs(title = "Comparing estimates of p_intercept[i] for all data and line only data")
 
