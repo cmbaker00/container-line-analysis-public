@@ -20,7 +20,7 @@ num_lines_vals <- c(1000, 2000, 3000, 4000, 5000, 10000, 15000, 20000, 25000)
 base_path_data <- 'simulation_study/new_sim_data/new_sim_data_no'
 base_path_output <- 'simulation_study/new_sim_results/fit_summary'
 
-use_cmdstan <- TRUE
+use_cmdstan <- FALSE
 
 # generate separate simulation files for each fit
 generate_data <- function (min_entry_size, max_entry_size, entry_corr_sd, num_rows, num_batches, base_data_path) {
