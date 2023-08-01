@@ -1,8 +1,11 @@
 # Load packages
 library(rstan)
 library(dplyr)
+library(cmdstanr)
 
-run_stan_simulated_data <- function (data, data_filename, entry_correlation_flag = TRUE){
+check_cmdstan_toolchain(fix = TRUE, quiet = TRUE)
+
+run_stan_simulated_data <- function (data, data_filename, entry_correlation_flag = TRUE, use_cmdstan=FALSE){
 
 data <- data %>% mutate(Documentation = as.numeric(Documentation)) # Ensure Documentation is numeric
 
@@ -98,7 +101,15 @@ stan_data <- list(num_rows = nrow(data),
                   entry_size = entry_size)
 
 
-# init_fun <- function(...) list(p=runif(n=8,0.01,.4),beta_doc=0, sigma_entry=0.1, entry_effect=integer(num_entries))
+# init_fun <- function(...) list(p=runif(n=stan_data$Num_item_classes,0.01,.4),beta_doc=0, sigma_entry=0.1, entry_effect=integer(num_entries))
+
+if (use_cmdstan) {
+
+  fit_summary_df <- fit_with_cmdstan (stan_data)
+
+} else {
+
+
 if (num_containers==0){
   fit <- stan(
     file = "stan_code/full_line_only_model.stan",
@@ -110,7 +121,7 @@ if (num_containers==0){
     refresh = 500, 
     control = list(adapt_delta = .8),
     init_r = .1,
-    # init = init_fun,
+    # init = init_fun
   )
   
 } else {
@@ -124,13 +135,54 @@ fit <- stan(
   refresh = 500, 
   control = list(adapt_delta = .8),
   init_r = .1,
-  # init = init_fun,
+  verbose=FALSE,
+  # init = init_fun
 )
 }
 print(fit)
 fit_summary <- summary(fit)
 fit_summary_df <- data.frame(fit_summary)
+}
+
 return(fit_summary_df)
 }
 
+
+fit_with_cmdstan <- function(stan_data) {
+
+  if (stan_data$num_containers == 0) {
+    stan_filepath <- "stan_code/full_line_only_model.stan"
+  } else {
+    stan_filepath <- "stan_code/full_container_line_model.stan"
+  }
+
+  num_item_types <- stan_data$Num_item_classes
+  num_entries <- stan_data$num_unique_Entry
+  num_countries <- stan_data$num_countries
+
+
+  init_fun <- function() list(p_intercept=runif(n=num_item_types,0.01,.4),
+    beta_doc=0, 
+    sigma_entry=0.1,
+    country_effect=rep(0,num_countries),
+    entry_effect=as.array(0))
+
+  # print(init_fun())
+
+  model <- cmdstan_model(stan_filepath)
+
+  fit <- model$sample(data=stan_data,
+    chains = 4,
+    iter_warmup = 1000,
+    iter_sampling = 10000,
+    cores = 4,
+    refresh = 500, 
+    adapt_delta = .8,
+    init = init_fun)
+
+  print(fit)
+  summary_df <- data.frame(fit$summary())
+  return(summary_df)
+
+}
 

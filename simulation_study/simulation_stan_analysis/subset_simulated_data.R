@@ -19,9 +19,11 @@ load_and_subset_sim_data = function(min_entry_size,
                                     num_line_data,
                                     num_container_data,
                                     entry_random_effect,
-                                    update = FALSE) {
+                                    index = NULL,
+                                    update = FALSE,
+                                    use_cmdstan = FALSE) {
   
-  output_filename = gen_filename_stanfit_simulated_data(min_entry_size, max_entry_size,sd,num_line_data, num_container_data)
+  output_filename = gen_filename_stanfit_simulated_data(min_entry_size, max_entry_size,sd,num_line_data,num_container_data, index)
   
   if(!file.exists(output_filename) | update){
     # open full data frame
@@ -40,7 +42,7 @@ load_and_subset_sim_data = function(min_entry_size,
       message(paste0("Input number of containers ", num_container_data, " > max=", max_container, ". Setting to max..." ))
       num_container_data <- max_container
     }
-    output_filename = gen_filename_stanfit_simulated_data(min_entry_size, max_entry_size,sd,num_line_data, num_container_data)
+    output_filename = gen_filename_stanfit_simulated_data(min_entry_size, max_entry_size,sd,num_line_data,num_container_data, index)
     
     # extract line_rows of line data and container_rows of container data
     line_data <- load_sim_data %>% filter(Mode == 'Line') %>% head(num_line_data)
@@ -52,7 +54,8 @@ load_and_subset_sim_data = function(min_entry_size,
     
     fit_summary_df <- run_stan_simulated_data(load_sim_data,
                                               data_filename,
-                                              entry_correlation_flag = entry_random_effect
+                                              entry_correlation_flag = entry_random_effect,
+                                              use_cmdstan = use_cmdstan
     )
     
     saveRDS(fit_summary_df, output_filename)

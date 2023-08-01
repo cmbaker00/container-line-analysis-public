@@ -131,6 +131,8 @@ raw_data_2 %>%
   ggsave(paste0(path,'simulation_estimates.pdf'), width=8, height=8)
 }
 
+
+# ------------------------------------------------------------------------------------------------------------
 ## PLOT - PARAM ESTIMATES VS TRUE - SIMULATIION WITH SD
 {
   df = summary_data %>%

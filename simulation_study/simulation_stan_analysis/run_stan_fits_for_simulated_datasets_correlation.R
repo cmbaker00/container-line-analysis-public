@@ -6,7 +6,7 @@ entry_size_max <- entry_size_list[length(entry_size_list)]
 
 sd_model = 0.25
 
-loop_over_input_params_fit_stan <- function (input_params) {
+loop_over_input_params_fit_stan <- function (input_params, index=NULL, use_cmdstan=FALSE) {
   # load and subset data
   for (i in 1:nrow(input_params)) {
     param = input_params[i,]
@@ -16,7 +16,9 @@ loop_over_input_params_fit_stan <- function (input_params) {
                                    param$target_num_rows_data,
                                    param$num_line_data,
                                    param$num_container_data,
-                                   param$entry_random_effect
+                                   param$entry_random_effect,
+                                   index=index,
+                                   use_cmdstan=use_cmdstan
     )
     )
   }
@@ -54,6 +56,10 @@ input_params_container_only_no_sd = data.frame(
 loop_over_input_params_fit_stan(input_params_container_only_no_sd)
 
 
+# ------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
+
+
 # Equal mix of container and line, no SD, varying amount of data
 num_scenarios <- 5
 input_params_all_no_sd = data.frame(
@@ -66,7 +72,7 @@ input_params_all_no_sd = data.frame(
   entry_random_effect = rep(FALSE, num_scenarios)
 )
 
-loop_over_input_params_fit_stan(input_params_all_no_sd)
+
 
 
 # Equal mix of container and line, no SD, varying amount of data - 10k + ROWS
@@ -84,7 +90,13 @@ input_params_all_no_sd = data.frame(
   entry_random_effect = rep(FALSE, num_scenarios)
 )
 
-loop_over_input_params_fit_stan(input_params_all_no_sd)
+loop_over_input_params_fit_stan(input_params_all_no_sd, index=1, use_cmdstan=TRUE)
+
+
+
+# ------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
+
 
 
 # Container only, no SD, varying amount of data

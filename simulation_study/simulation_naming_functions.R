@@ -23,10 +23,13 @@ gen_filename_simulate_data <- function (min_entry_size, max_entry_size,
 #' @return file path or file name based on input parameters
 gen_filename_stanfit_simulated_data <- function (min_entry_size, max_entry_size,
                                                  entry_correlation_sd, num_line_rows, num_container_rows,
+                                                 index = NULL,
                                                  include_path = TRUE, include_extension = TRUE){
   
   # set file path
   rel_path = file.path("simulation_study", "simulation_stan_results")
+  # optional index number
+  ind_str = ifelse(is.null(index),"",paste0("number_", index))
   # set extension
   end_str = ifelse(include_extension, ".Rda", "")
   # if number of line or container rows are empty, set to zero
@@ -36,7 +39,7 @@ gen_filename_stanfit_simulated_data <- function (min_entry_size, max_entry_size,
   # return file name
   fn = paste0("entrysize_", min_entry_size,"_",max_entry_size,
          "_corr_sd_",entry_correlation_sd,"_num_line_",num_line_rows,"_num_container_",num_container_rows,
-         "_fit_summary",end_str)
+         "_fit_summary",ind_str,end_str)
   
   ifelse(include_path, file.path(rel_path, fn), fn)
 }

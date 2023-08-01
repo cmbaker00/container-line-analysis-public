@@ -1,9 +1,9 @@
 library(tidyverse)
-library(optimx)
+# library(optimx)
 
 source('simulation_study/simulation_naming_functions.R')
 
-simulate_data_function <- function(min_entry_size = 2, max_entry_size = 5, entry_correlation_sd = 0, target_num_rows_data=1e5){
+simulate_data_function <- function(min_entry_size = 2, max_entry_size = 5, entry_correlation_sd = 0, target_num_rows_data=1e5, fname_override=NULL){
 prob_line <- 0.25 # probability that an entry is in line mode
 #target_num_rows_data <- 1000 # number of rows of data to generate
 #entry_correlation_sd <- .25
@@ -133,7 +133,9 @@ if (length(true_inspect_probability) != num_types){
 
     current_entry <- current_entry + 1 # Increment the entry number
     current_rows <- nrow(simulated_data) # Update the current number of rows of data.
-    print(current_rows)
+    
+    if (current_rows %% 1e+4 == 0) {print(current_rows)}
+    
   }
   
   # TODO rename container -> entry throughout simulation --------------------
@@ -143,8 +145,13 @@ if (length(true_inspect_probability) != num_types){
 # TODO properly remove 'inspected' from the simulation, by making  --------
 
   simulated_data <- simulated_data %>% select(-TrueInspect, -RecordInspect)
-  sim_filename <- gen_filename_simulate_data(min_entry_size, max_entry_size, entry_correlation_sd,
-                             target_num_rows_data,TRUE, TRUE)
+
+  if (is.null(fname_override)) {
+    sim_filename <- gen_filename_simulate_data(min_entry_size, max_entry_size, entry_correlation_sd,
+                              target_num_rows_data,TRUE, TRUE)
+  } else {
+    sim_filename <- fname_override
+  }
   write.csv(simulated_data, sim_filename, row.names = FALSE)
 }
 

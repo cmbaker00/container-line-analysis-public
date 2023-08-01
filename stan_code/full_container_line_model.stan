@@ -31,7 +31,7 @@ parameters {
   vector[Num_item_classes] p_intercept; // item probability
   vector[num_countries] country_effect;
   real beta_doc; // documentation probability
-  real sigma_entry; // random effect standard deviation
+  real <lower=0> sigma_entry; // random effect standard deviation
   
   vector[num_unique_Entry] entry_effect; // random effect of entry
 }

@@ -52,6 +52,10 @@ input_params_container_only_no_sd = data.frame(
 loop_over_input_params_fit_stan(input_params_container_only_no_sd)
 
 
+
+
+# ----------------------------------------------------------------------------------------------------------------
+
 # Equal mix of container and line, no SD, varying amount of data
 num_scenarios <- 5
 input_params_all_no_sd = data.frame(
@@ -83,6 +87,9 @@ input_params_all_no_sd = data.frame(
 )
 
 loop_over_input_params_fit_stan(input_params_all_no_sd)
+
+
+
 
 
 # Container only, no SD, varying amount of data
