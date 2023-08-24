@@ -416,10 +416,10 @@ We fit the STAN model to the simulated data for two reasons. Firstly we confirm 
 
 \subsection{Simulation results}
 
-Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. Overall, the STAN estimates are close to the true values when there is a large amount of data. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}).  
+Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. \hl{Overall, the STAN estimates are close to the true values when there is a large amount of data}. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}).  
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
+\includegraphics[width=\textwidth]{../visualisations/new_figures/simulation_estimates_random_effect_quantiles.pdf}
 \caption{Results from the STAN model, fitted to simulated data. 50\% of the data are in container mode and 50\% are in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter.}
 \label{fig:simulation_estimation}
 \end{figure}
@@ -433,7 +433,13 @@ The precision of model estimates depends on the entry size, the probability of n
 \label{fig:SD_est_simulated}
 \end{figure}
 
-
+\hl{\textbf{NEW FIGURE DISCUSSION}}
+\begin{itemize}
+  \item Figure~\ref{fig:SD_est_simulated} to be removed: some counter-intuitive results probably due to stochastic variation (in the container generation) rather than actual results. See eg entry size 20 and $alpha=-3.9$, estimates get for more lines and $100\%$ container mode.
+  \item \hl{New version} of Figure~\ref{fig:simulation_estimation}. Previously, the model was fit to some number of lines, all using one batch of data (list of containers), the spread was the standard error in the MCMC samples. Complaint with this was it didn't actually show the model produces reliable estimates, as it was only tested once.
+  \item In the new version (see below), the model was fit to 20 separate batches of data, in the same way (ie for increasing number of lines). Now the spread is the $90\%$ CI in the estimates for those parameters (ie we have 20 means from the 20 runs, this shows how much the estimates vary, for different batches of data).
+  \item Observe: the estimates get closer together, as well as closer to the true value, as the number of lines increases. This gives better evidence for the highlighted sentence at the beginning of this section. As I read it that's kind of the point of this part of the paper.
+\end{itemize}
 
 
 \section{Case study}

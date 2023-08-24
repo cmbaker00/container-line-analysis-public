@@ -12,6 +12,7 @@ OUT_NAME = "combined_simulated_data.Rda"
 
 summary_data = data.frame(matrix(nrow = 0, ncol = 0)) 
 
+
 for(file in list.files(DATA_DIR)){
   params = extract_params_stanfit_simulated_data(file)
   if(!is.null(params)){
@@ -34,8 +35,3 @@ for(file in list.files(DATA_DIR)){
 rm(curr, file, params)
 
 # saveRDS(summary_data, file.path(DATA_DIR, OUT_NAME))
-
-# Read in output to check
-# rm(summary_data)
-# summary_data = readRDS(file.path(DATA_DIR, OUT_NAME))
-
