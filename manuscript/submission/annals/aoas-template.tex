@@ -20,7 +20,7 @@
 \RequirePackage{graphicx}%% uncomment this for including figures
 \usepackage{subcaption}
 \usepackage{mathtools}
-
+\usepackage{xcolor}
 
 \DeclareMathOperator{\logit}{logit}
 \DeclareMathOperator{\logistic}{logistic}
@@ -209,41 +209,49 @@ For the single item type case, we set the probability of non-compliance to be \(
 \begin{align}
 \mathbb{P}(\text{entry compliant}) = (1-p)^S,
 \end{align}
-meaning that the binomial likelihood for a set entry size $S$  {proportional to}
+meaning that the binomial log-likelihood for a set entry size $S$  
 
-\begin{align}
-\mathcal{L}_S = \left(1-(1-p)^S\right)^I\left(1-p)^S\right)^{N-I}. \label{eq:entry_mode_like}
-\end{align}
-Therefore, the log-likelihood is
-
-\begin{align}
-  \log\mathcal{L}_S& = {I} \log\left(1-(1-p)^S\right)+(N-I)\log\left((1-p)^S\right).
-  \label{eq:loglikelihood_arbitrary_entry_size}
-\end{align}
-As there is only one parameter, we calculate its second derivative (rather than needing a Hessian matrix):
-
-\begin{align}
-\left[\frac{\partial^2 \log\mathcal{L}_S}{\partial p^2}\right]= 
-\frac{S\left(N + \frac{I((1+S)(1-p)^S-1)}
-{\left((1-p)^S-1 \right)^2} \right)}
-{(1-p)^2}.\label{eq:loglike_2nd_deriv}
-\end{align}
-To calculate the Fisher information, we take the expectation of the number of entries with non-compliance, which depends on the size of the entry:
-
-\begin{align}
-\mathbb{E}\left[I\right] = N(1-(1-p)^S). \label{eq:exp_intercept}
-\end{align} 
-Hence the Fisher information is
+We estimate the standard error by calculating the Fisher information
 
 \begin{align}
 \mathcal{I} = -\mathbb{E}\left[\frac{\partial^2 \log\mathcal{L}_S}{\partial p^2}\right]=
  -\frac{NS^2(1-p)^{S-2}}{(1-p)^S-1}, \label{eq:fisher_information}
 \end{align}
-and the standard error estimate is
+
+making the standard error
 
 \begin{align}
 SE = \left(-\frac{NS^2(1-p)^{S-2}}{(1-p)^S-1}\right)^{-1/2}. \label{eq:general_SE_calc}
 \end{align}
+
+%\begin{align}
+%  \log\mathcal{L}_S& = {I} \log\left(1-(1-p)^S\right)+(N-I)\log\left((1-p)^S\right).
+%  \label{eq:loglikelihood_arbitrary_entry_size}
+%\end{align}
+%As there is only one parameter, we calculate its second derivative (rather than needing a Hessian matrix):
+%
+%\begin{align}
+%\left[\frac{\partial^2 \log\mathcal{L}_S}{\partial p^2}\right]= 
+%\frac{S\left(N + \frac{I((1+S)(1-p)^S-1)}
+%{\left((1-p)^S-1 \right)^2} \right)}
+%{(1-p)^2}.\label{eq:loglike_2nd_deriv}
+%\end{align}
+%To calculate the Fisher information, we take the expectation of the number of entries with non-compliance, which depends on the size of the entry:
+%
+%\begin{align}
+%\mathbb{E}\left[I\right] = N(1-(1-p)^S). \label{eq:exp_intercept}
+%\end{align} 
+%Hence the Fisher information is
+%
+%\begin{align}
+%\mathcal{I} = -\mathbb{E}\left[\frac{\partial^2 \log\mathcal{L}_S}{\partial p^2}\right]=
+% -\frac{NS^2(1-p)^{S-2}}{(1-p)^S-1}, \label{eq:fisher_information}
+%\end{align}
+%and the standard error estimate is
+%
+%\begin{align}
+%SE = \left(-\frac{NS^2(1-p)^{S-2}}{(1-p)^S-1}\right)^{-1/2}. \label{eq:general_SE_calc}
+%\end{align}
 
 % To generalise Eq.~\eqref{eq:entry_mode_like} to arbitrary entry sizes, we take the product over entry size:
 % \begin{align}
@@ -363,11 +371,15 @@ From the asymptotic analysis we make two observations:
 
 
 \section{Simulation study}
-As the first step in developing a method to analyse real-world data sets, we simulate a data set that contains key complexities including multiple item types, fixed effects and random effects. Once we have simulated data, we can fit a model to estimate parameters. The advantage of our approach is that we can (1) verify that our model behaves correctly and (2) explore how model precision varies in a more complex setting.
+As the first step in developing a method to analyse real-world data sets, we simulate a data set that contains key complexities including multiple item types, fixed effects and random effects. Once we have simulated data, we can fit a model to estimate parameters. The advantage of our approach is that we can (1) verify that our model behaves correctly and (2) explore how model precision varies with the amount of data in a more complex setting.
+
+In this section, we generate 20 independent sets of data to fit our model to. We fit our model to different amounts of data, from 1,000 lines to 50,000 lines, for each for the 20 data sets separately, and we report the mean estimate, alongside the 90\% CI across the 20 datasets. Thus, we can evaluate how we expect the precision of estimates to improve as the quantity of data increases.
 
 \subsection{Data simulation}
 We simulate data from the full model (as described in Section~\ref{sec:model}). For our simulations, we chose parameters that we expect to be similar to real-world values. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to non-compliance probabilities of 0.001, 0.01, 0.02, 0.05 and 0.2, if all other effects were 0). We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data. We used $d=3$ countries and set their weights to be 0.5, -1 and 0.25.
 For within-entry correlation, we set \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set the probability of having correct documentation to be 0.2. We show an example of the format of the data in Table \ref{table:example_data}.
+
+
 
 \vspace{0.1cm}
 \begin{table}[h]
@@ -405,15 +417,17 @@ We model the system in a Bayesian framework, using the RSTAN package in R. We ch
 where 
 
 \begin{align}
-\gamma_\ell | \sigma &\sim \Normal(0, \sigma), & \ell &= 1,\ldots, g, & g&\in \mathbb{N}.
+\gamma_\ell | \sigma &\sim \Normal(0, \sigma), \quad  \ell = 1,\ldots, g, \quad  g \in \mathbb{N}.
 \end{align}
 As we fit our model in a Bayesian framework, we set priors on each parameter:
 
 \begin{align}
-\alpha_i &\sim \Normal(-4, 4), & i&=1, \ldots, a, & a&\in \mathbb{N},\\
+\begin{split}
+\alpha_i &\sim \Normal(-4, 4), \quad \quad i=1, \ldots, a,\quad \quad  a\in \mathbb{N},\\
 \beta &\sim \Normal(0, 0.5),\\
-\delta_k &\sim \Normal(0, 0.5), & k &= 1,\ldots, d, & d &\in \mathbb{N}\\
+\delta_k &\sim \Normal(0, 0.5),\quad \quad  k = 1,\ldots, d, \quad \quad d \in \mathbb{N}\\
 \sigma &\sim \Normal(0, 0.5)
+\end{split}
 \end{align}
 
 The probability $p_{ijk\ell}$ is the probability of non-compliance of a line that has characteristics $(i,j,k,\ell)$. We denote the probability that line $n$ is non-compliant as $p_{(n)}$, where $p_{(n)} = p_{ijk\ell}$ if that line has characteristics $(i,j,k,\ell)$.
@@ -445,28 +459,29 @@ The probability $p_{ijk\ell}$ is the probability of non-compliance of a line tha
 %The simulation uses \(p=0.05\) and we vary the number of entries \(N_E\) and the entry size, \(S\) and the comparison is shown in Figure~\ref{fig:SD_est_simulated}.
 
 
-We fit the STAN model to the simulated data for two reasons. Firstly we confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of container mode data affects precision, over a range of entry sizes. To measure precision, we use the standard deviation of the posterior samples, because it is the Bayesian equivalent of the standard error calculations in Section~\ref{sec:asymptotic_analysis}.
+%We fit the STAN model to the simulated data for two reasons. Firstly we confirm that, with sufficient data, the STAN model can accurately estimate model parameters. Secondly we explore how changing the amount of data and the proportion of container mode data affects precision, over a range of entry sizes. To measure precision, we use the standard deviation of the posterior samples, because it is the Bayesian equivalent of the standard error calculations in Section~\ref{sec:asymptotic_analysis}.
 
 \subsection{Simulation results}
-
-Figure~\ref{fig:simulation_estimation} shows the that the STAN model gives good parameter estimates, if there is sufficient data. Overall, the STAN estimates are close to the true values when there is a large amount of data. The two smallest values of \(\alpha\) show the worst performance, which is not surprising, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}).  
+With sufficient data, we see that the STAN model estimates become close to the true value Figure~\ref{fig:simulation_estimation}. However, for the \(\alpha_i\)'s, the spread of the estimates is higher for the smaller \(\alpha_i\)'s and the spread reduces more slowly as the amount of data increases. It is not surprising that the estimates of the smaller values show poor performance, given our asymptotic analysis results (Section~\ref{sec:asymptotic_analysis}).  
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/simulation_estimates_random_effect.pdf}
+\includegraphics[width=\textwidth]{../visualisations/new_figures/simulation_estimates_random_effect_quantiles.pdf}
 \caption{Results from the STAN model, fitted to simulated data. 50\% of the data are in container mode and 50\% are in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter.}
 \label{fig:simulation_estimation}
 \end{figure}
 
-The precision of model estimates depends on the entry size, the probability of non-compliance and the amount of container mode data (Figure~\ref{fig:SD_est_simulated}). The best-case scenario is when all data are in line mode (ratio of container mode = 0), and the distance from that line shows the impact of using a mix, or only, container mode data. We find that the difference between the precision estimates depends strongly on the combination of factors. There are some combinations where all analyses return similar precision (e.g. \(\alpha=-1.4\) and entry size 10), while other combinations have a large gap where the line only data far outperforms the others (e.g. \(\alpha=-4.6\) and entry size = 5).
-
-
-\begin{figure}[h!]
-\includegraphics[width=\textwidth]{../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf}
-\caption{The standard deviation of the alpha parameter estimates for simulations with varying entry size and total number of lines. The ratio of container mode data is the proportion of data in container mode, meaning that 0 corresponds to line mode data-sets, 0.5 if a mixed data-set and 1 is purely container mode. }
-\label{fig:SD_est_simulated}
-\end{figure}
-
-
+%
+%
+%{\color{red}\textbf{NEW FIGURE DISCUSSION}}
+%
+%
+%\begin{itemize}
+%  \item {\color{red}New version} of Figure~\ref{fig:simulation_estimation}. Previously, the model was fit to some number of lines, all using one batch of data (list of containers), the spread was the standard error in the MCMC samples. Complaint with this was it didn't actually show the model produces reliable estimates, as it was only tested once.
+%  \item In the new version (see below), the model was fit to 20 separate batches of data, in the same way (ie for increasing number of lines). Now the spread is the $90\%$ CI in the estimates for those parameters (ie we have 20 means from the 20 runs, this shows how much the estimates vary, for different batches of data).
+%  \item Observe: the estimates get closer together, as well as closer to the true value, as the number of lines increases. This gives better evidence for the highlighted sentence at the beginning of this section. As I read it that's kind of the point of this part of the paper.
+%\end{itemize}
+%
+%
 
 
 \section{Case study}
@@ -584,15 +599,15 @@ The authors would like to thank Tom Waring for their contribution to editing thi
 %% available to the reader on Project       %%
 %% Euclid with the published article.       %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{supplement}
-\stitle{Code availability}
-\sdescription{All code is available at \url{https://github.com/cmbaker00/container-line-analysis-public}.}
-\end{supplement}
-
-\begin{supplement}
-\stitle{Data availability}
-\sdescription{The data that support the findings of this simulation study are openly available at \url{https://github.com/cmbaker00/container-line-analysis-public}. The case study data are available from the Australian Department of Agriculture, Fisheries and Forestry. Restrictions apply to the availability of these data, which were used under license for this study.}
-\end{supplement}
+%\begin{supplement}
+%\stitle{Code availability}
+%\sdescription{All code is available at \url{https://github.com/cmbaker00/container-line-analysis-public}.}
+%\end{supplement}
+%
+%\begin{supplement}
+%\stitle{Data availability}
+%\sdescription{The data that support the findings of this simulation study are openly available at \url{https://github.com/cmbaker00/container-line-analysis-public}. The case study data are available from the Australian Department of Agriculture, Fisheries and Forestry. Restrictions apply to the availability of these data, which were used under license for this study.}
+%\end{supplement}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                  The Bibliography                       %%

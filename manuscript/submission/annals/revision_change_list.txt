@@ -1,0 +1,1 @@
+* removed figure 4, as it wasn't contributing much insight and we determined it to be a distraction
