@@ -107,9 +107,9 @@ mycolors <- colorRampPalette(brewer.pal(8, "Dark2"))(nrow(exact_df))
     facet_wrap(.~param_type,
                labeller = labeller(param_type = facet_labs)) +
     labs(title = "Mean parameter estimates by amount of data",
-         subtitle = paste0("Min entry size: ", first(df$min_entry_size),
-                           ", Max entry size: ", first(df$max_entry_size),
-                           ", Entry correlation: ", first(df$entry_correlation_sd),
+         subtitle = paste0("Min entry size: ", 1,
+                           ", Max entry size: ", 20,
+                           ", Entry correlation: ", 0.25,
                            ", Percentage of container data: ", first(df$percentage_container_data)*100, "%")) +
     xlab('Total number of lines') + ylab('Parameter value')
 

@@ -1,0 +1,393 @@
+\begin{thebibliography}{21}
+% BibTex style file: imsart-nameyear.bst, 2017-11-03
+% Default style options (sort=1,type=nameyear).
+% Used options (sort=1,type=nameyear).
+
+\bibitem[\protect\citeauthoryear{Baker and Bode}{2020}]{baker_recent_2020}
+\begin{barticle}[author]
+\bauthor{\bsnm{Baker},~\bfnm{Christopher~M.}\binits{C.~M.}} \AND
+  \bauthor{\bsnm{Bode},~\bfnm{Michael}\binits{M.}}
+(\byear{2020}).
+\btitle{Recent advances of quantitative modeling to support invasive species
+  eradication on islands}.
+\bjournal{Conservation Science and Practice}
+\bvolume{n/a}
+\bpages{e246}.
+\bnote{\_eprint:
+  https://conbio.onlinelibrary.wiley.com/doi/pdf/10.1111/csp2.246}.
+\bdoi{10.1111/csp2.246}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Binny et~al.}{2021}]{binny_long-term_2021}
+\begin{barticle}[author]
+\bauthor{\bsnm{Binny},~\bfnm{R.~N.}\binits{R.~N.}},
+  \bauthor{\bsnm{Innes},~\bfnm{J.}\binits{J.}},
+  \bauthor{\bsnm{Fitzgerald},~\bfnm{N.}\binits{N.}},
+  \bauthor{\bsnm{Pech},~\bfnm{R.}\binits{R.}},
+  \bauthor{\bsnm{James},~\bfnm{A.}\binits{A.}},
+  \bauthor{\bsnm{Price},~\bfnm{R.}\binits{R.}},
+  \bauthor{\bsnm{Gillies},~\bfnm{C.}\binits{C.}} \AND
+  \bauthor{\bsnm{Byrom},~\bfnm{A.~E.}\binits{A.~E.}}
+(\byear{2021}).
+\btitle{Long-term biodiversity trajectories for pest-managed ecological
+  restorations: eradication vs. suppression}.
+\bjournal{Ecological Monographs}
+\bvolume{n/a}.
+\bnote{\_eprint:
+  https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1002/ecm.1439}.
+\bdoi{https://doi.org/10.1002/ecm.1439}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Brook, Johnson and
+  Ritchie}{2012}]{brook_effects_2012}
+\begin{barticle}[author]
+\bauthor{\bsnm{Brook},~\bfnm{Leila~A.}\binits{L.~A.}},
+  \bauthor{\bsnm{Johnson},~\bfnm{Christopher~N.}\binits{C.~N.}} \AND
+  \bauthor{\bsnm{Ritchie},~\bfnm{Euan~G.}\binits{E.~G.}}
+(\byear{2012}).
+\btitle{Effects of predator control on behaviour of an apex predator and
+  indirect consequences for mesopredator suppression}.
+\bjournal{Journal of Applied Ecology}
+\bvolume{49}
+\bpages{1278--1286}.
+\bdoi{10.1111/j.1365-2664.2012.02207.x}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Brooks et~al.}{2011}]{brooks2011handbook}
+\begin{bbook}[author]
+\bauthor{\bsnm{Brooks},~\bfnm{Steve}\binits{S.}},
+  \bauthor{\bsnm{Gelman},~\bfnm{Andrew}\binits{A.}},
+  \bauthor{\bsnm{Jones},~\bfnm{Galin}\binits{G.}} \AND
+  \bauthor{\bsnm{Meng},~\bfnm{Xiao-Li}\binits{X.-L.}}
+(\byear{2011}).
+\btitle{Handbook of Markov Chain Monte Carlo}.
+\bpublisher{CRC press}.
+\end{bbook}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Chatterjee and
+  Bandyopadhyay}{2020}]{chatterjee_regression_2020}
+\begin{barticle}[author]
+\bauthor{\bsnm{Chatterjee},~\bfnm{A.}\binits{A.}} \AND
+  \bauthor{\bsnm{Bandyopadhyay},~\bfnm{T.}\binits{T.}}
+(\byear{2020}).
+\btitle{Regression models for group testing: {Identifiability} and
+  asymptotics}.
+\bjournal{Journal of Statistical Planning and Inference}
+\bvolume{204}
+\bpages{141--152}.
+\bdoi{10.1016/j.jspi.2019.05.003}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Delaigle and
+  Hall}{2015}]{delaigle_nonparametric_2015}
+\begin{barticle}[author]
+\bauthor{\bsnm{Delaigle},~\bfnm{A.}\binits{A.}} \AND
+  \bauthor{\bsnm{Hall},~\bfnm{P.}\binits{P.}}
+(\byear{2015}).
+\btitle{Nonparametric methods for group testing data, taking dilution into
+  account}.
+\bjournal{Biometrika}
+\bvolume{102}
+\bpages{871--887}.
+\bdoi{10.1093/biomet/asv049}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Helmstedt
+  et~al.}{2016}]{helmstedt_prioritizing_2016}
+\begin{barticle}[author]
+\bauthor{\bsnm{Helmstedt},~\bfnm{Kate~J.}\binits{K.~J.}},
+  \bauthor{\bsnm{Shaw},~\bfnm{Justine~D.}\binits{J.~D.}},
+  \bauthor{\bsnm{Bode},~\bfnm{Michael}\binits{M.}},
+  \bauthor{\bsnm{Terauds},~\bfnm{Aleks}\binits{A.}},
+  \bauthor{\bsnm{Springer},~\bfnm{Keith}\binits{K.}},
+  \bauthor{\bsnm{Robinson},~\bfnm{Susan~A.}\binits{S.~A.}} \AND
+  \bauthor{\bsnm{Possingham},~\bfnm{Hugh~P.}\binits{H.~P.}}
+(\byear{2016}).
+\btitle{Prioritizing eradication actions on islands: it's not all or nothing}.
+\bjournal{Journal of Applied Ecology}
+\bvolume{53}
+\bpages{733--741}.
+\bdoi{10.1111/1365-2664.12599}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Hepworth and
+  Biggerstaff}{2017}]{hepworth_bias_2017}
+\begin{barticle}[author]
+\bauthor{\bsnm{Hepworth},~\bfnm{Graham}\binits{G.}} \AND
+  \bauthor{\bsnm{Biggerstaff},~\bfnm{Brad~J.}\binits{B.~J.}}
+(\byear{2017}).
+\btitle{Bias {Correction} in {Estimating} {Proportions} by {Pooled} {Testing}}.
+\bjournal{Journal of Agricultural, Biological and Environmental Statistics}
+\bvolume{22}
+\bpages{602--614}.
+\bdoi{10.1007/s13253-017-0297-2}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Hepworth and
+  Biggerstaff}{2021}]{hepworth_bias_2021}
+\begin{barticle}[author]
+\bauthor{\bsnm{Hepworth},~\bfnm{Graham}\binits{G.}} \AND
+  \bauthor{\bsnm{Biggerstaff},~\bfnm{Brad~J.}\binits{B.~J.}}
+(\byear{2021}).
+\btitle{Bias {Correction} in {Estimating} {Proportions} by {Imperfect} {Pooled}
+  {Testing}}.
+\bjournal{Journal of Agricultural, Biological and Environmental Statistics}
+\bvolume{26}
+\bpages{90--104}.
+\bdoi{10.1007/s13253-020-00411-5}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Hepworth and
+  Watson}{2009}]{hepworth_debiased_2009}
+\begin{barticle}[author]
+\bauthor{\bsnm{Hepworth},~\bfnm{Graham}\binits{G.}} \AND
+  \bauthor{\bsnm{Watson},~\bfnm{Ray}\binits{R.}}
+(\byear{2009}).
+\btitle{Debiased estimation of proportions in group testing}.
+\bjournal{Journal of the Royal Statistical Society: Series C (Applied
+  Statistics)}
+\bvolume{58}
+\bpages{105--121}.
+\bnote{\_eprint:
+  https://rss.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-9876.2008.00639.x}.
+\bdoi{10.1111/j.1467-9876.2008.00639.x}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Holmes et~al.}{2019}]{holmes_globally_2019}
+\begin{barticle}[author]
+\bauthor{\bsnm{Holmes},~\bfnm{Nick~D.}\binits{N.~D.}},
+  \bauthor{\bsnm{Spatz},~\bfnm{Dena~R.}\binits{D.~R.}},
+  \bauthor{\bsnm{Oppel},~\bfnm{Steffen}\binits{S.}},
+  \bauthor{\bsnm{Tershy},~\bfnm{Bernie}\binits{B.}},
+  \bauthor{\bsnm{Croll},~\bfnm{Donald~A.}\binits{D.~A.}},
+  \bauthor{\bsnm{Keitt},~\bfnm{Brad}\binits{B.}},
+  \bauthor{\bsnm{Genovesi},~\bfnm{Piero}\binits{P.}},
+  \bauthor{\bsnm{Burfield},~\bfnm{Ian~J.}\binits{I.~J.}},
+  \bauthor{\bsnm{Will},~\bfnm{David~J.}\binits{D.~J.}},
+  \bauthor{\bsnm{Bond},~\bfnm{Alexander~L.}\binits{A.~L.}},
+  \bauthor{\bsnm{Wegmann},~\bfnm{Alex}\binits{A.}},
+  \bauthor{\bsnm{Aguirre-Muñoz},~\bfnm{Alfonso}\binits{A.}},
+  \bauthor{\bsnm{Raine},~\bfnm{André~F.}\binits{A.~F.}},
+  \bauthor{\bsnm{Knapp},~\bfnm{Charles~R.}\binits{C.~R.}},
+  \bauthor{\bsnm{Hung},~\bfnm{Chung-Hang}\binits{C.-H.}},
+  \bauthor{\bsnm{Wingate},~\bfnm{David}\binits{D.}},
+  \bauthor{\bsnm{Hagen},~\bfnm{Erin}\binits{E.}},
+  \bauthor{\bsnm{Méndez-Sánchez},~\bfnm{Federico}\binits{F.}},
+  \bauthor{\bsnm{Rocamora},~\bfnm{Gerard}\binits{G.}},
+  \bauthor{\bsnm{Yuan},~\bfnm{Hsiao-Wei}\binits{H.-W.}},
+  \bauthor{\bsnm{Fric},~\bfnm{Jakob}\binits{J.}},
+  \bauthor{\bsnm{Millett},~\bfnm{James}\binits{J.}},
+  \bauthor{\bsnm{Russell},~\bfnm{James}\binits{J.}},
+  \bauthor{\bsnm{Liske-Clark},~\bfnm{Jill}\binits{J.}},
+  \bauthor{\bsnm{Vidal},~\bfnm{Eric}\binits{E.}},
+  \bauthor{\bsnm{Jourdan},~\bfnm{Hervé}\binits{H.}},
+  \bauthor{\bsnm{Campbell},~\bfnm{Karl}\binits{K.}},
+  \bauthor{\bsnm{Springer},~\bfnm{Keith}\binits{K.}},
+  \bauthor{\bsnm{Swinnerton},~\bfnm{Kirsty}\binits{K.}},
+  \bauthor{\bsnm{Gibbons-Decherong},~\bfnm{Lolita}\binits{L.}},
+  \bauthor{\bsnm{Langrand},~\bfnm{Olivier}\binits{O.}},
+  \bauthor{\bsnm{Brooke},~\bfnm{M.~de~L.}\binits{M.~d.~L.}},
+  \bauthor{\bsnm{McMinn},~\bfnm{Miguel}\binits{M.}},
+  \bauthor{\bsnm{Bunbury},~\bfnm{Nancy}\binits{N.}},
+  \bauthor{\bsnm{Oliveira},~\bfnm{Nuno}\binits{N.}},
+  \bauthor{\bsnm{Sposimo},~\bfnm{Paolo}\binits{P.}},
+  \bauthor{\bsnm{Geraldes},~\bfnm{Pedro}\binits{P.}},
+  \bauthor{\bsnm{McClelland},~\bfnm{Pete}\binits{P.}},
+  \bauthor{\bsnm{Hodum},~\bfnm{Peter}\binits{P.}},
+  \bauthor{\bsnm{Ryan},~\bfnm{Peter~G.}\binits{P.~G.}},
+  \bauthor{\bsnm{Borroto-Páez},~\bfnm{Rafael}\binits{R.}},
+  \bauthor{\bsnm{Pierce},~\bfnm{Ray}\binits{R.}},
+  \bauthor{\bsnm{Griffiths},~\bfnm{Richard}\binits{R.}},
+  \bauthor{\bsnm{Fisher},~\bfnm{Robert~N.}\binits{R.~N.}},
+  \bauthor{\bsnm{Wanless},~\bfnm{Ross}\binits{R.}},
+  \bauthor{\bsnm{Pasachnik},~\bfnm{Stesha~A.}\binits{S.~A.}},
+  \bauthor{\bsnm{Cranwell},~\bfnm{Steve}\binits{S.}},
+  \bauthor{\bsnm{Micol},~\bfnm{Thierry}\binits{T.}} \AND
+  \bauthor{\bsnm{Butchart},~\bfnm{Stuart H.~M.}\binits{S.~H.~M.}}
+(\byear{2019}).
+\btitle{Globally important islands where eradicating invasive mammals will
+  benefit highly threatened vertebrates}.
+\bjournal{PLOS ONE}
+\bvolume{14}
+\bpages{e0212128}.
+\bdoi{10.1371/journal.pone.0212128}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Jardine and
+  Sanchirico}{2018}]{jardine_estimating_2018}
+\begin{barticle}[author]
+\bauthor{\bsnm{Jardine},~\bfnm{Sunny~L.}\binits{S.~L.}} \AND
+  \bauthor{\bsnm{Sanchirico},~\bfnm{James~N.}\binits{J.~N.}}
+(\byear{2018}).
+\btitle{Estimating the cost of invasive species control}.
+\bjournal{Journal of Environmental Economics and Management}
+\bvolume{87}
+\bpages{242--257}.
+\bdoi{10.1016/j.jeem.2017.07.004}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Keeling and
+  Rohani}{2008}]{keeling2022modeling}
+\begin{bbook}[author]
+\bauthor{\bsnm{Keeling},~\bfnm{Matt~J.}\binits{M.~J.}} \AND
+  \bauthor{\bsnm{Rohani},~\bfnm{Pejman}\binits{P.}}
+(\byear{2008}).
+\btitle{Modeling Infectious Diseases in Humans and Animals}.
+\bpublisher{Princeton University Press}.
+\end{bbook}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Kumar~Rai and
+  Singh}{2020}]{kumar_rai_invasive_2020}
+\begin{barticle}[author]
+\bauthor{\bsnm{Kumar~Rai},~\bfnm{Prabhat}\binits{P.}} \AND
+  \bauthor{\bsnm{Singh},~\bfnm{J.~S.}\binits{J.~S.}}
+(\byear{2020}).
+\btitle{Invasive alien plant species: {Their} impact on environment, ecosystem
+  services and human health}.
+\bjournal{Ecological Indicators}
+\bvolume{111}
+\bpages{106020}.
+\bdoi{10.1016/j.ecolind.2019.106020}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Liu et~al.}{2020}]{liu_generalized_2020}
+\begin{barticle}[author]
+\bauthor{\bsnm{Liu},~\bfnm{Yan}\binits{Y.}},
+  \bauthor{\bsnm{McMahan},~\bfnm{Christopher~S}\binits{C.~S.}},
+  \bauthor{\bsnm{Tebbs},~\bfnm{Joshua~M}\binits{J.~M.}},
+  \bauthor{\bsnm{Gallagher},~\bfnm{Colin~M}\binits{C.~M.}} \AND
+  \bauthor{\bsnm{Bilder},~\bfnm{Christopher~R}\binits{C.~R.}}
+(\byear{2020}).
+\btitle{Generalized additive regression for group testing data}.
+\bjournal{Biostatistics}
+\bvolume{kxaa003}.
+\bdoi{10.1093/biostatistics/kxaa003}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{McMahan et~al.}{2017}]{mcmahan_bayesian_2017}
+\begin{barticle}[author]
+\bauthor{\bsnm{McMahan},~\bfnm{Christopher~S.}\binits{C.~S.}},
+  \bauthor{\bsnm{Tebbs},~\bfnm{Joshua~M.}\binits{J.~M.}},
+  \bauthor{\bsnm{Hanson},~\bfnm{Timothy~E.}\binits{T.~E.}} \AND
+  \bauthor{\bsnm{Bilder},~\bfnm{Christopher~R.}\binits{C.~R.}}
+(\byear{2017}).
+\btitle{Bayesian regression for group testing data}.
+\bjournal{Biometrics}
+\bvolume{73}
+\bpages{1443--1452}.
+\bnote{\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/biom.12704}.
+\bdoi{10.1111/biom.12704}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Mutesa et~al.}{2021}]{mutesa_pooled_2021}
+\begin{barticle}[author]
+\bauthor{\bsnm{Mutesa},~\bfnm{Leon}\binits{L.}},
+  \bauthor{\bsnm{Ndishimye},~\bfnm{Pacifique}\binits{P.}},
+  \bauthor{\bsnm{Butera},~\bfnm{Yvan}\binits{Y.}},
+  \bauthor{\bsnm{Souopgui},~\bfnm{Jacob}\binits{J.}},
+  \bauthor{\bsnm{Uwineza},~\bfnm{Annette}\binits{A.}},
+  \bauthor{\bsnm{Rutayisire},~\bfnm{Robert}\binits{R.}},
+  \bauthor{\bsnm{Ndoricimpaye},~\bfnm{Ella~Larissa}\binits{E.~L.}},
+  \bauthor{\bsnm{Musoni},~\bfnm{Emile}\binits{E.}},
+  \bauthor{\bsnm{Rujeni},~\bfnm{Nadine}\binits{N.}},
+  \bauthor{\bsnm{Nyatanyi},~\bfnm{Thierry}\binits{T.}},
+  \bauthor{\bsnm{Ntagwabira},~\bfnm{Edouard}\binits{E.}},
+  \bauthor{\bsnm{Semakula},~\bfnm{Muhammed}\binits{M.}},
+  \bauthor{\bsnm{Musanabaganwa},~\bfnm{Clarisse}\binits{C.}},
+  \bauthor{\bsnm{Nyamwasa},~\bfnm{Daniel}\binits{D.}},
+  \bauthor{\bsnm{Ndashimye},~\bfnm{Maurice}\binits{M.}},
+  \bauthor{\bsnm{Ujeneza},~\bfnm{Eva}\binits{E.}},
+  \bauthor{\bsnm{Mwikarago},~\bfnm{Ivan~Emile}\binits{I.~E.}},
+  \bauthor{\bsnm{Muvunyi},~\bfnm{Claude~Mambo}\binits{C.~M.}},
+  \bauthor{\bsnm{Mazarati},~\bfnm{Jean~Baptiste}\binits{J.~B.}},
+  \bauthor{\bsnm{Nsanzimana},~\bfnm{Sabin}\binits{S.}},
+  \bauthor{\bsnm{Turok},~\bfnm{Neil}\binits{N.}} \AND
+  \bauthor{\bsnm{Ndifon},~\bfnm{Wilfred}\binits{W.}}
+(\byear{2021}).
+\btitle{A pooled testing strategy for identifying {SARS}-{CoV}-2 at low
+  prevalence}.
+\bjournal{Nature}
+\bvolume{589}
+\bpages{276--280}.
+\bnote{Number: 7841 Publisher: Nature Publishing Group}.
+\bdoi{10.1038/s41586-020-2885-5}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Schaarschmidt}{2007}]{schaarschmidt_experimental_2007}
+\begin{barticle}[author]
+\bauthor{\bsnm{Schaarschmidt},~\bfnm{Frank}\binits{F.}}
+(\byear{2007}).
+\btitle{Experimental design for one-sided confidence intervals or hypothesis
+  tests in binomial group testing}.
+\bjournal{Communications in Biometry and Crop Science}.
+\bnote{Publisher: Faculty of Agriculture and Biology, Warsaw Agricultural
+  University, Poland}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Sharov et~al.}{2002}]{sharov_slow_2002}
+\begin{barticle}[author]
+\bauthor{\bsnm{Sharov},~\bfnm{A.~A.}\binits{A.~A.}},
+  \bauthor{\bsnm{Leonard},~\bfnm{D.}\binits{D.}},
+  \bauthor{\bsnm{Liebhold},~\bfnm{A.~M.}\binits{A.~M.}},
+  \bauthor{\bsnm{Roberts},~\bfnm{E.~A.}\binits{E.~A.}} \AND
+  \bauthor{\bsnm{Dickerson},~\bfnm{W.}\binits{W.}}
+(\byear{2002}).
+\btitle{“{Slow} {The} {Spread}”: {A} {National} {Program} to {Contain} the
+  {Gypsy} {Moth}}.
+\bjournal{Journal of Forestry}
+\bvolume{100}
+\bpages{30--36}.
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Thompson}{1962}]{thompson_estimation_1962}
+\begin{barticle}[author]
+\bauthor{\bsnm{Thompson},~\bfnm{Keith~H.}\binits{K.~H.}}
+(\byear{1962}).
+\btitle{Estimation of the {Proportion} of {Vectors} in a {Natural} {Population}
+  of {Insects}}.
+\bjournal{Biometrics}
+\bvolume{18}
+\bpages{568--578}.
+\bnote{Publisher: [Wiley, International Biometric Society]}.
+\bdoi{10.2307/2527902}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Wenger et~al.}{2017}]{wenger_estimating_2017}
+\begin{barticle}[author]
+\bauthor{\bsnm{Wenger},~\bfnm{Amelia~S.}\binits{A.~S.}},
+  \bauthor{\bsnm{Adams},~\bfnm{Vanessa~M.}\binits{V.~M.}},
+  \bauthor{\bsnm{Iacona},~\bfnm{Gwenllian~D.}\binits{G.~D.}},
+  \bauthor{\bsnm{Lohr},~\bfnm{Cheryl}\binits{C.}},
+  \bauthor{\bsnm{Pressey},~\bfnm{Robert~L.}\binits{R.~L.}},
+  \bauthor{\bsnm{Morris},~\bfnm{Keith}\binits{K.}} \AND
+  \bauthor{\bsnm{Craigie},~\bfnm{Ian~D.}\binits{I.~D.}}
+(\byear{2017}).
+\btitle{Estimating realistic costs for strategic management planning of
+  invasive species eradications on islands}.
+\bjournal{Biological Invasions}
+\bpages{1--19}.
+\bdoi{10.1007/s10530-017-1627-6}
+\end{barticle}
+\endbibitem
+
+\end{thebibliography}

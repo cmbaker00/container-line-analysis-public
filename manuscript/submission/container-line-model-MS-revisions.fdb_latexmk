@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex container-line-model-MS-revisions"] 1692840964 "container-line-model-MS-revisions.aux" "container-line-model-MS-revisions.bbl" "container-line-model-MS-revisions" 1692841837
+["bibtex container-line-model-MS-revisions"] 1693266731 "container-line-model-MS-revisions.aux" "container-line-model-MS-revisions.bbl" "container-line-model-MS-revisions" 1693266732
   "/usr/local/texlive/2021/texmf-dist/bibtex/bst/natbib/abbrvnat.bst" 1233624470 26532 66bed5cc59495faaa3f9ae9af9fa5e42 ""
-  "container-line-model-MS-revisions.aux" 1692841836 8849 4308e4b4abb441e304c934a3aefabb34 "pdflatex"
+  "container-line-model-MS-revisions.aux" 1693266732 8849 4308e4b4abb441e304c934a3aefabb34 "pdflatex"
   "container-line.bib" 1671000037 44004 e133ff38fbb316218097235e1e972a1f ""
   (generated)
   "container-line-model-MS-revisions.blg"
   "container-line-model-MS-revisions.bbl"
-["pdflatex"] 1692841835 "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/container-line-model-MS-revisions.tex" "container-line-model-MS-revisions.pdf" "container-line-model-MS-revisions" 1692841837
+["pdflatex"] 1693266731 "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/container-line-model-MS-revisions.tex" "container-line-model-MS-revisions.pdf" "container-line-model-MS-revisions" 1693266732
   "..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf" 1671000037 24536 88497bafddd3b6acf86bbb89b22d266b ""
   "..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf" 1671000037 24683 9330ca8277e002c811901e16d66f7d3a ""
   "..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf" 1671000037 25081 f523b41f23ba42f1df418fdad47577ca ""
@@ -16,7 +16,7 @@
   "..//../visualisations/figures/p_int_est_all_vs_line_data.pdf" 1674104330 18232 af8dea3a5a0cf71d7abc938c2b66def0 ""
   "..//../visualisations/figures/sim_study_pint_vs_data_vs_entry_size.pdf" 1674104330 25502 27aef8ece8f2703658b1133d297b373a ""
   "..//../visualisations/new_figures/simulation_estimates_random_effect_quantiles.pdf" 1691641032 13016 2e29b1011b901ccf4295404c0ccfaf34 ""
-  "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/container-line-model-MS-revisions.tex" 1692841835 47516 e7a7d8ab094488c7213e1e8c2d0a2543 ""
+  "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/container-line-model-MS-revisions.tex" 1693266727 47502 8de3f4616460937e81963ce79974bf27 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1136768653 1536 06717a2b50de47d4087ac0e6cd759455 ""
@@ -226,9 +226,9 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1634615222 4362028 e6008de3146e43ceb9bb64d17447259a ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1634615282 2797905 e652a802ae6f0d60b44c2857b7108594 ""
   "/usr/local/texlive/2021/texmf.cnf" 1634615209 577 4c1911a7228e554c6032256d3cf5567d ""
-  "container-line-model-MS-revisions.aux" 1692841836 8849 4308e4b4abb441e304c934a3aefabb34 "pdflatex"
-  "container-line-model-MS-revisions.bbl" 1692840964 11476 b1b59c2e69e09da092c39e143a1faf46 "bibtex container-line-model-MS-revisions"
-  "container-line-model-MS-revisions.tex" 1692841835 47516 e7a7d8ab094488c7213e1e8c2d0a2543 ""
+  "container-line-model-MS-revisions.aux" 1693266732 8849 4308e4b4abb441e304c934a3aefabb34 "pdflatex"
+  "container-line-model-MS-revisions.bbl" 1693266731 11476 b1b59c2e69e09da092c39e143a1faf46 "bibtex container-line-model-MS-revisions"
+  "container-line-model-MS-revisions.tex" 1693266727 47502 8de3f4616460937e81963ce79974bf27 ""
   (generated)
   "container-line-model-MS-revisions.pdf"
   "container-line-model-MS-revisions.aux"

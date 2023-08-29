@@ -1,48 +1,46 @@
-This is BibTeX, Version 0.99d
+This is BibTeX, Version 0.99d (TeX Live 2021)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: aoas-template.aux
-Reallocating 'name_of_file' (item size: 1) to 16 items.
 The style file: imsart-nameyear.bst
-Reallocating 'name_of_file' (item size: 1) to 19 items.
-Reallocating 'glb_str_end' (item size: 4) to 20 items.
-Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
-Reallocating 'global_strs' (item size: 1) to 4000000 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'wiz_functions' (item size: 4) to 6000 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: container-line.bib
 Warning--string name "dec" is undefined
---line 59 of file container-line.bib
+--line 30 of file container-line.bib
 Warning--string name "jul" is undefined
---line 89 of file container-line.bib
+--line 45 of file container-line.bib
 Warning--string name "jan" is undefined
---line 153 of file container-line.bib
+--line 77 of file container-line.bib
 Warning--string name "nov" is undefined
+--line 94 of file container-line.bib
+Warning--string name "jan" is undefined
+--line 110 of file container-line.bib
+Warning--string name "mar" is undefined
+--line 129 of file container-line.bib
+Warning--string name "mar" is undefined
 --line 187 of file container-line.bib
-Warning--string name "jan" is undefined
---line 219 of file container-line.bib
-Warning--string name "mar" is undefined
---line 257 of file container-line.bib
-Warning--string name "mar" is undefined
---line 373 of file container-line.bib
 Warning--string name "dec" is undefined
---line 409 of file container-line.bib
+--line 205 of file container-line.bib
 Warning--string name "dec" is undefined
---line 573 of file container-line.bib
+--line 287 of file container-line.bib
 Warning--string name "jan" is undefined
---line 609 of file container-line.bib
+--line 305 of file container-line.bib
 Warning--string name "feb" is undefined
---line 643 of file container-line.bib
+--line 322 of file container-line.bib
 Warning--string name "apr" is undefined
---line 677 of file container-line.bib
+--line 339 of file container-line.bib
 Warning--string name "jan" is undefined
---line 717 of file container-line.bib
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
+--line 359 of file container-line.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 You've used 21 entries,
             5204 wiz_defined-function locations,
             1013 strings with 13001 characters,
