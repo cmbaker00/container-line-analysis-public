@@ -47,3 +47,6 @@ case_study/data_for_stan/**/*.csv
 
 case_study/raw_data/**/*.RDS
 case_study/raw_data/**/*.csv
+
+# AE letter
+manuscript/submission/annals/AE_response.docx

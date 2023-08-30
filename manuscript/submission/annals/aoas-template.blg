@@ -1,16 +1,18 @@
-This is BibTeX, Version 0.99d (TeX Live 2021)
+This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: aoas-template.aux
+Reallocating 'name_of_file' (item size: 1) to 16 items.
 The style file: imsart-nameyear.bst
-Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
-Reallocated global_strs (elt_size=200001) to 20 items from 10.
-Reallocated glb_str_end (elt_size=4) to 20 items from 10.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocating 'name_of_file' (item size: 1) to 19 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: container-line.bib
 Warning--string name "dec" is undefined
 --line 30 of file container-line.bib
@@ -38,48 +40,54 @@ Warning--string name "apr" is undefined
 --line 339 of file container-line.bib
 Warning--string name "jan" is undefined
 --line 359 of file container-line.bib
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--string name "aug" is undefined
+--line 377 of file container-line.bib
+Warning--string name "nov" is undefined
+--line 395 of file container-line.bib
+Warning--I didn't find a database entry for "brooks2011handbook"
+Warning--I didn't find a database entry for "keeling2022modeling"
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
 You've used 21 entries,
             5204 wiz_defined-function locations,
-            1013 strings with 13001 characters,
-and the built_in function-call counts, 173722 in all, are:
-= -- 26572
-> -- 541
+            1022 strings with 13293 characters,
+and the built_in function-call counts, 175287 in all, are:
+= -- 26791
+> -- 544
 < -- 32
-+ -- 6741
-- -- 180
-* -- 12379
-:= -- 26033
-add.period$ -- 83
++ -- 6742
+- -- 181
+* -- 12540
+:= -- 26247
+add.period$ -- 88
 call.type$ -- 21
 change.case$ -- 116
 chr.to.int$ -- 21
 cite$ -- 21
-duplicate$ -- 1097
-empty$ -- 9910
-format.name$ -- 805
-if$ -- 40400
+duplicate$ -- 1105
+empty$ -- 10017
+format.name$ -- 810
+if$ -- 40722
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 252
+newline$ -- 258
 num.names$ -- 95
-pop$ -- 681
+pop$ -- 676
 preamble$ -- 1
 purify$ -- 74
 quote$ -- 0
-skip$ -- 15369
+skip$ -- 15483
 stack$ -- 0
-substring$ -- 30299
-swap$ -- 486
+substring$ -- 30680
+swap$ -- 491
 text.length$ -- 189
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 534
+type$ -- 546
 warning$ -- 0
 while$ -- 285
 width$ -- 0
-write$ -- 503
-(There were 13 warnings)
+write$ -- 509
+(There were 17 warnings)
