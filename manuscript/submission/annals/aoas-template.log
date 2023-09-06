@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.30)  30 AUG 2023 17:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.30)  6 SEP 2023 16:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -557,7 +557,7 @@ cbaker1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 ] [2]
 [3] [4]
-<../..//../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=204, 284.06125pt
+<../..//../asymptotic_approximation/SE_vs_pr_intercept.pdf, id=203, 284.06125pt
  x 176.66pt>
 File: ../..//../asymptotic_approximation/SE_vs_pr_intercept.pdf Graphic file (t
 ype pdf)
@@ -565,7 +565,7 @@ ype pdf)
 Package pdftex.def Info: ../..//../asymptotic_approximation/SE_vs_pr_intercept.
 pdf  used on input line 300.
 (pdftex.def)             Requested size: 198.94223pt x 123.72853pt.
-<../..//../asymptotic_approximation/SE_vs_num_lines.pdf, id=205, 284.06125pt x 
+<../..//../asymptotic_approximation/SE_vs_num_lines.pdf, id=204, 284.06125pt x 
 183.68625pt>
 File: ../..//../asymptotic_approximation/SE_vs_num_lines.pdf Graphic file (type
  pdf)
@@ -580,7 +580,7 @@ pdfTeX warning: pdflatex (file ../..//../asymptotic_approximation/SE_vs_num_lin
 es.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 
 >]
-<../..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf, id=265, 284.06
+<../..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf, id=264, 284.06
 125pt x 181.67876pt>
 File: ../..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf Graphic fi
 le (type pdf)
@@ -588,7 +588,7 @@ le (type pdf)
 Package pdftex.def Info: ../..//../asymptotic_approximation/SE_twotype_p1_01_p2
 _005.pdf  used on input line 341.
 (pdftex.def)             Requested size: 198.94223pt x 127.24355pt.
-<../..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf, id=266, 284.061
+<../..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf, id=265, 284.061
 25pt x 181.67876pt>
 File: ../..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf Graphic fil
 e (type pdf)
@@ -596,7 +596,7 @@ e (type pdf)
 Package pdftex.def Info: ../..//../asymptotic_approximation/SE_twotype_p1_01_p2
 _03.pdf  used on input line 345.
 (pdftex.def)             Requested size: 198.94223pt x 127.24355pt.
-<../..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf, id=267, 284.06
+<../..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf, id=266, 284.06
 125pt x 184.69pt>
 File: ../..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf Graphic fi
 le (type pdf)
@@ -604,7 +604,7 @@ le (type pdf)
 Package pdftex.def Info: ../..//../asymptotic_approximation/SE_twotype_p1_01_p2
 _075.pdf  used on input line 349.
 (pdftex.def)             Requested size: 198.94223pt x 129.35255pt.
-<../..//../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf, id=268, 284.061
+<../..//../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf, id=267, 284.061
 25pt x 184.69pt>
 File: ../..//../asymptotic_approximation/SE_twotype_p1_01_p2_09.pdf Graphic fil
 e (type pdf)
@@ -635,7 +635,7 @@ LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
 
 [7]
 <../..//../visualisations/new_figures/simulation_estimates_random_effect_quanti
-les.pdf, id=342, 578.16pt x 578.16pt>
+les.pdf, id=340, 578.16pt x 578.16pt>
 File: ../..//../visualisations/new_figures/simulation_estimates_random_effect_q
 uantiles.pdf Graphic file (type pdf)
 <use ../..//../visualisations/new_figures/simulation_estimates_random_effect_qu
@@ -651,7 +651,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
 (Font)              using `T1/ptm/m/sc' instead on input line 502.
 
-<../..//../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=345, 578.1
+<../..//../visualisations/figures/p_int_est_all_vs_line_data.pdf, id=343, 578.1
 6pt x 361.35pt>
 File: ../..//../visualisations/figures/p_int_est_all_vs_line_data.pdf Graphic f
 ile (type pdf)
@@ -668,16 +668,8 @@ _quantiles.pdf>]
 LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
 (Font)              using `T1/ptm/m/sc' instead on input line 529.
 
-
-Package natbib Warning: Citation `brooks2011handbook' on page 10 undefined on i
-nput line 529.
-
-[10 <../..//../visualisations/figures/p_int_est_all_vs_line_data.pdf>]
-
-Package natbib Warning: Citation `keeling2022modeling' on page 11 undefined on 
-input line 562.
-
-[11] (aoas-template.bbl
+[10 <../..//../visualisations/figures/p_int_est_all_vs_line_data.pdf>] [11]
+(aoas-template.bbl
 Underfull \hbox (badness 7832) in paragraph at lines 8--21
 []\T1/ptm/m/sc/9 Baker, C. M. \T1/ptm/m/n/9 and \T1/ptm/m/sc/9 Bode, M. \T1/ptm
 /m/n/9 (2020). Re-cent ad-vances of quan-ti-ta-tive mod-el-ing to sup-port
@@ -711,105 +703,90 @@ m/m/it/9 Eco-log-i-cal Mono-graphs \T1/ptm/b/n/9 n/a\T1/ptm/m/n/9 . _eprint:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--73
+Underfull \hbox (badness 10000) in paragraph at lines 88--99
 []\T1/ptm/m/sc/9 Chatterjee, A. \T1/ptm/m/n/9 and \T1/ptm/m/sc/9 Bandy-opad-hya
 y, T. \T1/ptm/m/n/9 (2020). Re-gres-sion mod-els for group test-ing:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--73
+Underfull \hbox (badness 10000) in paragraph at lines 88--99
 \T1/ptm/m/n/9 Iden-ti-fi-a-bil-ity and asymp-totics. \T1/ptm/m/it/9 Jour-nal of
  Sta-tis-ti-cal Plan-ning and In-fer-ence \T1/ptm/b/n/9 204 \T1/ptm/m/n/9 141--
 152.
  []
 
 
-Underfull \hbox (badness 1616) in paragraph at lines 125--136
+Underfull \hbox (badness 1616) in paragraph at lines 151--162
 []\T1/ptm/m/sc/9 Hepworth, G. \T1/ptm/m/n/9 and \T1/ptm/m/sc/9 Big-ger-staff, B
 . J. \T1/ptm/m/n/9 (2021). Bias Cor-rec-tion in Es-ti-mat-ing Pro-por-tions by 
 Im-
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 125--136
+Underfull \hbox (badness 1400) in paragraph at lines 151--162
 \T1/ptm/m/n/9 per-fect Pooled Test-ing. \T1/ptm/m/it/9 Jour-nal of Agri-cul-tur
 al, Bi-o-log-i-cal and En-vi-ron-men-tal Statis-tics \T1/ptm/b/n/9 26 \T1/ptm/m
 /n/9 90--104.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--153
+Underfull \hbox (badness 10000) in paragraph at lines 166--179
 []\T1/ptm/m/sc/9 Hepworth, G. \T1/ptm/m/n/9 and \T1/ptm/m/sc/9 Wat-son, R. \T1/
 ptm/m/n/9 (2009). De-bi-ased es-ti-ma-tion of pro-por-tions in group
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--153
+Underfull \hbox (badness 10000) in paragraph at lines 166--179
 \T1/ptm/m/n/9 test-ing. \T1/ptm/m/it/9 Jour-nal of the Royal Sta-tis-ti-cal So-
 ci-ety: Se-ries C (Ap-plied Statis-tics) \T1/ptm/b/n/9 58 \T1/ptm/m/n/9 105--
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--153
+Underfull \hbox (badness 10000) in paragraph at lines 166--179
 \T1/ptm/m/n/9 121. _eprint: https://rss.onlinelibrary.wiley.com/doi/pdf/10.1111
 /j.1467-9876.2008.00639.x.
  []
 
 
-Underfull \hbox (badness 2150) in paragraph at lines 156--214
+Underfull \hbox (badness 2150) in paragraph at lines 182--240
 \T1/ptm/m/sc/9 Camp-bell, K.\T1/ptm/m/n/9 , \T1/ptm/m/sc/9 Springer, K.\T1/ptm/
 m/n/9 , \T1/ptm/m/sc/9 Swin-ner-ton, K.\T1/ptm/m/n/9 , \T1/ptm/m/sc/9 Gibbons-D
 echerong, L.\T1/ptm/m/n/9 , \T1/ptm/m/sc/9 Lan-grand, O.\T1/ptm/m/n/9 ,
  []
 
-[12])
-
-Package natbib Warning: There were undefined citations.
-
-[13] (aoas-template.aux)
+[12]) [13] (aoas-template.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package rerunfilecheck Info: File `aoas-template.out' has not changed.
 (rerunfilecheck)             Checksum: B82DFAFA8EDBFF442E02E2632A7AD814;1964.
  ) 
 Here is how much of TeX's memory you used:
- 14247 strings out of 476331
- 231453 string characters out of 5786821
+ 14255 strings out of 476331
+ 231681 string characters out of 5786821
  1870660 words of memory out of 5000000
- 34377 multiletter control sequences out of 15000+600000
+ 34385 multiletter control sequences out of 15000+600000
  575222 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,16n,77p,1524b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{equation.3.11} has been referenced but does not exi
-st, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{equation.2.6} has been referenced but does not exis
-t, replaced by a fixed one
-
-<C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmex10.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmmi10.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmmi8.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/cbaker1/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/cbaker1/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/cbaker1/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/User
-s/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pf
-b><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/s
-ymbols/msbm10.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1/u
-rw/times/utmb8a.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1
-/urw/times/utmr8a.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/urw/times/utmri8a.pfb>
-Output written on aoas-template.pdf (13 pages, 423764 bytes).
+ 75i,16n,77p,1530b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmex10.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi8.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/cbaker1/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/cbaker1/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/cbaker1
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Us
+ers/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.
+pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/symbols/msbm10.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/type1
+/urw/times/utmb8a.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/urw/times/utmr8a.pfb><C:/Users/cbaker1/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/urw/times/utmri8a.pfb>
+Output written on aoas-template.pdf (13 pages, 424997 bytes).
 PDF statistics:
- 505 PDF objects out of 1000 (max. 8388607)
+ 511 PDF objects out of 1000 (max. 8388607)
  94 named destinations out of 1000 (max. 500000)
  169 words of extra memory for PDF output out of 10000 (max. 10000000)
 

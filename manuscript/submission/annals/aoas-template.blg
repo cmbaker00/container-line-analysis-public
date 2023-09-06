@@ -44,50 +44,52 @@ Warning--string name "aug" is undefined
 --line 377 of file container-line.bib
 Warning--string name "nov" is undefined
 --line 395 of file container-line.bib
-Warning--I didn't find a database entry for "brooks2011handbook"
-Warning--I didn't find a database entry for "keeling2022modeling"
+Warning--string name "may" is undefined
+--line 410 of file container-line.bib
+Warning--string name "jul" is undefined
+--line 428 of file container-line.bib
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 21 entries,
+You've used 23 entries,
             5204 wiz_defined-function locations,
-            1022 strings with 13293 characters,
-and the built_in function-call counts, 175287 in all, are:
-= -- 26791
-> -- 544
-< -- 32
-+ -- 6742
-- -- 181
-* -- 12540
-:= -- 26247
-add.period$ -- 88
-call.type$ -- 21
-change.case$ -- 116
-chr.to.int$ -- 21
-cite$ -- 21
-duplicate$ -- 1105
-empty$ -- 10017
-format.name$ -- 810
-if$ -- 40722
+            1036 strings with 13734 characters,
+and the built_in function-call counts, 184666 in all, are:
+= -- 28368
+> -- 570
+< -- 34
++ -- 7374
+- -- 188
+* -- 13010
+:= -- 27746
+add.period$ -- 95
+call.type$ -- 23
+change.case$ -- 126
+chr.to.int$ -- 23
+cite$ -- 23
+duplicate$ -- 1170
+empty$ -- 10400
+format.name$ -- 842
+if$ -- 43041
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 258
-num.names$ -- 95
-pop$ -- 676
+newline$ -- 280
+num.names$ -- 104
+pop$ -- 717
 preamble$ -- 1
-purify$ -- 74
+purify$ -- 80
 quote$ -- 0
-skip$ -- 15483
+skip$ -- 16419
 stack$ -- 0
-substring$ -- 30680
-swap$ -- 491
-text.length$ -- 189
+substring$ -- 31850
+swap$ -- 514
+text.length$ -- 207
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 546
+type$ -- 592
 warning$ -- 0
-while$ -- 285
+while$ -- 312
 width$ -- 0
-write$ -- 509
+write$ -- 555
 (There were 17 warnings)

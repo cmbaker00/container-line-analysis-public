@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{23}
 % BibTex style file: imsart-nameyear.bst, 2017-11-03
 % Default style options (sort=1,type=nameyear).
 % Used options (sort=1,type=nameyear).
@@ -53,6 +53,32 @@
 \bvolume{49}
 \bpages{1278--1286}.
 \bdoi{10.1111/j.1365-2664.2012.02207.x}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Brooks et~al.}{2011}]{brooks_handbook_2011}
+\begin{bbook}[author]
+\bauthor{\bsnm{Brooks},~\bfnm{Steve}\binits{S.}},
+  \bauthor{\bsnm{Gelman},~\bfnm{Andrew}\binits{A.}},
+  \bauthor{\bsnm{Jones},~\bfnm{Galin}\binits{G.}} \AND
+  \bauthor{\bsnm{Megn},~\bfnm{Xiao-Li}\binits{X.-L.}}
+(\byear{2011}).
+\btitle{Handbook of {Markov} {Chain} {Monte} {Carlo}}.
+\bpublisher{Chapman and Hall/CRC}, \baddress{New York}.
+\bdoi{10.1201/b10905}
+\end{bbook}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Brynildsrud}{2020}]{brynildsrud_covid-19_2020}
+\begin{barticle}[author]
+\bauthor{\bsnm{Brynildsrud},~\bfnm{Ola}\binits{O.}}
+(\byear{2020}).
+\btitle{{COVID}-19 prevalence estimation by random sampling in population -
+  optimal sample pooling under varying assumptions about true prevalence}.
+\bjournal{BMC Medical Research Methodology}
+\bvolume{20}
+\bpages{196}.
+\bdoi{10.1186/s12874-020-01081-0}
 \end{barticle}
 \endbibitem
 
