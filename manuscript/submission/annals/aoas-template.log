@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.19)  29 AUG 2023 14:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.19)  16 OCT 2023 14:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -533,11 +533,20 @@ Package pdftex.def Info: ../..//../visualisations/figures/p_int_est_all_vs_line_
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [8] [9 <../..//../visualisations/new_figures/simulation_estimates_random_effect_quantiles.pdf>]
+<../..//../visualisations/new_figures/new_line_data_comparision.pdf, id=370, 578.16pt x 361.35pt>
+File: ../..//../visualisations/new_figures/new_line_data_comparision.pdf Graphic file (type pdf)
+<use ../..//../visualisations/new_figures/new_line_data_comparision.pdf>
+Package pdftex.def Info: ../..//../visualisations/new_figures/new_line_data_comparision.pdf  used on input line 523.
+(pdftex.def)             Requested size: 406.0pt x 253.74828pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 
 LaTeX Font Warning: Font shape `T1/ptm/m/scit' undefined
-(Font)              using `T1/ptm/m/sc' instead on input line 524.
+(Font)              using `T1/ptm/m/sc' instead on input line 532.
 
-[10 <../..//../visualisations/figures/p_int_est_all_vs_line_data.pdf>] [11] (./aoas-template.bbl
+[10 <../..//../visualisations/figures/p_int_est_all_vs_line_data.pdf>] [11 <../..//../visualisations/new_figures/new_line_data_comparision.pdf>] (./aoas-template.bbl
 Underfull \hbox (badness 7832) in paragraph at lines 8--21
 []\T1/ptm/m/sc/9 Baker, C. M. \T1/ptm/m/n/9 and \T1/ptm/m/sc/9 Bode, M. \T1/ptm/m/n/9 (2020). Re-cent ad-vances of quan-ti-ta-tive mod-el-ing to sup-port
  []
@@ -562,7 +571,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--42
 \T1/ptm/m/n/9 log-i-cal restora-tions: erad-i-ca-tion vs. sup-pres-sion. \T1/ptm/m/it/9 Eco-log-i-cal Mono-graphs \T1/ptm/b/n/9 n/a\T1/ptm/m/n/9 . _eprint:
  []
 
-
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 74--85
 []\T1/ptm/m/sc/9 Chatterjee, A. \T1/ptm/m/n/9 and \T1/ptm/m/sc/9 Bandy-opad-hyay, T. \T1/ptm/m/n/9 (2020). Re-gres-sion mod-els for group test-ing:
  []
@@ -602,27 +611,27 @@ Underfull \hbox (badness 2150) in paragraph at lines 168--226
 \T1/ptm/m/sc/9 Camp-bell, K.\T1/ptm/m/n/9 , \T1/ptm/m/sc/9 Springer, K.\T1/ptm/m/n/9 , \T1/ptm/m/sc/9 Swin-ner-ton, K.\T1/ptm/m/n/9 , \T1/ptm/m/sc/9 Gibbons-Decherong, L.\T1/ptm/m/n/9 , \T1/ptm/m/sc/9 Lan-grand, O.\T1/ptm/m/n/9 ,
  []
 
-[12]) [13] (./aoas-template.aux)
+[13]) [14] (./aoas-template.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `aoas-template.out' has not changed.
-(rerunfilecheck)             Checksum: B82DFAFA8EDBFF442E02E2632A7AD814;1964.
+(rerunfilecheck)             Checksum: 2E58C69DFC8DAB54806CBBC28295F392;1965.
  ) 
 Here is how much of TeX's memory you used:
- 13478 strings out of 478599
- 203519 string characters out of 5854091
- 525033 words of memory out of 5000000
- 31053 multiletter control sequences out of 15000+600000
+ 13489 strings out of 478599
+ 204123 string characters out of 5854091
+ 525362 words of memory out of 5000000
+ 31061 multiletter control sequences out of 15000+600000
  466365 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,15n,80p,1619b,497s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 72i,15n,80p,1619b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on aoas-template.pdf (13 pages, 367495 bytes).
+Output written on aoas-template.pdf (14 pages, 389506 bytes).
 PDF statistics:
- 503 PDF objects out of 1000 (max. 8388607)
- 418 compressed objects within 5 object streams
- 94 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 518 PDF objects out of 1000 (max. 8388607)
+ 430 compressed objects within 5 object streams
+ 96 named destinations out of 1000 (max. 500000)
+ 174 words of extra memory for PDF output out of 10000 (max. 10000000)
 

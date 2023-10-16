@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex aoas-template"] 1693283136 "aoas-template.aux" "aoas-template.bbl" "aoas-template" 1693283234
+["bibtex aoas-template"] 1696902724 "aoas-template.aux" "aoas-template.bbl" "aoas-template" 1697427418
   "./imsart-nameyear.bst" 1674106492 39203 a106d018926600f6d654f6a3e616411e ""
-  "aoas-template.aux" 1693283233 11189 247a3f2bfa6a936ba96ec98403d728d0 "pdflatex"
+  "aoas-template.aux" 1697427418 11987 4efd94f27b4a90a387188af47c7b418c "pdflatex"
   "container-line.bib" 1674104455 44004 e133ff38fbb316218097235e1e972a1f ""
   (generated)
   "aoas-template.blg"
   "aoas-template.bbl"
-["pdflatex"] 1693283232 "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/annals/aoas-template.tex" "aoas-template.pdf" "aoas-template" 1693283234
+["pdflatex"] 1697427417 "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/annals/aoas-template.tex" "aoas-template.pdf" "aoas-template" 1697427418
   "../..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf" 1671000037 24536 88497bafddd3b6acf86bbb89b22d266b ""
   "../..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf" 1671000037 24683 9330ca8277e002c811901e16d66f7d3a ""
   "../..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf" 1671000037 25081 f523b41f23ba42f1df418fdad47577ca ""
@@ -14,8 +14,9 @@
   "../..//../asymptotic_approximation/SE_vs_num_lines.pdf" 1663212509 30041 69006d97a553b9e9f4a81dad33dd42aa ""
   "../..//../asymptotic_approximation/SE_vs_pr_intercept.pdf" 1663212509 32525 5e6f33579ed7a2de22e12b1f1fe3fc15 ""
   "../..//../visualisations/figures/p_int_est_all_vs_line_data.pdf" 1674104330 18232 af8dea3a5a0cf71d7abc938c2b66def0 ""
+  "../..//../visualisations/new_figures/new_line_data_comparision.pdf" 1697420149 22017 ea635f236d988b71b97d80199908d1b9 ""
   "../..//../visualisations/new_figures/simulation_estimates_random_effect_quantiles.pdf" 1693274290 13026 b4e33cba1b96d7dfc7c40a0d3343363f ""
-  "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/annals/aoas-template.tex" 1693283232 53417 ce5388d7cbd998d6c283e2f0c9dcb2f6 ""
+  "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/annals/aoas-template.tex" 1697427416 54518 f63d4e788a31e30374ab7a81aa4aeef2 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1136768653 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -139,10 +140,10 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1634615222 4362028 e6008de3146e43ceb9bb64d17447259a ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1634615282 2797905 e652a802ae6f0d60b44c2857b7108594 ""
   "/usr/local/texlive/2021/texmf.cnf" 1634615209 577 4c1911a7228e554c6032256d3cf5567d ""
-  "aoas-template.aux" 1693283233 11189 247a3f2bfa6a936ba96ec98403d728d0 "pdflatex"
-  "aoas-template.bbl" 1693283137 15251 1549253d6528914231724d3e3051ab77 "bibtex aoas-template"
-  "aoas-template.out" 1693283233 1964 b82dfafa8edbff442e02e2632a7ad814 "pdflatex"
-  "aoas-template.tex" 1693283232 53417 ce5388d7cbd998d6c283e2f0c9dcb2f6 ""
+  "aoas-template.aux" 1697427418 11987 4efd94f27b4a90a387188af47c7b418c "pdflatex"
+  "aoas-template.bbl" 1696902725 15251 1549253d6528914231724d3e3051ab77 "bibtex aoas-template"
+  "aoas-template.out" 1697427418 1965 2e58c69dfc8dab54806cbbc28295f392 "pdflatex"
+  "aoas-template.tex" 1697427416 54518 f63d4e788a31e30374ab7a81aa4aeef2 ""
   "imsart-aoas.cnf" 0 -1 0 ""
   "imsart-vtex.cnf" 0 -1 0 ""
   "imsart.cls" 1674104405 4979 e96abc25f5b819a6728adc220be06735 ""
@@ -150,6 +151,6 @@
   "imsart.sty" 1674104409 158894 98836a1a55c5e5e93bf83a867b825d29 ""
   (generated)
   "aoas-template.aux"
-  "aoas-template.out"
   "aoas-template.log"
   "aoas-template.pdf"
+  "aoas-template.out"
