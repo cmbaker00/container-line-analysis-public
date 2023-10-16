@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{23}
 % BibTex style file: imsart-nameyear.bst, 2017-11-03
 % Default style options (sort=1,type=nameyear).
 % Used options (sort=1,type=nameyear).
@@ -56,16 +56,30 @@
 \end{barticle}
 \endbibitem
 
-\bibitem[\protect\citeauthoryear{Brooks et~al.}{2011}]{brooks2011handbook}
+\bibitem[\protect\citeauthoryear{Brooks et~al.}{2011}]{brooks_handbook_2011}
 \begin{bbook}[author]
 \bauthor{\bsnm{Brooks},~\bfnm{Steve}\binits{S.}},
   \bauthor{\bsnm{Gelman},~\bfnm{Andrew}\binits{A.}},
   \bauthor{\bsnm{Jones},~\bfnm{Galin}\binits{G.}} \AND
-  \bauthor{\bsnm{Meng},~\bfnm{Xiao-Li}\binits{X.-L.}}
+  \bauthor{\bsnm{Megn},~\bfnm{Xiao-Li}\binits{X.-L.}}
 (\byear{2011}).
-\btitle{Handbook of Markov Chain Monte Carlo}.
-\bpublisher{CRC press}.
+\btitle{Handbook of {Markov} {Chain} {Monte} {Carlo}}.
+\bpublisher{Chapman and Hall/CRC}, \baddress{New York}.
+\bdoi{10.1201/b10905}
 \end{bbook}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Brynildsrud}{2020}]{brynildsrud_covid-19_2020}
+\begin{barticle}[author]
+\bauthor{\bsnm{Brynildsrud},~\bfnm{Ola}\binits{O.}}
+(\byear{2020}).
+\btitle{{COVID}-19 prevalence estimation by random sampling in population -
+  optimal sample pooling under varying assumptions about true prevalence}.
+\bjournal{BMC Medical Research Methodology}
+\bvolume{20}
+\bpages{196}.
+\bdoi{10.1186/s12874-020-01081-0}
+\end{barticle}
 \endbibitem
 
 \bibitem[\protect\citeauthoryear{Chatterjee and
@@ -238,17 +252,6 @@
 \end{barticle}
 \endbibitem
 
-\bibitem[\protect\citeauthoryear{Keeling and
-  Rohani}{2008}]{keeling2022modeling}
-\begin{bbook}[author]
-\bauthor{\bsnm{Keeling},~\bfnm{Matt~J.}\binits{M.~J.}} \AND
-  \bauthor{\bsnm{Rohani},~\bfnm{Pejman}\binits{P.}}
-(\byear{2008}).
-\btitle{Modeling Infectious Diseases in Humans and Animals}.
-\bpublisher{Princeton University Press}.
-\end{bbook}
-\endbibitem
-
 \bibitem[\protect\citeauthoryear{Kumar~Rai and
   Singh}{2020}]{kumar_rai_invasive_2020}
 \begin{barticle}[author]
@@ -327,6 +330,36 @@
 \bpages{276--280}.
 \bnote{Number: 7841 Publisher: Nature Publishing Group}.
 \bdoi{10.1038/s41586-020-2885-5}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Nakagawa and
+  Freckleton}{2008}]{nakagawa_missing_2008}
+\begin{barticle}[author]
+\bauthor{\bsnm{Nakagawa},~\bfnm{Shinichi}\binits{S.}} \AND
+  \bauthor{\bsnm{Freckleton},~\bfnm{Robert~P.}\binits{R.~P.}}
+(\byear{2008}).
+\btitle{Missing inaction: the dangers of ignoring missing data}.
+\bjournal{Trends in Ecology \& Evolution}
+\bvolume{23}
+\bpages{592--596}.
+\bnote{Publisher: Elsevier}.
+\bdoi{10.1016/j.tree.2008.06.014}
+\end{barticle}
+\endbibitem
+
+\bibitem[\protect\citeauthoryear{Ren et~al.}{2023}]{ren_review_2023}
+\begin{barticle}[author]
+\bauthor{\bsnm{Ren},~\bfnm{Lijuan}\binits{L.}},
+  \bauthor{\bsnm{Wang},~\bfnm{Tao}\binits{T.}},
+  \bauthor{\bsnm{Sekhari~Seklouli},~\bfnm{Aicha}\binits{A.}},
+  \bauthor{\bsnm{Zhang},~\bfnm{Haiqing}\binits{H.}} \AND
+  \bauthor{\bsnm{Bouras},~\bfnm{Abdelaziz}\binits{A.}}
+(\byear{2023}).
+\btitle{A review on missing values for main challenges and methods}.
+\bjournal{Information Systems}
+\bpages{102268}.
+\bdoi{10.1016/j.is.2023.102268}
 \end{barticle}
 \endbibitem
 

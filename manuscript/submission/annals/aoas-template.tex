@@ -90,22 +90,23 @@
 %% ORCID can be inserted by command:         %%
 %% \orcid{0000-0000-0000-0000}               %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\author[A]{\fnms{Christopher M.}~\snm{Baker}\ead[label=e1]{cbaker1@unimelb.edu.au}},
+\author[A,B]{\fnms{Christopher M.}~\snm{Baker}\ead[label=e1]{cbaker1@unimelb.edu.au}},
 \author[B]{\fnms{Howard}~\snm{Bondell}\ead[label=e2]{howard.bondell@unimelb.edu.au}},
-\author[A]{\fnms{Nathaniel}~\snm{Bloomfield}\ead[label=e3]{nathaniel.bloomfield@unimelb.edu.au}},
-\author[C]{\fnms{Elena}~\snm{Tartaglia}\ead[label=e4]{elena.tartaglia@data61.csiro.au}}
+\author[A,B]{\fnms{Evelyn}~\snm{Mannix}\ead[label=e3]{evelyn.mannix@unimelb.edu.au}},
+\author[C]{\fnms{Elena}~\snm{Tartaglia}\ead[label=e4]{elena.tartaglia@data61.csiro.au}},
+\author[B]{\fnms{Thomas K.}~\snm{Waring}\ead[label=e6]{tom.waring@unimelb.edu.au}}
 \and
 \author[A]{\fnms{Andrew P.}~\snm{Robinson}\ead[label=e5]{apro@unimelb.edu.au}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Addresses                                %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \address[A]{Centre of Excellence for Biosecurity Risk Analysis, The University of Melbourne\printead[presep={,\ }]{e1,e3,e5}}
-\address[B]{Melbourne Centre for Data Science, The University of Melbourne\printead[presep={,\ }]{e2}}
+\address[B]{Melbourne Centre for Data Science, The University of Melbourne\printead[presep={,\ }]{e2,e6}}
 \address[C]{Data61, Commonwealth Scientific and Industrial Research Organisation\printead[presep={,\ }]{e4}}
 \end{aug}
 
 \begin{abstract}
-National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In the Australian border biosecurity system, data about cargo entries are collected from records of directions: that is, the records of actions taken by the biosecurity regulator. An entry is a collection of import lines where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry, meaning that we don?t know which line(s) within the entry are non-compliant. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the risk of non-compliance is recovered using the new model.
+National governments use border information to efficiently manage the biosecurity risk presented by travel and commerce. In the Australian border biosecurity system, data about cargo entries are collected from records of directions: that is, the records of actions taken by the biosecurity regulator. An entry is a collection of import lines where each line is a single type of item or commodity. Analysis is simple when the data are recorded in line mode: the directions are recorded individually for each line. The challenge comes when data are recorded in container mode, because the same direction is recorded against each line in the entry, meaning that we don't know which line(s) within the entry are non-compliant. We develop a statistical model to use container mode data to help inform biosecurity risk of items. We use asymptotic analysis to estimate the value of container mode data compared to line mode data, do a simulation study to verify that we can accurately estimate parameters in a large dataset, and we apply our methods to a real dataset, for which important information about the risk of non-compliance is recovered using the new model.
 \end{abstract}
 
 \begin{keyword}
@@ -152,7 +153,7 @@ To make our language about the data more precise, we will explicitly define what
 
 \subsection{Modelling}\label{sec:model}
 
-Throughout this paper, we focus on estimating the probability that a line is non-compliant using information including the type of item, country of origin and whether it has complete documentation. The full model for the probability that a line is non-compliant, \(p_{ijk\ell}\), is: 
+Throughout this paper, we focus on estimating the probability that a line is non-compliant using information including the type of item, country of origin and whether it has complete documentation. In doing so, we make the assumption that the data are accurate -- i.e. we don't consider imperfect detection. Therefore, The full model for the probability that a line is non-compliant, \(p_{ijk\ell}\), is: 
 
 \begin{align}
 \logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell \label{eq:logit_model_sim},
@@ -161,16 +162,20 @@ where the fixed effects are $\alpha_i$, $\beta\mathbb{I}_j$ and $\delta_k$: $\al
 % Quoted in response to CSIRO review
 
 \begin{align}
-i &=1, \ldots, a, & a&\in \mathbb{N},& a &= \text{\# items}\\
-j &= 1, 2, & & & &\text{\hspace{-5pt}without and with documentation}&\\
-k &= 1,\ldots, d,& d &\in \mathbb{N},& d &= \text{\# countries}\\
-\ell &= 1,\ldots,g,& g&\in \mathbb{N},& g &= \text{\# entries}.
+\begin{split}
+i &=1, \ldots, a,\quad  a\in \mathbb{N},\quad a = \text{\# items}\\
+j &= 1, 2,\text{\hspace{70pt}without and with documentation}\\
+k &= 1,\ldots, d, \quad d \in \mathbb{N},\quad d = \text{\# countries}\\
+\ell &= 1,\ldots,g, \quad g\in \mathbb{N},\quad g = \text{\# entries}.
+\end{split}
 \end{align}
 The values of the indicator variable are
 
 \begin{align}
-\mathbb{I}_1 & = 0,& &\text{without documentation}\\
-\mathbb{I}_2 &= 1,& &\text{with documentation}.
+\begin{split}
+\mathbb{I}_1 & = 0,\quad\text{without documentation}\\
+\mathbb{I}_2 &= 1,\quad\text{with documentation}.
+\end{split}
 \end{align}
 The random effect $\gamma_\ell$ has distribution
 
@@ -209,7 +214,7 @@ For the single item type case, we set the probability of non-compliance to be \(
 \begin{align}
 \mathbb{P}(\text{entry compliant}) = (1-p)^S,
 \end{align}
-meaning that the binomial log-likelihood for a set entry size $S$  
+and  the binomial log-likelihood for a set entry size $S$ is \(\log\mathcal{L}_S = I\log(1-(1-p)^S) + (N-I)\log((1-p)^S)\).
 
 We estimate the standard error by calculating the Fisher information
 
@@ -379,7 +384,7 @@ As the first step in developing a method to analyse real-world data sets, we sim
 In this section, we generate 20 independent sets of data to fit our model to. We fit our model to different amounts of data, from 1,000 lines to 50,000 lines, for each for the 20 data sets separately, and we report the mean estimate, alongside the 90\% CI across the 20 datasets. Thus, we can evaluate how we expect the precision of estimates to improve as the quantity of data increases.
 
 \subsection{Data simulation}
-We simulate data from the full model (as described in Section~\ref{sec:model}). For our simulations, we chose parameters that we expect to be similar to real-world values. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to non-compliance probabilities of 0.001, 0.01, 0.02, 0.05 and 0.2, if all other effects were 0). We chose negative values for the item effect $\alpha_i$, since the probability of detection is expected to be low for any item in real-world data. We used $d=3$ countries and set their weights to be 0.5, -1 and 0.25.
+We simulate data from the full model (as described in Section~\ref{sec:model}). For our simulations, we chose parameters that we expect to be similar to real-world values. We set \(\beta=-1\), choosing an negative effect of having correct documentation, because we expect lines with correct documentation have a higher chance of being compliant. We include $a=5$ item types with \(\alpha_i\) taking values of -6.91, -4.60, -3.89, -2.94, -1.39 (corresponding to non-compliance probabilities of 0.001, 0.01, 0.02, 0.05 and 0.2, if all other effects were 0). We chose negative values for the item effect $\alpha_i$, since the probability of non-compliance is expected to be low for any item in real-world data. We used $d=3$ countries and set their weights to be 0.5, -1 and 0.25.
 For within-entry correlation, we set \(\sigma = 0.25\). For each entry we draw whether it is in line mode or not with probability 0.25, and for each line we set the probability of having correct documentation to be 0.2. We show an example of the format of the data in Table \ref{table:example_data}.
 
 
@@ -529,7 +534,7 @@ Analysing the full data set, rather than the line-only data, gives us informatio
 
 
 \begin{table}[ht]
-\caption{Parameter estimates that are only possible when using all data, as opposed to the line-only fits.  {The value summary\_rhat\_all measures convergence of MCMC chains} \cite{brooks2011handbook}.}
+\caption{Parameter estimates that are only possible when using all data, as opposed to the line-only fits.  {The value summary\_rhat\_all measures convergence of MCMC chains} \cite{brooks_handbook_2011}.}
 \label{tab:estimates_only_from_all_data}
 \centering
 \begin{tabular}{rlrrrr}
@@ -559,15 +564,14 @@ Through our simulation study and our asymptotic analysis we gain an understandin
 
 While we are able to model the full dataset, the continuing presence of container mode data will be a barrier for future data analysis. Most statistical and machine learning algorithms are designed such that each row of data will have explanatory variables and an outcome. With container mode data, we have the explanatory variables, but only partial information about the outcome. Hence, we need customised algorithms (such as described in this paper) to analyse it appropriately.  {Even so, many simplifying assumptions have been made: for example, that a given item's probability of non-compliance does not vary over time. These simplifications do not change our conclusions, as the analysis still serves to highlight the differences between container and line mode. However, without proper care, the specific results of our case-study analysis should not be applied to decision making.} % quoted in "fixed assumptions" response.
 
-The situation in our biosecurity case study is representative of a wider issue in applied statistics, where a portion of the available data is not in a form able to be analysed in the usual way. This paper works through the process of first developing more flexible model, which is adapted to include the problematic data which escape conventional methods. Applying the model to real-world data, we demonstrate that it produces consistent estimates, and expands the scope of insights furnished by the modelling process. %\textcolor{red}{CITATION?}
+The situation in our biosecurity case study is representative of a wider issue in applied statistics, where a portion of the available data is not in a form able to be analysed in the usual way. In the context of missing data it is widely accepted that methods for data imputation are worthwhile and provide better results than ignoring or deleting missing data \citep{nakagawa_missing_2008,ren_review_2023}. However, for the partially-pooled case that we study, there is not a range of off-the-shelf methodologies to incorporate all of the data into a single analysis, and the simplest way to analyse these data using machine learning software is to ignore the container-mode lines. The differences between the results of the case study when we use only the line-mode data compared to when we use all data highlights the utility of developing models that are capable of using all of the data.
 
-While in our case the pooling of outcomes in container mode is an artifact of the system, pooled testing are often designed strategically in public health to improve efficiency. The strain on the PCR testing system has prompted regimes to identify cases while minimising the rounds of testing~\cite{mutesa_pooled_2021}. While it is clear that the way pooling is conducted affects how quickly infections can be identified,  {in some circumstances, the outcomes of pooled testing can also be used to estimate parameters, and our work has implications for these situations} \cite{delaigle_nonparametric_2015, chatterjee_regression_2020, mcmahan_bayesian_2017, liu_generalized_2020}. From our asymptotic analysis, it is clear that even when only estimating a prevalence, for a fixed number of tests, the standard error of the estimate depends on pool size and therefore there would be an optimal pool size, which would depend on the prevalence  \cite{keeling2022modeling}. When there is a model with parameters being estimated, the added complexity could compound the issue, making pool sizing a more important aspect of study design. Furthermore, as we demonstrate here, it is not only pool size that matters, it is how samples with different characteristics are grouped together. Hence, for a given study, there may not be one optimal pooling strategy, and there would likely be trade-offs between different parameters when it comes to maximising the precision of estimates. 
+
+While in our case the pooling of outcomes in container mode is an artifact of the system, pooled testing are often designed strategically in public health to improve efficiency. The strain on the PCR testing system has prompted regimes to identify cases while minimising the rounds of testing~\cite{mutesa_pooled_2021}. While it is clear that the way pooling is conducted affects how quickly infections can be identified,  {in some circumstances, the outcomes of pooled testing can also be used to estimate parameters, and our work has implications for these situations} \cite{delaigle_nonparametric_2015, chatterjee_regression_2020, mcmahan_bayesian_2017, liu_generalized_2020}. From our asymptotic analysis, it is clear that even when only estimating a prevalence, for a fixed number of tests, the standard error of the estimate depends on pool size and therefore there would be an optimal pool size, which would depend on the prevalence  \cite{brynildsrud_covid-19_2020}. When there is a model with parameters being estimated, the added complexity could compound the issue, making pool sizing a more important aspect of study design. Furthermore, as we demonstrate here, it is not only pool size that matters, it is how samples with different characteristics are grouped together. Hence, for a given study, there may not be one optimal pooling strategy, and there would likely be trade-offs between different parameters when it comes to maximising the precision of estimates. 
 
 % USE ANNOYING DATA --- case study has applicable lessons
 
- {In this paper we have investigated how pooled data can reduce our ability to make statistical inferences about the population. Within the Australian biosecurity context, the pooling is due to how data are recorded and was implemented for operational reasons. Due to this operational decision, analysing full datasets is harder than the line-only mode data, meaning that either analysis is restricted to a subset of possible methods or that container mode data is ignored. While it does not follow that container mode should be removed due to operational efficiency, if the line-level data could be captured then it would improve our understanding of biosecurity risk. 
-However, pooled data will continue to be collected in various fields, for example due to the cost-savings of testing multiple samples at once for diseases.
-While there is extensive work in pooled testing protocols for case identification, there is less work on identifying pool sizes when aiming to make inferences about aspects of the population.
+ {In this paper we have investigated how pooled data can reduce our ability to make statistical inferences about the population. However, pooled data will continue to be collected in various fields, for example due to the cost-savings of testing multiple samples at once for diseases. Within the Australian biosecurity context, the pooling is due to how data are recorded and was implemented for operational reasons. Due to this operational decision, analysing full datasets is harder than the line-only mode data, meaning that either analysis is restricted to a subset of possible methods or that container mode data is ignored. While it does not follow that container mode should be removed due to operational efficiency, if the line-level data could be captured then it would improve our understanding of biosecurity risk. While there is extensive work in pooled testing protocols for case identification, there is less work on identifying pool sizes when aiming to make inferences about aspects of the population.
 Our work shows that pooling tests with variable underlying prevalence affects precision differentially. Hence, careful considering should be given to designing pools when the data will be used to make inferences about the population.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -592,7 +596,7 @@ Our work shows that pooling tests with variable underlying prevalence affects pr
 %% Acknowledgements section.                %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{acks}[Acknowledgments]
-The authors would like to thank Tom Waring for their contribution to editing this manuscript.
+ 
 \end{acks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Funding information, if any,             %%
