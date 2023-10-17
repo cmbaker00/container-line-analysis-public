@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex aoas-template"] 1697427658 "aoas-template.aux" "aoas-template.bbl" "aoas-template" 1697427704
+["bibtex aoas-template"] 1697505839 "aoas-template.aux" "aoas-template.bbl" "aoas-template" 1697505916
   "./imsart-nameyear.bst" 1674106492 39203 a106d018926600f6d654f6a3e616411e ""
-  "aoas-template.aux" 1697427659 12270 60025fb3d34ec7b459f24203b592500b "pdflatex"
+  "aoas-template.aux" 1697505915 12268 5659120e4f4c92b55257e59c630aa1c5 "pdflatex"
   "container-line.bib" 1697427599 46188 4a38ede1f8c1834a8681c325b04cf7a7 ""
   (generated)
-  "aoas-template.blg"
   "aoas-template.bbl"
-["pdflatex"] 1697427658 "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/annals/aoas-template.tex" "aoas-template.pdf" "aoas-template" 1697427704
+  "aoas-template.blg"
+["pdflatex"] 1697505914 "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/annals/aoas-template.tex" "aoas-template.pdf" "aoas-template" 1697505916
   "../..//../asymptotic_approximation/SE_twotype_p1_01_p2_005.pdf" 1671000037 24536 88497bafddd3b6acf86bbb89b22d266b ""
   "../..//../asymptotic_approximation/SE_twotype_p1_01_p2_03.pdf" 1671000037 24683 9330ca8277e002c811901e16d66f7d3a ""
   "../..//../asymptotic_approximation/SE_twotype_p1_01_p2_075.pdf" 1671000037 25081 f523b41f23ba42f1df418fdad47577ca ""
@@ -16,7 +16,7 @@
   "../..//../visualisations/figures/p_int_est_all_vs_line_data.pdf" 1674104330 18232 af8dea3a5a0cf71d7abc938c2b66def0 ""
   "../..//../visualisations/new_figures/new_line_data_comparision.pdf" 1697420149 22017 ea635f236d988b71b97d80199908d1b9 ""
   "../..//../visualisations/new_figures/simulation_estimates_random_effect_quantiles.pdf" 1693274290 13026 b4e33cba1b96d7dfc7c40a0d3343363f ""
-  "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/annals/aoas-template.tex" 1697427656 55106 d7f75edc8db2101cb878889d4a4183e8 ""
+  "/Users/thomaswaring/Documents/GitHub/container-line-analysis-public/manuscript/submission/annals/aoas-template.tex" 1697505914 55025 02cb2512ed66015082fd00bffd161dea ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1136768653 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -140,17 +140,17 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1634615222 4362028 e6008de3146e43ceb9bb64d17447259a ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1634615282 2797905 e652a802ae6f0d60b44c2857b7108594 ""
   "/usr/local/texlive/2021/texmf.cnf" 1634615209 577 4c1911a7228e554c6032256d3cf5567d ""
-  "aoas-template.aux" 1697427659 12270 60025fb3d34ec7b459f24203b592500b "pdflatex"
-  "aoas-template.bbl" 1697427658 16451 a1e3ba9f45c9632ea12459c2006703ce "bibtex aoas-template"
-  "aoas-template.out" 1697427659 1965 2e58c69dfc8dab54806cbbc28295f392 "pdflatex"
-  "aoas-template.tex" 1697427656 55106 d7f75edc8db2101cb878889d4a4183e8 ""
+  "aoas-template.aux" 1697505915 12268 5659120e4f4c92b55257e59c630aa1c5 "pdflatex"
+  "aoas-template.bbl" 1697505839 16451 a1e3ba9f45c9632ea12459c2006703ce "bibtex aoas-template"
+  "aoas-template.out" 1697505915 1965 2e58c69dfc8dab54806cbbc28295f392 "pdflatex"
+  "aoas-template.tex" 1697505914 55025 02cb2512ed66015082fd00bffd161dea ""
   "imsart-aoas.cnf" 0 -1 0 ""
   "imsart-vtex.cnf" 0 -1 0 ""
   "imsart.cls" 1674104405 4979 e96abc25f5b819a6728adc220be06735 ""
   "imsart.cnf" 0 -1 0 ""
   "imsart.sty" 1674104409 158894 98836a1a55c5e5e93bf83a867b825d29 ""
   (generated)
-  "aoas-template.log"
-  "aoas-template.aux"
-  "aoas-template.out"
   "aoas-template.pdf"
+  "aoas-template.aux"
+  "aoas-template.log"
+  "aoas-template.out"

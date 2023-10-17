@@ -51,54 +51,55 @@
 \newlabel{sec:model}{{2.2}{3}{Modelling}{subsection.2.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Modelling}{3}{subsection.2.2}\protected@file@percent }
 \newlabel{eq:logit_model_sim}{{1}{3}{Modelling}{equation.2.1}{}}
-\newlabel{eq:entry_effect}{{4}{3}{Modelling}{equation.2.4}{}}
-\newlabel{eq:entry_pr}{{5}{4}{Modelling}{equation.2.5}{}}
+\newlabel{eq:entry_effect}{{3}{3}{Modelling}{equation.2.3}{}}
+\newlabel{eq:entry_pr}{{4}{3}{Modelling}{equation.2.4}{}}
 \newlabel{sec:asymptotic_analysis}{{3}{4}{Asymptotic analysis}{section.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Asymptotic analysis}{4}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Single item type}{4}{subsection.3.1}\protected@file@percent }
-\newlabel{eq:fisher_information}{{7}{4}{Single item type}{equation.3.7}{}}
-\newlabel{eq:general_SE_calc}{{8}{5}{Single item type}{equation.3.8}{}}
+\newlabel{eq:fisher_information}{{6}{4}{Single item type}{equation.3.6}{}}
+\newlabel{eq:general_SE_calc}{{7}{4}{Single item type}{equation.3.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The standard error (Eq.\nobreakspace  {}\textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:general_SE_calc}\unskip \@@italiccorr )}}) as the probability of non-compliance, \(p\), is varied (left) and as the number of lines are varied (right). For the left plot the number of lines is held constant at 120. For the right plot, the probability of non-compliance is held constant at 0.5\relax }}{5}{figure.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:asymptotic_SE_plots}{{1}{5}{The standard error (Eq.~\eqref {eq:general_SE_calc}) as the probability of non-compliance, \(p\), is varied (left) and as the number of lines are varied (right). For the left plot the number of lines is held constant at 120. For the right plot, the probability of non-compliance is held constant at 0.5\relax }{figure.caption.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Two item types}{5}{subsection.3.2}\protected@file@percent }
-\newlabel{eq:entry_mode_loglike_2types}{{9}{5}{Two item types}{equation.3.9}{}}
-\newlabel{eq:p1_two_type_SE_est}{{10}{6}{Two item types}{equation.3.10}{}}
+\newlabel{eq:entry_mode_loglike_2types}{{8}{5}{Two item types}{equation.3.8}{}}
+\newlabel{eq:p1_two_type_SE_est}{{9}{5}{Two item types}{equation.3.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The standard error when for entry size 2, when the proportion of mixed entries is varied. In each plot there are 50 total entries and \(p_1\) is held constant at 0.1, while \(p_2\) goes from 0.05 up to 0.9.\relax }}{6}{figure.caption.2}\protected@file@percent }
 \newlabel{fig:two_type_se_fourplot}{{2}{6}{The standard error when for entry size 2, when the proportion of mixed entries is varied. In each plot there are 50 total entries and \(p_1\) is held constant at 0.1, while \(p_2\) goes from 0.05 up to 0.9.\relax }{figure.caption.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Asymptotic analysis conclusions}{7}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Asymptotic analysis conclusions}{6}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Simulation study}{7}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data simulation}{7}{subsection.4.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Example simulated data. Lines 1-3 are all marked as non-compliant because entry 1 is in container mode, even though only 1 or 2 of the lines were actually non-compliant.\relax }}{7}{table.caption.3}\protected@file@percent }
 \newlabel{table:example_data}{{1}{7}{Example simulated data. Lines 1-3 are all marked as non-compliant because entry 1 is in container mode, even though only 1 or 2 of the lines were actually non-compliant.\relax }{table.caption.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}STAN model}{8}{subsection.4.2}\protected@file@percent }
-\newlabel{eq:logit_model_fit_sim}{{11}{8}{STAN model}{equation.4.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}STAN model}{7}{subsection.4.2}\protected@file@percent }
+\newlabel{eq:logit_model_fit_sim}{{10}{7}{STAN model}{equation.4.10}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Simulation results}{8}{subsection.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5}Case study}{8}{section.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces The number of lines in container mode and line mode for each week. The ratio is the fraction of the week's data that is in container mode.\relax }}{8}{table.caption.5}\protected@file@percent }
+\newlabel{tab:real_data_summary}{{2}{8}{The number of lines in container mode and line mode for each week. The ratio is the fraction of the week's data that is in container mode.\relax }{table.caption.5}{}}
+\citation{brooks_handbook_2011}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Results from the STAN model, fitted to simulated data. 50\% of the data are in container mode and 50\% are in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter. The spread indicates the variation (90\% confidence interval) between parameter estimates, over 20 repetitions of the simulated experiment.\relax }}{9}{figure.caption.4}\protected@file@percent }
 \newlabel{fig:simulation_estimation}{{3}{9}{Results from the STAN model, fitted to simulated data. 50\% of the data are in container mode and 50\% are in line mode, and each entry is a random size between 1 and 20. Dots and dashed lines in each plot show the STAN estimates, while the solid lines show the true value of each parameter. The spread indicates the variation (90\% confidence interval) between parameter estimates, over 20 repetitions of the simulated experiment.\relax }{figure.caption.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces The number of lines in container mode and line mode for each week. The ratio is the fraction of the week's data that is in container mode.\relax }}{9}{table.caption.5}\protected@file@percent }
-\newlabel{tab:real_data_summary}{{2}{9}{The number of lines in container mode and line mode for each week. The ratio is the fraction of the week's data that is in container mode.\relax }{table.caption.5}{}}
-\citation{brooks_handbook_2011}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Scatter plot of parameter estimates using the line only data and all data. Dots that fall on the solid black line indicate when we get the same parameter estimate from each data set.\relax }}{10}{figure.caption.6}\protected@file@percent }
 \newlabel{fig:case_study_scatter}{{4}{10}{Scatter plot of parameter estimates using the line only data and all data. Dots that fall on the solid black line indicate when we get the same parameter estimate from each data set.\relax }{figure.caption.6}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Parameter estimates that are only possible when using all data, as opposed to the line-only fits. {The value summary\_rhat\_all measures convergence of MCMC chains} \cite  {brooks_handbook_2011}.\relax }}{10}{table.caption.8}\protected@file@percent }
 \newlabel{tab:estimates_only_from_all_data}{{3}{10}{Parameter estimates that are only possible when using all data, as opposed to the line-only fits. {The value summary\_rhat\_all measures convergence of MCMC chains} \cite {brooks_handbook_2011}.\relax }{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{10}{section.6}\protected@file@percent }
+\citation{nakagawa_missing_2008,ren_review_2023}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Scatter plot of parameter estimates using the line data only, with some entries set to container mode. The model was fit separately to the subset remaining in line mode and to the full set. The subset of entries in container mode was chosen randomly to match the proportion from the full data set.\relax }}{11}{figure.caption.7}\protected@file@percent }
 \newlabel{fig:case_study_new_scatter}{{5}{11}{Scatter plot of parameter estimates using the line data only, with some entries set to container mode. The model was fit separately to the subset remaining in line mode and to the full set. The subset of entries in container mode was chosen randomly to match the proportion from the full data set.\relax }{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{11}{section.6}\protected@file@percent }
-\citation{nakagawa_missing_2008,ren_review_2023}
 \citation{mutesa_pooled_2021}
 \citation{delaigle_nonparametric_2015,chatterjee_regression_2020,mcmahan_bayesian_2017,liu_generalized_2020}
 \citation{brynildsrud_covid-19_2020}
 \bibstyle{imsart-nameyear}
 \bibdata{container-line.bib}
 \bibcite{baker_recent_2020}{{1}{2020}{{Baker and Bode}}{{}}}
-\@writefile{toc}{\contentsline {section}{Acknowledgments}{12}{section*.10}\protected@file@percent }
 \bibcite{binny_long-term_2021}{{2}{2021}{{Binny et~al.}}{{}}}
 \bibcite{brook_effects_2012}{{3}{2012}{{Brook, Johnson and Ritchie}}{{}}}
 \bibcite{brooks_handbook_2011}{{4}{2011}{{Brooks et~al.}}{{}}}
 \bibcite{brynildsrud_covid-19_2020}{{5}{2020}{{Brynildsrud}}{{}}}
+\@writefile{toc}{\contentsline {section}{Acknowledgments}{12}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{12}{section*.12}\protected@file@percent }
 \bibcite{chatterjee_regression_2020}{{6}{2020}{{Chatterjee and Bandyopadhyay}}{{}}}
 \bibcite{delaigle_nonparametric_2015}{{7}{2015}{{Delaigle and Hall}}{{}}}
 \bibcite{helmstedt_prioritizing_2016}{{8}{2016}{{Helmstedt et~al.}}{{}}}
@@ -111,7 +112,6 @@
 \bibcite{liu_generalized_2020}{{15}{2020}{{Liu et~al.}}{{}}}
 \bibcite{mcmahan_bayesian_2017}{{16}{2017}{{McMahan et~al.}}{{}}}
 \bibcite{mutesa_pooled_2021}{{17}{2021}{{Mutesa et~al.}}{{}}}
-\@writefile{toc}{\contentsline {section}{References}{13}{section*.12}\protected@file@percent }
 \bibcite{nakagawa_missing_2008}{{18}{2008}{{Nakagawa and Freckleton}}{{}}}
 \bibcite{ren_review_2023}{{19}{2023}{{Ren et~al.}}{{}}}
 \bibcite{schaarschmidt_experimental_2007}{{20}{2007}{{Schaarschmidt}}{{}}}

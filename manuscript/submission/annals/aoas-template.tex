@@ -153,43 +153,34 @@ To make our language about the data more precise, we will explicitly define what
 
 \subsection{Modelling}\label{sec:model}
 
-Throughout this paper, we focus on estimating the probability that a line is non-compliant using information including the type of item, country of origin and whether it has complete documentation. In doing so, we make the assumption that the data are accurate -- i.e. we don't consider imperfect detection. Therefore, The full model for the probability that a line is non-compliant, \(p_{ijk\ell}\), is: 
+Throughout this paper, we focus on estimating the probability that a line is non-compliant using information including the type of item, country of origin and whether it has complete documentation. In doing so, we make the assumption that the data are accurate -- i.e. we don't consider imperfect detection. Therefore, The full model for the probability that a line is non-compliant, \(p_{ijk}\), is: 
 
 \begin{align}
-\logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell \label{eq:logit_model_sim},
+\logit(p_{ijk}) = \alpha_{i} + \beta\mathbb{I}[\,\text{documentation}\,] + \delta_j + \gamma_k \label{eq:logit_model_sim},
 \end{align}
-where the fixed effects are $\alpha_i$, $\beta\mathbb{I}_j$ and $\delta_k$: $\alpha_i$ represents the item type, the indicator variable $\mathbb{I}_j$ denotes whether there is correct documentation, the coefficient $\beta$ is the given to the instance that there is correct documentation, and $\delta_k$ represents the country of provenance. The random effect $\gamma_\ell$ represents the entry effect, which we include because there may be correlations between lines within an entry.  {We anticipate some correlation because lines in the same entry originate from a common context, so they may be non-compliant for related reasons}. The indices can take values
+where the fixed effects are $\alpha_i$, $\beta\mathbb{I}[\,\text{documentation}\,]$ and $\delta_j$: $\alpha_i$ represents the item type, the indicator variable $\mathbb{I}[\,\text{documentation}\,]$ denotes whether there is correct documentation, the coefficient $\beta$ is the given to the instance that there is correct documentation, and $\delta_j$ represents the country of provenance. The random effect $\gamma_k$ represents the entry effect, which we include because there may be correlations between lines within an entry.  {We anticipate some correlation because lines in the same entry originate from a common context, so they may be non-compliant for related reasons}. The indices can take values
 % Quoted in response to CSIRO review
 
 \begin{align}
 \begin{split}
 i &=1, \ldots, a,\quad  a\in \mathbb{N},\quad a = \text{\# items}\\
-j &= 1, 2,\text{\hspace{70pt}without and with documentation}\\
-k &= 1,\ldots, d, \quad d \in \mathbb{N},\quad d = \text{\# countries}\\
-\ell &= 1,\ldots,g, \quad g\in \mathbb{N},\quad g = \text{\# entries}.
+j &= 1,\ldots, d, \quad d \in \mathbb{N},\quad d = \text{\# countries}\\
+k &= 1,\ldots,g, \quad g\in \mathbb{N},\quad g = \text{\# entries}.
 \end{split}
 \end{align}
-The values of the indicator variable are
+The indicator variable $\mathbb{I}[\,\text{documentation}\,]$ is $1$ if the line in question has correct documentation, and $0$ otherwise. The random effect $\gamma_k$ has distribution
 
 \begin{align}
-\begin{split}
-\mathbb{I}_1 & = 0,\quad\text{without documentation}\\
-\mathbb{I}_2 &= 1,\quad\text{with documentation}.
-\end{split}
-\end{align}
-The random effect $\gamma_\ell$ has distribution
-
-\begin{align}
-\gamma_\ell | \sigma &\sim \Normal(0, \sigma), & \ell &= 1,\ldots, g, & g&\in \mathbb{N}.
+\gamma_k | \sigma &\sim \Normal(0, \sigma), & \ell &= 1,\ldots, g, & g&\in \mathbb{N}.
 \label{eq:entry_effect}
 \end{align}
 
 If all data were in line mode then the above model would be a fairly standard mixed effects logistic regression with categorical variables. However, because of the use of container mode to capture the data, we don't observe outcomes for each line, as every line in the entry is marked as non-compliant if any line in the entry is found to be non-compliant. Therefore, the outcome is whether the entry is compliant and we need to calculate the probability that the entry is non-compliant, which is one minus the probability that every line in the entry is compliant:
 
 \begin{align}
-\mathbb{P}\left(\text{Entry } l \text{ non-compliant}\right) = q_l = 1-\prod_{ijk \text{ for lines in }l}[1-p_{ijkl}],\label{eq:entry_pr}
+\mathbb{P}\left(\text{Entry } l \text{ non-compliant}\right) = q_l = 1-\prod_{ijk \text{ for lines in }l}[1-p_{ijk}],\label{eq:entry_pr}
 \end{align}
-where  {$p_{ijkl}$ is the probability that the line with indices $ijkl$} is non-compliant, calculated from Eq.~\eqref{eq:logit_model_sim}.
+where  {$p_{ijk}$ is the probability that the line with indices $ijk$} is non-compliant, calculated from Eq.~\eqref{eq:logit_model_sim}.
 Hence, for entries in container mode, we treat the entry  as a Bernoulli random variable with probability defined by Eq.~\eqref{eq:entry_pr}, while for entries in line mode, we treat each line as a Bernoulli random variable with probability as defined in Eq.~\eqref{eq:logit_model_sim}.
 
 
@@ -420,12 +411,12 @@ Line & Entry & Type & Documentation & Mode & Non-compliant \\
 We model the system in a Bayesian framework, using the RSTAN package in R. We choose a Bayesian package due to the ease of specifying the model and {that it} could be updated, in principle, for any specification of the model for the probability of non-compliance. The basic structure for fitting the simulated data is to define the probability of non-compliance for each line (following Eq.~\eqref{eq:logit_model_sim})
 
 \begin{align}
-\logit(p_{ijk\ell}) = \alpha_{i} + \beta\mathbb{I}_j + \delta_k + \gamma_\ell, \label{eq:logit_model_fit_sim}
+\logit(p_{ijk}) = \alpha_{i} + \beta\mathbb{I}[\,\text{documentation}\,] + \delta_j + \gamma_k, \label{eq:logit_model_fit_sim}
 \end{align}
 where 
 
 \begin{align}
-\gamma_\ell | \sigma &\sim \Normal(0, \sigma), \quad  \ell = 1,\ldots, g, \quad  g \in \mathbb{N}.
+\gamma_k | \sigma &\sim \Normal(0, \sigma), \quad  \ell = 1,\ldots, g, \quad  g \in \mathbb{N}.
 \end{align}
 As we fit our model in a Bayesian framework, we set priors on each parameter:
 
@@ -433,12 +424,12 @@ As we fit our model in a Bayesian framework, we set priors on each parameter:
 \begin{split}
 \alpha_i &\sim \Normal(-4, 4), \quad \quad i=1, \ldots, a,\quad \quad  a\in \mathbb{N},\\
 \beta &\sim \Normal(0, 0.5),\\
-\delta_k &\sim \Normal(0, 0.5),\quad \quad  k = 1,\ldots, d, \quad \quad d \in \mathbb{N}\\
+\delta_j &\sim \Normal(0, 0.5),\quad \quad  k = 1,\ldots, d, \quad \quad d \in \mathbb{N}\\
 \sigma &\sim \Normal(0, 0.5)
 \end{split}
 \end{align}
 
-The probability $p_{ijk\ell}$ is the probability of non-compliance of a line that has characteristics $(i,j,k,\ell)$. We denote the probability that line $n$ is non-compliant as $p_{(n)}$, where $p_{(n)} = p_{ijk\ell}$ if that line has characteristics $(i,j,k,\ell)$.
+The probability $p_{ijk}$ is the probability of non-compliance of a line that has characteristics $(i,j,k)$. We denote the probability that line $n$ is non-compliant as $p_{(n)}$, where $p_{(n)} = p_{ijk}$ if that line has characteristics $(i,j,k)$.
 
 %If the data were exclusively in line mode, fitting the model would be relatively standard, as it is logistic regression. For the line mode data, the random variable that indicates whether line $n$ is non-compliant has a Bernoulli distribution
 %\begin{align}
